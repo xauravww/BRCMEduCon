@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".LoginMain"
+    android:background="@color/appPrimary">
+
+   <ImageView
+       android:id="@+id/imgUpper"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:src="@drawable/upper_main_login"
+
+       />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Hello"
+        android:layout_below="@id/imgUpper"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="50dp"
+        android:textSize="75dp"
+        android:textColor="#262626"
+        />
+
+    <Button
+        android:id="@+id/btnTeacher"
+        android:layout_width="125dp"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="50dp"
+        android:padding="20dp"
+        android:text="Teacher"
+        android:textSize="18sp"
+        android:background="@drawable/gradient_color"
+        android:textColor="@color/appPrimary"
+        android:textAllCaps="false"
+        />
+
+    <Button
+        android:id="@+id/btnStudent"
+        android:layout_width="125dp"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginRight="50dp"
+        android:padding="20dp"
+        android:text="Student"
+        android:textSize="18sp"
+        android:background="@drawable/gradient_color"
+        android:textColor="@color/appPrimary"
+        android:textAllCaps="false"
+
+        />
+
+
+
+    <ImageView
+        android:id="@+id/imgLower"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/lower_main_login"
+        android:layout_alignParentBottom="true"
+
+        />
+
+
+</RelativeLayout>
