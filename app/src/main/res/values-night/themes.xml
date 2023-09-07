@@ -4,5 +4,6 @@
         <!-- Customize your dark theme here. -->
 
 <!--         <item name="android:statusBarColor">@drawable/gradient_color</item>-->
+        <item name="colorAccent">#4069E5</item>
     </style>
 </resources>

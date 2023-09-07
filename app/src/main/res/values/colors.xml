@@ -2,6 +2,8 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="appPrimary">#F5F5F5</color>
-    <color name="btnPrimary">#F97794</color>
+
+    <color name="appPrimary">#4069E5</color>
+    <color name="fontPrimary">#565D6D</color>
+    <color name="inputBackground">#EAECF0</color>
 </resources>

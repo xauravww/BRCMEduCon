@@ -4,67 +4,221 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".LoginMain"
-    android:background="@color/appPrimary">
 
-   <ImageView
-       android:id="@+id/imgUpper"
-       android:layout_width="wrap_content"
-       android:layout_height="wrap_content"
-       android:src="@drawable/upper_main_login"
-
-       />
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello"
-        android:layout_below="@id/imgUpper"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="50dp"
-        android:textSize="75dp"
-        android:textColor="#262626"
-        />
-
-    <Button
-        android:id="@+id/btnTeacher"
-        android:layout_width="125dp"
-        android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
-        android:layout_marginLeft="50dp"
-        android:padding="20dp"
-        android:text="Teacher"
-        android:textSize="18sp"
-        android:background="@drawable/gradient_color"
-        android:textColor="@color/appPrimary"
-        android:textAllCaps="false"
-        />
-
-    <Button
-        android:id="@+id/btnStudent"
-        android:layout_width="125dp"
-        android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginRight="50dp"
-        android:padding="20dp"
-        android:text="Student"
-        android:textSize="18sp"
-        android:background="@drawable/gradient_color"
-        android:textColor="@color/appPrimary"
-        android:textAllCaps="false"
-
-        />
-
-
+    tools:context=".LoginMain">
 
     <ImageView
-        android:id="@+id/imgLower"
+        android:id="@+id/imgLogoBig"
+        android:layout_width="300dp"
+        android:layout_height="245dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:src="@drawable/brcm_logo_big" />
+
+    <LinearLayout
+        android:id="@+id/llBtnRoles"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/imgLogoBig"
+        android:weightSum="5"
+
+        >
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:fontFamily="@font/montserrat_extrabold"
+
+            android:gravity="center_vertical|center_horizontal"
+            android:text="I'm"
+            android:textColor="@color/fontPrimary"
+            android:textSize="18sp"
+
+            />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="3"
+            android:background="@color/appPrimary"
+            android:weightSum="3"
+
+            >
+
+            <Button
+                android:layout_width="0dp"
+                android:layout_height="34dp"
+                android:layout_marginStart="3dp"
+                android:layout_weight="1"
+                android:background="@drawable/gradient_color"
+                android:elevation="0dp"
+                android:fontFamily="@font/no_to_sans_bold"
+                android:text="Student"
+                android:textAllCaps="false" />
+
+            <Button
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:layout_weight="1"
+                android:background="@color/appPrimary"
+                android:elevation="0dp"
+                android:fontFamily="@font/no_to_sans_bold"
+                android:text="Faculty"
+                android:textAllCaps="false"
+                android:textColor="#ffffff" />
+
+            <Button
+                android:layout_width="0dp"
+
+                android:layout_height="40dp"
+                android:layout_weight="1"
+                android:background="@color/appPrimary"
+                android:elevation="0dp"
+                android:fontFamily="@font/no_to_sans_bold"
+                android:text="Admin"
+                android:textAllCaps="false"
+                android:textColor="#ffffff" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/txtTitleLoginRole"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/lower_main_login"
-        android:layout_alignParentBottom="true"
+        android:layout_below="@id/llBtnRoles"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="25dp"
+        android:fontFamily="@font/montserrat_extrabold"
+        android:text="Student Login"
+        android:textColor="@color/fontPrimary"
+        android:textSize="35sp" />
+
+    <TextView
+        android:id="@+id/txtSubtitleLoginRole"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/txtTitleLoginRole"
+        android:layout_centerHorizontal="true"
+        android:fontFamily="@font/no_to_sans_bold"
+        android:text="Not a member yet? Sign up"
+        android:textColor="@color/fontPrimary"
+        android:textSize="15sp"
 
         />
 
+    <LinearLayout
+        android:id="@+id/llInputUseridOrEmail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/txtSubtitleLoginRole"
+        android:layout_marginTop="20dp"
+        android:weightSum="5">
 
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+          android:layout_gravity="bottom"
+            android:layout_weight="1"
+            android:src="@drawable/input_icon_profile" />
+
+        <EditText
+            android:id="@+id/edtUseridOrEmail"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="45dp"
+            android:layout_weight="4"
+            android:background="@color/inputBackground"
+android:layout_gravity="top"
+            android:fontFamily="@font/no_to_sans_bold"
+            android:gravity="center"
+            android:hint="Email or Userid"
+            android:paddingHorizontal="16dp"
+            android:textSize="16sp"
+            android:layout_marginRight="20dp"
+            android:maxLines="1"
+            android:maxLength="35"
+            />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/llPassword"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/llInputUseridOrEmail"
+        android:weightSum="5"
+        >
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:src="@drawable/input_lock_icon"
+            android:layout_gravity="bottom"
+            android:layout_weight="1"/>
+
+        <EditText
+            android:id="@+id/edtPassword"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_below="@id/edtUseridOrEmail"
+            android:layout_marginTop="25dp"
+            android:layout_marginRight="20dp"
+            android:layout_weight="4"
+            android:background="@color/inputBackground"
+            android:fontFamily="@font/no_to_sans_bold"
+            android:gravity="center"
+            android:hint="Password"
+            android:inputType="textPassword"
+            android:paddingHorizontal="16dp"
+            android:textSize="16sp"
+            android:maxLines="1"
+            android:maxLength="50"
+
+            />
+    </LinearLayout>
+    <CheckBox
+        android:id="@+id/chkRemember"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/llPassword"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="10dp"
+
+        />
+    <TextView
+        android:id="@+id/txtRemember"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Remember me"
+        android:layout_below="@id/llPassword"
+        android:layout_marginTop="23dp"
+        android:layout_marginLeft="37dp"
+        android:fontFamily="@font/no_to_sans_bold"
+        android:textColor="@color/fontPrimary"
+        />
+    <TextView
+        android:id="@+id/txtForgot"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Forgot Password?"
+        android:layout_below="@id/llPassword"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="30dp"
+        android:fontFamily="@font/no_to_sans_bold"
+        android:textColor="@color/fontPrimary"
+        />
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Login"
+        android:background="@drawable/smooth_corner_shape"
+        android:backgroundTint="@color/appPrimary"
+        android:layout_marginHorizontal="10dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="10dp"
+        android:textColor="#ffffff"
+        android:textAllCaps="false"
+        android:fontFamily="@font/no_to_sans_bold"
+        android:textSize="18sp"
+        />
 </RelativeLayout>
