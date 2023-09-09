@@ -3,7 +3,7 @@
     <style name="Base.Theme.BRCMEduCorn" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your light theme here. -->
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
-<!--        <item name="android:statusBarColor">#711980</item>-->
+        <item name="android:statusBarColor">#4069E5</item>
         <item name="colorAccent">#4069E5</item>
     </style>
 
