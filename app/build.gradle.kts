@@ -47,4 +47,8 @@ dependencies {
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
     implementation ("de.hdodenhof:circleimageview:3.1.0")
     implementation ("com.applandeo:material-calendar-view:1.9.0-rc03")
+
+//    added blur kit library for image blur effect
+
+
 }
