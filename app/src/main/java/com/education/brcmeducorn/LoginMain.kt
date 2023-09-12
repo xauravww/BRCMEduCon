@@ -31,8 +31,7 @@ class LoginMain : AppCompatActivity() {
         btnLogin= findViewById(R.id.btnLogin)
 
         btnLogin.setOnClickListener {
-            val intent  = Intent(this@LoginMain,DashboardActivity::class.java)
-            startActivity(intent)
+            Adjust().handleLogin(this@LoginMain)
         }
 
 //        fetching the login users

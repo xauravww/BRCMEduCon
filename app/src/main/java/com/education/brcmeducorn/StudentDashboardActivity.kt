@@ -1,22 +1,18 @@
 package com.education.brcmeducorn
 
-import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.Gravity
 import android.view.MenuItem
 import android.widget.FrameLayout
 import android.widget.Toast
-import android.window.OnBackInvokedDispatcher
 import androidx.activity.OnBackPressedCallback
-import androidx.annotation.RequiresApi
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.widget.Toolbar
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import com.google.android.material.navigation.NavigationView
 
-class DashboardActivity : AppCompatActivity() {
+class StudentDashboardActivity : AppCompatActivity() {
     lateinit var toolbar: Toolbar
     lateinit var drawerLayout: DrawerLayout
     lateinit var navigationView: NavigationView
@@ -55,7 +51,7 @@ class DashboardActivity : AppCompatActivity() {
                     .replace(R.id.frameLayout, EventsFragment()).commit()
 
                 R.id.logOut -> Toast.makeText(
-                    this@DashboardActivity,
+                    this@StudentDashboardActivity,
                     "Log Out Feature",
                     Toast.LENGTH_SHORT
                 ).show()
@@ -78,7 +74,7 @@ class DashboardActivity : AppCompatActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         var actionBarDrawerToggle = ActionBarDrawerToggle(
-            this@DashboardActivity,
+            this@StudentDashboardActivity,
             drawerLayout,
             R.string.open_drawer,
             R.string.close_drawer
