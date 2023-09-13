@@ -5,5 +5,8 @@
 
          <item name="android:statusBarColor">#4069E5</item>
         <item name="colorAccent">#4069E5</item>
+
+
+
     </style>
 </resources>

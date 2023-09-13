@@ -5,12 +5,16 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".SplashActivity"
-    android:background="@drawable/status_bar_gradient">
+   >
 
     <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-       android:layout_centerVertical="true"
-        android:layout_marginLeft="35dp"
-        android:src="@drawable/splash_img" />
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_centerInParent="true"
+        android:src="@drawable/brcm_logo_big"
+
+        />
+
+
+
 </RelativeLayout>
