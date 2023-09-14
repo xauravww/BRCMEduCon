@@ -1,14 +1,66 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".fragments.AlumniMeetFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Alumni Fragment" />
 
-</FrameLayout>
+    <androidx.appcompat.widget.SearchView
+        android:id="@+id/searchView"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="20dp"
+
+        android:textAppearance="@font/no_to_sans_bold"
+        app:defaultQueryHint="Search by Name or Batch"
+        app:iconifiedByDefault="false"
+        android:background="@drawable/box_outline"
+        app:queryBackground="@android:color/transparent"
+
+        />
+
+    <TextView
+        android:id="@+id/txtFilterBy"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/searchView"
+        android:text="Filter By"
+        android:fontFamily="@font/no_to_sans_bold"
+android:textSize="18sp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="23dp"
+        android:layout_toStartOf="@id/spinner"
+        />
+
+    <Spinner
+        android:id="@+id/spinner"
+        android:layout_width="120dp"
+        android:layout_height="50dp"
+        android:layout_below="@id/searchView"
+       android:layout_marginTop="18dp"
+        android:layout_marginRight="8dp"
+        android:spinnerMode="dropdown"
+        android:layout_alignParentRight="true"
+        android:theme="@style/SpinnerTheme"
+        android:outlineProvider="bounds"
+        android:gravity="center"
+        android:background="@drawable/box_outline"
+        />
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerDashboard"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:layout_below="@+id/txtFilterBy"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="5dp"
+        android:layout_marginBottom="5dp" />
+</RelativeLayout>
