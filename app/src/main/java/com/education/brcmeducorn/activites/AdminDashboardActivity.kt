@@ -14,6 +14,7 @@ import com.education.brcmeducorn.R
 import com.education.brcmeducorn.fragments.admin_dashboard_fragments.AdminDashboardFragment
 import com.education.brcmeducorn.fragments.faculty_dashboard_fragments.FacultyDashboardFragment
 import com.education.brcmeducorn.fragments.EventsFragment
+import com.google.android.material.appbar.AppBarLayout
 import com.google.android.material.navigation.NavigationView
 
 class AdminDashboardActivity : AppCompatActivity() {
@@ -21,6 +22,7 @@ class AdminDashboardActivity : AppCompatActivity() {
     lateinit var drawerLayout: DrawerLayout
     lateinit var navigationView: NavigationView
     lateinit var frameLayout: FrameLayout
+    lateinit var appBar: AppBarLayout
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_dashboard)
@@ -28,6 +30,7 @@ class AdminDashboardActivity : AppCompatActivity() {
         drawerLayout = findViewById(R.id.drawerLayout)
         navigationView = findViewById(R.id.navigationView)
         frameLayout = findViewById(R.id.frameLayout)
+        appBar = findViewById(R.id.appBar)
         setupToolbar()
         setupNavigation()
         onBackPressedHandler()
@@ -76,7 +79,7 @@ class AdminDashboardActivity : AppCompatActivity() {
         supportActionBar?.setHomeButtonEnabled(true)
 
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-
+        appBar.outlineProvider = null
         var actionBarDrawerToggle = ActionBarDrawerToggle(
             this@AdminDashboardActivity,
             drawerLayout,
