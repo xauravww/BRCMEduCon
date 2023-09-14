@@ -1,4 +1,4 @@
-package com.education.brcmeducorn
+package com.education.brcmeducorn.activites
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -7,6 +7,7 @@ import android.os.Handler
 import android.os.Looper
 import android.widget.ImageView
 import android.widget.TextView
+import com.education.brcmeducorn.R
 
 class SplashActivity : AppCompatActivity() {
     lateinit var background:ImageView
@@ -38,10 +39,10 @@ class SplashActivity : AppCompatActivity() {
             textView.text = currentText
             currentIndex++
 
-            // Adjust the delay and speed of text generation
+            // login_main_utils the delay and speed of text generation
             handler.postDelayed({ generateAutoText(textView) }, 100)
         } else {
-            val intent  = Intent(this@SplashActivity,LoginMain::class.java)
+            val intent  = Intent(this@SplashActivity, LoginMainActivity::class.java)
             startActivity(intent)
             finish()
         }

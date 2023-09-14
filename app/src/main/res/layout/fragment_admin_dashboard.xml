@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".AdminDashboardActivity">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".fragments.admin_dashboard_fragments.AdminDashboardFragment">
 
     <RelativeLayout
         android:id="@+id/reuseName"
@@ -72,7 +72,7 @@
         >
 
         <LinearLayout
-            android:id="@+id/llEvents"
+            android:id="@+id/llAddOrRemoveMembers"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:orientation="vertical"
@@ -85,7 +85,7 @@
                 >
 
                 <com.google.android.material.imageview.ShapeableImageView
-                    android:id="@+id/imgClasses"
+                    android:id="@+id/imgAddOrRemoveMembers"
                     android:layout_width="120dp"
                     android:layout_height="120dp"
                     android:scaleType="centerCrop"
@@ -95,22 +95,23 @@
                     app:shapeAppearanceOverlay="@style/RoundedSquare" />
 
                 <TextView
-                    android:id="@+id/txtClasses"
+                    android:id="@+id/txtAddOrRemoveMembers"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textAlignment="center"
+                    android:layout_below="@id/imgAddOrRemoveMembers"
                     android:layout_gravity="center"
                     android:layout_marginStart="10dp"
-                    android:layout_marginTop="2dp"
+                    android:layout_marginTop="0dp"
                     android:fontFamily="@font/no_to_sans_bold"
-                    android:text="add or remove members"
-                    android:textColor="@color/fontPrimary"
-                    android:layout_below="@id/imgClasses"/>
+                    android:text="Add or Remove Members"
+                    android:textAlignment="center"
+                    android:textColor="@color/fontPrimary" />
             </RelativeLayout>
 
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/llSendEvents"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:orientation="vertical"
@@ -118,27 +119,28 @@
             >
 
             <com.google.android.material.imageview.ShapeableImageView
-                android:id="@+id/imgMarkAttendence"
+                android:id="@+id/imgSendEvents"
                 android:layout_width="120dp"
                 android:layout_height="140dp"
                 android:layout_gravity="center"
-                android:layout_toRightOf="@id/imgClasses"
+                android:layout_toRightOf="@id/llAddOrRemoveMembers"
                 android:scaleType="centerCrop"
                 android:src="@drawable/image_frame"
                 app:shapeAppearanceOverlay="@style/RoundedSquare" />
             <TextView
-                android:id="@+id/txtMarkAttendence"
+                android:id="@+id/txtSendEvents"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:textAlignment="center"
                 android:layout_marginTop="2dp"
                 android:fontFamily="@font/no_to_sans_bold"
-                android:text="send financial remainders"
+                android:text="Send Events and Reminders"
                 android:textColor="@color/fontPrimary" />
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/llAssignClasses"
             android:layout_width="0dp"
             android:layout_height="165dp"
             android:layout_weight="2"
@@ -150,7 +152,7 @@
                 >
 
                 <com.google.android.material.imageview.ShapeableImageView
-                    android:id="@+id/imgSendEvents"
+                    android:id="@+id/imgAssignClasses"
                     android:layout_width="120dp"
                     android:layout_height="120dp"
                     android:scaleType="centerCrop"
@@ -160,7 +162,7 @@
                     app:shapeAppearanceOverlay="@style/RoundedSquare" />
 
                 <TextView
-                    android:id="@+id/txtSendEvents"
+                    android:id="@+id/txtAssignClasses"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textAlignment="center"
@@ -168,9 +170,9 @@
                     android:layout_marginStart="10dp"
                     android:layout_marginTop="2dp"
                     android:fontFamily="@font/no_to_sans_bold"
-                    android:text="Results"
+                    android:text="Send Events"
                     android:textColor="@color/fontPrimary"
-                    android:layout_below="@id/imgSendEvents"/>
+                    android:layout_below="@id/imgAssignClasses"/>
             </RelativeLayout>
         </LinearLayout>
     </LinearLayout>

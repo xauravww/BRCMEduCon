@@ -1,4 +1,4 @@
-package com.education.brcmeducorn
+package com.education.brcmeducorn.activites
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -10,10 +10,13 @@ import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.widget.Toolbar
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
-import com.education.brcmeducorn.student_dashboard_fragments.StudentDashboardFragment
+import com.education.brcmeducorn.R
+import com.education.brcmeducorn.fragments.admin_dashboard_fragments.AdminDashboardFragment
+import com.education.brcmeducorn.fragments.faculty_dashboard_fragments.FacultyDashboardFragment
+import com.education.brcmeducorn.fragments.EventsFragment
 import com.google.android.material.navigation.NavigationView
 
-class StudentDashboardActivity : AppCompatActivity() {
+class AdminDashboardActivity : AppCompatActivity() {
     lateinit var toolbar: Toolbar
     lateinit var drawerLayout: DrawerLayout
     lateinit var navigationView: NavigationView
@@ -32,11 +35,11 @@ class StudentDashboardActivity : AppCompatActivity() {
     }
 
     private fun onBackPressedHandler() {
-        onBackPressedDispatcher.addCallback(this,object :OnBackPressedCallback(true){
+        onBackPressedDispatcher.addCallback(this,object : OnBackPressedCallback(true){
             override fun handleOnBackPressed() {
                 when(supportFragmentManager.findFragmentById(R.id.frameLayout)){
-                    !is StudentDashboardFragment -> {
-                          openHome()
+                    !is AdminDashboardFragment -> {
+                        openHome()
                     }
                     else-> finish()
                 }
@@ -48,11 +51,11 @@ class StudentDashboardActivity : AppCompatActivity() {
         navigationView.setNavigationItemSelectedListener {
             when (it.itemId) {
                 R.id.home -> openHome()
-                R.id.events-> supportFragmentManager.beginTransaction()
+                R.id.events -> supportFragmentManager.beginTransaction()
                     .replace(R.id.frameLayout, EventsFragment()).commit()
 
                 R.id.logOut -> Toast.makeText(
-                    this@StudentDashboardActivity,
+                    this@AdminDashboardActivity,
                     "Log Out Feature",
                     Toast.LENGTH_SHORT
                 ).show()
@@ -64,7 +67,7 @@ class StudentDashboardActivity : AppCompatActivity() {
 
     private fun openHome() {
         supportFragmentManager.beginTransaction()
-            .replace(R.id.frameLayout, StudentDashboardFragment()).commit()
+            .replace(R.id.frameLayout, AdminDashboardFragment()).commit()
     }
 
     private fun setupToolbar() {
@@ -75,7 +78,7 @@ class StudentDashboardActivity : AppCompatActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         var actionBarDrawerToggle = ActionBarDrawerToggle(
-            this@StudentDashboardActivity,
+            this@AdminDashboardActivity,
             drawerLayout,
             R.string.open_drawer,
             R.string.close_drawer
@@ -91,8 +94,4 @@ class StudentDashboardActivity : AppCompatActivity() {
         }
         return super.onOptionsItemSelected(item)
     }
-
-
 }
-
-

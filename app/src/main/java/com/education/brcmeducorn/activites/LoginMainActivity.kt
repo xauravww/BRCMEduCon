@@ -1,22 +1,16 @@
-package com.education.brcmeducorn
+package com.education.brcmeducorn.activites
 
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.text.method.PasswordTransformationMethod
-import android.view.MotionEvent
-import android.view.Window
-import android.view.WindowManager
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
-import android.widget.Toast
-import androidx.core.content.ContextCompat
-import com.education.brcmeducorn.main_login_page.Adjust
+import com.education.brcmeducorn.R
+import com.education.brcmeducorn.utils.login_main_utils
 import com.google.android.material.textfield.TextInputEditText
 
 
-class LoginMain : AppCompatActivity() {
+class LoginMainActivity : AppCompatActivity() {
     lateinit var btnLogin:Button
     lateinit var studentBtn:Button
     lateinit var facultyBtn:Button
@@ -31,7 +25,7 @@ class LoginMain : AppCompatActivity() {
         btnLogin= findViewById(R.id.btnLogin)
 
         btnLogin.setOnClickListener {
-            Adjust().handleLogin(this@LoginMain)
+            login_main_utils().handleLogin(this@LoginMainActivity)
         }
 
 //        fetching the login users
@@ -51,8 +45,8 @@ class LoginMain : AppCompatActivity() {
 
 
         // adjust the colors of the each user
-        // Adjust class is created for convenience in main_login_page
-        Adjust().adjustColor(this,role,studentBtn,facultyBtn,adminBtn)
+        // login_main_utils class is created for convenience in utils
+        login_main_utils().adjustColor(this,role,studentBtn,facultyBtn,adminBtn)
 
 
 

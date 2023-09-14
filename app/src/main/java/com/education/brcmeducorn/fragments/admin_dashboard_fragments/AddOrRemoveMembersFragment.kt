@@ -1,21 +1,17 @@
-package com.education.brcmeducorn
+package com.education.brcmeducorn.fragments.admin_dashboard_fragments
 
-import android.content.Context
 import android.os.Bundle
+import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.CalendarView
-import android.widget.GridView
-import androidx.fragment.app.Fragment
+import com.education.brcmeducorn.R
+
+class AddOrRemoveMembersFragment : Fragment() {
 
 
-class EventsFragment : Fragment() {
-
-    lateinit var calendarView: CalendarView
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
 
     }
 
@@ -24,11 +20,8 @@ class EventsFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        val view = inflater.inflate(R.layout.fragment_events, container, false)
-
-
-
-        return view
+        return inflater.inflate(R.layout.fragment_add_or_remove_members, container, false)
     }
+
 
 }

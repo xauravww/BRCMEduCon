@@ -1,15 +1,15 @@
-package com.education.brcmeducorn.student_dashboard_fragments
+package com.education.brcmeducorn.fragments.student_dashboard_fragments
 
-import android.R
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Gallery
 import android.widget.LinearLayout
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
-import androidx.fragment.app.FragmentTransaction
-import com.education.brcmeducorn.AlumniMeetFragment
+import com.education.brcmeducorn.fragments.AlumniMeetFragment
+import com.education.brcmeducorn.fragments.EventsFragment
+import com.education.brcmeducorn.fragments.IDCardFragment
 
 
 class StudentDashboardFragment : Fragment() {
@@ -48,30 +48,24 @@ class StudentDashboardFragment : Fragment() {
     }
 
     private fun handleClickListeners() {
-        llAlumniMeet.setOnClickListener {
-            activity?.supportFragmentManager?.beginTransaction()
-                ?.replace(com.education.brcmeducorn.R.id.frameLayout, AlumniMeetFragment())
-                ?.commit()
 
-
-        }
         llEvents.setOnClickListener {
             activity?.supportFragmentManager?.beginTransaction()
-                ?.replace(com.education.brcmeducorn.R.id.frameLayout, AlumniMeetFragment())
+                ?.replace(com.education.brcmeducorn.R.id.frameLayout, EventsFragment())
                 ?.commit()
 
 
         }
         llGallery.setOnClickListener {
             activity?.supportFragmentManager?.beginTransaction()
-                ?.replace(com.education.brcmeducorn.R.id.frameLayout, AlumniMeetFragment())
+                ?.replace(com.education.brcmeducorn.R.id.frameLayout, GalleryFragment())
                 ?.commit()
 
 
         }
         llResults.setOnClickListener {
             activity?.supportFragmentManager?.beginTransaction()
-                ?.replace(com.education.brcmeducorn.R.id.frameLayout, AlumniMeetFragment())
+                ?.replace(com.education.brcmeducorn.R.id.frameLayout, ResultsFragment())
                 ?.commit()
 
 
@@ -85,14 +79,14 @@ class StudentDashboardFragment : Fragment() {
         }
         llExams.setOnClickListener {
             activity?.supportFragmentManager?.beginTransaction()
-                ?.replace(com.education.brcmeducorn.R.id.frameLayout, AlumniMeetFragment())
+                ?.replace(com.education.brcmeducorn.R.id.frameLayout, ExamsFragment())
                 ?.commit()
 
 
         }
         llIdCard.setOnClickListener {
             activity?.supportFragmentManager?.beginTransaction()
-                ?.replace(com.education.brcmeducorn.R.id.frameLayout, AlumniMeetFragment())
+                ?.replace(com.education.brcmeducorn.R.id.frameLayout, IDCardFragment())
                 ?.commit()
 
 

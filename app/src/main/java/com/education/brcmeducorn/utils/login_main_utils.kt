@@ -1,4 +1,4 @@
-package com.education.brcmeducorn.main_login_page
+package com.education.brcmeducorn.utils
 
 import android.content.Context
 import android.content.Intent
@@ -6,12 +6,12 @@ import android.widget.Button
 import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.core.content.ContextCompat.startActivity
-import com.education.brcmeducorn.AdminDashboardActivity
-import com.education.brcmeducorn.StudentDashboardActivity
-import com.education.brcmeducorn.FacultyDashboardActivity
+import com.education.brcmeducorn.activites.AdminDashboardActivity
+import com.education.brcmeducorn.activites.StudentDashboardActivity
+import com.education.brcmeducorn.activites.FacultyDashboardActivity
 import com.education.brcmeducorn.R
 
-class Adjust {
+class login_main_utils {
 
     companion object {
        var student_user=1;
@@ -98,7 +98,7 @@ class Adjust {
 
         if(student_user == 1 && faculty_user==0 && admin_user == 0)
         {
-           val intent = Intent(context,StudentDashboardActivity::class.java)
+           val intent = Intent(context, StudentDashboardActivity::class.java)
             startActivity(context,intent,null)
         }
         else if(faculty_user == 1 && student_user==0 && admin_user==0 )

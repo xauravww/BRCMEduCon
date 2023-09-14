@@ -1,16 +1,20 @@
-package com.education.brcmeducorn
+package com.education.brcmeducorn.fragments
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.CalendarView
+import androidx.fragment.app.Fragment
+import com.education.brcmeducorn.R
 
-class AlumniMeetFragment : Fragment() {
 
+class EventsFragment : Fragment() {
 
+    lateinit var calendarView: CalendarView
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
 
     }
 
@@ -19,8 +23,11 @@ class AlumniMeetFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_alumni_meet, container, false)
-    }
+        val view = inflater.inflate(R.layout.fragment_events, container, false)
 
+
+
+        return view
+    }
 
 }
