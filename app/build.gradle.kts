@@ -55,4 +55,8 @@ dependencies {
     implementation("com.kizitonwose.calendar:compose:2.3.0")
 
 
+
+    // image slider library
+    implementation("com.github.denzcoskun:ImageSlideshow:0.1.2")
+
 }

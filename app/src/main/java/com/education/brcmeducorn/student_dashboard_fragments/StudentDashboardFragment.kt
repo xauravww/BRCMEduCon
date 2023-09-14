@@ -1,10 +1,11 @@
-package com.education.brcmeducorn
+package com.education.brcmeducorn.student_dashboard_fragments
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.education.brcmeducorn.R
 
 
 class StudentDashboardFragment : Fragment() {
