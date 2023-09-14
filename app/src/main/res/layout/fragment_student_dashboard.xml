@@ -51,6 +51,7 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/llGallery"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:orientation="vertical"
@@ -80,6 +81,7 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/llResults"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:orientation="vertical"
@@ -116,9 +118,9 @@
         android:layout_below="@id/llFeaturesTabOne"
         android:weightSum="5"
         >
-
+<!--Replaced exams with Alumni Meet-->
         <LinearLayout
-            android:id="@+id/llDateSheet"
+            android:id="@+id/llAlumniMeet"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:orientation="vertical"
@@ -137,19 +139,20 @@
                 app:shapeAppearanceOverlay="@style/RoundedSquare" />
 
             <TextView
-                android:id="@+id/txtDateSheet"
+                android:id="@+id/txtAlumniMeet"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="2dp"
                 android:fontFamily="@font/no_to_sans_bold"
-                android:text="Date Sheet"
+                android:text="Alumni Meet"
                 android:textColor="@color/fontPrimary" />
 
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/llExams"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:orientation="vertical"
@@ -179,6 +182,7 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/llIdCard"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:orientation="vertical"
