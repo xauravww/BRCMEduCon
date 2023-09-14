@@ -55,7 +55,6 @@
                 android:elevation="0dp"
                 android:fontFamily="@font/no_to_sans_bold"
                 android:text="Student"
-
                 android:textAllCaps="false"
                 android:textColor="@color/black"
                 />
@@ -71,7 +70,8 @@
                 android:fontFamily="@font/no_to_sans_bold"
                 android:text="Faculty"
                 android:textAllCaps="false"
-                android:textColor="#ffffff" />
+                android:textColor="#ffffff"
+                />
 
             <Button
                 android:id="@+id/adminBtn"
