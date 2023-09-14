@@ -46,11 +46,13 @@ dependencies {
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
-    implementation ("de.hdodenhof:circleimageview:3.1.0")
-    implementation ("com.applandeo:material-calendar-view:1.9.0-rc03")
+    implementation("de.hdodenhof:circleimageview:3.1.0")
+    implementation("com.applandeo:material-calendar-view:1.9.0-rc03")
 
-    coreLibraryDesugaring ("com.android.tools:desugar_jdk_libs:<latest-version>")
-    implementation ("com.kizitonwose.calendar:view:2.3.0")
-    implementation ("com.kizitonwose.calendar:compose:2.3.0")
-    implementation ("io.alterac.blurkit:blurkit:1.1.0")
+
+    coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:<latest-version>")
+    implementation("com.kizitonwose.calendar:view:2.3.0")
+    implementation("com.kizitonwose.calendar:compose:2.3.0")
+
+
 }
