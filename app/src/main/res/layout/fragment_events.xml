@@ -1,14 +1,74 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".EventsFragment">
+    tools:context=".fragments.EventsFragment"
 
-   <CalendarView
-       android:id="@+id/calendarView"
-       android:layout_width="match_parent"
-       android:layout_height="wrap_content"
-       />
+    >
+
+    <!--   <CalendarView-->
+    <!--       android:id="@+id/calendarView"-->
+    <!--       android:layout_width="match_parent"-->
+    <!--       android:layout_height="wrap_content"-->
+    <!--       />-->
+
+    <!--   Using this calender library  for good UI for now , but we will make our custom calender in future -->
+
+    <com.applandeo.materialcalendarview.CalendarView
+        android:id="@+id/CalenderView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+
+app:headerColor="@color/appPrimary"
+        />
+
+    <TextView
+        android:id="@+id/txtTitleOnThisDay"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/CalenderView"
+        android:layout_margin="20dp"
+        android:fontFamily="@font/montserrat_extrabold"
+        android:text="On this day"
+        android:textColor="@color/fontPrimary"
+        android:textSize="20dp" />
+
+    <RelativeLayout
+        android:id="@+id/rlShowEventsDetails"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:layout_below="@id/txtTitleOnThisDay"
+        android:background="#F6F6FBFF"
+        android:orientation="vertical">
+<ImageView
+    android:id="@+id/imgDotShape"
+    android:layout_width="10dp"
+    android:layout_height="10dp"
+    android:src="@drawable/dot_shape"
+    android:layout_marginTop="24dp"
+    android:layout_marginLeft="20dp"
+    />
+        <TextView
+            android:id="@+id/txtEventName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="20dp"
+            android:fontFamily="@font/montserrat_extrabold"
+            android:layout_toRightOf="@id/imgDotShape"
+            android:text="XYZ Jayanti" />
+       <TextView
+           android:id="@+id/txtEventDescription"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:layout_marginTop="10dp"
+           android:layout_marginLeft="50dp"
+           android:layout_below="@id/txtEventName"
+           android:fontFamily="@font/no_to_sans_bold"
+           android:text="Description About the Event or where we have to assemble" />
+    </RelativeLayout>
+
 </RelativeLayout>
