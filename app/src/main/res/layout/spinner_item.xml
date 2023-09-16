@@ -1,0 +1,9 @@
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@android:id/text1"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:textSize="20sp"
+    android:textColor="@color/fontPrimary"
+    android:fontFamily="@font/no_to_sans_bold"
+    android:padding="5dp"
+    />
