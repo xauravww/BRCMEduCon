@@ -3,12 +3,126 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".fragments.faculty_dashboard_fragments.MarkAttendanceFragment">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
+
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="Mark Attendance Fragment" />
+        >
+
+        <LinearLayout
+            android:id="@+id/llcalender"
+            android:layout_marginTop="45dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            >
+
+            <RelativeLayout
+                android:layout_width="120dp"
+                android:layout_height="100dp"
+
+                >
+
+                <soup.neumorphism.NeumorphCardView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_centerInParent="true"
+                    app:neumorph_shapeType="basin">
+
+                    <TextView
+                        android:id="@+id/day"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:fontFamily="@font/montserrat_extrabold"
+                        android:text="day of week"
+                        android:textAlignment="center"
+                        android:textSize="15sp" />
+                </soup.neumorphism.NeumorphCardView>
+
+
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+
+                >
+
+                <soup.neumorphism.NeumorphCardView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_centerInParent="true"
+                    app:neumorph_shapeType="basin">
+
+                    <TextView
+                        android:id="@+id/dateAndMonth"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:fontFamily="@font/montserrat_extrabold"
+                        android:text="date and month"
+                        android:textAlignment="center"
+                        android:textSize="15sp" />
+                </soup.neumorphism.NeumorphCardView>
+
+
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+
+                >
+
+                <soup.neumorphism.NeumorphCardView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_centerInParent="true"
+                    app:neumorph_shapeType="basin"
+
+                    >
+
+                    <TextView
+                        android:id="@+id/year"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:fontFamily="@font/montserrat_extrabold"
+                        android:text="year"
+                        android:textAlignment="center"
+                        android:textSize="15sp" />
+                </soup.neumorphism.NeumorphCardView>
+
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+
+           <Button
+               android:id="@+id/selectDate"
+               android:layout_width="100dp"
+               android:layout_height="35dp"
+               android:text="Select"
+               android:textAlignment="center"
+               android:textSize="15sp"
+               android:fontFamily="@font/montserrat_extrabold"
+               android:background="@drawable/smooth_corner_shape"
+               android:textAllCaps="false"
+               android:outlineProvider="none"
+               android:layout_centerHorizontal="true"
+               android:layout_below="@id/llcalender"
+               android:layout_marginTop="20dp"
+               android:elevation="10dp"
+               android:textColor="#737988"
+               />
+
+
+
+    </RelativeLayout>
+
 
 </FrameLayout>

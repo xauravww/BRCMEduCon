@@ -27,7 +27,6 @@ android {
         }
     }
     compileOptions {
-
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
     }
@@ -58,5 +57,8 @@ dependencies {
 
     // image slider library
     implementation("com.github.denzcoskun:ImageSlideshow:0.1.2")
+
+    // neumorphic library
+    implementation("com.github.fornewid:neumorphism:0.2.1")
 
 }
