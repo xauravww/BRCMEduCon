@@ -11,6 +11,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+
         >
 
         <LinearLayout
@@ -105,22 +106,141 @@
            <Button
                android:id="@+id/selectDate"
                android:layout_width="100dp"
-               android:layout_height="35dp"
-               android:text="Select"
+               android:layout_height="50dp"
+               android:text="Select date"
                android:textAlignment="center"
                android:textSize="15sp"
                android:fontFamily="@font/montserrat_extrabold"
-               android:background="@drawable/smooth_corner_shape"
+               android:background="@drawable/box_outline"
                android:textAllCaps="false"
                android:outlineProvider="none"
                android:layout_centerHorizontal="true"
                android:layout_below="@id/llcalender"
                android:layout_marginTop="20dp"
                android:elevation="10dp"
-               android:textColor="#737988"
+               android:textColor="@color/white"
+               android:backgroundTint="@color/appPrimary"
+
                />
 
 
+       <RelativeLayout
+           android:id="@+id/rlSelectorContent"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:layout_below="@id/selectDate"
+           android:layout_marginTop="35dp"
+           >
+
+           <LinearLayout
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:layout_centerInParent="true"
+               android:minHeight="40dp"
+               android:orientation="horizontal">
+
+               <LinearLayout
+                   android:layout_width="wrap_content"
+                   android:layout_height="match_parent"
+                   android:background="@drawable/box_outline"
+                   android:layout_marginRight="35dp"
+                   >
+
+                   <Spinner
+                       android:id="@+id/branch"
+                       android:layout_width="150dp"
+                       android:layout_height="match_parent"
+                       android:textAlignment="center"
+                     />
+               </LinearLayout>
+
+               <LinearLayout
+                   android:layout_width="wrap_content"
+                   android:layout_height="match_parent"
+                   android:background="@drawable/box_outline"
+                   >
+
+                   <Spinner
+                       android:id="@+id/semester"
+                       android:layout_width="150dp"
+                       android:layout_height="match_parent"
+                       android:textAlignment="center" />
+
+               </LinearLayout>
+
+           </LinearLayout>
+
+
+       </RelativeLayout>
+
+        <Button
+            android:id="@+id/markAttendenceBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/rlSelectorContent"
+            android:layout_centerInParent="true"
+            android:layout_marginTop="25dp"
+            android:background="@drawable/smooth_corner_shape"
+            android:backgroundTint="@color/appPrimary"
+            android:fontFamily="@font/montserrat_extrabold"
+            android:paddingHorizontal="10dp"
+            android:text="Mark Attendence"
+            android:textAllCaps="false"
+            android:textColor="@color/white" />
+        <RelativeLayout
+            android:layout_marginTop="35dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/markAttendenceBtn"
+            >
+
+            <TextView
+                android:id="@+id/txtAttResult"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Attendence Result"
+                android:fontFamily="@font/montserrat_extrabold"
+                android:textSize="20sp"
+                android:layout_marginLeft="35dp"
+                />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/txtAttResult"
+                android:layout_centerInParent="true"
+                android:orientation="vertical"
+                android:paddingVertical="20dp">
+
+
+                <TextView
+                    android:id="@+id/totalStudents"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Total Students = 0"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/absentStudents"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginVertical="10dp"
+                    android:text="Absent Students = 0"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/presentStudents"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Present Students = 0"
+                    android:textSize="18sp"
+
+                    />
+
+
+            </LinearLayout>
+
+        </RelativeLayout>
 
     </RelativeLayout>
 

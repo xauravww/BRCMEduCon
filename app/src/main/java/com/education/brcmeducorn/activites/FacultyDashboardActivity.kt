@@ -34,6 +34,7 @@ class FacultyDashboardActivity : AppCompatActivity() {
         setupNavigation()
         onBackPressedHandler()
         openHome()
+
     }
 
     private fun onBackPressedHandler() {

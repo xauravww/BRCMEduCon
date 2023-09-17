@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginHorizontal="10dp"
+    android:layout_marginVertical="5dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:weightSum="6"
+        >
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/imgAlumniProfile"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:src="@drawable/human_image"
+            android:layout_weight="1"
+            android:layout_gravity="center_vertical"
+            />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:orientation="vertical"
+
+            >
+            <TextView
+                android:id="@+id/Name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Name "
+                android:textColor="#000000"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="20dp"
+                android:layout_weight="4"
+                android:fontFamily="@font/no_to_sans_bold"
+                android:layout_toRightOf="@id/imgAlumniProfile"/>
+            <TextView
+                android:id="@+id/rollNo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Roll No."
+                android:layout_marginLeft="20dp"
+                android:fontFamily="@font/no_to_sans_bold"
+                />
+
+        </LinearLayout>
+        <RadioGroup
+            android:id="@+id/radioGroup"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="3"
+            android:orientation="horizontal"
+            android:layout_gravity="center_vertical"
+            >
+            <RadioButton
+                android:id="@+id/present"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:text="Present"
+                />
+            <RadioButton
+                android:id="@+id/absent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Absent"
+                />
+        </RadioGroup>
+    </LinearLayout>
+</androidx.cardview.widget.CardView>
