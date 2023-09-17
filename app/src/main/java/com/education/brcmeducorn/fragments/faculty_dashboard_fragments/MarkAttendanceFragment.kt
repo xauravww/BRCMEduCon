@@ -2,14 +2,17 @@ package com.education.brcmeducorn.fragments.faculty_dashboard_fragments
 
 import android.app.DatePickerDialog
 import android.content.Context
+import android.content.Intent
 import android.icu.util.Calendar
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.DatePicker
+import android.widget.Spinner
 import android.widget.TextView
 import com.applandeo.materialcalendarview.utils.calendar
 import com.education.brcmeducorn.R
@@ -27,8 +30,11 @@ class MarkAttendanceFragment : Fragment() {
     lateinit var  dateAndMonth:TextView
     lateinit var curryear:TextView
     lateinit var selectDate: Button
-    private val dateFormat = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
-
+    lateinit var branch:Spinner
+    lateinit var semester:Spinner
+    lateinit var markAttendenceBtn:Button
+    var branchArray = arrayOf("Branch","Cse","Civil","Mechanical","Electrical")
+    var semesterArray = arrayOf("Semester","Sem1","Sem2","Sem3","Sem4","Sem5","Sem6","Sem7","Sem8")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -45,7 +51,19 @@ class MarkAttendanceFragment : Fragment() {
         dateAndMonth = view.findViewById(R.id.dateAndMonth)
         curryear= view.findViewById(R.id.year)
         selectDate = view.findViewById(R.id.selectDate)
+        branch = view.findViewById(R.id.branch)
+        semester = view.findViewById(R.id.semester)
+        markAttendenceBtn = view.findViewById(R.id.markAttendenceBtn)
 
+        markAttendenceBtn.setOnClickListener {
+            val intent = Intent(activity as Context,AttendenceRegisterActivity::class.java)
+            startActivity(intent)
+        }
+        val branchAdapter = ArrayAdapter(activity as Context,R.layout.spinner_item,branchArray)
+        val semAdapter = ArrayAdapter(activity as Context,R.layout.spinner_item,semesterArray)
+
+        branch.adapter = branchAdapter
+        semester.adapter = semAdapter
         // setting the day,date,month,year
         DateMonthYearHandler(activity as Context,day,dateAndMonth,curryear).defaultDate()
 
