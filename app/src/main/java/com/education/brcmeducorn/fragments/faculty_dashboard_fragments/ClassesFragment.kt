@@ -22,5 +22,4 @@ class ClassesFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_classes, container, false)
     }
 
-
 }
