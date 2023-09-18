@@ -12,10 +12,14 @@ import com.education.brcmeducorn.fragments.faculty_dashboard_fragments.utils.Stu
 
 class AttendenceRegisterActivity : AppCompatActivity() {
 
+
     lateinit var recyclerView: RecyclerView
     lateinit var layoutManager:LayoutManager
     lateinit var reyclerAdapter:AttendenceRegisterRecyclerAdapter
     lateinit var doneBtn:Button
+    lateinit var allPresentBtn:Button
+    lateinit var allAbsentBtn:Button
+
     var studentList = arrayListOf<StudentRegisterEntry>(
         StudentRegisterEntry("Student 1", "20-cse-1234"),
         StudentRegisterEntry("Student 2", "20-cse-2345"),
@@ -48,15 +52,20 @@ class AttendenceRegisterActivity : AppCompatActivity() {
         StudentRegisterEntry("Student 29", "20-cse-9090"),
         StudentRegisterEntry("Student 30", "20-cse-0202")
     )
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_attendence_register)
 
         doneBtn = findViewById(R.id.doneBtn)
+        allPresentBtn = findViewById(R.id.allPresentBtn)
+        allAbsentBtn  = findViewById(R.id.allAbsentBtn)
+
         recyclerView = findViewById(R.id.recylerView)
         layoutManager = LinearLayoutManager(this)
-        reyclerAdapter  = AttendenceRegisterRecyclerAdapter(this,studentList,doneBtn)
+        reyclerAdapter  = AttendenceRegisterRecyclerAdapter(this,studentList,doneBtn,allPresentBtn,allAbsentBtn)
         recyclerView.adapter = reyclerAdapter
         recyclerView.layoutManager = layoutManager
+
     }
 }

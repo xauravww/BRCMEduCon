@@ -16,11 +16,10 @@ import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.education.brcmeducorn.R
 import com.education.brcmeducorn.fragments.faculty_dashboard_fragments.utils.StudentRegisterEntry
 
-class AttendenceRegisterRecyclerAdapter(val context: Context,val list:ArrayList<StudentRegisterEntry>,var doneBtn:Button):RecyclerView.Adapter<AttendenceRegisterRecyclerAdapter.AttendenceRegisterViewHolder>() {
+
+class AttendenceRegisterRecyclerAdapter(val context: Context,val list:ArrayList<StudentRegisterEntry>,var doneBtn:Button,var allPresent:Button,var allAbsent:Button):RecyclerView.Adapter<AttendenceRegisterRecyclerAdapter.AttendenceRegisterViewHolder>() {
     companion object {
-        var sPresent = 0
-        var sAbsent = 0
-        var attendence = BooleanArray(30)
+        var  studentAttendList= BooleanArray(30)
     }
     class AttendenceRegisterViewHolder(val view:View):RecyclerView.ViewHolder(view)
     {
@@ -48,40 +47,66 @@ class AttendenceRegisterRecyclerAdapter(val context: Context,val list:ArrayList<
       val item = list[position]
         holder.name.text = item.Sname
         holder.rollNo.text = item.Sroll
+        holder.present.isChecked = studentAttendList[position]
+        holder.present.isChecked = studentAttendList[position]
 
 
-        for(i in attendence)
+        allPresent.setOnClickListener {
+
+            for(i in 0 until studentAttendList.size)
+            {
+                studentAttendList[i] = true
+
+            }
+
+            notifyDataSetChanged()
+
+        }
+
+
+        allAbsent.setOnClickListener {
+
+            for(i in 0 until studentAttendList.size)
+            {
+                studentAttendList[i] = false
+
+            }
+            notifyDataSetChanged()
+        }
+
+        for(i in studentAttendList)
         {
             if(i)
             {
                 holder.present.isChecked = true
-                holder.absent.isChecked = false
+
             }
             else
             {
-                holder.present.isChecked = false
+
                 holder.absent.isChecked = true
             }
         }
-
-
         holder.radioGroup.setOnCheckedChangeListener { group, checkedId ->
             when(checkedId)
             {
                 R.id.present->
                 {
-                   attendence[position]=true
+                    studentAttendList[position]=true
+
                 }
                 R.id.absent->
                 {
-                    attendence[position]=false
+                    studentAttendList[position]=false
+
                 }
             }
+
         }
         doneBtn.setOnClickListener {
 
             var count = 0;
-            for(i in attendence)
+            for(i in studentAttendList)
             {
                 if(i==true)
                 {
@@ -91,20 +116,10 @@ class AttendenceRegisterRecyclerAdapter(val context: Context,val list:ArrayList<
             Toast.makeText(context, "$count", Toast.LENGTH_SHORT).show()
         }
 
-        for(i in attendence)
-        {
-            if(i)
-            {
-                holder.present.isChecked = true
-                holder.absent.isChecked = false
-            }
-            else
-            {
-                holder.present.isChecked = false
-                holder.absent.isChecked = true
-            }
-        }
+
+
 
     }
+
 }
 

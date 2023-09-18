@@ -7,11 +7,59 @@
     tools:context=".fragments.faculty_dashboard_fragments.AttendenceRegisterActivity">
 
 
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/appPrimary"
+        app:title="Attendence"
+        app:titleTextColor="@color/white"
+        />
+   <RelativeLayout
+       android:id="@+id/allNoneBtns"
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:layout_below="@id/toolbar"
+       android:layout_marginTop="5dp"
+       android:layout_marginBottom="5dp"
+       >
+       <Button
+           android:id="@+id/allPresentBtn"
+           android:layout_width="wrap_content"
+           android:layout_height="35dp"
+           android:background="@drawable/smooth_corner_shape"
+           android:backgroundTint="@color/appPrimary"
+           android:layout_marginLeft="50dp"
+           android:text="All Present"
+           android:textAllCaps="false"
+           android:textColor="@color/white"
+           android:paddingHorizontal="10dp"
+           />
+
+
+       <Button
+           android:id="@+id/allAbsentBtn"
+           android:layout_width="wrap_content"
+           android:layout_height="35dp"
+           android:background="@drawable/smooth_corner_shape"
+           android:backgroundTint="@color/appPrimary"
+           android:text="All Absent"
+           android:textAllCaps="false"
+           android:textColor="@color/white"
+           android:paddingHorizontal="10dp"
+           android:layout_alignParentEnd="true"
+           android:layout_marginRight="50dp"
+           />
+   </RelativeLayout>
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recylerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_below="@id/allNoneBtns"
+        android:layout_above="@id/doneBtn"
         />
+
     <Button
         android:id="@+id/doneBtn"
         android:layout_width="match_parent"
@@ -25,5 +73,8 @@
         android:textColor="@color/white"
         android:textSize="20sp"
         android:fontFamily="@font/montserrat_extrabold"
+        android:layout_marginBottom="1dp"
         />
+
+
 </RelativeLayout>

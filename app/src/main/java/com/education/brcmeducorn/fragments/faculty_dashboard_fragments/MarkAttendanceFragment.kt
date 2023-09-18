@@ -33,6 +33,7 @@ class MarkAttendanceFragment : Fragment() {
     lateinit var branch:Spinner
     lateinit var semester:Spinner
     lateinit var markAttendenceBtn:Button
+
     var branchArray = arrayOf("Branch","Cse","Civil","Mechanical","Electrical")
     var semesterArray = arrayOf("Semester","Sem1","Sem2","Sem3","Sem4","Sem5","Sem6","Sem7","Sem8")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -54,6 +55,7 @@ class MarkAttendanceFragment : Fragment() {
         branch = view.findViewById(R.id.branch)
         semester = view.findViewById(R.id.semester)
         markAttendenceBtn = view.findViewById(R.id.markAttendenceBtn)
+
 
         markAttendenceBtn.setOnClickListener {
             val intent = Intent(activity as Context,AttendenceRegisterActivity::class.java)
