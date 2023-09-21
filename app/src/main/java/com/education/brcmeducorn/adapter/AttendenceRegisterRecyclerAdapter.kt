@@ -19,7 +19,7 @@ import com.education.brcmeducorn.fragments.faculty_dashboard_fragments.utils.Stu
 
 class AttendenceRegisterRecyclerAdapter(val context: Context,val list:ArrayList<StudentRegisterEntry>,var doneBtn:Button,var allPresent:Button,var allAbsent:Button):RecyclerView.Adapter<AttendenceRegisterRecyclerAdapter.AttendenceRegisterViewHolder>() {
     companion object {
-        var  studentAttendList= BooleanArray(30)
+        var  studentAttendList= BooleanArray(50)
     }
     class AttendenceRegisterViewHolder(val view:View):RecyclerView.ViewHolder(view)
     {
@@ -115,9 +115,6 @@ class AttendenceRegisterRecyclerAdapter(val context: Context,val list:ArrayList<
             }
             Toast.makeText(context, "$count", Toast.LENGTH_SHORT).show()
         }
-
-
-
 
     }
 
