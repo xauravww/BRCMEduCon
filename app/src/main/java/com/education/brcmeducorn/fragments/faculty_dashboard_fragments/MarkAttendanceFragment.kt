@@ -33,9 +33,11 @@ class MarkAttendanceFragment : Fragment() {
     lateinit var branch:Spinner
     lateinit var semester:Spinner
     lateinit var markAttendenceBtn:Button
-
+    lateinit var course:Spinner
     var branchArray = arrayOf("Branch","Cse","Civil","Mechanical","Electrical")
     var semesterArray = arrayOf("Semester","Sem1","Sem2","Sem3","Sem4","Sem5","Sem6","Sem7","Sem8")
+    var courseArray = arrayOf("Courses","NN","SPM","ST","FOM","PJ")
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -55,7 +57,7 @@ class MarkAttendanceFragment : Fragment() {
         branch = view.findViewById(R.id.branch)
         semester = view.findViewById(R.id.semester)
         markAttendenceBtn = view.findViewById(R.id.markAttendenceBtn)
-
+       course = view.findViewById(R.id.course)
 
         markAttendenceBtn.setOnClickListener {
             val intent = Intent(activity as Context,AttendenceRegisterActivity::class.java)
@@ -63,9 +65,11 @@ class MarkAttendanceFragment : Fragment() {
         }
         val branchAdapter = ArrayAdapter(activity as Context,R.layout.spinner_item,branchArray)
         val semAdapter = ArrayAdapter(activity as Context,R.layout.spinner_item,semesterArray)
+        val courseAdapter = ArrayAdapter(activity as Context,R.layout.spinner_item,courseArray)
 
         branch.adapter = branchAdapter
         semester.adapter = semAdapter
+        course.adapter = courseAdapter
         // setting the day,date,month,year
         DateMonthYearHandler(activity as Context,day,dateAndMonth,curryear).defaultDate()
 
