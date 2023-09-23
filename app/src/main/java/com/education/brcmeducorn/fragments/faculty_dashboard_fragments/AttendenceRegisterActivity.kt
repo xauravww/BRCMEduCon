@@ -1,5 +1,6 @@
 package com.education.brcmeducorn.fragments.faculty_dashboard_fragments
 
+import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
@@ -15,8 +16,11 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.LayoutManager
 import com.education.brcmeducorn.R
 import com.education.brcmeducorn.adapter.AttendenceRegisterRecyclerAdapter
+import com.education.brcmeducorn.fragments.faculty_dashboard_fragments.utils.StudentAttendenceAsyncTask
+import com.education.brcmeducorn.fragments.faculty_dashboard_fragments.utils.StudentAttendenceListAsyncTask
 import com.education.brcmeducorn.fragments.faculty_dashboard_fragments.utils.StudentRegisterEntry
 import com.education.brcmeducorn.fragments.faculty_dashboard_fragments.utils.SwipeToDeleteCallBack
+import com.education.brcmeducorn.studentdatabase.StudentAttendenceEntity
 import java.util.zip.Inflater
 
 class AttendenceRegisterActivity : AppCompatActivity() {
@@ -30,17 +34,29 @@ class AttendenceRegisterActivity : AppCompatActivity() {
     lateinit var allAbsentBtn:Button
     lateinit var toolbar: Toolbar
     var studentList = arrayListOf<StudentRegisterEntry>(
-        StudentRegisterEntry("Student 1", "20-cse-1234"),
-        StudentRegisterEntry("Student 2", "20-cse-2345"),
-        StudentRegisterEntry("Student 3", "20-cse-3456"),
-        StudentRegisterEntry("Student 4", "20-cse-4567"),
-        StudentRegisterEntry("Student 5", "20-cse-5678"),
-        StudentRegisterEntry("Student 6", "20-cse-6789"),
-        StudentRegisterEntry("Student 7", "20-cse-7890"),
-        StudentRegisterEntry("Student 8", "20-cse-8901"),
-        StudentRegisterEntry("Student 9", "20-cse-9012"),
-        StudentRegisterEntry("Student 10", "20-cse-0123"),
-        
+        StudentRegisterEntry("Student 1", 10),
+        StudentRegisterEntry("Student 2", 20),
+        StudentRegisterEntry("Student 3", 30),
+        StudentRegisterEntry("Student 4", 40),
+        StudentRegisterEntry("Student 5", 50),
+        StudentRegisterEntry("Student 6", 60),
+        StudentRegisterEntry("Student 7", 70),
+        StudentRegisterEntry("Student 8", 80),
+        StudentRegisterEntry("Student 9", 90),
+        StudentRegisterEntry("Student 10", 100),
+        StudentRegisterEntry("Student 11", 110),
+        StudentRegisterEntry("Student 12", 120),
+        StudentRegisterEntry("Student 13", 130),
+        StudentRegisterEntry("Student 14", 140),
+        StudentRegisterEntry("Student 15", 150),
+        StudentRegisterEntry("Student 16", 160),
+        StudentRegisterEntry("Student 17", 170),
+        StudentRegisterEntry("Student 18", 180),
+        StudentRegisterEntry("Student 19", 190),
+        StudentRegisterEntry("Student 20", 200),
+
+
+
     )
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -53,11 +69,16 @@ class AttendenceRegisterActivity : AppCompatActivity() {
         allPresentBtn = findViewById(R.id.allPresentBtn)
         allAbsentBtn  = findViewById(R.id.allAbsentBtn)
 
+        addToDatabase(this)
         recyclerView = findViewById(R.id.recylerView)
         layoutManager = LinearLayoutManager(this)
-        reyclerAdapter  = AttendenceRegisterRecyclerAdapter(this,studentList,doneBtn,allPresentBtn,allAbsentBtn)
+        reyclerAdapter  = AttendenceRegisterRecyclerAdapter(this,studentList,allPresentBtn,allAbsentBtn,supportFragmentManager)
         recyclerView.adapter = reyclerAdapter
         recyclerView.layoutManager = layoutManager
+
+        doneBtn.setOnClickListener {
+            onBackPressed()
+        }
 
         // added to delete the item on specific position in recycler view
         val swipeToDeleteCallBack = object :SwipeToDeleteCallBack()
@@ -115,7 +136,8 @@ class AttendenceRegisterActivity : AppCompatActivity() {
             .setTitle("Add Student")
             .setPositiveButton("Add") { _, _ ->
                 // Handle adding the student here
-                studentList.add(StudentRegisterEntry(Sname.text.toString(),Srollno.text.toString()))
+                studentList.add(StudentRegisterEntry(Sname.text.toString(),Srollno.text.toString().toInt()))
+
                 reyclerAdapter.notifyDataSetChanged()
                 // You can now use 'name' and 'rollNo' as needed
             }
@@ -125,5 +147,20 @@ class AttendenceRegisterActivity : AppCompatActivity() {
             .create()
 
         dialog.show()
+    }
+    fun addToDatabase(context: Context)
+    {
+        val list = StudentAttendenceListAsyncTask(context,3).execute().get()
+        if(list.size==0)
+        {
+            for(i in studentList)
+            {
+                val studentAttendenceEntity = StudentAttendenceEntity(i.Sname,i.Sroll,false)
+                StudentAttendenceAsyncTask(context,studentAttendenceEntity,1).execute().get()
+            }
+        }
+
+
+
     }
 }

@@ -62,7 +62,4 @@ dependencies {
     implementation("com.github.fornewid:neumorphism:0.2.1")
 
 
-    //gallery slider library
-
-
 }

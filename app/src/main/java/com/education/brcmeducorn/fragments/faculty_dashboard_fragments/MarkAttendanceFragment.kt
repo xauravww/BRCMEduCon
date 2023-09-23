@@ -17,6 +17,7 @@ import android.widget.TextView
 import com.applandeo.materialcalendarview.utils.calendar
 import com.education.brcmeducorn.R
 import com.education.brcmeducorn.fragments.faculty_dashboard_fragments.utils.DateMonthYearHandler
+import com.education.brcmeducorn.fragments.faculty_dashboard_fragments.utils.StudentAttendenceListAsyncTask
 import java.text.SimpleDateFormat
 import java.time.LocalDate
 import java.util.Locale
@@ -33,11 +34,12 @@ class MarkAttendanceFragment : Fragment() {
     lateinit var branch:Spinner
     lateinit var semester:Spinner
     lateinit var markAttendenceBtn:Button
-    lateinit var course:Spinner
+    lateinit var absentStudents:TextView
+    lateinit var presentStudents:TextView
+    lateinit var totalstudents:TextView
+
     var branchArray = arrayOf("Branch","Cse","Civil","Mechanical","Electrical")
     var semesterArray = arrayOf("Semester","Sem1","Sem2","Sem3","Sem4","Sem5","Sem6","Sem7","Sem8")
-    var courseArray = arrayOf("Courses","NN","SPM","ST","FOM","PJ")
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -57,19 +59,20 @@ class MarkAttendanceFragment : Fragment() {
         branch = view.findViewById(R.id.branch)
         semester = view.findViewById(R.id.semester)
         markAttendenceBtn = view.findViewById(R.id.markAttendenceBtn)
-       course = view.findViewById(R.id.course)
+        presentStudents = view.findViewById(R.id.presentStudents)
+        absentStudents = view.findViewById(R.id.absentStudents)
+        totalstudents = view.findViewById(R.id.totalStudents)
 
+        setAttendenceResult(activity as Context)
         markAttendenceBtn.setOnClickListener {
             val intent = Intent(activity as Context,AttendenceRegisterActivity::class.java)
             startActivity(intent)
         }
         val branchAdapter = ArrayAdapter(activity as Context,R.layout.spinner_item,branchArray)
         val semAdapter = ArrayAdapter(activity as Context,R.layout.spinner_item,semesterArray)
-        val courseAdapter = ArrayAdapter(activity as Context,R.layout.spinner_item,courseArray)
 
         branch.adapter = branchAdapter
         semester.adapter = semAdapter
-        course.adapter = courseAdapter
         // setting the day,date,month,year
         DateMonthYearHandler(activity as Context,day,dateAndMonth,curryear).defaultDate()
 
@@ -81,8 +84,26 @@ class MarkAttendanceFragment : Fragment() {
     }
 
 
+    fun setAttendenceResult(context: Context)
+    {
+        val attendenceList = StudentAttendenceListAsyncTask(context,3).execute().get()
+        if(attendenceList.size!=0)
+        {
+            var count = 0
+            totalstudents.text ="Total students = ${attendenceList.size}"
+            for(i in attendenceList)
+            {
+                if(i.isPresent)
+                {
+                    count++
+                }
+            }
 
+            absentStudents.text ="Absent students = ${attendenceList.size-count}"
+            presentStudents.text ="Present students = ${count}"
+        }
 
+    }
 
 
 }
