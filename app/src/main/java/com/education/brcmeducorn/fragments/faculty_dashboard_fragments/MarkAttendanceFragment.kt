@@ -37,9 +37,10 @@ class MarkAttendanceFragment : Fragment() {
     lateinit var absentStudents:TextView
     lateinit var presentStudents:TextView
     lateinit var totalstudents:TextView
-
+    lateinit var  course:Spinner
     var branchArray = arrayOf("Branch","Cse","Civil","Mechanical","Electrical")
     var semesterArray = arrayOf("Semester","Sem1","Sem2","Sem3","Sem4","Sem5","Sem6","Sem7","Sem8")
+    var subjectArray = arrayOf("Subjects","SPM","FOM","ST","Project","NN")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -58,6 +59,7 @@ class MarkAttendanceFragment : Fragment() {
         selectDate = view.findViewById(R.id.selectDate)
         branch = view.findViewById(R.id.branch)
         semester = view.findViewById(R.id.semester)
+        course = view.findViewById(R.id.course)
         markAttendenceBtn = view.findViewById(R.id.markAttendenceBtn)
         presentStudents = view.findViewById(R.id.presentStudents)
         absentStudents = view.findViewById(R.id.absentStudents)
@@ -70,9 +72,10 @@ class MarkAttendanceFragment : Fragment() {
         }
         val branchAdapter = ArrayAdapter(activity as Context,R.layout.spinner_item,branchArray)
         val semAdapter = ArrayAdapter(activity as Context,R.layout.spinner_item,semesterArray)
-
+        val courseAdapter = ArrayAdapter(activity as Context,R.layout.spinner_item,subjectArray)
         branch.adapter = branchAdapter
         semester.adapter = semAdapter
+        course.adapter = courseAdapter
         // setting the day,date,month,year
         DateMonthYearHandler(activity as Context,day,dateAndMonth,curryear).defaultDate()
 
