@@ -33,6 +33,7 @@ class AttendenceRegisterActivity : AppCompatActivity() {
     lateinit var allPresentBtn:Button
     lateinit var allAbsentBtn:Button
     lateinit var toolbar: Toolbar
+
     var studentList = arrayListOf<StudentRegisterEntry>(
         StudentRegisterEntry("Student 1", 10),
         StudentRegisterEntry("Student 2", 20),
@@ -72,7 +73,7 @@ class AttendenceRegisterActivity : AppCompatActivity() {
         addToDatabase(this)
         recyclerView = findViewById(R.id.recylerView)
         layoutManager = LinearLayoutManager(this)
-        reyclerAdapter  = AttendenceRegisterRecyclerAdapter(this,studentList,allPresentBtn,allAbsentBtn,supportFragmentManager)
+        reyclerAdapter  = AttendenceRegisterRecyclerAdapter(this,studentList,allPresentBtn,allAbsentBtn)
         recyclerView.adapter = reyclerAdapter
         recyclerView.layoutManager = layoutManager
 
@@ -139,7 +140,7 @@ class AttendenceRegisterActivity : AppCompatActivity() {
                 studentList.add(StudentRegisterEntry(Sname.text.toString(),Srollno.text.toString().toInt()))
 
                 reyclerAdapter.notifyDataSetChanged()
-                // You can now use 'name' and 'rollNo' as needed
+
             }
             .setNegativeButton("Cancel") { dialog, _ ->
                 dialog.dismiss()
