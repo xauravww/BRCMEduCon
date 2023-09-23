@@ -1,7 +1,6 @@
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
-    id("kotlin-kapt")
 }
 
 android {
@@ -28,11 +27,11 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_17
-        targetCompatibility = JavaVersion.VERSION_17
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
     }
     kotlinOptions {
-        jvmTarget = "17"
+        jvmTarget = "1.8"
     }
 }
 
@@ -62,10 +61,5 @@ dependencies {
     // neumorphic library
     implementation("com.github.fornewid:neumorphism:0.2.1")
 
-    //    room persistence library
 
-
-    implementation("androidx.room:room-runtime:2.5.2")
-    kapt( "androidx.room:room-compiler:2.5.2")
-    implementation("androidx.room:room-ktx:2.5.2")
 }

@@ -134,24 +134,37 @@
 
            <LinearLayout
                android:layout_width="wrap_content"
-               android:layout_height="wrap_content"
-               android:layout_centerInParent="true"
+               android:layout_height="70dp"
                android:minHeight="40dp"
-               android:orientation="horizontal">
+               android:orientation="horizontal"
+               android:layout_centerHorizontal="true"
+               >
 
                <LinearLayout
                    android:layout_width="wrap_content"
                    android:layout_height="match_parent"
-                   android:background="@drawable/box_outline"
-                   android:layout_marginRight="35dp"
-                   >
+                   android:background="@drawable/box_outline">
 
                    <Spinner
                        android:id="@+id/branch"
-                       android:layout_width="150dp"
+                       android:layout_width="115dp"
                        android:layout_height="match_parent"
                        android:textAlignment="center"
-                     />
+
+                       />
+               </LinearLayout>
+
+               <LinearLayout
+                   android:layout_width="wrap_content"
+                   android:layout_height="match_parent"
+                   android:layout_marginHorizontal="15dp"
+                   android:background="@drawable/box_outline">
+
+                   <Spinner
+                       android:id="@+id/semester"
+                       android:layout_width="115dp"
+                       android:layout_height="match_parent"
+                       android:textAlignment="center" />
                </LinearLayout>
 
                <LinearLayout
@@ -161,8 +174,8 @@
                    >
 
                    <Spinner
-                       android:id="@+id/semester"
-                       android:layout_width="150dp"
+                       android:id="@+id/course"
+                       android:layout_width="115dp"
                        android:layout_height="match_parent"
                        android:textAlignment="center" />
 
