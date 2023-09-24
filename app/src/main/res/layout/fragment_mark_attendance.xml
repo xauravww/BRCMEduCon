@@ -200,62 +200,71 @@
             android:text="Mark Attendence"
             android:textAllCaps="false"
             android:textColor="@color/white" />
-        <RelativeLayout
-            android:layout_marginTop="35dp"
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/attCadView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/markAttendenceBtn"
-            android:background="@drawable/smooth_corner_shape"
-            android:backgroundTint="#dadada"
+            android:padding="5dp"
+            android:layout_marginTop="35dp"
+            android:layout_marginHorizontal="5dp"
             >
-
-            <TextView
-                android:id="@+id/txtAttResult"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Attendence Result"
-                android:fontFamily="@font/montserrat_extrabold"
-                android:textSize="20sp"
-                android:layout_marginLeft="35dp"
-                />
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/txtAttResult"
-                android:layout_centerInParent="true"
-                android:orientation="vertical"
-                android:paddingVertical="20dp">
-
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                >
 
                 <TextView
-                    android:id="@+id/totalStudents"
+                    android:id="@+id/txtAttResult"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Total Students = 0"
-                    android:textSize="18sp" />
-
-                <TextView
-                    android:id="@+id/absentStudents"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginVertical="10dp"
-                    android:text="Absent Students = 0"
-                    android:textSize="18sp" />
-
-                <TextView
-                    android:id="@+id/presentStudents"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Present Students = 0"
-                    android:textSize="18sp"
-
+                    android:text="Attendence Result"
+                    android:fontFamily="@font/montserrat_extrabold"
+                    android:textSize="20sp"
+                    android:layout_marginLeft="35dp"
+                    android:layout_marginTop="10dp"
                     />
 
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/txtAttResult"
+                    android:layout_centerInParent="true"
+                    android:orientation="vertical"
+                    android:paddingVertical="20dp">
 
-            </LinearLayout>
 
-        </RelativeLayout>
+                    <TextView
+                        android:id="@+id/totalStudents"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Total Students = 0"
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:id="@+id/absentStudents"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginVertical="10dp"
+                        android:text="Absent Students = 0"
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:id="@+id/presentStudents"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Present Students = 0"
+                        android:textSize="18sp"
+
+                        />
+
+
+                </LinearLayout>
+
+            </RelativeLayout>
+
+        </androidx.cardview.widget.CardView>
 
     </RelativeLayout>
 
