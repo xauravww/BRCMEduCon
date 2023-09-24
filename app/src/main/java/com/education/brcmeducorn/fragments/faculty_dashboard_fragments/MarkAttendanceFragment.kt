@@ -25,6 +25,8 @@ import java.time.LocalDate
 import java.util.Locale
 
 class MarkAttendanceFragment : Fragment() {
+
+
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
@@ -67,7 +69,6 @@ class MarkAttendanceFragment : Fragment() {
         absentStudents = view.findViewById(R.id.absentStudents)
         totalstudents = view.findViewById(R.id.totalStudents)
 
-        setAttendenceResult(activity as Context)
         markAttendenceBtn.setOnClickListener {
             val intent = Intent(activity as Context,AttendenceRegisterActivity::class.java)
             startActivity(intent)
@@ -90,6 +91,12 @@ class MarkAttendanceFragment : Fragment() {
           DateMonthYearHandler(activity as Context,day,dateAndMonth,curryear).openDateSelectorDialog()
         }
         return view
+    }
+
+    // this will help to update the attendence result data when we come back after taking attendence
+    override fun onResume() {
+        super.onResume()
+            setAttendenceResult(activity as Context)
     }
 
 
@@ -167,6 +174,5 @@ class MarkAttendanceFragment : Fragment() {
 
         }
     }
-
 
 }
