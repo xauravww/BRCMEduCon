@@ -78,6 +78,7 @@ class AttendenceRegisterActivity : AppCompatActivity() {
         recyclerView.layoutManager = layoutManager
 
         doneBtn.setOnClickListener {
+
             onBackPressed()
         }
 

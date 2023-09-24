@@ -9,11 +9,13 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.DatePicker
 import android.widget.Spinner
 import android.widget.TextView
+import android.widget.Toast
 import com.applandeo.materialcalendarview.utils.calendar
 import com.education.brcmeducorn.R
 import com.education.brcmeducorn.fragments.faculty_dashboard_fragments.utils.DateMonthYearHandler
@@ -23,6 +25,8 @@ import java.time.LocalDate
 import java.util.Locale
 
 class MarkAttendanceFragment : Fragment() {
+
+
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
@@ -65,7 +69,6 @@ class MarkAttendanceFragment : Fragment() {
         absentStudents = view.findViewById(R.id.absentStudents)
         totalstudents = view.findViewById(R.id.totalStudents)
 
-        setAttendenceResult(activity as Context)
         markAttendenceBtn.setOnClickListener {
             val intent = Intent(activity as Context,AttendenceRegisterActivity::class.java)
             startActivity(intent)
@@ -76,6 +79,10 @@ class MarkAttendanceFragment : Fragment() {
         branch.adapter = branchAdapter
         semester.adapter = semAdapter
         course.adapter = courseAdapter
+
+        // setting the clicks on the spinners
+        setListener(branch,semester,course)
+
         // setting the day,date,month,year
         DateMonthYearHandler(activity as Context,day,dateAndMonth,curryear).defaultDate()
 
@@ -84,6 +91,12 @@ class MarkAttendanceFragment : Fragment() {
           DateMonthYearHandler(activity as Context,day,dateAndMonth,curryear).openDateSelectorDialog()
         }
         return view
+    }
+
+    // this will help to update the attendence result data when we come back after taking attendence
+    override fun onResume() {
+        super.onResume()
+            setAttendenceResult(activity as Context)
     }
 
 
@@ -108,5 +121,58 @@ class MarkAttendanceFragment : Fragment() {
 
     }
 
+    fun setListener(branch:Spinner,semester:Spinner,subject:Spinner)
+    {
+        branch.onItemSelectedListener = object :AdapterView.OnItemSelectedListener{
+            override fun onItemSelected(
+                parent: AdapterView<*>?,
+                view: View?,
+                position: Int,
+                id: Long
+            ) {
+                var item  = parent!!?.getItemAtPosition(position)
+                Toast.makeText(activity as Context, "$item", Toast.LENGTH_SHORT).show()
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+
+            }
+
+        }
+
+        semester.onItemSelectedListener = object :AdapterView.OnItemSelectedListener{
+            override fun onItemSelected(
+                parent: AdapterView<*>?,
+                view: View?,
+                position: Int,
+                id: Long
+            ) {
+                var item  = parent!!?.getItemAtPosition(position)
+                Toast.makeText(activity as Context, "$item", Toast.LENGTH_SHORT).show()
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+
+            }
+
+        }
+
+        subject.onItemSelectedListener = object :AdapterView.OnItemSelectedListener{
+            override fun onItemSelected(
+                parent: AdapterView<*>?,
+                view: View?,
+                position: Int,
+                id: Long
+            ) {
+                var item  = parent!!?.getItemAtPosition(position)
+                Toast.makeText(activity as Context, "$item", Toast.LENGTH_SHORT).show()
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+
+            }
+
+        }
+    }
 
 }
