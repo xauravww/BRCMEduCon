@@ -174,7 +174,6 @@
                             android:id="@+id/countryCodePicker"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            app:ccp_hint="Country Code"
                             app:ccp_showFlag="false"
                             app:ccp_showFullName="false"
                             app:ccp_showNameCode="true"
@@ -257,12 +256,7 @@
                         style="@style/loginButton"
                         android:layout_gravity="center_horizontal"
                         android:layout_marginTop="12dp"
-                        android:text="Register"
-                        app:initialCornerAngle="27dp"
-                        app:spinning_bar_color="#FFF"
-                        app:spinning_bar_padding="6dp"
-                        android:textAllCaps="false"
-                        app:spinning_bar_width="4dp" />
+                        android:text="Register" />
 
                     <TextView
                         style="@style/parent"

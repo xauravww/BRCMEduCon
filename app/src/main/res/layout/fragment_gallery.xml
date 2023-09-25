@@ -1,17 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".fragments.student_dashboard_fragments.GalleryFragment">
 
-    <TextView
-        android:layout_width="wrap_content"
+    <androidx.appcompat.widget.SearchView xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/searchView"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Gallery Fragment"
-
+        android:layout_margin="8dp"
+        android:background="@drawable/searchview_background"
+        android:iconifiedByDefault="false"
         />
-        
 
-
-</FrameLayout>
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/clg_galary_recycle_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/searchView"
+        android:layout_marginTop="0dp"
+        android:padding="3dp" />
+</RelativeLayout>
