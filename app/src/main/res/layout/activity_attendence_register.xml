@@ -17,7 +17,9 @@
         <com.google.android.material.appbar.AppBarLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/appbar">
+            android:id="@+id/appbar"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark"
+            >
 
             <androidx.appcompat.widget.Toolbar
                 android:id="@+id/toolbar"
@@ -27,7 +29,7 @@
                 app:title="Attendence"
                 app:titleTextColor="@color/white"
                 app:layout_scrollFlags="scroll|enterAlways"
-
+                android:theme="@style/ThemeOverlay.AppCompat.Dark"
                 />
         </com.google.android.material.appbar.AppBarLayout>
 

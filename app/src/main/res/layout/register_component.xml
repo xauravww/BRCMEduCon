@@ -170,15 +170,22 @@
                         android:layout_height="wrap_content"
                         android:orientation="horizontal">
 
-                        <com.hbb20.CountryCodePicker
-                            android:id="@+id/countryCodePicker"
+<!--                        <com.hbb20.CountryCodePicker-->
+<!--                            android:id="@+id/countryCodePicker"-->
+<!--                            android:layout_width="wrap_content"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            app:ccp_hint="Country Code"-->
+<!--                            app:ccp_showFlag="false"-->
+<!--                            app:ccp_showFullName="false"-->
+<!--                            app:ccp_showNameCode="true"-->
+<!--                            app:ccp_showPhoneCode="true" />-->
+
+                        <Spinner
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            app:ccp_hint="Country Code"
-                            app:ccp_showFlag="false"
-                            app:ccp_showFullName="false"
-                            app:ccp_showNameCode="true"
-                            app:ccp_showPhoneCode="true" />
+                            android:background="@drawable/box_outline"
+
+                            />
 
                         <com.google.android.material.textfield.TextInputLayout
                             android:id="@+id/textInputMobile"
@@ -252,17 +259,17 @@
                     </LinearLayout>
 
 
-                    <androidx.appcompat.widget.AppCompatButton
-                        android:id="@+id/cirRegisterButton"
-                        style="@style/loginButton"
-                        android:layout_gravity="center_horizontal"
-                        android:layout_marginTop="12dp"
-                        android:text="Register"
-                        app:initialCornerAngle="27dp"
-                        app:spinning_bar_color="#FFF"
-                        app:spinning_bar_padding="6dp"
-                        android:textAllCaps="false"
-                        app:spinning_bar_width="4dp" />
+<!--                    <androidx.appcompat.widget.AppCompatButton-->
+<!--                        android:id="@+id/cirRegisterButton"-->
+<!--                        style="@style/loginButton"-->
+<!--                        android:layout_gravity="center_horizontal"-->
+<!--                        android:layout_marginTop="12dp"-->
+<!--                        android:text="Register"-->
+<!--                        app:initialCornerAngle="27dp"-->
+<!--                        app:spinning_bar_color="#FFF"-->
+<!--                        app:spinning_bar_padding="6dp"-->
+<!--                        android:textAllCaps="false"-->
+<!--                        app:spinning_bar_width="4dp" />-->
 
                     <TextView
                         style="@style/parent"

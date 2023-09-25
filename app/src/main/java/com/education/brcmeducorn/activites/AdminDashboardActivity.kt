@@ -38,7 +38,7 @@ class AdminDashboardActivity : AppCompatActivity() {
         openHome()
         if (savedInstanceState == null) {
             supportFragmentManager.beginTransaction()
-                .replace(R.id.frameLayout, TimeTableFragment())
+                .replace(R.id.frameLayout, AdminDashboardFragment())
                 .commit()
         }
     }

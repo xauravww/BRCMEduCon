@@ -19,7 +19,7 @@ class IDCardFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_i_d_card, container, false)
+        return inflater.inflate(R.layout.student_id_card, container, false)
     }
 
 
