@@ -43,5 +43,11 @@
         <item name="android:textColor">@color/colorAccent</item>
         <item name="android:paddingLeft">5dp</item>
     </style>
+    <style name="modifiedTextView" parent="parent">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">#FF000000</item>
+
+    </style>
+
 
 </resources>

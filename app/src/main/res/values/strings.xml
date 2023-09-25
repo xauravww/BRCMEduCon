@@ -16,4 +16,5 @@
     <string name="enter_postal_code">Enter postal code</string>
     <string name="enter_state">Enter state</string>
     <string name="enter_city">Enter city</string>
+    <string name="brcm">BRCM</string>
 </resources>
