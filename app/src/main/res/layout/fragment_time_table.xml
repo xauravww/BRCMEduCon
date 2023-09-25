@@ -1,0 +1,45 @@
+<!-- fragment_time_table.xml -->
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fragments.TimeTableFragment">
+
+    <com.education.brcmeducorn.customview.CustomView
+        android:id="@+id/movingArrowView"
+        android:layout_width="match_parent"
+        android:padding="15dp"
+        android:layout_marginEnd="30dp"
+        android:layout_height="10dp"
+        android:layout_alignParentTop="true"
+        android:elevation="10dp" />
+    <!-- TextView for current time -->
+    <!-- RecyclerView for time slots -->
+
+    <TextView
+        android:id="@+id/currentTimeTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="18dp"
+        android:layout_below="@+id/movingArrowView"
+        android:layout_alignEnd="@+id/movingArrowView"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="1dp"
+        android:layout_marginEnd="41dp"
+        android:background="@drawable/transparent_current_time_period"
+        android:gravity="start"
+        android:padding="4dp"
+        android:text="@string/current_time"
+        android:textColor="@color/green_4ac687"
+        android:textIsSelectable="true"
+        android:textSize="11sp" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+
+         />
+
+
+</RelativeLayout>
