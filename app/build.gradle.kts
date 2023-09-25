@@ -49,12 +49,10 @@ dependencies {
     implementation("de.hdodenhof:circleimageview:3.1.0")
     implementation("com.applandeo:material-calendar-view:1.9.0-rc03")
 
-
     coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:<latest-version>")
     implementation("com.kizitonwose.calendar:view:2.3.0")
     implementation("com.kizitonwose.calendar:compose:2.3.0")
-
-
+    implementation ("com.makeramen:roundedimageview:2.3.0")
 
     // image slider library
     implementation("com.github.denzcoskun:ImageSlideshow:0.1.2")
@@ -62,10 +60,16 @@ dependencies {
     // neumorphic library
     implementation("com.github.fornewid:neumorphism:0.2.1")
 
+    //gallery slider library
+    //country code picker
+    implementation("com.hbb20:ccp:2.5.2")
+
+
     //room library
     implementation("androidx.room:room-runtime:2.5.2")
 
     kapt("androidx.room:room-compiler:2.5.2")
     implementation("androidx.room:room-ktx:2.3.0")
+
 
 }

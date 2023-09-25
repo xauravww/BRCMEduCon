@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-
     tools:context=".activites.LoginMainActivity">
 
     <ImageView
@@ -13,6 +12,7 @@
         android:layout_height="245dp"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"
+        android:elevation="6dp"
         android:src="@drawable/brcm_logo_big" />
 
     <LinearLayout
@@ -29,11 +29,10 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:fontFamily="@font/montserrat_extrabold"
-
             android:gravity="center_vertical|center_horizontal"
-            android:text="I'm"
+            android:text="@string/i_m"
             android:textColor="@color/fontPrimary"
-            android:textSize="18sp"
+            android:textSize="20sp"
 
             />
 
@@ -41,9 +40,12 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="3"
-            android:background="@color/appPrimary"
+            android:background="@drawable/primary_bg"
             android:weightSum="3"
-            android:padding="5dp"
+            android:paddingBottom="7dp"
+            android:paddingEnd="10dp"
+            android:paddingStart="10dp"
+            android:paddingTop="7dp"
             >
 
             <Button
@@ -111,89 +113,68 @@
         android:textSize="15sp"
 
         />
-
     <RelativeLayout
         android:layout_marginTop="25dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:background="@drawable/bg_primary_edit_text"
         android:layout_below="@id/txtSubtitleLoginRole"
         >
-
+        <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        >
         <LinearLayout
             android:id="@+id/llInputUseridOrEmail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:weightSum="5"
+            android:orientation="vertical"
             android:layout_marginVertical="20dp">
-
-            <ImageView
-                android:layout_width="0dp"
-                android:layout_height="35dp"
-                android:layout_gravity="center"
-                android:layout_weight="1"
-                android:src="@drawable/baseline_mail_24"
-                app:tint="@color/appPrimary"
-                />
-
             <EditText
                 android:id="@+id/edtUseridOrEmail"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="4"
-                android:layout_gravity="top"
+                android:drawableStart="@drawable/baseline_mail_24"
+                android:drawableTint="@color/appPrimary"
+                android:drawablePadding="5dp"
                 android:fontFamily="@font/no_to_sans_bold"
-                android:gravity="start"
-                android:hint="Email or Userid"
-                android:paddingHorizontal="16dp"
-                android:textSize="16sp"
-                android:layout_marginRight="20dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:hint="@string/email_or_userid"
+                android:textSize="14sp"
+                android:layout_height="match_parent"
+                android:layout_marginEnd="10dp"
+                android:layout_marginStart="10dp"
                 android:maxLines="1"
                 android:maxLength="35"
                 android:textColorHint="@color/appPrimary"
-
-                />
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/llPassword"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/llInputUseridOrEmail"
-            android:weightSum="5">
-
-            <ImageView
-                android:layout_width="0dp"
-                android:layout_height="35dp"
-                android:layout_gravity="center"
-                android:layout_weight="1"
-                android:src="@drawable/baseline_lock_24"
-                app:tint="@color/appPrimary"
-
-                />
-
+                android:layout_width="match_parent"/>
             <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="4"
-                android:layout_marginRight="20dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginStart="10dp"
                 app:passwordToggleEnabled="true"
                 app:passwordToggleTint="@color/appPrimary"
                 android:textColorHint="@color/appPrimary"
-
                 >
-
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/edtPassword"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Password"
+                    android:drawableStart="@drawable/baseline_lock_24"
+                    android:drawableTint="@color/appPrimary"
+                    android:hint="@string/password"
+                    android:fontFamily="@font/no_to_sans_bold"
+                    android:drawablePadding="5dp"
                     android:inputType="textPassword"
-                    android:paddingHorizontal="16dp"
-
-                    />
+                    android:textSize="14sp"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:maxLines="1"
+                    android:maxLength="16"
+                    android:textColorHint="@color/appPrimary"
+                  />
             </com.google.android.material.textfield.TextInputLayout>
-
 
         </LinearLayout>
 
@@ -249,4 +230,5 @@
         android:fontFamily="@font/no_to_sans_bold"
         android:textSize="18sp"
         />
+</RelativeLayout>
 </RelativeLayout>
