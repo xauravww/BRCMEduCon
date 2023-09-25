@@ -205,6 +205,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/markAttendenceBtn"
+            android:background="@drawable/smooth_corner_shape"
+            android:backgroundTint="#dadada"
             >
 
             <TextView

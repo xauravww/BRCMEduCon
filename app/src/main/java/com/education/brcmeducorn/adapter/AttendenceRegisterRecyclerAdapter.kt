@@ -4,22 +4,19 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Adapter
 import android.widget.Button
 import android.widget.RadioButton
 import android.widget.RadioGroup
 import android.widget.TextView
-import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
-import androidx.recyclerview.widget.RecyclerView.Recycler
-import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.education.brcmeducorn.R
+import com.education.brcmeducorn.fragments.faculty_dashboard_fragments.utils.StudentAttendenceListAsyncTask
 import com.education.brcmeducorn.fragments.faculty_dashboard_fragments.utils.StudentRegisterEntry
+import com.education.brcmeducorn.fragments.faculty_dashboard_fragments.utils.StudentSetIsPresent
 
-
-class AttendenceRegisterRecyclerAdapter(val context: Context,val list:ArrayList<StudentRegisterEntry>,var doneBtn:Button,var allPresent:Button,var allAbsent:Button):RecyclerView.Adapter<AttendenceRegisterRecyclerAdapter.AttendenceRegisterViewHolder>() {
+class AttendenceRegisterRecyclerAdapter(val context: Context,val list:ArrayList<StudentRegisterEntry>,var allPresent:Button,var allAbsent:Button):RecyclerView.Adapter<AttendenceRegisterRecyclerAdapter.AttendenceRegisterViewHolder>() {
     companion object {
-        var  studentAttendList= BooleanArray(50)
+        var  studentAttendList= BooleanArray(20)
     }
     class AttendenceRegisterViewHolder(val view:View):RecyclerView.ViewHolder(view)
     {
@@ -46,74 +43,42 @@ class AttendenceRegisterRecyclerAdapter(val context: Context,val list:ArrayList<
     override fun onBindViewHolder(holder: AttendenceRegisterViewHolder, position: Int) {
       val item = list[position]
         holder.name.text = item.Sname
-        holder.rollNo.text = item.Sroll
-        holder.present.isChecked = studentAttendList[position]
-        holder.present.isChecked = studentAttendList[position]
+        holder.rollNo.text = item.Sroll.toString()
 
+
+        val attendenceList = StudentAttendenceListAsyncTask(context,3).execute().get()
+
+        if (attendenceList != null && position < attendenceList.size) {
+            // Set RadioButton state based on the retrieved data
+            holder.present.isChecked = attendenceList[position].isPresent
+            holder.absent.isChecked = !attendenceList[position].isPresent
+        } else {
+            // If there's no attendance data, assume absent
+            holder.absent.isChecked = true
+        }
 
         allPresent.setOnClickListener {
-
-            for(i in 0 until studentAttendList.size)
-            {
-                studentAttendList[i] = true
-
-            }
-
+            StudentSetIsPresent(context,4,holder.rollNo.text.toString().toInt()).execute().get()
             notifyDataSetChanged()
-
         }
 
 
         allAbsent.setOnClickListener {
-
-            for(i in 0 until studentAttendList.size)
-            {
-                studentAttendList[i] = false
-
-            }
+            StudentSetIsPresent(context,5,holder.rollNo.text.toString().toInt()).execute().get()
             notifyDataSetChanged()
         }
 
-        for(i in studentAttendList)
-        {
-            if(i)
-            {
-                holder.present.isChecked = true
 
-            }
-            else
-            {
+        holder.present.setOnClickListener {
 
-                holder.absent.isChecked = true
-            }
+            StudentSetIsPresent(context,6,holder.rollNo.text.toString().toInt()).execute().get()
+            notifyDataSetChanged()
         }
-        holder.radioGroup.setOnCheckedChangeListener { group, checkedId ->
-            when(checkedId)
-            {
-                R.id.present->
-                {
-                    studentAttendList[position]=true
 
-                }
-                R.id.absent->
-                {
-                    studentAttendList[position]=false
+        holder.absent.setOnClickListener {
+            StudentSetIsPresent(context,7,holder.rollNo.text.toString().toInt()).execute().get()
+            notifyDataSetChanged()
 
-                }
-            }
-
-        }
-        doneBtn.setOnClickListener {
-
-            var count = 0;
-            for(i in studentAttendList)
-            {
-                if(i==true)
-                {
-                    count++;
-                }
-            }
-            Toast.makeText(context, "$count", Toast.LENGTH_SHORT).show()
         }
 
     }
