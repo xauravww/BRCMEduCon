@@ -26,6 +26,7 @@ class StudentAttendenceAsyncTask(val context: Context,val studentAttendenceEntit
                 return true
             }
 
+
         }
         return false
     }
@@ -43,7 +44,19 @@ class StudentAttendenceListAsyncTask(val context: Context,val mode:Int):AsyncTas
                 db.close()
                 return list
             }
+            8->
+            {
+                val list = db.AttendenceDao().getAllPresent()
+                db.close()
+                return list
+            }
 
+            9->
+            {
+                val list = db.AttendenceDao().getAllAbsent()
+                db.close()
+                return list
+            }
         }
         return emptyList()
     }
@@ -104,5 +117,6 @@ class StudentSetIsPresent(val context: Context,val mode:Int,val rollno:Int):Asyn
         }
         return false
     }
+
 
 }

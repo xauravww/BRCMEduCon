@@ -27,10 +27,10 @@ interface AttendenceDAO {
 
     @Query("UPDATE AttendenceTable SET isPresent = 1")
     suspend fun updateAllStudentsToTrue()
-//    @Query("SELECT * FROM AttendenceTable WHERE isPresent=1")
-//    fun getAllPresent():List<StudentAttendenceEntity>
-//
-//
-//    @Query("SELECT * FROM AttendenceTable WHERE isPresent=0")
-//    fun getAllAbsent():List<StudentAttendenceEntity>
+    @Query("SELECT * FROM AttendenceTable WHERE isPresent=1")
+    fun getAllPresent():List<StudentAttendenceEntity>
+
+
+    @Query("SELECT * FROM AttendenceTable WHERE isPresent=0")
+    fun getAllAbsent():List<StudentAttendenceEntity>
 }
