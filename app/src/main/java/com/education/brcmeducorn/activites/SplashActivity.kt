@@ -11,7 +11,7 @@ import com.education.brcmeducorn.R
 
 class SplashActivity : AppCompatActivity() {
     lateinit var background:ImageView
-    private val textToDisplay = "BRCM Educorn"
+    private val textToDisplay = "BRCM Educon"
     private val handler = Handler(Looper.getMainLooper())
     private var currentIndex = 0
 
