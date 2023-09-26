@@ -212,4 +212,105 @@
         </LinearLayout>
     </LinearLayout>
 
+    <LinearLayout
+        android:id="@+id/llFeaturesTabThree"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/llFeaturesTabTwo"
+        android:weightSum="5"
+        >
+        <!--Replaced exams with Alumni Meet-->
+        <LinearLayout
+            android:id="@+id/llTimeTable"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_weight="1.7"
+            >
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/imgTimeTable"
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="20dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/image_frame"
+                app:shapeAppearanceOverlay="@style/RoundedSquare" />
+
+            <TextView
+                android:id="@+id/txtTimeTable"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="2dp"
+                android:fontFamily="@font/no_to_sans_bold"
+                android:text="Time Table"
+                android:textColor="@color/fontPrimary" />
+
+        </LinearLayout>
+
+        <LinearLayout
+
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_weight="1.7"
+            >
+
+            <com.google.android.material.imageview.ShapeableImageView
+
+                android:layout_width="120dp"
+                android:layout_height="140dp"
+
+                android:layout_gravity="center"
+                android:layout_toRightOf="@id/imgEvents"
+                android:scaleType="centerCrop"
+                android:src="@drawable/image_frame"
+                app:shapeAppearanceOverlay="@style/RoundedSquare" />
+            <TextView
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+
+                android:layout_marginTop="2dp"
+                android:fontFamily="@font/no_to_sans_bold"
+                android:text="NEW FEATURE"
+                android:textColor="@color/fontPrimary" />
+        </LinearLayout>
+
+        <LinearLayout
+
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_weight="1.6"
+            >
+            <com.google.android.material.imageview.ShapeableImageView
+
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+
+                android:layout_marginTop="20dp"
+
+                android:layout_toRightOf="@id/imgGallery"
+                android:scaleType="centerCrop"
+                android:src="@drawable/image_frame"
+                app:shapeAppearanceOverlay="@style/RoundedSquare" />
+            <TextView
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+
+                android:layout_marginTop="2dp"
+                android:fontFamily="@font/no_to_sans_bold"
+                android:text="NEW FEATURE"
+                android:textColor="@color/fontPrimary" />
+        </LinearLayout>
+    </LinearLayout>
+
 </RelativeLayout>

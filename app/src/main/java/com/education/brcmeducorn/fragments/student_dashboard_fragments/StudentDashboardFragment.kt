@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment
 import com.education.brcmeducorn.fragments.AlumniMeetFragment
 import com.education.brcmeducorn.fragments.EventsFragment
 import com.education.brcmeducorn.fragments.IDCardFragment
+import com.education.brcmeducorn.fragments.TimeTableFragment
 
 
 class StudentDashboardFragment : Fragment() {
@@ -19,6 +20,7 @@ class StudentDashboardFragment : Fragment() {
     lateinit var llResults: LinearLayout
     lateinit var llExams: LinearLayout
     lateinit var llIdCard: LinearLayout
+    lateinit var llTimeTable: LinearLayout
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -38,6 +40,7 @@ class StudentDashboardFragment : Fragment() {
         llResults = view.findViewById(com.education.brcmeducorn.R.id.llResults)
         llGallery = view.findViewById(com.education.brcmeducorn.R.id.llGallery)
         llIdCard = view.findViewById(com.education.brcmeducorn.R.id.llIdCard)
+        llTimeTable = view.findViewById(com.education.brcmeducorn.R.id.llTimeTable)
 
 // going from one fragment to another fragment
         handleClickListeners()
@@ -85,6 +88,13 @@ class StudentDashboardFragment : Fragment() {
         llIdCard.setOnClickListener {
             activity?.supportFragmentManager?.beginTransaction()
                 ?.replace(com.education.brcmeducorn.R.id.frameLayout, IDCardFragment())
+                ?.commit()
+
+
+        }
+        llTimeTable.setOnClickListener {
+            activity?.supportFragmentManager?.beginTransaction()
+                ?.replace(com.education.brcmeducorn.R.id.frameLayout, TimeTableFragment())
                 ?.commit()
 
 

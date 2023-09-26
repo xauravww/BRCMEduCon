@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
 
-    tools:context=".activites.LoginMainActivity">
+    tools:context=".LoginMain">
 
     <ImageView
         android:id="@+id/imgLogoBig"
@@ -55,6 +55,7 @@
                 android:elevation="0dp"
                 android:fontFamily="@font/no_to_sans_bold"
                 android:text="Student"
+
                 android:textAllCaps="false"
                 android:textColor="@color/black"
                 />
@@ -70,8 +71,7 @@
                 android:fontFamily="@font/no_to_sans_bold"
                 android:text="Faculty"
                 android:textAllCaps="false"
-                android:textColor="#ffffff"
-                />
+                android:textColor="#ffffff" />
 
             <Button
                 android:id="@+id/adminBtn"
@@ -112,6 +112,7 @@
 
         />
 
+
     <RelativeLayout
         android:layout_marginTop="25dp"
         android:layout_width="wrap_content"
@@ -140,17 +141,17 @@
                 android:id="@+id/edtUseridOrEmail"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="4"
                 android:layout_gravity="top"
+                android:layout_marginRight="20dp"
+                android:layout_weight="4"
                 android:fontFamily="@font/no_to_sans_bold"
                 android:gravity="start"
                 android:hint="Email or Userid"
-                android:paddingHorizontal="16dp"
-                android:textSize="16sp"
-                android:layout_marginRight="20dp"
-                android:maxLines="1"
                 android:maxLength="35"
+                android:maxLines="1"
+                android:paddingHorizontal="16dp"
                 android:textColorHint="@color/appPrimary"
+                android:textSize="16sp"
 
                 />
         </LinearLayout>

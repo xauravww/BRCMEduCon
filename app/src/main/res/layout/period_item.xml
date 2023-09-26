@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="3dp"
+    android:background="@drawable/black_transparent_bg">
+
+    <LinearLayout
+        android:id="@+id/outerLinearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        android:background="@drawable/background_transparent"
+        android:padding="8dp">
+
+        <LinearLayout
+            android:id="@+id/innerLinearLayout1"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:padding="5dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/time_start"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="9dp"
+                android:text="9:00pm"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/time_end"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/linecyan400"
+                android:text="9:45pm"
+                android:layout_gravity="end"
+                android:gravity="bottom"
+                android:textSize="12sp" />
+
+        </LinearLayout>
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/primary_bg"
+    >
+        <LinearLayout
+            android:id="@+id/innerLinearLayout2"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:paddingTop="9dp"
+            android:paddingStart="9dp"
+            android:paddingEnd="9dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/person_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="9dp"
+                android:text="NeuralNetworks"
+                android:textAlignment="center"
+                android:textSize="14sp"
+                android:paddingStart="6dp"
+                android:paddingTop="2dp"
+                android:paddingBottom="2dp"
+                android:paddingEnd="6dp"
+                android:background="@drawable/green_transparent_bg"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/person_position"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:layout_marginStart="10dp"
+                android:text="Ms Satevender"
+                android:textSize="13sp" />
+
+            <TextView
+                android:id="@+id/person_description"
+                android:layout_width="wrap_content"
+                android:background="@drawable/black_transparent_bg"
+                android:layout_height="wrap_content"
+                android:text="room no 215"
+                android:textColor="@color/pay_module_shared_333333"
+                android:paddingStart="6dp"
+                android:paddingEnd="6dp"
+                android:paddingBottom="2dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginStart="15dp"
+                android:paddingTop="2dp"
+                android:textSize="11sp" />
+        </LinearLayout>
+
+        <com.makeramen.roundedimageview.RoundedImageView
+            android:id="@+id/person_img"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:scaleType="fitCenter"
+            android:layout_gravity="center"
+            android:src="@drawable/brcm_logo_big" />
+    </LinearLayout>
+    </LinearLayout>
+
+</RelativeLayout>
