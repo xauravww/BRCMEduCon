@@ -20,6 +20,7 @@ import com.applandeo.materialcalendarview.utils.calendar
 import com.education.brcmeducorn.R
 import com.education.brcmeducorn.fragments.faculty_dashboard_fragments.utils.DateMonthYearHandler
 import com.education.brcmeducorn.fragments.faculty_dashboard_fragments.utils.StudentAttendenceListAsyncTask
+import com.education.brcmeducorn.fragments.faculty_dashboard_fragments.utils.StudentSetIsPresent
 import java.text.SimpleDateFormat
 import java.time.LocalDate
 import java.util.Locale
@@ -100,24 +101,16 @@ class MarkAttendanceFragment : Fragment() {
     }
 
 
+
+
     fun setAttendenceResult(context: Context)
     {
-        val attendenceList = StudentAttendenceListAsyncTask(context,3).execute().get()
-        if(attendenceList.size!=0)
-        {
-            var count = 0
-            totalstudents.text ="Total students = ${attendenceList.size}"
-            for(i in attendenceList)
-            {
-                if(i.isPresent)
-                {
-                    count++
-                }
-            }
+            var presentiesList = StudentAttendenceListAsyncTask(activity as Context,8).execute().get()
+            var absentiesList = StudentAttendenceListAsyncTask(activity as Context,9).execute().get()
+            absentStudents.text ="Absent students = ${absentiesList.size}"
+            presentStudents.text ="Present students = ${presentiesList.size}"
+            totalstudents.text ="Total students = ${absentiesList.size+presentiesList.size}"
 
-            absentStudents.text ="Absent students = ${attendenceList.size-count}"
-            presentStudents.text ="Present students = ${count}"
-        }
 
     }
 
@@ -131,7 +124,7 @@ class MarkAttendanceFragment : Fragment() {
                 id: Long
             ) {
                 var item  = parent!!?.getItemAtPosition(position)
-                Toast.makeText(activity as Context, "$item", Toast.LENGTH_SHORT).show()
+               // we can use the item to send the request to the server to fetch data
             }
 
             override fun onNothingSelected(parent: AdapterView<*>?) {
@@ -148,7 +141,9 @@ class MarkAttendanceFragment : Fragment() {
                 id: Long
             ) {
                 var item  = parent!!?.getItemAtPosition(position)
-                Toast.makeText(activity as Context, "$item", Toast.LENGTH_SHORT).show()
+               // later we will use this to send request to server
+
+
             }
 
             override fun onNothingSelected(parent: AdapterView<*>?) {
@@ -165,7 +160,7 @@ class MarkAttendanceFragment : Fragment() {
                 id: Long
             ) {
                 var item  = parent!!?.getItemAtPosition(position)
-                Toast.makeText(activity as Context, "$item", Toast.LENGTH_SHORT).show()
+                // later we will use this to send request to server
             }
 
             override fun onNothingSelected(parent: AdapterView<*>?) {
