@@ -243,22 +243,22 @@
                     android:gravity="start"
                     android:hint="Enter Address"
                     />
-                <Button
-                    android:id="@+id/btnUpdateDetails"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Update Details"
-                    android:background="@drawable/smooth_corner_shape"
-                    android:backgroundTint="@color/appPrimary"
-                    android:layout_marginHorizontal="10dp"
-                    android:textColor="#ffffff"
-                    android:textAllCaps="false"
-                    android:fontFamily="@font/montserrat_extrabold"
-                    android:textSize="18sp"
-                    android:layout_below="@id/txtAddress"
-                    android:layout_marginTop="50dp"
-                    />
             </RelativeLayout>
+            <Button
+                android:id="@+id/btnUpdateDetails"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Update Details"
+                android:background="@drawable/smooth_corner_shape"
+                android:backgroundTint="@color/appPrimary"
+                android:layout_marginHorizontal="10dp"
+                android:textColor="#ffffff"
+                android:textAllCaps="false"
+                android:fontFamily="@font/montserrat_extrabold"
+                android:textSize="18sp"
+                android:layout_below="@id/bottomSection"
+                android:layout_marginTop="60dp"
+                />
         </RelativeLayout>
     </ScrollView>
 </FrameLayout>
