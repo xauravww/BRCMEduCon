@@ -1,14 +1,264 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragments.admin_dashboard_fragments.AddOrRemoveMembersFragment">
+    tools:context=".fragments.admin_dashboard_fragments.AddOrRemoveMembersFragment"
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    >
+
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Add Or Remove Members Fragment" />
+        android:layout_height="wrap_content"
+        >
 
+        <RelativeLayout
+            android:id="@+id/main"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"
+            >
+
+            <LinearLayout
+                android:id="@+id/upperSection"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="20dp"
+                android:weightSum="6"
+                >
+                <RelativeLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2.5"
+                    >
+
+                    <ImageView
+                        android:id="@+id/imgStudent"
+                        android:layout_width="150dp"
+                        android:layout_height="150dp"
+                        android:layout_centerHorizontal="true"
+                        android:paddingVertical="15dp"
+                        android:src="@drawable/human_image"
+                        android:background="@drawable/box_outline"/>
+                    <Button
+                        android:layout_width="130dp"
+                        android:layout_height="35dp"
+                        android:layout_below="@id/imgStudent"
+                        android:layout_centerHorizontal="true"
+                        android:background="@drawable/smooth_corner_shape"
+                        android:backgroundTint="@color/appPrimary"
+                        android:text="Upload Photo"
+                        android:textAllCaps="false"
+                        android:textColor="@color/white"
+                        android:fontFamily="@font/montserrat_extrabold"
+                        android:layout_marginTop="5dp"
+                        />
+                </RelativeLayout>
+                <RelativeLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="3.5"
+                    android:padding="5dp"
+                    >
+                    <EditText
+                        android:id="@+id/txtName"
+                        android:layout_width="match_parent"
+                        android:layout_height="60dp"
+                        android:hint="Enter Name"
+                        android:background="@drawable/box_outline"
+                        android:padding="10dp"
+                        android:inputType="text"
+                        />
+                    <Spinner
+                        android:id="@+id/txtBranch"
+                        android:layout_width="match_parent"
+                        android:layout_height="60dp"
+                        android:layout_below="@id/txtName"
+                        android:background="@drawable/box_outline"
+                        android:padding="10dp"
+                        />
+                    <Spinner
+                        android:id="@+id/txtSemester"
+                        android:layout_width="match_parent"
+                        android:layout_height="60dp"
+                        android:layout_below="@id/txtBranch"
+                        android:background="@drawable/box_outline"
+                        android:padding="10dp"
+                        />
+                </RelativeLayout>
+
+            </LinearLayout>
+
+            <RelativeLayout
+                android:id="@+id/middleSection"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/upperSection"
+                >
+
+                <RelativeLayout
+                    android:id="@+id/Batch"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginRight="30dp"
+
+                    >
+                    <ImageView
+                        android:id="@+id/imgcalender"
+                        android:layout_width="35dp"
+                        android:layout_height="match_parent"
+                        android:src="@drawable/baseline_calendar_month_24"
+                        app:tint="@color/appPrimary"
+                        />
+                    <EditText
+                        android:id="@+id/txtbatch"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_toRightOf="@id/imgcalender"
+                        android:background="@drawable/box_outline"
+                        android:padding="10dp"
+                        android:hint="Enter Batch or Year"
+                        android:inputType="number"
+                        />
+                </RelativeLayout>
+                <RelativeLayout
+                    android:id="@+id/Registration"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginRight="30dp"
+                    android:layout_below="@id/Batch"
+
+                    >
+                    <ImageView
+                        android:id="@+id/imgPerson"
+                        android:layout_width="35dp"
+                        android:layout_height="match_parent"
+                        android:src="@drawable/baseline_person_24"
+                        app:tint="@color/appPrimary"
+                        />
+                    <EditText
+                        android:id="@+id/txtRegistrationNo"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_toRightOf="@id/imgPerson"
+                        android:background="@drawable/box_outline"
+                        android:padding="10dp"
+                        android:hint="Enter Registration no."
+                        android:inputType="number"
+                        />
+                </RelativeLayout>
+                <RelativeLayout
+                    android:id="@+id/Mail"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginRight="30dp"
+                    android:layout_below="@id/Registration"
+
+                    >
+                    <ImageView
+                        android:id="@+id/imgmail"
+                        android:layout_width="35dp"
+                        android:layout_height="match_parent"
+                        android:src="@drawable/baseline_mail_24"
+                        app:tint="@color/appPrimary"
+                        />
+                    <EditText
+                        android:id="@+id/txtUserMail"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_toRightOf="@id/imgmail"
+                        android:background="@drawable/box_outline"
+                        android:padding="10dp"
+                        android:hint="user@gmail.com"
+                        />
+
+                </RelativeLayout>
+                <RelativeLayout
+                    android:id="@+id/Mobile"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginRight="30dp"
+                    android:layout_below="@id/Mail"
+
+                    >
+
+                    <ImageView
+                        android:id="@+id/imgphone"
+                        android:layout_width="35dp"
+                        android:layout_height="match_parent"
+                        android:src="@drawable/baseline_smartphone_24"
+                        app:tint="@color/appPrimary"/>
+
+                    <com.hbb20.CountryCodePicker
+                        android:id="@+id/countryCode"
+                        android:layout_width="120dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginRight="5dp"
+                        android:layout_toRightOf="@id/imgphone"
+                        android:background="@drawable/box_outline"
+                        android:paddingVertical="10dp"
+                        />
+                    <EditText
+                        android:id="@+id/txtPhoneNo"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_toRightOf="@id/countryCode"
+                        android:background="@drawable/box_outline"
+                        android:padding="10dp"
+                        android:hint="Enter Phone Number"
+                        android:inputType="number"
+                        android:maxLength="10"
+                        />
+                </RelativeLayout>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/bottomSection"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/middleSection"
+                android:layout_marginHorizontal="30dp"
+                >
+                <ImageView
+                    android:id="@+id/imghome"
+                    android:layout_width="35dp"
+                    android:layout_height="60dp"
+                    android:src="@drawable/baseline_home_24"
+                    android:layout_centerVertical="true"
+                    app:tint="@color/appPrimary" />
+                <EditText
+                    android:id="@+id/txtAddress"
+                    android:layout_width="match_parent"
+                    android:layout_height="150dp"
+                    android:background="@drawable/box_outline"
+                    android:layout_toRightOf="@id/imghome"
+                    android:inputType="textMultiLine"
+                    android:padding="10dp"
+                    android:scrollbarAlwaysDrawVerticalTrack="true"
+                    android:gravity="start"
+                    android:hint="Enter Address"
+                    />
+                <Button
+                    android:id="@+id/btnUpdateDetails"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Update Details"
+                    android:background="@drawable/smooth_corner_shape"
+                    android:backgroundTint="@color/appPrimary"
+                    android:layout_marginHorizontal="10dp"
+                    android:textColor="#ffffff"
+                    android:textAllCaps="false"
+                    android:fontFamily="@font/montserrat_extrabold"
+                    android:textSize="18sp"
+                    android:layout_below="@id/txtAddress"
+                    android:layout_marginTop="50dp"
+                    />
+            </RelativeLayout>
+        </RelativeLayout>
+    </ScrollView>
 </FrameLayout>
