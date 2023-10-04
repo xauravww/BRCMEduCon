@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".fragments.student_dashboard_fragments.GalleryFragment">
 
 
@@ -19,12 +20,13 @@
 
             >
             <androidx.appcompat.widget.SearchView
-                android:id="@+id/searchBar"
+                android:id="@+id/searchView"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-
+                android:layout_height="wrap_content"
+                android:textAppearance="@font/no_to_sans_bold"
+                app:defaultQueryHint="Search by event or date"
+                app:iconifiedByDefault="false"
                 />
-
         </androidx.cardview.widget.CardView>
 
         <androidx.recyclerview.widget.RecyclerView
