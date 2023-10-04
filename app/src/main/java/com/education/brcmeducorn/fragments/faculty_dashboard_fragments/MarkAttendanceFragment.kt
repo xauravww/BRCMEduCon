@@ -18,6 +18,7 @@ import android.widget.TextView
 import android.widget.Toast
 import com.applandeo.materialcalendarview.utils.calendar
 import com.education.brcmeducorn.R
+import com.education.brcmeducorn.fragments.EventsFragment
 import com.education.brcmeducorn.fragments.faculty_dashboard_fragments.utils.DateMonthYearHandler
 import com.education.brcmeducorn.fragments.faculty_dashboard_fragments.utils.StudentAttendenceListAsyncTask
 import com.education.brcmeducorn.fragments.faculty_dashboard_fragments.utils.StudentSetIsPresent
@@ -71,8 +72,9 @@ class MarkAttendanceFragment : Fragment() {
         totalstudents = view.findViewById(R.id.totalStudents)
 
         markAttendenceBtn.setOnClickListener {
-            val intent = Intent(activity as Context,AttendenceRegisterActivity::class.java)
-            startActivity(intent)
+            activity?.supportFragmentManager?.beginTransaction()
+                ?.replace(com.education.brcmeducorn.R.id.frameLayout, AttendanceRegisterFragment())
+                ?.commit()
         }
         val branchAdapter = ArrayAdapter(activity as Context,R.layout.spinner_item,branchArray)
         val semAdapter = ArrayAdapter(activity as Context,R.layout.spinner_item,semesterArray)
@@ -89,7 +91,7 @@ class MarkAttendanceFragment : Fragment() {
 
         // selecting the day,date,month,year as per the user requirement
         selectDate.setOnClickListener {
-          DateMonthYearHandler(activity as Context,day,dateAndMonth,curryear).openDateSelectorDialog()
+            DateMonthYearHandler(activity as Context,day,dateAndMonth,curryear).openDateSelectorDialog()
         }
         return view
     }
@@ -97,7 +99,7 @@ class MarkAttendanceFragment : Fragment() {
     // this will help to update the attendence result data when we come back after taking attendence
     override fun onResume() {
         super.onResume()
-            setAttendenceResult(activity as Context)
+        setAttendenceResult(activity as Context)
     }
 
 
@@ -105,11 +107,11 @@ class MarkAttendanceFragment : Fragment() {
 
     fun setAttendenceResult(context: Context)
     {
-            var presentiesList = StudentAttendenceListAsyncTask(activity as Context,8).execute().get()
-            var absentiesList = StudentAttendenceListAsyncTask(activity as Context,9).execute().get()
-            absentStudents.text ="Absent students = ${absentiesList.size}"
-            presentStudents.text ="Present students = ${presentiesList.size}"
-            totalstudents.text ="Total students = ${absentiesList.size+presentiesList.size}"
+        var presentiesList = StudentAttendenceListAsyncTask(activity as Context,8).execute().get()
+        var absentiesList = StudentAttendenceListAsyncTask(activity as Context,9).execute().get()
+        absentStudents.text ="Absent students = ${absentiesList.size}"
+        presentStudents.text ="Present students = ${presentiesList.size}"
+        totalstudents.text ="Total students = ${absentiesList.size+presentiesList.size}"
 
 
     }
@@ -124,7 +126,7 @@ class MarkAttendanceFragment : Fragment() {
                 id: Long
             ) {
                 var item  = parent!!?.getItemAtPosition(position)
-               // we can use the item to send the request to the server to fetch data
+                // we can use the item to send the request to the server to fetch data
             }
 
             override fun onNothingSelected(parent: AdapterView<*>?) {
@@ -141,7 +143,7 @@ class MarkAttendanceFragment : Fragment() {
                 id: Long
             ) {
                 var item  = parent!!?.getItemAtPosition(position)
-               // later we will use this to send request to server
+                // later we will use this to send request to server
 
 
             }
