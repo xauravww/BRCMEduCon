@@ -42,6 +42,7 @@
                         android:src="@drawable/human_image"
                         android:background="@drawable/box_outline"/>
                     <Button
+                        android:id="@+id/imgUploadBtn"
                         android:layout_width="130dp"
                         android:layout_height="35dp"
                         android:layout_below="@id/imgStudent"
