@@ -1,38 +1,38 @@
 package com.education.brcmeducorn.fragments.faculty_dashboard_fragments
 
 import android.content.Context
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.Menu
-import android.view.MenuItem
+import androidx.fragment.app.Fragment
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
 import androidx.appcompat.app.AlertDialog
-import androidx.appcompat.widget.DecorToolbar
 import androidx.appcompat.widget.Toolbar
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import androidx.recyclerview.widget.RecyclerView.LayoutManager
 import com.education.brcmeducorn.R
 import com.education.brcmeducorn.adapter.AttendenceRegisterRecyclerAdapter
 import com.education.brcmeducorn.fragments.faculty_dashboard_fragments.utils.StudentAttendenceAsyncTask
 import com.education.brcmeducorn.fragments.faculty_dashboard_fragments.utils.StudentAttendenceListAsyncTask
 import com.education.brcmeducorn.fragments.faculty_dashboard_fragments.utils.StudentRegisterEntry
 import com.education.brcmeducorn.fragments.faculty_dashboard_fragments.utils.SwipeToDeleteCallBack
+
 import com.education.brcmeducorn.studentdatabase.StudentAttendenceEntity
-import java.util.zip.Inflater
 
-class AttendenceRegisterActivity : AppCompatActivity() {
 
+class AttendanceRegisterFragment : Fragment() {
 
     lateinit var recyclerView: RecyclerView
-    lateinit var layoutManager:LayoutManager
-    lateinit var reyclerAdapter:AttendenceRegisterRecyclerAdapter
-    lateinit var doneBtn:Button
-    lateinit var allPresentBtn:Button
-    lateinit var allAbsentBtn:Button
+    lateinit var layoutManager: RecyclerView.LayoutManager
+    lateinit var reyclerAdapter: AttendenceRegisterRecyclerAdapter
+    lateinit var doneBtn: Button
+    lateinit var allPresentBtn: Button
+    lateinit var allAbsentBtn: Button
     lateinit var toolbar: Toolbar
+
 
     var studentList = arrayListOf<StudentRegisterEntry>(
         StudentRegisterEntry("Student 1", 10),
@@ -58,33 +58,39 @@ class AttendenceRegisterActivity : AppCompatActivity() {
 
 
 
-    )
+        )
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_attendence_register)
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        val view = inflater.inflate(R.layout.fragment_attendance_register, container, false)
 
-        toolbar = findViewById(R.id.toolbar)
-        setToolbar()
-        doneBtn = findViewById(R.id.doneBtn)
-        allPresentBtn = findViewById(R.id.allPresentBtn)
-        allAbsentBtn  = findViewById(R.id.allAbsentBtn)
 
-        addToDatabase(this)
-        recyclerView = findViewById(R.id.recylerView)
-        layoutManager = LinearLayoutManager(this)
-        reyclerAdapter  = AttendenceRegisterRecyclerAdapter(this,studentList,allPresentBtn,allAbsentBtn)
+
+        doneBtn = view.findViewById(R.id.doneBtn)
+        allPresentBtn = view.findViewById(R.id.allPresentBtn)
+        allAbsentBtn = view.findViewById(R.id.allAbsentBtn)
+
+        addToDatabase(activity as Context)
+        recyclerView = view.findViewById(R.id.recylerView)
+        layoutManager = LinearLayoutManager(activity as Context)
+        reyclerAdapter = AttendenceRegisterRecyclerAdapter(
+            activity as Context,
+            studentList,
+            allPresentBtn,
+            allAbsentBtn
+        )
         recyclerView.adapter = reyclerAdapter
         recyclerView.layoutManager = layoutManager
 
         doneBtn.setOnClickListener {
 
-            onBackPressed()
+//           add krr denge baad m
         }
 
         // added to delete the item on specific position in recycler view
-        val swipeToDeleteCallBack = object :SwipeToDeleteCallBack()
-        {
+        val swipeToDeleteCallBack = object : SwipeToDeleteCallBack() {
             override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
                 val pos = viewHolder.adapterPosition
                 studentList.removeAt(pos)
@@ -94,51 +100,28 @@ class AttendenceRegisterActivity : AppCompatActivity() {
 
         val itemTouchHelper = ItemTouchHelper(swipeToDeleteCallBack)
         itemTouchHelper.attachToRecyclerView(recyclerView)
+        return view
     }
 
-    fun setToolbar()
-    {
-        setSupportActionBar(toolbar)
-        supportActionBar?.title = "Attendence"
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        supportActionBar?.setHomeButtonEnabled(true)
-    }
-
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-
-      menuInflater.inflate(R.menu.attendence_register_add_students,menu)
-        return true
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-
-        when(item.itemId)
-        {
-            R.id.addStudent->{
-                 showAddStudentDialog()
-                return true
-            }
-            android.R.id.home -> {
-                // Handle the Up button press
-                onBackPressed() // This example simply calls onBackPressed()
-                return true
-            }
-        }
-        return super.onOptionsItemSelected(item)
-    }
 
     private fun showAddStudentDialog() {
-        val dialogView = layoutInflater.inflate(R.layout.add_student_attendence_register_dialog_box, null)
+        val dialogView =
+            layoutInflater.inflate(R.layout.add_student_attendence_register_dialog_box, null)
         var Sname = dialogView.findViewById<EditText>(R.id.editTextName)
-        var Srollno= dialogView.findViewById<EditText>(R.id.editTextRollNo)
+        var Srollno = dialogView.findViewById<EditText>(R.id.editTextRollNo)
 
 
-        val dialog = AlertDialog.Builder(this)
+        val dialog = AlertDialog.Builder(activity as Context)
             .setView(dialogView)
             .setTitle("Add Student")
             .setPositiveButton("Add") { _, _ ->
                 // Handle adding the student here
-                studentList.add(StudentRegisterEntry(Sname.text.toString(),Srollno.text.toString().toInt()))
+                studentList.add(
+                    StudentRegisterEntry(
+                        Sname.text.toString(),
+                        Srollno.text.toString().toInt()
+                    )
+                )
 
                 reyclerAdapter.notifyDataSetChanged()
 
@@ -150,6 +133,7 @@ class AttendenceRegisterActivity : AppCompatActivity() {
 
         dialog.show()
     }
+
     fun addToDatabase(context: Context)
     {
         val list = StudentAttendenceListAsyncTask(context,3).execute().get()
