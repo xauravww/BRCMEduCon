@@ -169,7 +169,7 @@
                         app:tint="@color/appPrimary"
                         />
                     <EditText
-                        android:id="@+id/txtRollNo"
+                        android:id="@+id/edtRollNo"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_toRightOf="@id/imgPersonRollNumber"

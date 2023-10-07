@@ -73,4 +73,7 @@ dependencies {
 
     // picasso library
     implementation("com.squareup.picasso:picasso:2.8")
+
+    //volley for api request response handling
+    implementation ("com.android.volley:volley:1.2.1")
 }
