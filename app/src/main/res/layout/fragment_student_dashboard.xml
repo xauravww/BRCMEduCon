@@ -254,6 +254,7 @@
 
         <LinearLayout
 
+            android:id="@+id/llstudentProfile"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:orientation="vertical"
@@ -262,9 +263,9 @@
 
             <com.google.android.material.imageview.ShapeableImageView
 
+                android:id="@+id/studentProfile"
                 android:layout_width="120dp"
                 android:layout_height="140dp"
-
                 android:layout_gravity="center"
                 android:layout_toRightOf="@id/imgEvents"
                 android:scaleType="centerCrop"
@@ -278,7 +279,7 @@
 
                 android:layout_marginTop="2dp"
                 android:fontFamily="@font/no_to_sans_bold"
-                android:text="NEW FEATURE"
+                android:text="Profile"
                 android:textColor="@color/fontPrimary" />
         </LinearLayout>
 
