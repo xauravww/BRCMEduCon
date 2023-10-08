@@ -284,7 +284,7 @@
         </LinearLayout>
 
         <LinearLayout
-
+            android:id="@+id/llTimeTable2"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:orientation="vertical"
@@ -309,7 +309,7 @@
 
                 android:layout_marginTop="2dp"
                 android:fontFamily="@font/no_to_sans_bold"
-                android:text="NEW FEATURE"
+                android:text="Time Table 2"
                 android:textColor="@color/fontPrimary" />
         </LinearLayout>
     </LinearLayout>

@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".fragments.student_dashboard_fragments.TimeTable2Fragment">
+
+    <RelativeLayout
+        android:id="@+id/main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+        <androidx.cardview.widget.CardView
+            android:id="@+id/top"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            >
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Time Table"
+                android:textSize="25sp"
+                android:fontFamily="@font/montserrat_extrabold"
+                android:textAlignment="center"
+                android:padding="20dp"
+
+                />
+        </androidx.cardview.widget.CardView>
+
+        <RelativeLayout
+            android:id="@+id/middle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/top"
+            android:paddingHorizontal="10dp"
+            >
+            <androidx.cardview.widget.CardView
+                android:id="@+id/middle1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="10dp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="5dp"
+                    >
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:id="@+id/imghod"
+                        android:layout_width="70dp"
+                        android:layout_height="70dp"
+                        android:src="@drawable/human_image"
+                        android:layout_weight="1"
+                        android:layout_gravity="center_vertical"
+
+                        />
+
+                    <RelativeLayout
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_toRightOf="@id/imghod"
+                        android:layout_marginLeft="10dp"
+                        android:layout_centerVertical="true"
+                        android:padding="10dp"
+
+                        >
+                        <TextView
+                            android:id="@+id/txthodName"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Dr. Dinesh Kumar"
+                            android:fontFamily="@font/montserrat_extrabold"
+                            android:textSize="18sp"
+                            />
+                        <TextView
+                            android:id="@+id/txthod"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Head Of Department"
+                            android:textSize="18sp"
+                            android:layout_below="@id/txthodName"
+                            />
+                    </RelativeLayout>
+
+                </RelativeLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/middle2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/middle1"
+                android:layout_marginVertical="10dp"
+                app:cardCornerRadius="10dp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="5dp"
+                    >
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:id="@+id/imgttIncharge"
+                        android:layout_width="70dp"
+                        android:layout_height="70dp"
+                        android:src="@drawable/human_image"
+                        android:layout_weight="1"
+                        android:layout_gravity="center_vertical"
+
+                        />
+
+                    <RelativeLayout
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_toRightOf="@id/imgttIncharge"
+                        android:layout_marginLeft="10dp"
+                        android:layout_centerVertical="true"
+                        android:padding="10dp"
+
+                        >
+                        <TextView
+                            android:id="@+id/txtInchargName"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Ms Neha"
+                            android:fontFamily="@font/montserrat_extrabold"
+                            android:textSize="18sp"
+                            />
+                        <TextView
+                            android:id="@+id/txtTimeTableIncharge"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Time Table Incharge"
+                            android:textSize="18sp"
+                            android:layout_below="@id/txtInchargName"
+                            />
+                    </RelativeLayout>
+
+                </RelativeLayout>
+            </androidx.cardview.widget.CardView>
+
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/middle3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/middle2"
+                app:cardCornerRadius="10dp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="5dp"
+                    >
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:id="@+id/imgCO"
+                        android:layout_width="70dp"
+                        android:layout_height="70dp"
+                        android:src="@drawable/human_image"
+                        android:layout_weight="1"
+                        android:layout_gravity="center_vertical"
+
+                        />
+
+                    <RelativeLayout
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_toRightOf="@id/imgCO"
+                        android:layout_marginLeft="10dp"
+                        android:layout_centerVertical="true"
+                        android:padding="10dp"
+
+                        >
+                        <TextView
+                            android:id="@+id/txtCOName"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Surender Singh"
+                            android:fontFamily="@font/montserrat_extrabold"
+                            android:textSize="18sp"
+                            />
+                        <TextView
+                            android:id="@+id/txtCO"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Class Coordinator"
+                            android:textSize="18sp"
+                            android:layout_below="@id/txtCOName"
+                            />
+                    </RelativeLayout>
+
+                </RelativeLayout>
+            </androidx.cardview.widget.CardView>
+        </RelativeLayout>
+        <androidx.cardview.widget.CardView
+            android:id="@+id/bottom"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/middle"
+            android:layout_margin="10dp"
+            app:cardCornerRadius="10dp"
+            >
+            <LinearLayout
+                android:id="@+id/wrapper"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_margin="10dp"
+                >
+               <ImageView
+                   android:id="@+id/imgTimeTable"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:src="@drawable/timetable"
+                   android:adjustViewBounds="true"
+                   />
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+    </RelativeLayout>
+
+</FrameLayout>
