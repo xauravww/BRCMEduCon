@@ -23,6 +23,7 @@ class StudentDashboardFragment : Fragment() {
     lateinit var llIdCard: LinearLayout
     lateinit var llTimeTable: LinearLayout
     lateinit var llStudentProfile: LinearLayout
+    lateinit var llTimeTable2: LinearLayout
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,6 +44,8 @@ class StudentDashboardFragment : Fragment() {
         llIdCard = view.findViewById(com.education.brcmeducorn.R.id.llIdCard)
         llTimeTable = view.findViewById(com.education.brcmeducorn.R.id.llTimeTable)
         llStudentProfile = view.findViewById(R.id.llstudentProfile)
+        llTimeTable2 = view.findViewById(R.id.llTimeTable2)
+
 
 // going from one fragment to another fragment
         handleClickListeners()
@@ -104,6 +107,14 @@ class StudentDashboardFragment : Fragment() {
         llStudentProfile.setOnClickListener {
             activity?.supportFragmentManager?.beginTransaction()
                 ?.replace(com.education.brcmeducorn.R.id.frameLayout, StudentProfile())
+                ?.commit()
+
+
+        }
+
+        llTimeTable2.setOnClickListener {
+            activity?.supportFragmentManager?.beginTransaction()
+                ?.replace(com.education.brcmeducorn.R.id.frameLayout, TimeTable2Fragment())
                 ?.commit()
 
 
