@@ -177,7 +177,7 @@
 
                 android:layout_marginTop="2dp"
                 android:fontFamily="@font/no_to_sans_bold"
-                android:text="Exams"
+                android:text="Subjects"
                 android:textColor="@color/fontPrimary" />
         </LinearLayout>
 

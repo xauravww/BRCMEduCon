@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Gallery
 import android.widget.LinearLayout
 import androidx.fragment.app.Fragment
 import com.education.brcmeducorn.R
@@ -85,7 +84,7 @@ class StudentDashboardFragment : Fragment() {
         }
         llExams.setOnClickListener {
             activity?.supportFragmentManager?.beginTransaction()
-                ?.replace(com.education.brcmeducorn.R.id.frameLayout, ExamsFragment())
+                ?.replace(com.education.brcmeducorn.R.id.frameLayout, SubjectsFragment())
                 ?.commit()
 
 
