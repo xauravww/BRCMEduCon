@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="10dp">
+
+    <RelativeLayout
+        android:id="@+id/rl"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:orientation="vertical"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginVertical="15dp"
+        android:background="@drawable/smooth_corner_shape"
+        android:backgroundTint="#dadada"
+        >
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:orientation="vertical"
+            android:layout_marginLeft="25dp"
+            >
+            <TextView
+                android:id="@+id/txtCourseTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Neural Networks"
+                android:textSize="18sp"
+                android:fontFamily="@font/montserrat_extrabold"
+                />
+            <TextView
+                android:id="@+id/txtCourseCode"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="PCC - CSE - 401G"
+                />
+
+            <TextView
+                android:id="@+id/txtCourseCategory"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Professional Core Course"
+                />
+
+        </LinearLayout>
+        <ImageView
+            android:id="@+id/imgSyallabus"
+            android:layout_width="75dp"
+            android:layout_height="75dp"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="25dp"
+            android:src="@drawable/human_image"
+            />
+    </RelativeLayout>
+</androidx.cardview.widget.CardView>
