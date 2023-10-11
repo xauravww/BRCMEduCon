@@ -23,6 +23,7 @@ class StudentDashboardFragment : Fragment() {
     lateinit var llTimeTable: LinearLayout
     lateinit var llStudentProfile: LinearLayout
     lateinit var llTimeTable2: LinearLayout
+    lateinit var llPYQs:LinearLayout
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -44,7 +45,7 @@ class StudentDashboardFragment : Fragment() {
         llTimeTable = view.findViewById(com.education.brcmeducorn.R.id.llTimeTable)
         llStudentProfile = view.findViewById(R.id.llstudentProfile)
         llTimeTable2 = view.findViewById(R.id.llTimeTable2)
-
+        llPYQs = view.findViewById(R.id.llPYQs)
 
 // going from one fragment to another fragment
         handleClickListeners()
@@ -118,6 +119,15 @@ class StudentDashboardFragment : Fragment() {
 
 
         }
+
+        llPYQs.setOnClickListener {
+            activity?.supportFragmentManager?.beginTransaction()
+                ?.replace(com.education.brcmeducorn.R.id.frameLayout, FragmentPYQS())
+                ?.commit()
+
+
+        }
+
 
     }
 
