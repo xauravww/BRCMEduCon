@@ -4,9 +4,9 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Gallery
 import android.widget.LinearLayout
 import androidx.fragment.app.Fragment
+import com.education.brcmeducorn.R
 import com.education.brcmeducorn.fragments.AlumniMeetFragment
 import com.education.brcmeducorn.fragments.EventsFragment
 import com.education.brcmeducorn.fragments.IDCardFragment
@@ -21,7 +21,9 @@ class StudentDashboardFragment : Fragment() {
     lateinit var llExams: LinearLayout
     lateinit var llIdCard: LinearLayout
     lateinit var llTimeTable: LinearLayout
-
+    lateinit var llStudentProfile: LinearLayout
+    lateinit var llTimeTable2: LinearLayout
+    lateinit var llPYQs:LinearLayout
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,6 +43,9 @@ class StudentDashboardFragment : Fragment() {
         llGallery = view.findViewById(com.education.brcmeducorn.R.id.llGallery)
         llIdCard = view.findViewById(com.education.brcmeducorn.R.id.llIdCard)
         llTimeTable = view.findViewById(com.education.brcmeducorn.R.id.llTimeTable)
+        llStudentProfile = view.findViewById(R.id.llstudentProfile)
+        llTimeTable2 = view.findViewById(R.id.llTimeTable2)
+        llPYQs = view.findViewById(R.id.llPYQs)
 
 // going from one fragment to another fragment
         handleClickListeners()
@@ -80,7 +85,7 @@ class StudentDashboardFragment : Fragment() {
         }
         llExams.setOnClickListener {
             activity?.supportFragmentManager?.beginTransaction()
-                ?.replace(com.education.brcmeducorn.R.id.frameLayout, ExamsFragment())
+                ?.replace(com.education.brcmeducorn.R.id.frameLayout, SubjectsFragment())
                 ?.commit()
 
 
@@ -99,6 +104,31 @@ class StudentDashboardFragment : Fragment() {
 
 
         }
+        llStudentProfile.setOnClickListener {
+            activity?.supportFragmentManager?.beginTransaction()
+                ?.replace(com.education.brcmeducorn.R.id.frameLayout, StudentProfile())
+                ?.commit()
+
+
+        }
+
+        llTimeTable2.setOnClickListener {
+            activity?.supportFragmentManager?.beginTransaction()
+                ?.replace(com.education.brcmeducorn.R.id.frameLayout, TimeTable2Fragment())
+                ?.commit()
+
+
+        }
+
+        llPYQs.setOnClickListener {
+            activity?.supportFragmentManager?.beginTransaction()
+                ?.replace(com.education.brcmeducorn.R.id.frameLayout, FragmentPYQS())
+                ?.commit()
+
+
+        }
+
+
     }
 
 
