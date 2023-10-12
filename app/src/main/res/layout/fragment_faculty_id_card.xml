@@ -9,7 +9,8 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        >
 
 
         <androidx.cardview.widget.CardView
@@ -18,15 +19,56 @@
             android:layout_centerInParent="true"
             android:layout_margin="5dp"
             app:cardCornerRadius="5dp"
-            >
 
-            <TableLayout
-                android:id="@+id/tableLayout"
+            >
+            <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                >
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    >
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="BRCM College Of Engg. And Technology"
+                        android:fontFamily="@font/montserrat_extrabold"
+                        android:layout_centerHorizontal="true"
+                        android:textColor="@color/appPrimary"
+                        />
+
+                </RelativeLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="225dp"
+                android:src="@drawable/brcm_logo_big"
+                android:adjustViewBounds="true"
+                android:layout_gravity="center"
+                android:alpha="0.09"
+                />
+            <ImageView
+                android:layout_width="90dp"
+                android:layout_height="90dp"
+                android:src="@drawable/human_image"
+                android:adjustViewBounds="true"
+                android:layout_gravity="end"
+                android:layout_marginVertical="30dp"
+
+                />
+            <TableLayout
+                android:id="@+id/tableLayout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:stretchColumns="1"
-                android:layout_margin="5dp"
+                android:layout_marginVertical="30dp"
+                android:layout_marginHorizontal="5dp"
                 android:padding="2dp"
+                android:background="@color/Transparent"
                 >
 
                 <!-- Faculty Name Row -->
@@ -34,17 +76,18 @@
                     <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+
                         >
                         <TextView
-                            android:id="@+id/faculty"
+                            android:id="@+id/txtName"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Faculty Name"
                             android:paddingVertical="5dp"
-                            android:textSize="18sp"
                             android:fontFamily="@font/montserrat_extrabold"
                             />
                         <TextView
+                            android:id="@+id/txtSeparator1"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_alignParentEnd="true"
@@ -52,127 +95,251 @@
                             android:text=":"
                             android:layout_centerVertical="true"
                             android:layout_marginRight="5dp"
+                            android:textSize="15sp"
 
                             />
                     </RelativeLayout>
 
 
                     <TextView
-                        android:id="@+id/facultyName"
+                        android:id="@+id/txtFacultyName"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="John Doe"
+                        android:layout_gravity="center_vertical"
+
                         />
                 </TableRow>
 
 
                 <!-- Faculty ID Row -->
                 <TableRow>
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        >
+
+                        <TextView
+                            android:id="@+id/txtId"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/montserrat_extrabold"
+                            android:paddingVertical="5dp"
+                            android:text="Faculty Id" />
+                        <TextView
+                            android:id="@+id/txtSeparator"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:fontFamily="@font/montserrat_extrabold"
+                            android:text=":"
+                            android:layout_centerVertical="true"
+                            android:layout_marginRight="5dp"
+                            android:textSize="15sp"
+
+                            />
+                    </RelativeLayout>
+
+
                     <TextView
+                        android:id="@+id/txtFacultyId"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Faculty ID:"
-                        android:paddingVertical="5dp"
-                        android:textSize="18sp"
-                        android:fontFamily="@font/montserrat_extrabold"
-                        />
-                    <TextView
-                        android:id="@+id/facultyId"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text=": FAC12345"
+                        android:text="1234"
+                        android:layout_gravity="center_vertical"
                         />
                 </TableRow>
 
                 <!-- Role Row -->
                 <TableRow>
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        >
+                        <TextView
+                            android:id="@+id/txtRole"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Faculty Role"
+                            android:paddingVertical="5dp"
+                            android:fontFamily="@font/montserrat_extrabold"
+                            />
+                        <TextView
+                            android:id="@+id/txtSeparator3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:fontFamily="@font/montserrat_extrabold"
+                            android:text=":"
+                            android:layout_centerVertical="true"
+                            android:layout_marginRight="5dp"
+                            android:textSize="15sp"
+
+                            />
+                    </RelativeLayout>
+
+
                     <TextView
+                        android:id="@+id/txtFacultyRole"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Role:"
-                        android:paddingVertical="5dp"
-                        android:textSize="18sp"
-                        android:fontFamily="@font/montserrat_extrabold"
-                        />
-                    <TextView
-                        android:id="@+id/role"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text=": Professor"
+                        android:text="Associate Professor"
+                        android:layout_gravity="center_vertical"
                         />
                 </TableRow>
 
                 <!-- Qualification Row -->
                 <TableRow>
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        >
+                        <TextView
+                            android:id="@+id/txtQualification"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Qualification"
+                            android:paddingVertical="5dp"
+                            android:fontFamily="@font/montserrat_extrabold"
+                            />
+                        <TextView
+                            android:id="@+id/txtSeparator4"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:fontFamily="@font/montserrat_extrabold"
+                            android:text=":"
+                            android:layout_centerVertical="true"
+                            android:layout_marginRight="5dp"
+                            android:textSize="15sp"
+
+                            />
+                    </RelativeLayout>
+
+
                     <TextView
+                        android:id="@+id/txtFacultyQualification"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Qualification:"
-                        android:paddingVertical="5dp"
-                        android:textSize="18sp"
-                        android:fontFamily="@font/montserrat_extrabold"
-                        />
-                    <TextView
-                        android:id="@+id/qualification"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text=": Ph.D. in Computer Science"
+                        android:text="Phd in Computer Graphics"
+                        android:layout_gravity="center_vertical"
                         />
                 </TableRow>
 
                 <!-- Teaching Experience Row -->
                 <TableRow>
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        >
+
+                        <TextView
+                            android:id="@+id/txtExperience"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/montserrat_extrabold"
+                            android:paddingVertical="5dp"
+                            android:text="Experience" />
+                        <TextView
+                            android:id="@+id/txtSeparator5"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:fontFamily="@font/montserrat_extrabold"
+                            android:text=":"
+                            android:layout_centerVertical="true"
+                            android:layout_marginRight="5dp"
+                            android:textSize="15sp"
+
+                            />
+                    </RelativeLayout>
+
+
                     <TextView
+                        android:id="@+id/txtFacultyExperience"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Teaching Experience:"
-                        android:paddingVertical="5dp"
-                        android:gravity="end"
-                        android:textSize="18sp"
-                        android:fontFamily="@font/montserrat_extrabold"
-                        />
-                    <TextView
-                        android:id="@+id/teachingExperience"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text=": 10 years"
+                        android:text="10 years as Associate Professor"
+                        android:layout_gravity="center_vertical"
                         />
                 </TableRow>
 
                 <!-- Email Row -->
                 <TableRow>
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        >
+
+                        <TextView
+                            android:id="@+id/txtEmailAddress"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/montserrat_extrabold"
+                            android:paddingVertical="5dp"
+                            android:text="Email Address" />
+                        <TextView
+                            android:id="@+id/txtSeparator6"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:fontFamily="@font/montserrat_extrabold"
+                            android:text=":"
+                            android:layout_centerVertical="true"
+                            android:layout_marginRight="5dp"
+                            android:textSize="15sp"
+
+                            />
+                    </RelativeLayout>
+
+
                     <TextView
+                        android:id="@+id/txtFacultyEmail"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Email:"
-                        android:paddingVertical="5dp"
-                        android:textSize="18sp"
-                        android:fontFamily="@font/montserrat_extrabold"
-                        />
-                    <TextView
-                        android:id="@+id/email"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text=": john.doe@example.com"
+                        android:text="john@gmail.com"
+                        android:layout_gravity="center_vertical"
                         />
                 </TableRow>
 
                 <!-- Contact Number Row -->
                 <TableRow>
-                    <TextView
-                        android:layout_width="wrap_content"
+
+                    <RelativeLayout
+                        android:layout_width="125dp"
                         android:layout_height="wrap_content"
-                        android:text="Contact Number:"
-                        android:paddingVertical="5dp"
-                        android:textSize="18sp"
-                        android:fontFamily="@font/montserrat_extrabold"
-                        />
+                        >
+                        <TextView
+                            android:id="@+id/txtContactNumber"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Contact No."
+                            android:paddingVertical="5dp"
+                            android:fontFamily="@font/montserrat_extrabold"
+                            />
+
+                        <TextView
+                            android:id="@+id/txtSeparator7"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:fontFamily="@font/montserrat_extrabold"
+                            android:text=":"
+                            android:layout_centerVertical="true"
+                            android:layout_marginRight="5dp"
+                            android:textSize="15sp"
+
+                            />
+                    </RelativeLayout>
+
+
 
                     <TextView
-                        android:id="@+id/contactNumber"
+                        android:id="@+id/txtFacultyContactNumber"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text=": 123-456-7890"
+                        android:text="123-456-7890"
+                        android:layout_gravity="center_vertical"
                         />
                 </TableRow>
             </TableLayout>
