@@ -14,6 +14,9 @@ class FacultyDashboardFragment : Fragment() {
 lateinit var llClasses:LinearLayout
 lateinit var llMarkAttendance:LinearLayout
 lateinit var llSendEvents:LinearLayout
+lateinit var llProfile:LinearLayout
+lateinit var llIdCard:LinearLayout
+lateinit var llSendAssignments:LinearLayout
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,6 +35,9 @@ lateinit var llSendEvents:LinearLayout
         llClasses = view.findViewById(com.education.brcmeducorn.R.id.llClasses)
         llMarkAttendance = view.findViewById(com.education.brcmeducorn.R.id.llMarkAttendance)
         llSendEvents = view.findViewById(com.education.brcmeducorn.R.id.llSendEvents)
+        llProfile = view.findViewById(com.education.brcmeducorn.R.id.llProfile)
+        llIdCard = view.findViewById(com.education.brcmeducorn.R.id.llIdCard)
+        llSendAssignments = view.findViewById(com.education.brcmeducorn.R.id.llSendAssignments)
 
         // going from one fragment to another fragment
         handleClickListeners()
@@ -57,6 +63,30 @@ lateinit var llSendEvents:LinearLayout
         llSendEvents.setOnClickListener {
             activity?.supportFragmentManager?.beginTransaction()
                 ?.replace(com.education.brcmeducorn.R.id.frameLayout, AssignClassesFragment())
+                ?.commit()
+
+
+        }
+
+        llProfile.setOnClickListener {
+            activity?.supportFragmentManager?.beginTransaction()
+                ?.replace(com.education.brcmeducorn.R.id.frameLayout, FacultyProfileFragment())
+                ?.commit()
+
+
+        }
+
+        llIdCard.setOnClickListener {
+            activity?.supportFragmentManager?.beginTransaction()
+                ?.replace(com.education.brcmeducorn.R.id.frameLayout, FacultyIdCardFragment())
+                ?.commit()
+
+
+        }
+
+        llSendAssignments.setOnClickListener {
+            activity?.supportFragmentManager?.beginTransaction()
+                ?.replace(com.education.brcmeducorn.R.id.frameLayout, FacultySendAssignmentsFragment())
                 ?.commit()
 
 

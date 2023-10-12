@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".fragments.faculty_dashboard_fragments.FacultyIdCardFragment">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_margin="5dp"
+            app:cardCornerRadius="5dp"
+            >
+
+            <TableLayout
+                android:id="@+id/tableLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:stretchColumns="1"
+                android:layout_margin="5dp"
+                android:padding="2dp"
+                >
+
+                <!-- Faculty Name Row -->
+                <TableRow>
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        >
+                        <TextView
+                            android:id="@+id/faculty"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Faculty Name"
+                            android:paddingVertical="5dp"
+                            android:textSize="18sp"
+                            android:fontFamily="@font/montserrat_extrabold"
+                            />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:fontFamily="@font/montserrat_extrabold"
+                            android:text=":"
+                            android:layout_centerVertical="true"
+                            android:layout_marginRight="5dp"
+
+                            />
+                    </RelativeLayout>
+
+
+                    <TextView
+                        android:id="@+id/facultyName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="John Doe"
+                        />
+                </TableRow>
+
+
+                <!-- Faculty ID Row -->
+                <TableRow>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Faculty ID:"
+                        android:paddingVertical="5dp"
+                        android:textSize="18sp"
+                        android:fontFamily="@font/montserrat_extrabold"
+                        />
+                    <TextView
+                        android:id="@+id/facultyId"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text=": FAC12345"
+                        />
+                </TableRow>
+
+                <!-- Role Row -->
+                <TableRow>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Role:"
+                        android:paddingVertical="5dp"
+                        android:textSize="18sp"
+                        android:fontFamily="@font/montserrat_extrabold"
+                        />
+                    <TextView
+                        android:id="@+id/role"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text=": Professor"
+                        />
+                </TableRow>
+
+                <!-- Qualification Row -->
+                <TableRow>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Qualification:"
+                        android:paddingVertical="5dp"
+                        android:textSize="18sp"
+                        android:fontFamily="@font/montserrat_extrabold"
+                        />
+                    <TextView
+                        android:id="@+id/qualification"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text=": Ph.D. in Computer Science"
+                        />
+                </TableRow>
+
+                <!-- Teaching Experience Row -->
+                <TableRow>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Teaching Experience:"
+                        android:paddingVertical="5dp"
+                        android:gravity="end"
+                        android:textSize="18sp"
+                        android:fontFamily="@font/montserrat_extrabold"
+                        />
+                    <TextView
+                        android:id="@+id/teachingExperience"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text=": 10 years"
+                        />
+                </TableRow>
+
+                <!-- Email Row -->
+                <TableRow>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Email:"
+                        android:paddingVertical="5dp"
+                        android:textSize="18sp"
+                        android:fontFamily="@font/montserrat_extrabold"
+                        />
+                    <TextView
+                        android:id="@+id/email"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text=": john.doe@example.com"
+                        />
+                </TableRow>
+
+                <!-- Contact Number Row -->
+                <TableRow>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Contact Number:"
+                        android:paddingVertical="5dp"
+                        android:textSize="18sp"
+                        android:fontFamily="@font/montserrat_extrabold"
+                        />
+
+                    <TextView
+                        android:id="@+id/contactNumber"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text=": 123-456-7890"
+                        />
+                </TableRow>
+            </TableLayout>
+        </androidx.cardview.widget.CardView>
+    </RelativeLayout>
+
+
+
+
+</FrameLayout>
