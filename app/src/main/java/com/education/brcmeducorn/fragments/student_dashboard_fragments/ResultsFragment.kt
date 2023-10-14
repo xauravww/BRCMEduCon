@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.ScaleAnimation
 import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.Toast
@@ -25,6 +26,8 @@ class ResultsFragment : Fragment() {
     lateinit var sixth:CardView
     lateinit var seventh:CardView
     lateinit var eighth:CardView
+
+    private var isZoomedIn = false
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 

@@ -10,13 +10,42 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
+      
         >
 
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardFacultyProfile"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            >
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Faculty Id Card"
+                android:textSize="25sp"
+                android:fontFamily="@font/montserrat_extrabold"
+                android:textAlignment="center"
+                android:padding="20dp"
+
+                />
+        </androidx.cardview.widget.CardView>
+
+        <ImageView
+            android:id="@+id/imgScanner"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_below="@id/cardFacultyProfile"
+            android:layout_centerHorizontal="true"
+            android:layout_marginVertical="10dp"
+            android:adjustViewBounds="true"
+            android:src="@drawable/idcardscanner" />
 
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
+            android:layout_below="@id/imgScanner"
             android:layout_margin="5dp"
             app:cardCornerRadius="5dp"
 
@@ -25,17 +54,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 >
-                <ImageView
-                    android:id="@+id/imgScanner"
-                    android:layout_width="70dp"
-                    android:layout_height="70dp"
-                    android:src="@drawable/idcardscanner"
-                    android:adjustViewBounds="true"
-                    android:layout_alignBottom="@id/rlwrapper"
-                    android:baselineAlignBottom="true"
-                    android:layout_alignParentRight="true"
-                    android:layout_margin="5dp"
-                    />
+
 
                 <androidx.cardview.widget.CardView
                     android:id="@+id/top"
