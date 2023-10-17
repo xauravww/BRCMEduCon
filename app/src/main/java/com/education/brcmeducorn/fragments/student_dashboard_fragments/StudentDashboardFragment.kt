@@ -21,10 +21,12 @@ class StudentDashboardFragment : Fragment() {
     lateinit var llExams: LinearLayout
     lateinit var llIdCard: LinearLayout
     lateinit var llTimeTable: LinearLayout
-    lateinit var llStudentProfile: LinearLayout
+    lateinit var llAssignment: LinearLayout
+
+     lateinit var llStudentProfile: LinearLayout
     lateinit var llTimeTable2: LinearLayout
     lateinit var llPYQs:LinearLayout
-
+ 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -43,6 +45,8 @@ class StudentDashboardFragment : Fragment() {
         llGallery = view.findViewById(com.education.brcmeducorn.R.id.llGallery)
         llIdCard = view.findViewById(com.education.brcmeducorn.R.id.llIdCard)
         llTimeTable = view.findViewById(com.education.brcmeducorn.R.id.llTimeTable)
+        llAssignment = view.findViewById(com.education.brcmeducorn.R.id.llAssignment)
+
         llStudentProfile = view.findViewById(R.id.llstudentProfile)
         llTimeTable2 = view.findViewById(R.id.llTimeTable2)
         llPYQs = view.findViewById(R.id.llPYQs)
@@ -104,6 +108,9 @@ class StudentDashboardFragment : Fragment() {
 
 
         }
+        llAssignment.setOnClickListener {
+            activity?.supportFragmentManager?.beginTransaction()
+                ?.replace(com.education.brcmeducorn.R.id.frameLayout, AssignmentFragment())
         llStudentProfile.setOnClickListener {
             activity?.supportFragmentManager?.beginTransaction()
                 ?.replace(com.education.brcmeducorn.R.id.frameLayout, StudentProfile())
@@ -111,6 +118,7 @@ class StudentDashboardFragment : Fragment() {
 
 
         }
+
 
         llTimeTable2.setOnClickListener {
             activity?.supportFragmentManager?.beginTransaction()

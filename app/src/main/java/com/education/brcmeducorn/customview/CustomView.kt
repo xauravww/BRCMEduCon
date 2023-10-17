@@ -1,71 +1,70 @@
 package com.education.brcmeducorn.customview
 
+import android.animation.ValueAnimator
 import android.content.Context
 import android.graphics.Canvas
-import android.graphics.Color
 import android.graphics.Paint
+import android.graphics.Path
 import android.util.AttributeSet
 import android.view.View
 
-class CustomView : View {
-    private var paint: Paint? = null
+class CustomView(context: Context, attrs: AttributeSet) : View(context, attrs) {
 
-    constructor(context: Context?, attrs: AttributeSet?, defStyleAttr: Int) : super(
-        context,
-        attrs,
-        defStyleAttr
-    ) {
-        init()
+    private val arrowHeight = 2.dpToPx().toFloat()
+    private val arrowPaint = Paint().apply {
+        color = 0xFFFF0000.toInt()
     }
 
-    constructor(context: Context?, attrs: AttributeSet?) : super(context, attrs) {
-        init()
+    private var totalTravelPixel = 0
+    private var totalTimeInMillis = 0
+    private val arrowPath = Path()
+
+    init {
+        // Ensure the view has a minimum size
+        minimumHeight = arrowHeight.toInt()
     }
 
-    constructor(context: Context?) : super(context) {
-        init()
-    }
-
-    private fun init() {
-        paint = Paint()
-        paint!!.color = Color.RED
-        paint!!.style = Paint.Style.FILL
-        paint!!.strokeWidth = 4f
+    fun moveDown(totalPixel: Int, timeInMillis: Int) {
+        totalTravelPixel = totalPixel
+        totalTimeInMillis = timeInMillis
+        val animator = ValueAnimator.ofFloat(0f, totalPixel.toFloat())
+        animator.duration = timeInMillis.toLong()
+        animator.addUpdateListener { valueAnimator ->
+            val value = valueAnimator.animatedValue as Float
+            translationY = value
+            invalidate()
+        }
+        animator.start()
     }
 
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
-        val startX = 0f
+
+        // Set the paint stroke width for the red line
+        arrowPaint.strokeWidth = arrowHeight  // Set the stroke width to the arrow height
+
+        // Draw the line
         val startY = height / 2f
         val endX = width.toFloat()
         val endY = height / 2f
-        canvas.drawLine(startX, startY, endX, endY, paint!!)
+        canvas.drawLine(0f, startY, endX, endY, arrowPaint)
 
         // Draw the arrowhead
-        val arrowSize = 40f // Adjust arrow size as needed
-        canvas.drawLine(endX - arrowSize, endY - arrowSize, endX, endY, paint!!)
-        canvas.drawLine(endX - arrowSize, endY + arrowSize, endX, endY, paint!!)
-    }
+        val arrowSize = arrowHeight * 4 // Adjust arrow size as needed
 
-    fun setProgress(progress: Int) {
-        val newY = height * (progress / 100f)
-        translationY = newY
-        invalidate()
-    }
-    fun moveDown() {
-        val pixelsToCover = height.toFloat()  // Total height of the view
-        val duration = 45 * 60 * 1000  // 45 minutes in milliseconds
 
-        val pixelsPerMillisecond = pixelsToCover / duration
-        val newY = translationY + pixelsPerMillisecond * 1000  // Move based on time passed (1000 milliseconds)
-        translationY = newY
+        arrowPath.moveTo(endX - arrowSize, endY - arrowSize)
+        arrowPath.lineTo(endX, endY)
+        arrowPath.lineTo(endX - arrowSize, endY + arrowSize)
+        arrowPath.close()
 
-        if (newY > height) {
-            translationY = -height.toFloat()  // Reset position if it's off-screen
-        }
-
-        invalidate()
+        canvas.drawPath(arrowPath, arrowPaint)
     }
 
 
+
+
+    private fun Int.dpToPx(): Int {
+        return (this * resources.displayMetrics.density).toInt()
+    }
 }
