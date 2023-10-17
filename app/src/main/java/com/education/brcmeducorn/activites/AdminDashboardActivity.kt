@@ -12,12 +12,16 @@ import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import com.education.brcmeducorn.R
 import com.education.brcmeducorn.fragments.admin_dashboard_fragments.AdminDashboardFragment
-import com.education.brcmeducorn.fragments.faculty_dashboard_fragments.FacultyDashboardFragment
 import com.education.brcmeducorn.fragments.EventsFragment
 import com.education.brcmeducorn.fragments.TimeTableFragment
 import com.education.brcmeducorn.fragments.faculty_dashboard_fragments.AssignmentFragment
 import com.google.android.material.appbar.AppBarLayout
-import com.google.android.material.navigation.NavigationView
+  import com.education.brcmeducorn.fragments.admin_dashboard_fragments.EditFacultyFragment
+import com.education.brcmeducorn.fragments.admin_dashboard_fragments.EditStudentFragment
+ import com.education.brcmeducorn.fragments.admin_dashboard_fragments.FacultyClassManagementFragment
+import com.education.brcmeducorn.fragments.student_dashboard_fragments.AssignmentFragment
+ import com.google.android.material.appbar.AppBarLayout
+ import com.google.android.material.navigation.NavigationView
 
 class AdminDashboardActivity : AppCompatActivity() {
     lateinit var toolbar: Toolbar
@@ -40,8 +44,7 @@ class AdminDashboardActivity : AppCompatActivity() {
         if (savedInstanceState == null) {
             supportFragmentManager.beginTransaction()
                 .replace(R.id.frameLayout, AdminDashboardFragment())
-//                .replace(R.id.frameLayout, AssignmentFragment())
-
+ 
                 .commit()
         }
     }
