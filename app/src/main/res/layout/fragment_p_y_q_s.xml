@@ -3,44 +3,40 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".fragments.student_dashboard_fragments.GalleryFragment">
-
-
+    tools:context=".fragments.student_dashboard_fragments.FragmentPYQS">
 
     <RelativeLayout
+        android:id="@+id/main"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         >
         <androidx.cardview.widget.CardView
-            android:id="@+id/searchBarCardView"
+            android:id="@+id/top"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
-
             >
-            <androidx.appcompat.widget.SearchView
-                android:id="@+id/searchView"
+
+            <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textAppearance="@font/no_to_sans_bold"
-                app:defaultQueryHint="Search by event or date"
-                app:iconifiedByDefault="false"
+                android:text="PYQ's"
+                android:textSize="25sp"
+                android:fontFamily="@font/montserrat_extrabold"
+                android:textAlignment="center"
+                android:padding="20dp"
+
                 />
         </androidx.cardview.widget.CardView>
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/stGalleryRecyclerView"
+            android:id="@+id/recyclerViewPYQS"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/searchBarCardView"
-            android:layout_centerHorizontal="true"
-            android:layout_marginStart="5dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginEnd="5dp"
-            android:layout_marginBottom="5dp" />
+            android:layout_below="@id/top"
+            android:layout_marginTop="50dp"
+            />
 
     </RelativeLayout>
-
 
 </FrameLayout>

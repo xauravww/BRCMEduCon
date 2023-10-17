@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".fragments.student_dashboard_fragments.StudentProfile">
+
+    <RelativeLayout
+        android:id="@+id/main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+        <androidx.cardview.widget.CardView
+            android:id="@+id/top"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            >
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Student Profile"
+                android:textSize="25sp"
+                android:fontFamily="@font/montserrat_extrabold"
+                android:textAlignment="center"
+                android:padding="20dp"
+
+                />
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/middle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/top"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginVertical="10dp"
+            app:cardCornerRadius="10dp">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                >
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/imgStudentProfile"
+                    android:layout_width="120dp"
+                    android:layout_height="100dp"
+                    android:src="@drawable/human_image"
+                    android:layout_weight="1"
+                    android:layout_gravity="center_vertical"
+
+                    />
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@id/imgStudentProfile"
+                    android:layout_marginLeft="10dp"
+                    android:layout_centerVertical="true"
+                    android:padding="10dp"
+
+                    >
+                    <TextView
+                        android:id="@+id/txtStudentName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Saurav"
+                        android:fontFamily="@font/montserrat_extrabold"
+                        android:textSize="18sp"
+                        />
+                    <TextView
+                        android:id="@+id/txtStudentRollNo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="20 cse 4375"
+                        android:textSize="18sp"
+                        android:layout_below="@id/txtStudentName"
+                        />
+                    <TextView
+                        android:id="@+id/txtYear"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/txtStudentRollNo"
+                        android:text="Final Year"
+                        android:textSize="18sp"
+                        />
+                </RelativeLayout>
+            </RelativeLayout>
+
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/bottom"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/middle"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginVertical="10dp"
+            app:cardCornerRadius="10dp"
+            >
+            <LinearLayout
+                android:id="@+id/wrapper"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginVertical="15dp"
+                >
+                <RelativeLayout
+                    android:id="@+id/first"
+                    android:layout_width="match_parent"
+                    android:layout_height="120dp"
+                    android:background="@drawable/smooth_corner_shape"
+                    android:backgroundTint="#dadada"
+                    >
+
+                    <ImageView
+                        android:id="@+id/imgLogo1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/board"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="25dp"
+
+                        />
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_toRightOf="@id/imgLogo1"
+                        android:layout_marginLeft="10dp"
+                        android:layout_centerVertical="true"
+                        >
+                        <TextView
+                            android:id="@+id/txtEmail"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Email"
+                            android:layout_marginBottom="5dp"
+                            />
+
+                        <TextView
+                            android:id="@+id/txtEmailAddress"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="saurav@gmail.com"
+                            android:layout_below="@id/txtEmail"
+                            />
+                    </RelativeLayout>
+                </RelativeLayout>
+                <RelativeLayout
+                    android:id="@+id/second"
+                    android:layout_width="match_parent"
+                    android:layout_height="120dp"
+                    android:layout_marginVertical="10dp"
+                    android:background="@drawable/smooth_corner_shape"
+                    android:backgroundTint="#dadada"
+                    >
+                    <ImageView
+                        android:id="@+id/imgLogo2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/board"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="25dp"
+                        />
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_toRightOf="@id/imgLogo2"
+                        android:layout_marginLeft="10dp"
+                        android:layout_centerVertical="true"
+                        >
+                        <TextView
+                            android:id="@+id/txtGPA"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="GPA"
+                            android:layout_marginBottom="5dp"
+                            />
+
+                        <TextView
+                            android:id="@+id/txtScore"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="9.27"
+                            android:layout_below="@id/txtGPA"
+                            />
+                    </RelativeLayout>
+
+                </RelativeLayout>
+                <RelativeLayout
+                    android:id="@+id/third"
+                    android:layout_width="match_parent"
+                    android:layout_height="120dp"
+                    android:background="@drawable/smooth_corner_shape"
+                    android:backgroundTint="#dadada"
+                    >
+                    <ImageView
+                        android:id="@+id/imgLogo3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/board"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="25dp"
+                        />
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_toRightOf="@id/imgLogo3"
+                        android:layout_marginLeft="10dp"
+                        android:layout_centerVertical="true"
+                        >
+                        <TextView
+                            android:id="@+id/txtMobile"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Mobile"
+                            android:layout_marginBottom="5dp"
+                            />
+
+                        <TextView
+                            android:id="@+id/txtNumber"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="+91123456789"
+                            android:layout_below="@id/txtMobile"
+                            />
+                    </RelativeLayout>
+                </RelativeLayout>
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+    </RelativeLayout>
+</FrameLayout>
