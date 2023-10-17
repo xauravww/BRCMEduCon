@@ -18,8 +18,6 @@ class EditStudentFragment : Fragment() {
     private lateinit var adapter: EditStudentAdapter
     private val studentList = ArrayList<StudentModel>()
     private val updatedFacultyList: ArrayList<StudentModel> = ArrayList()
-
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?

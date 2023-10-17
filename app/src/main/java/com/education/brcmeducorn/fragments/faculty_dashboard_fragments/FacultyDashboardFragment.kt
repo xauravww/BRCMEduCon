@@ -86,7 +86,7 @@ lateinit var llSendAssignments:LinearLayout
 
         llSendAssignments.setOnClickListener {
             activity?.supportFragmentManager?.beginTransaction()
-                ?.replace(com.education.brcmeducorn.R.id.frameLayout, FacultySendAssignmentsFragment())
+                ?.replace(com.education.brcmeducorn.R.id.frameLayout, AssignmentFragment())
                 ?.commit()
 
 

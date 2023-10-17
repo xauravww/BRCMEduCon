@@ -23,7 +23,7 @@ class AssignmentFragment : Fragment() {
     private var dueCalendar: Calendar? = null
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val view: View = inflater.inflate(R.layout.fragment_assignment, container, false)
+        val view: View = inflater.inflate(R.layout.fragment_assignment_faculty_create, container, false)
 
         editTextAssignmentTitle = view.findViewById(R.id.editTextAssignmentTitle)
         editTextAssignmentDescription = view.findViewById(R.id.editTextAssignmentDescription)
