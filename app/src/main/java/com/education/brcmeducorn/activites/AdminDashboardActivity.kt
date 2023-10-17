@@ -15,6 +15,7 @@ import com.education.brcmeducorn.fragments.admin_dashboard_fragments.AdminDashbo
 import com.education.brcmeducorn.fragments.faculty_dashboard_fragments.FacultyDashboardFragment
 import com.education.brcmeducorn.fragments.EventsFragment
 import com.education.brcmeducorn.fragments.TimeTableFragment
+import com.education.brcmeducorn.fragments.admin_dashboard_fragments.FacultyClassManagementFragment
 import com.google.android.material.appbar.AppBarLayout
 import com.google.android.material.navigation.NavigationView
 
@@ -38,7 +39,7 @@ class AdminDashboardActivity : AppCompatActivity() {
         openHome()
         if (savedInstanceState == null) {
             supportFragmentManager.beginTransaction()
-                .replace(R.id.frameLayout, AdminDashboardFragment())
+                .replace(R.id.frameLayout, FacultyClassManagementFragment())
                 .commit()
         }
     }

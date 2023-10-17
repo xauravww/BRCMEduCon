@@ -235,19 +235,19 @@
         android:fontFamily="@font/no_to_sans_bold"
         android:textColor="@color/appPrimary"
         />
+
     <Button
         android:id="@+id/btnLogin"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Login"
+        android:layout_alignParentBottom="true"
+        android:layout_marginHorizontal="10dp"
+        android:layout_marginBottom="10dp"
         android:background="@drawable/smooth_corner_shape"
         android:backgroundTint="@color/appPrimary"
-        android:layout_marginHorizontal="10dp"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="10dp"
-        android:textColor="#ffffff"
-        android:textAllCaps="false"
         android:fontFamily="@font/no_to_sans_bold"
-        android:textSize="18sp"
-        />
+        android:text="Login"
+        android:textAllCaps="false"
+        android:textColor="#ffffff"
+        android:textSize="18sp" />
 </RelativeLayout>
