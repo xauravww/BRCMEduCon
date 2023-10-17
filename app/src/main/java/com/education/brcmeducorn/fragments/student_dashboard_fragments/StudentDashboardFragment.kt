@@ -114,33 +114,33 @@ class StudentDashboardFragment : Fragment() {
         llAssignment.setOnClickListener {
             activity?.supportFragmentManager?.beginTransaction()
                 ?.replace(com.education.brcmeducorn.R.id.frameLayout, AssignmentFragment())
-            llStudentProfile.setOnClickListener {
-                activity?.supportFragmentManager?.beginTransaction()
-                    ?.replace(com.education.brcmeducorn.R.id.frameLayout, StudentProfile())
-                    ?.commit()
+                ?.commit()
 
-
-            }
+        }
+        llStudentProfile.setOnClickListener {
+            activity?.supportFragmentManager?.beginTransaction()
+                ?.replace(com.education.brcmeducorn.R.id.frameLayout, StudentProfile())
+                ?.commit()
         }
 
-            llTimeTable2.setOnClickListener {
-                activity?.supportFragmentManager?.beginTransaction()
-                    ?.replace(com.education.brcmeducorn.R.id.frameLayout, TimeTable2Fragment())
-                    ?.commit()
+        llTimeTable2.setOnClickListener {
+            activity?.supportFragmentManager?.beginTransaction()
+                ?.replace(com.education.brcmeducorn.R.id.frameLayout, TimeTable2Fragment())
+                ?.commit()
 
 
-            }
+        }
 
-            llPYQs.setOnClickListener {
-                activity?.supportFragmentManager?.beginTransaction()
-                    ?.replace(com.education.brcmeducorn.R.id.frameLayout, FragmentPYQS())
-                    ?.commit()
-
-
-            }
+        llPYQs.setOnClickListener {
+            activity?.supportFragmentManager?.beginTransaction()
+                ?.replace(com.education.brcmeducorn.R.id.frameLayout, FragmentPYQS())
+                ?.commit()
 
 
         }
 
 
     }
+
+
+}
