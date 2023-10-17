@@ -10,7 +10,6 @@
         android:id="@+id/reuseName"
         android:layout_width="wrap_content"
         android:layout_height="200dp"
-
         >
 
         <RelativeLayout
@@ -62,120 +61,242 @@
             app:shapeAppearanceOverlay="@style/RoundedSquare" />
 
     </RelativeLayout>
-
-    <LinearLayout
-        android:id="@+id/llFeaturesTabOne"
+    <androidx.core.widget.NestedScrollView
+        android:layout_marginBottom="10dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/reuseName"
-        android:weightSum="6"
-        >
+        android:layout_height="match_parent"
+        android:scrollbars="none"
+        android:layout_below="@id/reuseName">
 
         <LinearLayout
-            android:id="@+id/llAddOrRemoveMembers"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_weight="2"
-            >
-
-            <RelativeLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                >
-
-                <com.google.android.material.imageview.ShapeableImageView
-                    android:id="@+id/imgAddOrRemoveMembers"
-                    android:layout_width="120dp"
-                    android:layout_height="120dp"
-                    android:scaleType="centerCrop"
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginTop="20dp"
-                    android:src="@drawable/image_frame"
-                    app:shapeAppearanceOverlay="@style/RoundedSquare" />
-
-                <TextView
-                    android:id="@+id/txtAddOrRemoveMembers"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/imgAddOrRemoveMembers"
-                    android:layout_gravity="center"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginTop="0dp"
-                    android:fontFamily="@font/no_to_sans_bold"
-                    android:text="Add or Remove Members"
-                    android:textAlignment="center"
-                    android:textColor="@color/fontPrimary" />
-            </RelativeLayout>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/llSendEvents"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_weight="2"
-            >
-
-            <com.google.android.material.imageview.ShapeableImageView
-                android:id="@+id/imgSendEvents"
-                android:layout_width="120dp"
-                android:layout_height="140dp"
-                android:layout_gravity="center"
-                android:layout_toRightOf="@id/llAddOrRemoveMembers"
-                android:scaleType="centerCrop"
-                android:src="@drawable/image_frame"
-                app:shapeAppearanceOverlay="@style/RoundedSquare" />
-            <TextView
-                android:id="@+id/txtSendEvents"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:textAlignment="center"
-                android:layout_marginTop="2dp"
-                android:fontFamily="@font/no_to_sans_bold"
-                android:text="Send Events and Reminders"
-                android:textColor="@color/fontPrimary" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/llAssignClasses"
-            android:layout_width="0dp"
-            android:layout_height="165dp"
-            android:layout_weight="2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:orientation="vertical">
 
-            <RelativeLayout
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:id="@+id/llFeaturesTabOne"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                >
+                android:layout_below="@id/reuseName"
+                android:weightSum="6">
 
-                <com.google.android.material.imageview.ShapeableImageView
-                    android:id="@+id/imgAssignClasses"
-                    android:layout_width="120dp"
-                    android:layout_height="120dp"
-                    android:scaleType="centerCrop"
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginTop="20dp"
-                    android:src="@drawable/image_frame"
-                    app:shapeAppearanceOverlay="@style/RoundedSquare" />
-
-                <TextView
-                    android:id="@+id/txtAssignClasses"
-                    android:layout_width="match_parent"
+                <LinearLayout
+                    android:id="@+id/llAddOrRemoveMembers"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:textAlignment="center"
-                    android:layout_gravity="center"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginTop="2dp"
-                    android:fontFamily="@font/no_to_sans_bold"
-                    android:text="Send Events"
-                    android:textColor="@color/fontPrimary"
-                    android:layout_below="@id/imgAssignClasses"/>
-            </RelativeLayout>
+                    android:layout_weight="2"
+                    android:orientation="vertical">
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+                        <com.google.android.material.imageview.ShapeableImageView
+                            android:id="@+id/imgAddOrRemoveMembers"
+                            android:layout_width="120dp"
+                            android:layout_height="120dp"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginTop="20dp"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/image_frame"
+                            app:shapeAppearanceOverlay="@style/RoundedSquare" />
+
+                        <TextView
+                            android:id="@+id/txtAddOrRemoveMembers"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/imgAddOrRemoveMembers"
+                            android:layout_gravity="center"
+                            android:layout_marginStart="10dp"
+                            android:layout_marginTop="0dp"
+                            android:fontFamily="@font/no_to_sans_bold"
+                            android:text="Add or Remove Members"
+                            android:textAlignment="center"
+                            android:textColor="@color/fontPrimary" />
+                    </RelativeLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/llSendEvents"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:orientation="vertical">
+
+                    <com.google.android.material.imageview.ShapeableImageView
+                        android:id="@+id/imgSendEvents"
+                        android:layout_width="120dp"
+                        android:layout_height="140dp"
+                        android:layout_gravity="center"
+                        android:layout_toRightOf="@id/llAddOrRemoveMembers"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/image_frame"
+                        app:shapeAppearanceOverlay="@style/RoundedSquare" />
+
+                    <TextView
+                        android:id="@+id/txtSendEvents"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="2dp"
+                        android:fontFamily="@font/no_to_sans_bold"
+                        android:text="Send Events and Reminders"
+                        android:textAlignment="center"
+                        android:textColor="@color/fontPrimary" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/llAssignClasses"
+                    android:layout_width="0dp"
+                    android:layout_height="165dp"
+                    android:layout_weight="2"
+                    android:orientation="vertical">
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+                        <com.google.android.material.imageview.ShapeableImageView
+                            android:id="@+id/imgAssignClasses"
+                            android:layout_width="120dp"
+                            android:layout_height="120dp"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginTop="20dp"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/image_frame"
+                            app:shapeAppearanceOverlay="@style/RoundedSquare" />
+
+                        <TextView
+                            android:id="@+id/txtAssignClasses"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/imgAssignClasses"
+                            android:layout_gravity="center"
+                            android:layout_marginStart="10dp"
+                            android:layout_marginTop="2dp"
+                            android:fontFamily="@font/no_to_sans_bold"
+                            android:text="Send Events"
+                            android:textAlignment="center"
+                            android:textColor="@color/fontPrimary" />
+                    </RelativeLayout>
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/llFeaturesTabTwo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/reuseName"
+                android:weightSum="6">
+
+                <LinearLayout
+                    android:id="@+id/llFacultyManage"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:orientation="vertical">
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+                        <com.google.android.material.imageview.ShapeableImageView
+                            android:id="@+id/imgAssignFreeClasses"
+                            android:layout_width="120dp"
+                            android:layout_height="120dp"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginTop="20dp"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/image_frame"
+                            app:shapeAppearanceOverlay="@style/RoundedSquare" />
+
+                        <TextView
+                            android:id="@+id/txtAssignFreeClasses"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/imgAssignFreeClasses"
+                            android:layout_gravity="center"
+                            android:layout_marginStart="10dp"
+                            android:layout_marginTop="0dp"
+                            android:fontFamily="@font/no_to_sans_bold"
+                            android:text="Manage Faculty Classes"
+                            android:textAlignment="center"
+                            android:textColor="@color/fontPrimary" />
+                    </RelativeLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/llEditMember"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:orientation="vertical">
+
+                    <com.google.android.material.imageview.ShapeableImageView
+                        android:id="@+id/imgAnotherFeature"
+                        android:layout_width="120dp"
+                        android:layout_height="140dp"
+                        android:layout_gravity="center"
+                        android:layout_toRightOf="@id/llEditMember"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/image_frame"
+                        app:shapeAppearanceOverlay="@style/RoundedSquare" />
+
+                    <TextView
+                        android:id="@+id/txtllEditMember"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="2dp"
+                        android:fontFamily="@font/no_to_sans_bold"
+                        android:text="Edit Members"
+                        android:textAlignment="center"
+                        android:textColor="@color/fontPrimary" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/llAnotherFeature2"
+                    android:layout_width="0dp"
+                    android:layout_height="165dp"
+                    android:layout_weight="2"
+                    android:orientation="vertical">
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+                        <com.google.android.material.imageview.ShapeableImageView
+                            android:id="@+id/imgAnotherFeature2"
+                            android:layout_width="120dp"
+                            android:layout_height="120dp"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginTop="20dp"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/image_frame"
+                            app:shapeAppearanceOverlay="@style/RoundedSquare" />
+
+                        <TextView
+                            android:id="@+id/txtAnotherFeature2"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/imgAnotherFeature2"
+                            android:layout_gravity="center"
+                            android:layout_marginStart="10dp"
+                            android:layout_marginTop="2dp"
+                            android:fontFamily="@font/no_to_sans_bold"
+                            android:text="Another Feature 2"
+                            android:textAlignment="center"
+                            android:textColor="@color/fontPrimary" />
+                    </RelativeLayout>
+                </LinearLayout>
+            </LinearLayout>
+
+
         </LinearLayout>
-    </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
 
 
 </RelativeLayout>

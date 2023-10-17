@@ -65,7 +65,7 @@ class EditStudentFragment : Fragment() {
         studentList.apply {
             add(
                 StudentModel(
-                    "a",
+                    "Hansh",
                     "jmjgd@example.com",
                     "1234567890",
                     "S001",
@@ -78,7 +78,7 @@ class EditStudentFragment : Fragment() {
             )
             add(
                 StudentModel(
-                    "b",
+                    "Saurav",
                     "jmjgd@example.com",
                     "1234567890",
                     "S001",
@@ -91,7 +91,7 @@ class EditStudentFragment : Fragment() {
             )
             add(
                 StudentModel(
-                    "c",
+                    "Hemant",
                     "jmjgd@example.com",
                     "1234567890",
                     "S001",
@@ -104,7 +104,7 @@ class EditStudentFragment : Fragment() {
             )
             add(
                 StudentModel(
-                    "d",
+                    "harshit",
                     "jmjgd@example.com",
                     "1234567890",
                     "S001",
@@ -117,7 +117,7 @@ class EditStudentFragment : Fragment() {
             )
             add(
                 StudentModel(
-                    "e",
+                    "Abhishek",
                     "jmjgd@example.com",
                     "1234567890",
                     "S001",
@@ -130,7 +130,7 @@ class EditStudentFragment : Fragment() {
             )
             add(
                 StudentModel(
-                    "r",
+                    "Aashu",
                     "jmjgd@example.com",
                     "1234567890",
                     "S001",
@@ -143,7 +143,7 @@ class EditStudentFragment : Fragment() {
             )
             add(
                 StudentModel(
-                    "g",
+                    "Vashu",
                     "jmjgd@example.com",
                     "1234567890",
                     "S001",

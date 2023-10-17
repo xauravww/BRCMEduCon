@@ -25,7 +25,7 @@ class AssignmentFragment : Fragment() {
         viewPager = view.findViewById(R.id.viewPager)
         tabLayout = view.findViewById(R.id.tabLayout)
 
-        viewPager.adapter = AssignmentPagerAdapter(childFragmentManager, lifecycle)
+        viewPager.adapter = AssignmentPagerAdapter(childFragmentManager, lifecycle,listOf(ViewAssignmentFragment(), PendingAssignmentFragment()))
 
         TabLayoutMediator(tabLayout, viewPager) { tab, position ->
             when (position) {

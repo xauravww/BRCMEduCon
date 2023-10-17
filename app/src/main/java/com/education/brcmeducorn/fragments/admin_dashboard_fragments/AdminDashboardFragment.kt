@@ -14,9 +14,10 @@ class AdminDashboardFragment : Fragment() {
 lateinit var llAddOrRemoveMembers:LinearLayout
 lateinit var llSendEvents:LinearLayout
 lateinit var llAssignClasses:LinearLayout
+lateinit var llFacultyManage:LinearLayout
+lateinit var llEditMember:LinearLayout
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
     }
 
     override fun onCreateView(
@@ -27,9 +28,11 @@ lateinit var llAssignClasses:LinearLayout
         val view = inflater.inflate(R.layout.fragment_admin_dashboard, container, false)
 
         //        Linked all the other fragment views in our fragment
-        llAddOrRemoveMembers = view.findViewById(com.education.brcmeducorn.R.id.llAddOrRemoveMembers)
-        llSendEvents = view.findViewById(com.education.brcmeducorn.R.id.llSendEvents)
-        llAssignClasses = view.findViewById(com.education.brcmeducorn.R.id.llAssignClasses)
+        llAddOrRemoveMembers = view.findViewById(R.id.llAddOrRemoveMembers)
+        llSendEvents = view.findViewById(R.id.llSendEvents)
+        llAssignClasses = view.findViewById(R.id.llAssignClasses)
+        llFacultyManage = view.findViewById(R.id.llFacultyManage)
+        llEditMember = view.findViewById(R.id.llEditMember)
         // going from one fragment to another fragment
         handleClickListeners()
 
@@ -55,8 +58,16 @@ lateinit var llAssignClasses:LinearLayout
             activity?.supportFragmentManager?.beginTransaction()
                 ?.replace(com.education.brcmeducorn.R.id.frameLayout, AssignClassesFragment())
                 ?.commit()
-
-
+        }
+        llFacultyManage.setOnClickListener {
+            activity?.supportFragmentManager?.beginTransaction()
+                ?.replace(com.education.brcmeducorn.R.id.frameLayout, FacultyClassManagementFragment())
+                ?.commit()
+        }
+        llEditMember.setOnClickListener {
+            activity?.supportFragmentManager?.beginTransaction()
+                ?.replace(com.education.brcmeducorn.R.id.frameLayout, EditMemberFragment())
+                ?.commit()
         }
     }
 
