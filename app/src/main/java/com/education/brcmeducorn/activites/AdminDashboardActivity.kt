@@ -15,6 +15,7 @@ import com.education.brcmeducorn.fragments.admin_dashboard_fragments.AdminDashbo
 import com.education.brcmeducorn.fragments.faculty_dashboard_fragments.FacultyDashboardFragment
 import com.education.brcmeducorn.fragments.EventsFragment
 import com.education.brcmeducorn.fragments.TimeTableFragment
+import com.education.brcmeducorn.fragments.admin_dashboard_fragments.FacultyClassManagementFragment
 import com.education.brcmeducorn.fragments.student_dashboard_fragments.AssignmentFragment
 import com.google.android.material.appbar.AppBarLayout
 import com.google.android.material.navigation.NavigationView
