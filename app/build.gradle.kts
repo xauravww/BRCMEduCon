@@ -77,4 +77,7 @@ dependencies {
 
     // image picker library
     implementation("com.github.dhaval2404:imagepicker:2.1")
+
+    //zoom in and zoom out effect library
+    implementation("com.github.MikeOrtiz:TouchImageView:1.4.1")
 }
