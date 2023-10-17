@@ -23,10 +23,10 @@ class StudentDashboardFragment : Fragment() {
     lateinit var llTimeTable: LinearLayout
     lateinit var llAssignment: LinearLayout
 
-     lateinit var llStudentProfile: LinearLayout
+    lateinit var llStudentProfile: LinearLayout
     lateinit var llTimeTable2: LinearLayout
-    lateinit var llPYQs:LinearLayout
- 
+    lateinit var llPYQs: LinearLayout
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -36,17 +36,20 @@ class StudentDashboardFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(com.education.brcmeducorn.R.layout.fragment_student_dashboard, container, false)
+        val view = inflater.inflate(
+            com.education.brcmeducorn.R.layout.fragment_student_dashboard,
+            container,
+            false
+        )
 //        Linked all the other fragment views in our fragment
-        llAlumniMeet = view.findViewById(com.education.brcmeducorn.R.id.llAlumniMeet)
-        llEvents = view.findViewById(com.education.brcmeducorn.R.id.llEvents)
-        llExams = view.findViewById(com.education.brcmeducorn.R.id.llExams)
-        llResults = view.findViewById(com.education.brcmeducorn.R.id.llResults)
-        llGallery = view.findViewById(com.education.brcmeducorn.R.id.llGallery)
-        llIdCard = view.findViewById(com.education.brcmeducorn.R.id.llIdCard)
-        llTimeTable = view.findViewById(com.education.brcmeducorn.R.id.llTimeTable)
-        llAssignment = view.findViewById(com.education.brcmeducorn.R.id.llAssignment)
-
+        llAlumniMeet = view.findViewById(R.id.llAlumniMeet)
+        llEvents = view.findViewById(R.id.llEvents)
+        llExams = view.findViewById(R.id.llExams)
+        llResults = view.findViewById(R.id.llResults)
+        llGallery = view.findViewById(R.id.llGallery)
+        llIdCard = view.findViewById(R.id.llIdCard)
+        llTimeTable = view.findViewById(R.id.llTimeTable)
+        llAssignment = view.findViewById(R.id.llAssignment)
         llStudentProfile = view.findViewById(R.id.llstudentProfile)
         llTimeTable2 = view.findViewById(R.id.llTimeTable2)
         llPYQs = view.findViewById(R.id.llPYQs)
@@ -111,33 +114,33 @@ class StudentDashboardFragment : Fragment() {
         llAssignment.setOnClickListener {
             activity?.supportFragmentManager?.beginTransaction()
                 ?.replace(com.education.brcmeducorn.R.id.frameLayout, AssignmentFragment())
-        llStudentProfile.setOnClickListener {
-            activity?.supportFragmentManager?.beginTransaction()
-                ?.replace(com.education.brcmeducorn.R.id.frameLayout, StudentProfile())
-                ?.commit()
+            llStudentProfile.setOnClickListener {
+                activity?.supportFragmentManager?.beginTransaction()
+                    ?.replace(com.education.brcmeducorn.R.id.frameLayout, StudentProfile())
+                    ?.commit()
 
 
+            }
         }
 
+            llTimeTable2.setOnClickListener {
+                activity?.supportFragmentManager?.beginTransaction()
+                    ?.replace(com.education.brcmeducorn.R.id.frameLayout, TimeTable2Fragment())
+                    ?.commit()
 
-        llTimeTable2.setOnClickListener {
-            activity?.supportFragmentManager?.beginTransaction()
-                ?.replace(com.education.brcmeducorn.R.id.frameLayout, TimeTable2Fragment())
-                ?.commit()
+
+            }
+
+            llPYQs.setOnClickListener {
+                activity?.supportFragmentManager?.beginTransaction()
+                    ?.replace(com.education.brcmeducorn.R.id.frameLayout, FragmentPYQS())
+                    ?.commit()
 
 
-        }
-
-        llPYQs.setOnClickListener {
-            activity?.supportFragmentManager?.beginTransaction()
-                ?.replace(com.education.brcmeducorn.R.id.frameLayout, FragmentPYQS())
-                ?.commit()
+            }
 
 
         }
 
 
     }
-
-
-}
