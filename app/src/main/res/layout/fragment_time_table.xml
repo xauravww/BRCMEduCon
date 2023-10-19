@@ -1,21 +1,19 @@
-<!-- fragment_time_table.xml -->
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     tools:context=".fragments.TimeTableFragment">
 
     <com.education.brcmeducorn.customview.CustomView
         android:id="@+id/movingArrowView"
         android:layout_width="match_parent"
-        android:padding="15dp"
-        android:layout_marginEnd="30dp"
         android:layout_height="10dp"
         android:layout_alignParentTop="true"
-        android:elevation="10dp" />
-    <!-- TextView for current time -->
-    <!-- RecyclerView for time slots -->
+        android:layout_marginEnd="30dp"
+        android:elevation="10dp"
+        android:padding="15dp" />
+
 
     <TextView
         android:id="@+id/currentTimeTextView"
@@ -37,7 +35,7 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="2000dp"
 
          />
 

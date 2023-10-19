@@ -14,14 +14,14 @@
         >
 
         <RelativeLayout
-            android:id="@+id/rlMainContainer"
+            android:id="@+id/main"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layout_behavior="@string/appbar_scrolling_view_behavior"
             >
 
             <LinearLayout
-                android:id="@+id/llUpperSection"
+                android:id="@+id/upperSection"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginVertical="20dp"
@@ -42,7 +42,7 @@
                         android:src="@drawable/human_image"
                         android:background="@drawable/box_outline"/>
                     <Button
-                        android:id="@+id/btnUploadPhoto"
+                        android:id="@+id/imgUploadBtn"
                         android:layout_width="130dp"
                         android:layout_height="35dp"
                         android:layout_below="@id/imgStudent"
@@ -57,14 +57,13 @@
                         />
                 </RelativeLayout>
                 <RelativeLayout
-                    android:id="@+id/rlNameBranchSem"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="3.5"
                     android:padding="5dp"
                     >
                     <EditText
-                        android:id="@+id/edtName"
+                        android:id="@+id/txtName"
                         android:layout_width="match_parent"
                         android:layout_height="60dp"
                         android:hint="Enter Name"
@@ -73,18 +72,18 @@
                         android:inputType="text"
                         />
                     <Spinner
-                        android:id="@+id/spinnerBranch"
+                        android:id="@+id/txtBranch"
                         android:layout_width="match_parent"
                         android:layout_height="60dp"
-                        android:layout_below="@id/edtName"
+                        android:layout_below="@id/txtName"
                         android:background="@drawable/box_outline"
                         android:padding="10dp"
                         />
                     <Spinner
-                        android:id="@+id/spinnerSemester"
+                        android:id="@+id/txtSemester"
                         android:layout_width="match_parent"
                         android:layout_height="60dp"
-                        android:layout_below="@id/spinnerBranch"
+                        android:layout_below="@id/txtBranch"
                         android:background="@drawable/box_outline"
                         android:padding="10dp"
                         />
@@ -96,11 +95,11 @@
                 android:id="@+id/middleSection"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/llUpperSection"
+                android:layout_below="@id/upperSection"
                 >
 
                 <RelativeLayout
-                    android:id="@+id/rlBatch"
+                    android:id="@+id/Batch"
                     android:layout_width="match_parent"
                     android:layout_height="60dp"
                     android:layout_marginLeft="30dp"
@@ -108,17 +107,17 @@
 
                     >
                     <ImageView
-                        android:id="@+id/imgCalender"
+                        android:id="@+id/imgcalender"
                         android:layout_width="35dp"
                         android:layout_height="match_parent"
                         android:src="@drawable/baseline_calendar_month_24"
                         app:tint="@color/appPrimary"
                         />
                     <EditText
-                        android:id="@+id/txtBatch"
+                        android:id="@+id/txtbatch"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:layout_toRightOf="@id/imgCalender"
+                        android:layout_toRightOf="@id/imgcalender"
                         android:background="@drawable/box_outline"
                         android:padding="10dp"
                         android:hint="Enter Batch or Year"
@@ -126,12 +125,12 @@
                         />
                 </RelativeLayout>
                 <RelativeLayout
-                    android:id="@+id/rlRegistration"
+                    android:id="@+id/Registration"
                     android:layout_width="match_parent"
                     android:layout_height="60dp"
                     android:layout_marginLeft="30dp"
                     android:layout_marginRight="30dp"
-                    android:layout_below="@id/rlBatch"
+                    android:layout_below="@id/Batch"
 
                     >
                     <ImageView
@@ -153,43 +152,16 @@
                         />
                 </RelativeLayout>
                 <RelativeLayout
-                    android:id="@+id/rlRollNumber"
+                    android:id="@+id/Mail"
                     android:layout_width="match_parent"
                     android:layout_height="60dp"
                     android:layout_marginLeft="30dp"
                     android:layout_marginRight="30dp"
-                    android:layout_below="@id/rlRegistration"
+                    android:layout_below="@id/Registration"
 
                     >
                     <ImageView
-                        android:id="@+id/imgPersonRollNumber"
-                        android:layout_width="35dp"
-                        android:layout_height="match_parent"
-                        android:src="@drawable/baseline_person_24"
-                        app:tint="@color/appPrimary"
-                        />
-                    <EditText
-                        android:id="@+id/txtRollNo"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_toRightOf="@id/imgPersonRollNumber"
-                        android:background="@drawable/box_outline"
-                        android:padding="10dp"
-                        android:hint="Enter Roll no."
-                        android:inputType="number"
-                        />
-                </RelativeLayout>
-                <RelativeLayout
-                    android:id="@+id/rlMail"
-                    android:layout_width="match_parent"
-                    android:layout_height="60dp"
-                    android:layout_marginLeft="30dp"
-                    android:layout_marginRight="30dp"
-                    android:layout_below="@id/rlRollNumber"
-
-                    >
-                    <ImageView
-                        android:id="@+id/imgMail"
+                        android:id="@+id/imgmail"
                         android:layout_width="35dp"
                         android:layout_height="match_parent"
                         android:src="@drawable/baseline_mail_24"
@@ -199,7 +171,7 @@
                         android:id="@+id/txtUserMail"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:layout_toRightOf="@id/imgMail"
+                        android:layout_toRightOf="@id/imgmail"
                         android:background="@drawable/box_outline"
                         android:padding="10dp"
                         android:hint="user@gmail.com"
@@ -207,17 +179,17 @@
 
                 </RelativeLayout>
                 <RelativeLayout
-                    android:id="@+id/rlMobile"
+                    android:id="@+id/Mobile"
                     android:layout_width="match_parent"
                     android:layout_height="60dp"
                     android:layout_marginLeft="30dp"
                     android:layout_marginRight="30dp"
-                    android:layout_below="@id/rlMail"
+                    android:layout_below="@id/Mail"
 
                     >
 
                     <ImageView
-                        android:id="@+id/imgPhone"
+                        android:id="@+id/imgphone"
                         android:layout_width="35dp"
                         android:layout_height="match_parent"
                         android:src="@drawable/baseline_smartphone_24"
@@ -228,7 +200,7 @@
                         android:layout_width="120dp"
                         android:layout_height="match_parent"
                         android:layout_marginRight="5dp"
-                        android:layout_toRightOf="@id/imgPhone"
+                        android:layout_toRightOf="@id/imgphone"
                         android:background="@drawable/box_outline"
                         android:paddingVertical="10dp"
                         />
@@ -254,7 +226,7 @@
                 android:layout_marginHorizontal="30dp"
                 >
                 <ImageView
-                    android:id="@+id/imgHome"
+                    android:id="@+id/imghome"
                     android:layout_width="35dp"
                     android:layout_height="60dp"
                     android:src="@drawable/baseline_home_24"
@@ -265,7 +237,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="150dp"
                     android:background="@drawable/box_outline"
-                    android:layout_toRightOf="@id/imgHome"
+                    android:layout_toRightOf="@id/imghome"
                     android:inputType="textMultiLine"
                     android:padding="10dp"
                     android:scrollbarAlwaysDrawVerticalTrack="true"
@@ -286,8 +258,7 @@
                 android:fontFamily="@font/montserrat_extrabold"
                 android:textSize="18sp"
                 android:layout_below="@id/bottomSection"
-                android:layout_marginTop="5dp"
-                android:layout_marginBottom="5dp"
+                android:layout_marginTop="60dp"
                 />
         </RelativeLayout>
     </ScrollView>
