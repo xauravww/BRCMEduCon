@@ -5,13 +5,18 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
+import android.widget.TextView
 import androidx.fragment.app.Fragment
 import com.education.brcmeducorn.R
+import com.education.brcmeducorn.api.ApiService
 import com.education.brcmeducorn.fragments.AlumniMeetFragment
 import com.education.brcmeducorn.fragments.EventsFragment
 import com.education.brcmeducorn.fragments.IDCardFragment
 import com.education.brcmeducorn.fragments.TimeTableFragment
-
+import com.education.brcmeducorn.utils.ApiUtils
+import kotlinx.coroutines.*
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 
 class StudentDashboardFragment : Fragment() {
     lateinit var llAlumniMeet: LinearLayout
@@ -26,7 +31,7 @@ class StudentDashboardFragment : Fragment() {
     lateinit var llStudentProfile: LinearLayout
     lateinit var llTimeTable2: LinearLayout
     lateinit var llPYQs: LinearLayout
-
+    lateinit var textView: TextView
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -37,7 +42,7 @@ class StudentDashboardFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(
-            com.education.brcmeducorn.R.layout.fragment_student_dashboard,
+            R.layout.fragment_student_dashboard,
             container,
             false
         )
@@ -53,6 +58,16 @@ class StudentDashboardFragment : Fragment() {
         llStudentProfile = view.findViewById(R.id.llstudentProfile)
         llTimeTable2 = view.findViewById(R.id.llTimeTable2)
         llPYQs = view.findViewById(R.id.llPYQs)
+        textView = view.findViewById(R.id.txtEvents)
+
+
+        CoroutineScope(Dispatchers.Main).launch {
+            val endpoint = "categories"
+            val method = "GET"
+            val requestBody = null
+            val result = ApiUtils.fetchData(endpoint, method, requestBody)
+            textView.text = result
+        }
 
 // going from one fragment to another fragment
         handleClickListeners()
@@ -141,6 +156,5 @@ class StudentDashboardFragment : Fragment() {
 
 
     }
-
 
 }
