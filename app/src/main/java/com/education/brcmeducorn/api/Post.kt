@@ -1,4 +1,6 @@
 package com.education.brcmeducorn.api
 
-class Post {
-}
+data class Post(
+    val count: Int,
+    val categories: List<String>
+)
