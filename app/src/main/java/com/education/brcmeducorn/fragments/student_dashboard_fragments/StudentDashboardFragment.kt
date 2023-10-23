@@ -5,39 +5,39 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
+import android.widget.TextView
 import androidx.fragment.app.Fragment
 import com.education.brcmeducorn.R
 import com.education.brcmeducorn.fragments.AlumniMeetFragment
 import com.education.brcmeducorn.fragments.EventsFragment
 import com.education.brcmeducorn.fragments.IDCardFragment
 import com.education.brcmeducorn.fragments.TimeTableFragment
+import com.education.brcmeducorn.utils.SharedPrefs
 
 
 class StudentDashboardFragment : Fragment() {
-    lateinit var llAlumniMeet: LinearLayout
-    lateinit var llEvents: LinearLayout
-    lateinit var llGallery: LinearLayout
-    lateinit var llResults: LinearLayout
-    lateinit var llExams: LinearLayout
-    lateinit var llIdCard: LinearLayout
-    lateinit var llTimeTable: LinearLayout
-    lateinit var llAssignment: LinearLayout
-
-    lateinit var llStudentProfile: LinearLayout
-    lateinit var llTimeTable2: LinearLayout
-    lateinit var llPYQs: LinearLayout
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-    }
+    private lateinit var llAlumniMeet: LinearLayout
+    private lateinit var llEvents: LinearLayout
+    private lateinit var llGallery: LinearLayout
+    private lateinit var llResults: LinearLayout
+    private lateinit var llExams: LinearLayout
+    private lateinit var llIdCard: LinearLayout
+    private lateinit var llTimeTable: LinearLayout
+    private lateinit var llAssignment: LinearLayout
+    private lateinit var llStudentProfile: LinearLayout
+    private lateinit var llTimeTable2: LinearLayout
+    private lateinit var llPYQs: LinearLayout
+    private lateinit var textView: TextView
+    private lateinit var textName: TextView
+    private lateinit var textRollNo: TextView
+    private lateinit var prefs: SharedPrefs
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(
-            com.education.brcmeducorn.R.layout.fragment_student_dashboard,
+            R.layout.fragment_student_dashboard,
             container,
             false
         )
@@ -53,7 +53,13 @@ class StudentDashboardFragment : Fragment() {
         llStudentProfile = view.findViewById(R.id.llstudentProfile)
         llTimeTable2 = view.findViewById(R.id.llTimeTable2)
         llPYQs = view.findViewById(R.id.llPYQs)
+        textView = view.findViewById(R.id.txtEvents)
+        textName = view.findViewById(R.id.txtName)
+        textRollNo = view.findViewById(R.id.txtIdAndRole)
+        prefs = SharedPrefs(requireContext())
 
+        //set data from shared prefs
+        setDataTextView(textName, textRollNo)
 // going from one fragment to another fragment
         handleClickListeners()
 
@@ -142,5 +148,28 @@ class StudentDashboardFragment : Fragment() {
 
     }
 
+    private fun getPrefs(): Map<String, String> {
+        val token = prefs.getString("token", "")
+        val name = prefs.getString("name", "")
+        val rollNo = prefs.getString("rollNo", "")
+        val roll = prefs.getString("roll", "")
 
+        return mapOf(
+            "token" to token,
+            "name" to name,
+            "rollNo" to rollNo,
+            "roll" to roll
+        )
+    }
+
+    private fun setDataTextView(textName: TextView, textRollNo: TextView) {
+        val userData = getPrefs()
+//        val token = userData["token"]
+        val name = userData["name"]?.uppercase()
+        val rollNo = userData["rollNo"]
+        val roll = userData["roll"]?.uppercase()
+
+        textName.text = name
+        textRollNo.text = "ID:$rollNo|$roll"
+    }
 }

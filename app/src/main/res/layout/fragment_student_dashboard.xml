@@ -20,39 +20,40 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            >
 
             <LinearLayout
                 android:id="@+id/llFeaturesTabOne"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:weightSum="5">
+                android:layout_marginVertical="5dp"
+                android:weightSum="6">
 
                 <LinearLayout
                     android:id="@+id/llEvents"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1.7"
+                    android:layout_weight="2"
                     android:orientation="vertical">
 
                     <com.google.android.material.imageview.ShapeableImageView
                         android:id="@+id/imgEvents"
                         android:layout_width="120dp"
                         android:layout_height="120dp"
-
-                        android:layout_marginLeft="10dp"
+                        android:layout_gravity="center"
+                        android:background="@drawable/smooth_corner_shape"
+                        android:backgroundTint="@color/appPrimary"
                         android:layout_marginTop="20dp"
                         android:scaleType="centerCrop"
-                        android:src="@drawable/image_frame"
+                        android:src="@drawable/events"
                         app:shapeAppearanceOverlay="@style/RoundedSquare" />
 
                     <TextView
                         android:id="@+id/txtEvents"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_height="31dp"
                         android:layout_gravity="center"
-                        android:layout_marginStart="10dp"
-                        android:layout_marginTop="2dp"
                         android:fontFamily="@font/no_to_sans_bold"
                         android:text="Events"
                         android:textColor="@color/fontPrimary" />
@@ -63,18 +64,20 @@
                     android:id="@+id/llGallery"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1.7"
+                    android:layout_weight="2"
+                    android:layout_marginHorizontal="5dp"
                     android:orientation="vertical">
 
                     <com.google.android.material.imageview.ShapeableImageView
                         android:id="@+id/imgGallery"
                         android:layout_width="120dp"
                         android:layout_height="140dp"
-
+                        android:background="@drawable/smooth_corner_shape"
+                        android:backgroundTint="@color/appPrimary"
                         android:layout_gravity="center"
                         android:layout_toRightOf="@id/imgEvents"
                         android:scaleType="centerCrop"
-                        android:src="@drawable/image_frame"
+                        android:src="@drawable/gallery"
                         app:shapeAppearanceOverlay="@style/RoundedSquare" />
 
                     <TextView
@@ -82,8 +85,6 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-
-                        android:layout_marginTop="2dp"
                         android:fontFamily="@font/no_to_sans_bold"
                         android:text="Gallery"
                         android:textColor="@color/fontPrimary" />
@@ -93,28 +94,27 @@
                     android:id="@+id/llResults"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1.6"
+                    android:layout_weight="2"
                     android:orientation="vertical">
 
                     <com.google.android.material.imageview.ShapeableImageView
                         android:id="@+id/imgResults"
                         android:layout_width="120dp"
                         android:layout_height="120dp"
-
+                        android:background="@drawable/smooth_corner_shape"
+                        android:backgroundTint="@color/appPrimary"
                         android:layout_marginTop="20dp"
-
                         android:layout_toRightOf="@id/imgGallery"
                         android:scaleType="centerCrop"
-                        android:src="@drawable/image_frame"
-                        app:shapeAppearanceOverlay="@style/RoundedSquare" />
+                        android:src="@drawable/results"
+                        app:shapeAppearanceOverlay="@style/RoundedSquare"
+                        android:layout_gravity="center"/>
 
                     <TextView
                         android:id="@+id/txtResults"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-
-                        android:layout_marginTop="2dp"
                         android:fontFamily="@font/no_to_sans_bold"
                         android:text="Results"
                         android:textColor="@color/fontPrimary" />
@@ -125,25 +125,27 @@
                 android:id="@+id/llFeaturesTabTwo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginVertical="5dp"
                 android:layout_below="@id/llFeaturesTabOne"
-                android:weightSum="5">
+                android:weightSum="6">
                 <!--Replaced exams with Alumni Meet-->
                 <LinearLayout
                     android:id="@+id/llAlumniMeet"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1.7"
+                    android:layout_weight="2"
                     android:orientation="vertical">
 
                     <com.google.android.material.imageview.ShapeableImageView
                         android:id="@+id/imgDateSheet"
                         android:layout_width="120dp"
                         android:layout_height="120dp"
-
-                        android:layout_marginLeft="10dp"
+                        android:background="@drawable/smooth_corner_shape"
+                        android:backgroundTint="@color/appPrimary"
+                        android:layout_gravity="center"
                         android:layout_marginTop="20dp"
                         android:scaleType="centerCrop"
-                        android:src="@drawable/image_frame"
+                        android:src="@drawable/aluminimeet2"
                         app:shapeAppearanceOverlay="@style/RoundedSquare" />
 
                     <TextView
@@ -151,8 +153,6 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:layout_marginStart="10dp"
-                        android:layout_marginTop="2dp"
                         android:fontFamily="@font/no_to_sans_bold"
                         android:text="Alumni Meet"
                         android:textColor="@color/fontPrimary" />
@@ -163,18 +163,20 @@
                     android:id="@+id/llExams"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1.7"
+                    android:layout_weight="2"
+                    android:layout_marginHorizontal="5dp"
                     android:orientation="vertical">
 
                     <com.google.android.material.imageview.ShapeableImageView
                         android:id="@+id/imgExams"
                         android:layout_width="120dp"
                         android:layout_height="140dp"
-
+                        android:background="@drawable/smooth_corner_shape"
+                        android:backgroundTint="@color/appPrimary"
                         android:layout_gravity="center"
                         android:layout_toRightOf="@id/imgEvents"
                         android:scaleType="centerCrop"
-                        android:src="@drawable/image_frame"
+                        android:src="@drawable/exams"
                         app:shapeAppearanceOverlay="@style/RoundedSquare" />
 
                     <TextView
@@ -182,8 +184,6 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-
-                        android:layout_marginTop="2dp"
                         android:fontFamily="@font/no_to_sans_bold"
                         android:text="Exams"
                         android:textColor="@color/fontPrimary" />
@@ -193,19 +193,20 @@
                     android:id="@+id/llIdCard"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1.6"
+                    android:layout_weight="2"
                     android:orientation="vertical">
 
                     <com.google.android.material.imageview.ShapeableImageView
                         android:id="@+id/imgIdCard"
                         android:layout_width="120dp"
                         android:layout_height="120dp"
-
                         android:layout_marginTop="20dp"
-
+                        android:background="@drawable/smooth_corner_shape"
+                        android:backgroundTint="@color/appPrimary"
+                        android:layout_gravity="center"
                         android:layout_toRightOf="@id/imgGallery"
                         android:scaleType="centerCrop"
-                        android:src="@drawable/image_frame"
+                        android:src="@drawable/idcard"
                         app:shapeAppearanceOverlay="@style/RoundedSquare" />
 
                     <TextView
@@ -213,8 +214,6 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-
-                        android:layout_marginTop="2dp"
                         android:fontFamily="@font/no_to_sans_bold"
                         android:text="ID-Card"
                         android:textColor="@color/fontPrimary" />
@@ -225,25 +224,27 @@
                 android:id="@+id/llFeaturesTabThree"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginVertical="5dp"
                 android:layout_below="@id/llFeaturesTabTwo"
-                android:weightSum="5">
+                android:weightSum="6">
                 <!--Replaced exams with Alumni Meet-->
                 <LinearLayout
                     android:id="@+id/llTimeTable"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1.7"
+                    android:layout_weight="2"
                     android:orientation="vertical">
 
                     <com.google.android.material.imageview.ShapeableImageView
                         android:id="@+id/imgTimeTable"
                         android:layout_width="120dp"
                         android:layout_height="120dp"
-
-                        android:layout_marginLeft="10dp"
                         android:layout_marginTop="20dp"
+                        android:background="@drawable/smooth_corner_shape"
+                        android:backgroundTint="@color/appPrimary"
+                        android:layout_gravity="center"
                         android:scaleType="centerCrop"
-                        android:src="@drawable/image_frame"
+                        android:src="@drawable/timetable"
                         app:shapeAppearanceOverlay="@style/RoundedSquare" />
 
                     <TextView
@@ -251,8 +252,6 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:layout_marginStart="10dp"
-                        android:layout_marginTop="2dp"
                         android:fontFamily="@font/no_to_sans_bold"
                         android:text="Time Table"
                         android:textColor="@color/fontPrimary" />
@@ -264,25 +263,27 @@
 
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1.7"
+                    android:layout_weight="2"
+                    android:layout_marginHorizontal="5dp"
                     android:orientation="vertical">
 
                     <com.google.android.material.imageview.ShapeableImageView
                         android:id="@+id/imgAssignment"
                         android:layout_width="120dp"
                         android:layout_height="140dp"
-                        android:layout_gravity="center"
+                        android:background="@drawable/smooth_corner_shape"
+                        android:backgroundTint="@color/appPrimary"
                         android:layout_toRightOf="@id/imgEvents"
                         android:scaleType="centerCrop"
-                        android:src="@drawable/image_frame"
-                        app:shapeAppearanceOverlay="@style/RoundedSquare" />
+                        android:src="@drawable/assignments"
+                        app:shapeAppearanceOverlay="@style/RoundedSquare"
+                        android:layout_gravity="center"/>
 
                     <TextView
                         android:id="@+id/txtAssignment"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:layout_marginTop="2dp"
                         android:fontFamily="@font/no_to_sans_bold"
                         android:text="Assignment"
                         android:textAllCaps="true"
@@ -293,16 +294,17 @@
 
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1.6"
+                    android:layout_weight="2"
                     android:orientation="vertical">
 
                     <com.google.android.material.imageview.ShapeableImageView
 
                         android:layout_width="120dp"
                         android:layout_height="120dp"
-
                         android:layout_marginTop="20dp"
-
+                        android:background="@drawable/smooth_corner_shape"
+                        android:backgroundTint="@color/appPrimary"
+                        android:layout_gravity="center"
                         android:layout_toRightOf="@id/imgGallery"
                         android:scaleType="centerCrop"
                         android:src="@drawable/image_frame"
@@ -313,8 +315,6 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-
-                        android:layout_marginTop="2dp"
                         android:fontFamily="@font/no_to_sans_bold"
                         android:text="NEW FEATURE"
                         android:textColor="@color/fontPrimary" />
@@ -325,8 +325,9 @@
                 android:id="@+id/llFeaturesTabFour"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginVertical="5dp"
                 android:layout_below="@id/llFeaturesTabThree"
-                android:weightSum="5"
+                android:weightSum="6"
                 >
                 <!--Replaced exams with Alumni Meet-->
                 <LinearLayout
@@ -334,18 +335,19 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:layout_weight="1.7"
+                    android:layout_weight="2"
                     >
 
                     <com.google.android.material.imageview.ShapeableImageView
                         android:id="@+id/imgPYQ"
                         android:layout_width="120dp"
                         android:layout_height="120dp"
-
-                        android:layout_marginLeft="10dp"
+                        android:layout_gravity="center"
+                        android:background="@drawable/smooth_corner_shape"
+                        android:backgroundTint="@color/appPrimary"
                         android:layout_marginTop="20dp"
                         android:scaleType="centerCrop"
-                        android:src="@drawable/image_frame"
+                        android:src="@drawable/pyqs"
                         app:shapeAppearanceOverlay="@style/RoundedSquare" />
 
                     <TextView
@@ -353,8 +355,6 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:layout_marginStart="10dp"
-                        android:layout_marginTop="2dp"
                         android:fontFamily="@font/no_to_sans_bold"
                         android:text="PYQ's"
                         android:textColor="@color/fontPrimary" />
@@ -366,7 +366,8 @@
                     android:id="@+id/llstudentProfile"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1.7"
+                    android:layout_marginHorizontal="5dp"
+                    android:layout_weight="2"
                     android:orientation="vertical">
 
                     <com.google.android.material.imageview.ShapeableImageView
@@ -375,9 +376,11 @@
                         android:layout_width="120dp"
                         android:layout_height="140dp"
                         android:layout_gravity="center"
+                        android:background="@drawable/smooth_corner_shape"
+                        android:backgroundTint="@color/appPrimary"
                         android:layout_toRightOf="@id/imgEvents"
                         android:scaleType="centerCrop"
-                        android:src="@drawable/image_frame"
+                        android:src="@drawable/personprofileicon"
                         app:shapeAppearanceOverlay="@style/RoundedSquare" />
 
                     <TextView
@@ -385,8 +388,6 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-
-                        android:layout_marginTop="2dp"
                         android:fontFamily="@font/no_to_sans_bold"
                         android:text="Profile"
                         android:textColor="@color/fontPrimary" />
@@ -396,19 +397,20 @@
                     android:id="@+id/llTimeTable2"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1.6"
+                    android:layout_weight="2"
                     android:orientation="vertical">
 
                     <com.google.android.material.imageview.ShapeableImageView
 
                         android:layout_width="120dp"
                         android:layout_height="120dp"
-
                         android:layout_marginTop="20dp"
-
+                        android:background="@drawable/smooth_corner_shape"
+                        android:layout_gravity="center"
+                        android:backgroundTint="@color/appPrimary"
                         android:layout_toRightOf="@id/imgGallery"
                         android:scaleType="centerCrop"
-                        android:src="@drawable/image_frame"
+                        android:src="@drawable/timetable"
                         app:shapeAppearanceOverlay="@style/RoundedSquare" />
 
                     <TextView
@@ -416,8 +418,6 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-
-                        android:layout_marginTop="2dp"
                         android:fontFamily="@font/no_to_sans_bold"
                         android:text="Time Table 2"
                         android:textColor="@color/fontPrimary" />

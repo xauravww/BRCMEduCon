@@ -81,4 +81,8 @@ dependencies {
 
     //zoom in and zoom out effect library
     implementation("com.github.MikeOrtiz:TouchImageView:1.4.1")
+    //api fetch
+    implementation ("com.squareup.retrofit2:retrofit:2.9.0")
+    implementation ("com.squareup.retrofit2:converter-gson:2.5.0")
+    implementation ("com.google.code.gson:gson:2.8.9")
 }
