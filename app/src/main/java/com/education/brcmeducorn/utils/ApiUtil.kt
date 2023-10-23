@@ -8,30 +8,34 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 object ApiUtils {
     private val retrofit = Retrofit.Builder()
-        .baseUrl("https://api.publicapis.org/")
+        .baseUrl("https://backend-brcm-edu-con.vercel.app/api/v1/")
         .addConverterFactory(GsonConverterFactory.create())
         .build()
 
     private val apiService: ApiService = retrofit.create(ApiService::class.java)
 
-    suspend fun fetchData(endpoint: String, method: String, requestBody: Any?): String {
+    suspend fun fetchData(endpoint: String, method: String, requestBody: Any): Any {
         return withContext(Dispatchers.IO) {
             try {
                 val response = when (method) {
-                    "GET" -> apiService.get(endpoint
-//                        , requestBody
-                    )
-                    // ...
-                    // Add cases for other HTTP methods if needed
+                    "GET" -> apiService.get(endpoint)
+                    "LOGIN" -> {
+                        apiService.loginPost(endpoint, requestBody)
+                    }
+
                     else -> throw IllegalArgumentException("Invalid method: $method")
                 }
-                response.body()?.toString() ?: "Response body is null"
+                if (response.isSuccessful) {
+                    response.body()?:"no data"
+                }
+                else {
+                    response.body()?: "error something"
+                }
             } catch (e: Exception) {
                 e.printStackTrace()
                 "Error fetching data"
             }
         }
-
     }
 
 //    to fetch api

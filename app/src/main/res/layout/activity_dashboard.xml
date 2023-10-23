@@ -2,92 +2,92 @@
 <androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/drawerLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activites.StudentDashboardActivity"
-    android:id="@+id/drawerLayout"
-    >
-<androidx.coordinatorlayout.widget.CoordinatorLayout
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
+    tools:context=".activites.StudentDashboardActivity">
 
-    >
-    <com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/appBar"
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
 
         >
-    <androidx.appcompat.widget.Toolbar
-       android:id="@+id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/appPrimary"
-        android:minHeight="?attr/actionBarSize"
-        android:theme="@style/ThemeOverlay.AppCompat.Dark"
-        app:layout_scrollFlags="scroll|enterAlways"
-        >
-      <LinearLayout
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:weightSum="7"
-          >
-          <de.hdodenhof.circleimageview.CircleImageView
-              android:layout_width="0dp"
-              android:layout_height="50dp"
-              android:src="@drawable/brcm_logo_big"
-              android:padding="3dp"
-              android:layout_weight="1"
-              android:layout_gravity="top"
-              />
 
-          <LinearLayout
-              android:layout_width="0dp"
-              android:layout_height="wrap_content"
-              android:orientation="vertical"
-              android:layout_weight="5"
-              android:layout_marginLeft="7dp"
-              >
-              <TextView
-                  android:layout_width="wrap_content"
-                  android:layout_height="wrap_content"
-                  android:text="BRCM College Of Engineering and Technology"
-                  android:textColor="#ffffff"
-                  android:fontFamily="@font/no_to_sans_bold"
-                  android:textSize="12sp"
-                  />
-              <TextView
-                  android:layout_width="wrap_content"
-                  android:layout_height="wrap_content"
-                  android:text="Bahal, Haryana"
-                  android:textColor="#ffffff"
-                  android:fontFamily="@font/no_to_sans_bold"
-                  android:textSize="12sp"
-                  />
-          </LinearLayout>
-          <de.hdodenhof.circleimageview.CircleImageView
-              android:layout_width="0dp"
-              android:layout_height="30dp"
-              android:src="@drawable/bell_new_notfication_off"
-              android:layout_weight="1"
-              android:layout_gravity="center"
-              />
-      </LinearLayout>
-    </androidx.appcompat.widget.Toolbar>
-    </com.google.android.material.appbar.AppBarLayout>
-    <FrameLayout
-        android:id="@+id/frameLayout"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
-        />
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/appBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            >
+
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/appPrimary"
+                android:minHeight="?attr/actionBarSize"
+                android:theme="@style/ThemeOverlay.AppCompat.Dark"
+                app:layout_scrollFlags="scroll|enterAlways">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:weightSum="7">
+
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:layout_width="0dp"
+                        android:layout_height="50dp"
+                        android:layout_gravity="top"
+                        android:layout_weight="1"
+                        android:padding="3dp"
+                        android:src="@drawable/brcm_logo_big" />
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="7dp"
+                        android:layout_weight="5"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/no_to_sans_bold"
+                            android:text="BRCM College Of Engineering and Technology"
+                            android:textColor="#ffffff"
+                            android:textSize="12sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/no_to_sans_bold"
+                            android:text="Bahal, Haryana"
+                            android:textColor="#ffffff"
+                            android:textSize="12sp" />
+                    </LinearLayout>
+
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:layout_width="0dp"
+                        android:layout_height="30dp"
+                        android:layout_gravity="center"
+                        android:layout_weight="1"
+                        android:src="@drawable/bell_new_notfication_off" />
+                </LinearLayout>
+            </androidx.appcompat.widget.Toolbar>
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <FrameLayout
+            android:id="@+id/frameLayout"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior" />
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/navigationView"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        app:headerLayout="@layout/header_drawer_menu"
-        app:menu="@menu/menu"
         android:layout_gravity="start"
-        />
+        app:headerLayout="@layout/header_drawer_menu"
+        app:menu="@menu/menu" />
 </androidx.drawerlayout.widget.DrawerLayout>

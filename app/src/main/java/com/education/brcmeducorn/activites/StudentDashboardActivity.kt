@@ -1,7 +1,6 @@
 package com.education.brcmeducorn.activites
 
-import android.os.Build
-import androidx.appcompat.app.AppCompatActivity
+ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
 import android.widget.FrameLayout
@@ -12,17 +11,20 @@ import androidx.appcompat.widget.Toolbar
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import com.education.brcmeducorn.R
+import com.education.brcmeducorn.api.apiModels.LoginResponse
 import com.education.brcmeducorn.fragments.EventsFragment
 import com.education.brcmeducorn.fragments.student_dashboard_fragments.StudentDashboardFragment
+import com.education.brcmeducorn.utils.SharedPrefs
 import com.google.android.material.appbar.AppBarLayout
 import com.google.android.material.navigation.NavigationView
 
 class StudentDashboardActivity : AppCompatActivity() {
-    lateinit var toolbar: Toolbar
-    lateinit var drawerLayout: DrawerLayout
-    lateinit var navigationView: NavigationView
-    lateinit var frameLayout: FrameLayout
-    lateinit var appBar: AppBarLayout
+    private lateinit var toolbar: Toolbar
+    private lateinit var drawerLayout: DrawerLayout
+    private lateinit var navigationView: NavigationView
+    private lateinit var frameLayout: FrameLayout
+    private lateinit var appBar: AppBarLayout
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_dashboard)
@@ -101,6 +103,7 @@ class StudentDashboardActivity : AppCompatActivity() {
         }
         return super.onOptionsItemSelected(item)
     }
+
 
 
 }
