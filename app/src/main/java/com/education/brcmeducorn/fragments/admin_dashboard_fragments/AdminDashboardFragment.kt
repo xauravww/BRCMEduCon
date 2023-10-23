@@ -1,21 +1,26 @@
 package com.education.brcmeducorn.fragments.admin_dashboard_fragments
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
+import android.widget.TextView
+import androidx.fragment.app.Fragment
 import com.education.brcmeducorn.R
-import com.education.brcmeducorn.fragments.EventsFragment
 import com.education.brcmeducorn.fragments.SendEventsFragment
+import com.education.brcmeducorn.utils.SharedPrefs
 
 class AdminDashboardFragment : Fragment() {
-lateinit var llAddOrRemoveMembers:LinearLayout
-lateinit var llSendEvents:LinearLayout
-lateinit var llAssignClasses:LinearLayout
-lateinit var llFacultyManage:LinearLayout
-lateinit var llEditMember:LinearLayout
+    private lateinit var llAddOrRemoveMembers: LinearLayout
+    private lateinit var llSendEvents: LinearLayout
+    private lateinit var llAssignClasses: LinearLayout
+    private lateinit var llFacultyManage: LinearLayout
+    private lateinit var llEditMember: LinearLayout
+    private lateinit var prefs: SharedPrefs
+    private lateinit var textIdAndRole: TextView
+    private lateinit var textName: TextView
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
@@ -33,6 +38,11 @@ lateinit var llEditMember:LinearLayout
         llAssignClasses = view.findViewById(R.id.llAssignClasses)
         llFacultyManage = view.findViewById(R.id.llFacultyManage)
         llEditMember = view.findViewById(R.id.llEditMember)
+        textName = view.findViewById(R.id.txtName)
+        textIdAndRole = view.findViewById(R.id.txtIdAndRole)
+        prefs = SharedPrefs(requireContext())
+        //set data from shared prefs
+        setDataTextView(textName, textIdAndRole)
         // going from one fragment to another fragment
         handleClickListeners()
 
@@ -61,7 +71,10 @@ lateinit var llEditMember:LinearLayout
         }
         llFacultyManage.setOnClickListener {
             activity?.supportFragmentManager?.beginTransaction()
-                ?.replace(com.education.brcmeducorn.R.id.frameLayout, FacultyClassManagementFragment())
+                ?.replace(
+                    com.education.brcmeducorn.R.id.frameLayout,
+                    FacultyClassManagementFragment()
+                )
                 ?.commit()
         }
         llEditMember.setOnClickListener {
@@ -71,5 +84,28 @@ lateinit var llEditMember:LinearLayout
         }
     }
 
+    private fun getPrefs(): Map<String, String> {
+        val token = prefs.getString("token", "")
+        val name = prefs.getString("name", "")
+        val rollNo = prefs.getString("rollNo", "")
+        val roll = prefs.getString("roll", "")
 
+        return mapOf(
+            "token" to token,
+            "name" to name,
+            "rollNo" to rollNo,
+            "roll" to roll
+        )
+    }
+
+    private fun setDataTextView(textName: TextView, textRollNo: TextView) {
+        val userData = getPrefs()
+//        val token = userData["token"]
+        val name = userData["name"]?.uppercase()
+        val rollNo = userData["rollNo"]
+        val roll = userData["roll"]?.uppercase()
+
+        textName.text = name
+        textRollNo.text = "ID:$rollNo|$roll"
+    }
 }
