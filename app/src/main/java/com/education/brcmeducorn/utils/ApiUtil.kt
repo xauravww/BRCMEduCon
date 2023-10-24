@@ -22,6 +22,9 @@ object ApiUtils {
                     "LOGIN" -> {
                         apiService.loginPost(endpoint, requestBody)
                     }
+                    "REGISTER" -> {
+                        apiService.registerPost(endpoint, requestBody)
+                    }
 
                     else -> throw IllegalArgumentException("Invalid method: $method")
                 }

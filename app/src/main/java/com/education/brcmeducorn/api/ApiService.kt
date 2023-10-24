@@ -1,6 +1,7 @@
 package com.education.brcmeducorn.api
 
 import com.education.brcmeducorn.api.apiModels.LoginResponse
+import com.education.brcmeducorn.api.apiModels.RegisterRequest
 import retrofit2.Response
 import retrofit2.http.*
 
@@ -12,6 +13,11 @@ interface ApiService {
     ): Response<Any>
     @POST
     suspend fun  loginPost(
+        @Url url: String,
+        @Body requestBody: Any,
+     ): Response<LoginResponse>
+    @POST
+    suspend fun  registerPost(
         @Url url: String,
         @Body requestBody: Any,
      ): Response<LoginResponse>

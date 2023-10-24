@@ -19,7 +19,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 class login_main_utils {
-    lateinit var prefs: SharedPrefs
+    private lateinit var prefs: SharedPrefs
 
     private
 
