@@ -368,11 +368,11 @@
                 android:layout_below="@id/bottomSection"
                 android:layout_marginHorizontal="10dp"
                 android:layout_marginTop="30dp"
-                android:layout_marginBottom="30dp"
+                android:layout_marginBottom="60dp"
                 android:background="@drawable/smooth_corner_shape"
                 android:backgroundTint="@color/appPrimary"
                 android:fontFamily="@font/montserrat_extrabold"
-                android:text="Update Details"
+                android:text="Send Request"
                 android:textAllCaps="false"
                 android:textColor="#ffffff"
                 android:textSize="18sp" />
