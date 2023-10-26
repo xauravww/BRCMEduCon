@@ -167,8 +167,8 @@ class login_main_utils {
                 val intent = Intent(context, AdminDashboardActivity::class.java)
                 startActivity(context, intent, null)
             } else {
-                android.widget.Toast.makeText(
-                    context, msg, android.widget.Toast.LENGTH_SHORT
+                Toast.makeText(
+                    context, msg, Toast.LENGTH_SHORT
                 ).show()
             }
         } else {

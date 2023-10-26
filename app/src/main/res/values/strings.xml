@@ -18,4 +18,5 @@
     <string name="enter_city">Enter city</string>
     <string name="brcm">BRCM</string>
     <string name="roll_no_hint">Enter Roll no. (20-CSE-3447)</string>
+    <string name="register">Not a member yet ? Register</string>
 </resources>

@@ -100,15 +100,18 @@
         android:textSize="35sp" />
 
     <TextView
-        android:id="@+id/txtSubtitleLoginRole"
+        android:id="@+id/txtRegister"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/txtTitleLoginRole"
         android:layout_centerHorizontal="true"
         android:fontFamily="@font/no_to_sans_bold"
-        android:text="Not a member yet? Sign up"
-        android:textColor="@color/fontPrimary"
+        android:text="@string/register"
+        android:textColor="@color/keep_playstoreicon_background"
         android:textSize="15sp"
+        android:contextClickable="true"
+        android:shadowColor="@color/header_bg"
+        android:shadowRadius="0.2"
 
         />
 
@@ -117,7 +120,7 @@
         android:layout_marginTop="25dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/txtSubtitleLoginRole"
+        android:layout_below="@id/txtRegister"
         >
 
         <LinearLayout
