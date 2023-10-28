@@ -24,11 +24,11 @@ import com.google.android.material.appbar.AppBarLayout
  import com.google.android.material.navigation.NavigationView
 
 class AdminDashboardActivity : AppCompatActivity() {
-    lateinit var toolbar: Toolbar
-    lateinit var drawerLayout: DrawerLayout
-    lateinit var navigationView: NavigationView
-    lateinit var frameLayout: FrameLayout
-    lateinit var appBar: AppBarLayout
+    private lateinit var toolbar: Toolbar
+    private lateinit var drawerLayout: DrawerLayout
+    private lateinit var navigationView: NavigationView
+    private lateinit var frameLayout: FrameLayout
+    private lateinit var appBar: AppBarLayout
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_dashboard)
@@ -92,7 +92,7 @@ class AdminDashboardActivity : AppCompatActivity() {
 
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         appBar.outlineProvider = null
-        var actionBarDrawerToggle = ActionBarDrawerToggle(
+        val actionBarDrawerToggle = ActionBarDrawerToggle(
             this@AdminDashboardActivity,
             drawerLayout,
             R.string.open_drawer,

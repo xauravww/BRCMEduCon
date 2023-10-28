@@ -1,4 +1,4 @@
-package com.education.brcmeducorn.fragments.admin_dashboard_fragments
+package com.education.brcmeducorn.activites
 
 import android.Manifest
 import android.app.DatePickerDialog
@@ -7,9 +7,7 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Bundle
 import android.util.Log
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Button
@@ -19,7 +17,7 @@ import android.widget.Spinner
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
-import androidx.fragment.app.Fragment
+import androidx.appcompat.app.AppCompatActivity
 import com.education.brcmeducorn.R
 import com.education.brcmeducorn.activites.AdminDashboardActivity
 import com.education.brcmeducorn.activites.FacultyDashboardActivity
@@ -37,7 +35,7 @@ import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Locale
 
-class AddOrRemoveMembersFragment : Fragment() {
+class RegisterActivity : AppCompatActivity() {
     private lateinit var txtBranch: Spinner
     private lateinit var txtSemester: Spinner
     private lateinit var imgUploadBtn: Button
@@ -58,8 +56,9 @@ class AddOrRemoveMembersFragment : Fragment() {
     private var editTextDOB: EditText? = null
     private var dobCalendar: Calendar? = null
     private var branchArray = arrayOf("Branch", "Cse", "Civil", "Mechanical", "Electrical")
-    private var semesterArray =
-        arrayOf("Semester", "Sem1", "Sem2", "Sem3", "Sem4", "Sem5", "Sem6", "Sem7", "Sem8")
+    private var semesterArray = arrayOf(
+        "Semester", "Sem1", "Sem2", "Sem3", "Sem4", "Sem5", "Sem6", "Sem7", "Sem8"
+    )
     lateinit var prefs: SharedPrefs
 
     companion object {
@@ -71,38 +70,41 @@ class AddOrRemoveMembersFragment : Fragment() {
         var selectedSemester: String = "sem"
     }
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        val view = inflater.inflate(R.layout.fragment_add_or_remove_members, container, false)
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_register)
 
-        imgUploadBtn = view.findViewById(R.id.imgUploadBtn)
-        imgStudent = view.findViewById(R.id.imgStudent)
-        txtName = view.findViewById(R.id.txtName)
-        txtBranch = view.findViewById(R.id.txtBranch)
-        txtSemester = view.findViewById(R.id.txtSemester)
-        txtbatch = view.findViewById(R.id.txtbatch)
-        txtRegistrationNo = view.findViewById(R.id.txtRegistrationNo)
-        txtUserMail = view.findViewById(R.id.txtUserMail)
-        txtPhoneNo = view.findViewById(R.id.txtPhoneNo)
-        countryCode = view.findViewById(R.id.countryCode)
-        txtAddress = view.findViewById(R.id.txtAddress)
-        txtFather = view.findViewById(R.id.txtFather)
-        txtDOB = view.findViewById(R.id.txtDOB)
-        txtPassword = view.findViewById(R.id.txtUserPass)
-        txtRollNo = view.findViewById(R.id.txtRollNo)
-        btnUpdateDetails = view.findViewById(R.id.btnUpdateDetails)
-        val branchAdapter = ArrayAdapter(activity as Context, R.layout.spinner_item, branchArray)
-        val semAdapter = ArrayAdapter(activity as Context, R.layout.spinner_item, semesterArray)
+        imgUploadBtn = findViewById(R.id.imgUploadBtn)
+        imgStudent = findViewById(R.id.imgStudent)
+        txtName = findViewById(R.id.txtName)
+        txtBranch = findViewById(R.id.txtBranch)
+        txtSemester = findViewById(R.id.txtSemester)
+        txtbatch = findViewById(R.id.txtbatch)
+        txtRegistrationNo = findViewById(R.id.txtRegistrationNo)
+        txtUserMail = findViewById(R.id.txtUserMail)
+        txtPhoneNo = findViewById(R.id.txtPhoneNo)
+        countryCode = findViewById(R.id.countryCode)
+        txtAddress = findViewById(R.id.txtAddress)
+        txtFather = findViewById(R.id.txtFather)
+        txtDOB = findViewById(R.id.txtDOB)
+        txtPassword = findViewById(R.id.txtUserPass)
+        txtRollNo = findViewById(R.id.txtRollNo)
+        btnUpdateDetails = findViewById(R.id.btnUpdateDetails)
+        val branchAdapter =
+            ArrayAdapter(this, R.layout.spinner_item, branchArray)
+        val semAdapter =
+            ArrayAdapter(this, R.layout.spinner_item, semesterArray)
 
         txtBranch.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(
                 parent: AdapterView<*>?, view: View?, position: Int, id: Long
             ) {
                 selectedBranch = branchArray[position]
-                Toast.makeText(requireContext(), selectedBranch, Toast.LENGTH_SHORT).show()
+                Toast.makeText(
+                    this@RegisterActivity,
+                    selectedBranch,
+                    Toast.LENGTH_SHORT
+                ).show()
             }
 
             override fun onNothingSelected(parent: AdapterView<*>?) {
@@ -129,7 +131,7 @@ class AddOrRemoveMembersFragment : Fragment() {
             showDatePickerDialog()
         }
         btnUpdateDetails.setOnClickListener {
-            registerRequest(requireContext())
+            registerRequest(this)
 
         }
         imgUploadBtn.setOnClickListener {
@@ -137,17 +139,17 @@ class AddOrRemoveMembersFragment : Fragment() {
             if (checkPermissions()) {
                 ImagePicker.with(this)
                     .cameraOnly()
-                    .crop()                    //Crop image(Optional), Check Customization for more option
-                    .compress(1024)            //Final image size will be less than 1 MB(Optional)
+                    .crop() //Crop image(Optional), Check Customization for more option
+                    .compress(1024) //Final image size will be less than 1 MB(Optional)
                     .maxResultSize(
                         1080,
                         1080
-                    )    //Final image resolution will be less than 1080 x 1080(Optional)
+                    ) //Final image resolution will be less than 1080 x 1080(Optional)
                     .start()
 
             } else {
                 Toast.makeText(
-                    activity as Context,
+                    this,
                     " Please allow camera permission",
                     Toast.LENGTH_SHORT
                 ).show()
@@ -155,9 +157,7 @@ class AddOrRemoveMembersFragment : Fragment() {
 
 
         }
-        return view
     }
-
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
@@ -169,13 +169,17 @@ class AddOrRemoveMembersFragment : Fragment() {
     private fun checkPermissions(): Boolean {
         val cameraPermissionRequest = Manifest.permission.CAMERA
         val cameraPermissionGranted = ContextCompat.checkSelfPermission(
-            activity as Context,
+            this,
             cameraPermissionRequest
         ) == PackageManager.PERMISSION_GRANTED
         if (cameraPermissionGranted) {
             return true
         }
-        ActivityCompat.requestPermissions(requireActivity(), arrayOf(cameraPermissionRequest), 100)
+        ActivityCompat.requestPermissions(
+            this,
+            arrayOf(cameraPermissionRequest),
+            100
+        )
         return false
     }
 
@@ -221,21 +225,11 @@ class AddOrRemoveMembersFragment : Fragment() {
                 Log.d("hlooo", result.toString())
 
                 if (result is LoginResponse) {
-                    Toast.makeText(requireContext(), "your register request has been sent successfully please wait until verify", Toast.LENGTH_SHORT).show()
-//                    savePrefs(result)
-//                    if (checkRoll(result)) {
-//                        navigateDashboard(
-//                            context,
-//                            "${result.member.role} register is in process wait until approved",
-//                            true
-//                        )
-//                    } else {
-//                        navigateDashboard(
-//                            context,
-//                            "${result.member.role} is  is not yours ",
-//                            false
-//                        )
-//                    }
+                    Toast.makeText(
+                        this@RegisterActivity,
+                        "your register request has been sent successfully please wait until verify",
+                        Toast.LENGTH_SHORT
+                    ).show()
                     Log.d("hlooo", result.toString())
                 }
 
@@ -243,7 +237,7 @@ class AddOrRemoveMembersFragment : Fragment() {
 
         } else {
             Toast.makeText(
-                requireContext(),
+                this@RegisterActivity,
                 "Invalid input. Please check your details.",
                 Toast.LENGTH_SHORT
             ).show()
@@ -261,7 +255,7 @@ class AddOrRemoveMembersFragment : Fragment() {
 
         if (email.isBlank() || !android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
             Toast.makeText(
-                requireContext(),
+                this@RegisterActivity,
                 "Please enter a valid email address",
                 Toast.LENGTH_SHORT
             ).show()
@@ -270,7 +264,7 @@ class AddOrRemoveMembersFragment : Fragment() {
 
         if (phone.isBlank() || phone.length != 10) {
             Toast.makeText(
-                requireContext(),
+                this@RegisterActivity,
                 "Please enter a valid phone number",
                 Toast.LENGTH_SHORT
             ).show()
@@ -279,7 +273,7 @@ class AddOrRemoveMembersFragment : Fragment() {
 
         if (pass.isBlank() || pass.length < 6) {
             Toast.makeText(
-                requireContext(),
+                this@RegisterActivity,
                 "Please enter a password of at least 6 characters",
                 Toast.LENGTH_SHORT
             ).show()
@@ -288,7 +282,7 @@ class AddOrRemoveMembersFragment : Fragment() {
 
         if (name.isBlank() || name.length > 16) {
             Toast.makeText(
-                requireContext(),
+                this@RegisterActivity,
                 "Please enter a valid name (up to 16 characters)",
                 Toast.LENGTH_SHORT
             ).show()
@@ -297,7 +291,7 @@ class AddOrRemoveMembersFragment : Fragment() {
 
         if (batchYear.toString().isBlank() || batchYear.toString().length != 4) {
             Toast.makeText(
-                requireContext(),
+                this@RegisterActivity,
                 "Please enter a valid batch year (4 digits)",
                 Toast.LENGTH_SHORT
             ).show()
@@ -305,11 +299,19 @@ class AddOrRemoveMembersFragment : Fragment() {
         }
         val dobPattern = Regex("""^\d{4}-\d{2}-\d{2}$""")
         if (dateOfBirth.isBlank() || !dateOfBirth.matches(dobPattern)) {
-            Toast.makeText(requireContext(), "Please enter a valid date of birth (yyyy-MM-dd)", Toast.LENGTH_SHORT).show()
+            Toast.makeText(
+                this@RegisterActivity,
+                "Please enter a valid date of birth (yyyy-MM-dd)",
+                Toast.LENGTH_SHORT
+            ).show()
             isValid = false
         }
         if (age < 0) {
-            Toast.makeText(requireContext(), "Please enter a valid age", Toast.LENGTH_SHORT).show()
+            Toast.makeText(
+                this@RegisterActivity,
+                "Please enter a valid age",
+                Toast.LENGTH_SHORT
+            ).show()
             isValid = false
         }
 
@@ -364,7 +366,7 @@ class AddOrRemoveMembersFragment : Fragment() {
         val day = calendar[Calendar.DAY_OF_MONTH]
 
         val datePickerDialog = DatePickerDialog(
-            requireContext(),
+            this,
             { _, year, month, dayOfMonth ->
                 val selectedCalendar = Calendar.getInstance()
                 selectedCalendar.set(year, month, dayOfMonth)
