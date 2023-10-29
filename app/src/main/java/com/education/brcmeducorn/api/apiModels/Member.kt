@@ -11,7 +11,7 @@ data class Member(
     val dateOfBirth: String,
     val email: String,
     val fathername: String,
-    val imageurl: String,
+    val photo: String,
     val name: String,
     val pass: String,
     val phone: Long,

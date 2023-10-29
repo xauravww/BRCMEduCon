@@ -5,7 +5,10 @@ import android.app.DatePickerDialog
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.graphics.Bitmap
+import android.net.Uri
 import android.os.Bundle
+import android.provider.MediaStore
 import android.util.Log
 import android.view.View
 import android.widget.AdapterView
@@ -15,18 +18,17 @@ import android.widget.EditText
 import android.widget.ImageView
 import android.widget.Spinner
 import android.widget.Toast
+import androidx.activity.result.ActivityResult
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
-import androidx.appcompat.app.AppCompatActivity
 import com.education.brcmeducorn.R
-import com.education.brcmeducorn.activites.AdminDashboardActivity
-import com.education.brcmeducorn.activites.FacultyDashboardActivity
-import com.education.brcmeducorn.activites.StudentDashboardActivity
 import com.education.brcmeducorn.api.apiModels.LoginResponse
 import com.education.brcmeducorn.api.apiModels.RegisterRequest
 import com.education.brcmeducorn.utils.ApiUtils
 import com.education.brcmeducorn.utils.SharedPrefs
-import com.github.dhaval2404.imagepicker.ImagePicker
 import com.hbb20.CountryCodePicker
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -60,6 +62,7 @@ class RegisterActivity : AppCompatActivity() {
         "Semester", "Sem1", "Sem2", "Sem3", "Sem4", "Sem5", "Sem6", "Sem7", "Sem8"
     )
     lateinit var prefs: SharedPrefs
+    private lateinit var imageLauncher: ActivityResultLauncher<Intent>
 
     companion object {
         var student_user = 1
@@ -134,36 +137,36 @@ class RegisterActivity : AppCompatActivity() {
             registerRequest(this)
 
         }
-        imgUploadBtn.setOnClickListener {
+        imageLauncher =
+            registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result: ActivityResult ->
+                if (result.resultCode == RESULT_OK) {
+                    val data: Intent? = result.data
+                    val selectedImageUri: Uri? = data?.data
+                    selectedImageUri?.let { uri ->
+                        // Convert Uri to Bitmap
+                        val bitmap: Bitmap =
+                            MediaStore.Images.Media.getBitmap(this.contentResolver, uri)
 
-            if (checkPermissions()) {
-                ImagePicker.with(this)
-                    .cameraOnly()
-                    .crop() //Crop image(Optional), Check Customization for more option
-                    .compress(1024) //Final image size will be less than 1 MB(Optional)
-                    .maxResultSize(
-                        1080,
-                        1080
-                    ) //Final image resolution will be less than 1080 x 1080(Optional)
-                    .start()
-
-            } else {
-                Toast.makeText(
-                    this,
-                    " Please allow camera permission",
-                    Toast.LENGTH_SHORT
-                ).show()
+                        // Set the selected image to imgStudent ImageView
+                        imgStudent.setImageBitmap(bitmap)
+                    }
+                }
             }
 
 
+        imgUploadBtn.setOnClickListener {
+
+            selectImage()
+
         }
+
+
     }
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-
-        imgStudent.setImageURI(data?.data)
-
+    private fun selectImage() {
+        val intent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
+        intent.type = "image/*"
+        imageLauncher.launch(intent)
     }
 
     private fun checkPermissions(): Boolean {
@@ -193,7 +196,7 @@ class RegisterActivity : AppCompatActivity() {
         val name = txtName.text?.toString()?.trim() ?: ""
         val semester = selectedSemester.trim()
         val branch = selectedBranch.trim()
-        val imageUrl = "img link"
+        val photo = "img link"
         prefs = SharedPrefs(context)
 
         val address = txtAddress.text?.toString() ?: ""
@@ -204,7 +207,7 @@ class RegisterActivity : AppCompatActivity() {
         val age = 20
         val isValid = isUserValid(
             email, phone, countryCode, pass, role,
-            rollno, name, "$branch|$semester", imageUrl,
+            rollno, name, "$branch|$semester", photo,
             address, batchYear, fathername,
             registrationNo, dateOfBirth, age
         )
@@ -216,7 +219,7 @@ class RegisterActivity : AppCompatActivity() {
                 val userRequest = RegisterRequest(
                     email, phone.toLong(), countryCode,
                     pass, role, rollno, name, "$branch|$semester",
-                    imageUrl, address, batchYear, fathername,
+                    photo, address, batchYear, fathername,
                     registrationNo, dateOfBirth, age
                 )
                 Log.d("hloo", userRequest.toString())
@@ -247,7 +250,7 @@ class RegisterActivity : AppCompatActivity() {
     private fun isUserValid(
         email: String, phone: String, countryCode: Int,
         pass: String, role: String, rollno: String, name: String,
-        semester: String, imageUrl: String, address: String,
+        semester: String, photo: String, address: String,
         batchYear: Int, fathername: String, registrationNo: String,
         dateOfBirth: String, age: Int
     ): Boolean {

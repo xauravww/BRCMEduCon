@@ -5,7 +5,10 @@ import android.app.DatePickerDialog
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.graphics.Bitmap
+import android.net.Uri
 import android.os.Bundle
+import android.provider.MediaStore
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -17,6 +20,10 @@ import android.widget.EditText
 import android.widget.ImageView
 import android.widget.Spinner
 import android.widget.Toast
+import androidx.activity.result.ActivityResult
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
@@ -28,7 +35,6 @@ import com.education.brcmeducorn.api.apiModels.LoginResponse
 import com.education.brcmeducorn.api.apiModels.RegisterRequest
 import com.education.brcmeducorn.utils.ApiUtils
 import com.education.brcmeducorn.utils.SharedPrefs
-import com.github.dhaval2404.imagepicker.ImagePicker
 import com.hbb20.CountryCodePicker
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -61,6 +67,7 @@ class AddOrRemoveMembersFragment : Fragment() {
     private var semesterArray =
         arrayOf("Semester", "Sem1", "Sem2", "Sem3", "Sem4", "Sem5", "Sem6", "Sem7", "Sem8")
     lateinit var prefs: SharedPrefs
+    private lateinit var imageLauncher: ActivityResultLauncher<Intent>
 
     companion object {
         var student_user = 1
@@ -132,38 +139,35 @@ class AddOrRemoveMembersFragment : Fragment() {
             registerRequest(requireContext())
 
         }
-        imgUploadBtn.setOnClickListener {
+        imageLauncher =
+            registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result: ActivityResult ->
+                if (result.resultCode == AppCompatActivity.RESULT_OK) {
+                    val data: Intent? = result.data
+                    val selectedImageUri: Uri? = data?.data
+                    selectedImageUri?.let { uri ->
+                        // Convert Uri to Bitmap
+                        val bitmap: Bitmap =
+                            MediaStore.Images.Media.getBitmap(requireContext().contentResolver, uri)
 
-            if (checkPermissions()) {
-                ImagePicker.with(this)
-                    .cameraOnly()
-                    .crop()                    //Crop image(Optional), Check Customization for more option
-                    .compress(1024)            //Final image size will be less than 1 MB(Optional)
-                    .maxResultSize(
-                        1080,
-                        1080
-                    )    //Final image resolution will be less than 1080 x 1080(Optional)
-                    .start()
-
-            } else {
-                Toast.makeText(
-                    activity as Context,
-                    " Please allow camera permission",
-                    Toast.LENGTH_SHORT
-                ).show()
+                        // Set the selected image to imgStudent ImageView
+                        imgStudent.setImageBitmap(bitmap)
+                    }
+                }
             }
 
+
+        imgUploadBtn.setOnClickListener {
+
+            selectImage()
 
         }
         return view
     }
 
-
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-
-        imgStudent.setImageURI(data?.data)
-
+    private fun selectImage() {
+        val intent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
+        intent.type = "image/*"
+        imageLauncher.launch(intent)
     }
 
     private fun checkPermissions(): Boolean {
@@ -189,7 +193,7 @@ class AddOrRemoveMembersFragment : Fragment() {
         val name = txtName.text?.toString()?.trim() ?: ""
         val semester = selectedSemester.trim()
         val branch = selectedBranch.trim()
-        val imageUrl = "img link"
+        val photo = "img link"
         prefs = SharedPrefs(context)
 
         val address = txtAddress.text?.toString() ?: ""
@@ -200,7 +204,7 @@ class AddOrRemoveMembersFragment : Fragment() {
         val age = 20
         val isValid = isUserValid(
             email, phone, countryCode, pass, role,
-            rollno, name, "$branch|$semester", imageUrl,
+            rollno, name, "$branch|$semester", photo,
             address, batchYear, fathername,
             registrationNo, dateOfBirth, age
         )
@@ -212,7 +216,7 @@ class AddOrRemoveMembersFragment : Fragment() {
                 val userRequest = RegisterRequest(
                     email, phone.toLong(), countryCode,
                     pass, role, rollno, name, "$branch|$semester",
-                    imageUrl, address, batchYear, fathername,
+                    photo, address, batchYear, fathername,
                     registrationNo, dateOfBirth, age
                 )
                 Log.d("hloo", userRequest.toString())
@@ -221,7 +225,11 @@ class AddOrRemoveMembersFragment : Fragment() {
                 Log.d("hlooo", result.toString())
 
                 if (result is LoginResponse) {
-                    Toast.makeText(requireContext(), "your register request has been sent successfully please wait until verify", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(
+                        requireContext(),
+                        "your register request has been sent successfully please wait until verify",
+                        Toast.LENGTH_SHORT
+                    ).show()
 //                    savePrefs(result)
 //                    if (checkRoll(result)) {
 //                        navigateDashboard(
@@ -253,7 +261,7 @@ class AddOrRemoveMembersFragment : Fragment() {
     private fun isUserValid(
         email: String, phone: String, countryCode: Int,
         pass: String, role: String, rollno: String, name: String,
-        semester: String, imageUrl: String, address: String,
+        semester: String, photo: String, address: String,
         batchYear: Int, fathername: String, registrationNo: String,
         dateOfBirth: String, age: Int
     ): Boolean {
@@ -305,7 +313,11 @@ class AddOrRemoveMembersFragment : Fragment() {
         }
         val dobPattern = Regex("""^\d{4}-\d{2}-\d{2}$""")
         if (dateOfBirth.isBlank() || !dateOfBirth.matches(dobPattern)) {
-            Toast.makeText(requireContext(), "Please enter a valid date of birth (yyyy-MM-dd)", Toast.LENGTH_SHORT).show()
+            Toast.makeText(
+                requireContext(),
+                "Please enter a valid date of birth (yyyy-MM-dd)",
+                Toast.LENGTH_SHORT
+            ).show()
             isValid = false
         }
         if (age < 0) {
