@@ -137,7 +137,7 @@ class login_main_utils {
                 Log.d("hi", result.toString())
             } else {
                 customProgressDialog?.dismiss()
-                Toast.makeText(context, "invalid input", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, "send a valid input and check your internet connection", Toast.LENGTH_SHORT).show()
 
             }
 

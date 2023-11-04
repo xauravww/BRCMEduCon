@@ -1,19 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
     android:layout_gravity="center"
-    android:background="@drawable/transparent_current_time_period"
     android:gravity="center"
-    android:padding="16dp">
+    app:cardCornerRadius="4dp">
 
     <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:layout_gravity="center"
-        android:layout_margin="19dp"
+        android:layout_margin="20dp"
         android:gravity="center"
         android:background="@drawable/smooth_corner_shape"
+        android:elevation="11dp"
         android:orientation="vertical"
         android:padding="26dp">
 
@@ -22,7 +23,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:padding="50dp"
+            android:layout_margin="30dp"
             android:progressDrawable="@drawable/progress_bar_bg" />
 
         <TextView

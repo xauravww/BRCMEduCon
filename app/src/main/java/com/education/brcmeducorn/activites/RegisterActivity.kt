@@ -126,7 +126,7 @@ class RegisterActivity : AppCompatActivity() {
         }
         btnUpdateDetails.setOnClickListener {
             customProgressDialog = CustomProgressDialog(this)
-            customProgressDialog!!.setMessage("wait logging ...")
+            customProgressDialog!!.setMessage("wait registering ...")
             customProgressDialog!!.show();
             if (::selectedImageUri.isInitialized) {
                 registerRequest(this)
