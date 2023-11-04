@@ -143,6 +143,7 @@ class login_main_utils {
         prefs.saveString("name", response.member.name)
         prefs.saveString("rollNo", response.member.rollno)
         prefs.saveString("roll", response.member.role)
+        prefs.saveString("imageUrl", response.member.imageurl.url)
 
     }
 

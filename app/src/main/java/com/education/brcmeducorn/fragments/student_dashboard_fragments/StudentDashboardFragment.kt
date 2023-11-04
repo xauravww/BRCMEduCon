@@ -13,6 +13,8 @@ import com.education.brcmeducorn.fragments.EventsFragment
 import com.education.brcmeducorn.fragments.IDCardFragment
 import com.education.brcmeducorn.fragments.TimeTableFragment
 import com.education.brcmeducorn.utils.SharedPrefs
+import com.google.android.material.imageview.ShapeableImageView
+import com.squareup.picasso.Picasso
 
 
 class StudentDashboardFragment : Fragment() {
@@ -30,6 +32,7 @@ class StudentDashboardFragment : Fragment() {
     private lateinit var textView: TextView
     private lateinit var textName: TextView
     private lateinit var textRollNo: TextView
+    private lateinit var imgStudent: ShapeableImageView
     private lateinit var prefs: SharedPrefs
 
     override fun onCreateView(
@@ -52,6 +55,7 @@ class StudentDashboardFragment : Fragment() {
         llAssignment = view.findViewById(R.id.llAssignment)
         llStudentProfile = view.findViewById(R.id.llstudentProfile)
         llTimeTable2 = view.findViewById(R.id.llTimeTable2)
+        imgStudent = view.findViewById(R.id.imgProfile)
         llPYQs = view.findViewById(R.id.llPYQs)
         textView = view.findViewById(R.id.txtEvents)
         textName = view.findViewById(R.id.txtName)
@@ -59,7 +63,7 @@ class StudentDashboardFragment : Fragment() {
         prefs = SharedPrefs(requireContext())
 
         //set data from shared prefs
-        setDataTextView(textName, textRollNo)
+        setDataView(textName, textRollNo,imgStudent)
 // going from one fragment to another fragment
         handleClickListeners()
 
@@ -153,23 +157,28 @@ class StudentDashboardFragment : Fragment() {
         val name = prefs.getString("name", "")
         val rollNo = prefs.getString("rollNo", "")
         val roll = prefs.getString("roll", "")
+        val imageUrl = prefs.getString("imageUrl", "")
 
         return mapOf(
             "token" to token,
             "name" to name,
             "rollNo" to rollNo,
-            "roll" to roll
+            "roll" to roll,
+            "imageUrl" to imageUrl
         )
     }
 
-    private fun setDataTextView(textName: TextView, textRollNo: TextView) {
+    private fun setDataView(textName: TextView, textRollNo: TextView,imgStudent:ShapeableImageView) {
         val userData = getPrefs()
 //        val token = userData["token"]
         val name = userData["name"]?.uppercase()
         val rollNo = userData["rollNo"]
         val roll = userData["roll"]?.uppercase()
+        val imageUrl = userData["imageUrl"]
 
         textName.text = name
         textRollNo.text = "ID:$rollNo|$roll"
+        Picasso.get().load(imageUrl).into(imgStudent)
+
     }
 }
