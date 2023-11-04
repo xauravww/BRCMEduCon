@@ -8,7 +8,6 @@ import android.content.pm.PackageManager
 import android.graphics.BitmapFactory
 import android.net.Uri
 import android.os.Bundle
-import android.provider.MediaStore
 import android.util.Log
 import android.view.View
 import android.widget.AdapterView
@@ -28,6 +27,7 @@ import com.education.brcmeducorn.api.apiModels.LoginResponse
 import com.education.brcmeducorn.api.apiModels.RegisterRequest
 import com.education.brcmeducorn.fragments.admin_dashboard_fragments.AddOrRemoveMembersFragment
 import com.education.brcmeducorn.utils.ApiUtils
+import com.education.brcmeducorn.utils.CustomProgressDialog
 import com.education.brcmeducorn.utils.RealPathUtil
 import com.education.brcmeducorn.utils.SharedPrefs
 import com.education.brcmeducorn.utils.ValidRegistration
@@ -36,10 +36,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
-import okhttp3.MultipartBody
-import okhttp3.RequestBody.Companion.asRequestBody
 import okhttp3.RequestBody.Companion.toRequestBody
-import java.io.File
 
 
 class RegisterActivity : AppCompatActivity() {
@@ -68,8 +65,7 @@ class RegisterActivity : AppCompatActivity() {
     lateinit var prefs: SharedPrefs
     private lateinit var selectedImageUri: Uri
     private lateinit var imagePicker: ActivityResultLauncher<Intent>
-
-    private lateinit var imagePart: MultipartBody.Part
+    private var customProgressDialog: CustomProgressDialog? = null
     private lateinit var imagePath: String
 
     companion object {
@@ -129,10 +125,14 @@ class RegisterActivity : AppCompatActivity() {
             ValidRegistration.showDatePickerDialog(this, txtDOB)
         }
         btnUpdateDetails.setOnClickListener {
+            customProgressDialog = CustomProgressDialog(this)
+            customProgressDialog!!.setMessage("wait logging ...")
+            customProgressDialog!!.show();
             if (::selectedImageUri.isInitialized) {
                 registerRequest(this)
             } else {
                 Toast.makeText(this, "please select an image", Toast.LENGTH_SHORT).show()
+                customProgressDialog!!.dismiss()
             }
         }
         imgUploadBtn.setOnClickListener {
@@ -176,14 +176,6 @@ class RegisterActivity : AppCompatActivity() {
         val dateOfBirth = txtDOB.text?.toString() ?: ""
         val age = 20
 
-//        val filesDir = applicationContext.filesDir
-//        val file = File(filesDir, "image.png")
-//        val inputStream = contentResolver.openInputStream(selectedImageUri)
-//        val outputStream = FileOutputStream(file)
-//        inputStream!!.copyTo(outputStream)
-//        val requestBody = file.asRequestBody("image/*".toMediaType())
-//        val photo = MultipartBody.Part.createFormData("image", file.name, requestBody)
-
         val isValid = ValidRegistration.isUserValid(
             email, phone, countryCode, pass, role,
             rollno, name, "$branch|$semester",
@@ -224,18 +216,31 @@ class RegisterActivity : AppCompatActivity() {
                     addressRequestBody, batchYearRequestBody, fathernameRequestBody,
                     registrationNoRequestBody, dateOfBirthRequestBody, ageRequestBody
                 )
-//                Log.d("hloo", userRequest.toString())
-
                 val result = ApiUtils.register(endpoint, method, userRequest, imagePath)
-                Log.d("hlooo", result.toString())
 
                 if (result is LoginResponse) {
+                    if (checkRoll(result)) {
+                        savePrefs(result)
+
+                        navigateDashboard(context, "$roll successfully login", true)
+
+                    } else {
+                        navigateDashboard(context, "$roll is  is not yours ", false)
+                    }
                     Toast.makeText(
                         this@RegisterActivity,
                         "your register request has been sent successfully please wait until verify",
                         Toast.LENGTH_SHORT
                     ).show()
-                    Log.d("hlooo", result.toString())
+                    customProgressDialog!!.dismiss()
+                    Log.d("result", result.toString())
+                } else {
+                    Toast.makeText(
+                        this@RegisterActivity,
+                        "something went wrong",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                    customProgressDialog!!.dismiss()
                 }
 
             }
@@ -246,6 +251,8 @@ class RegisterActivity : AppCompatActivity() {
                 "Invalid input. Please check your details.",
                 Toast.LENGTH_SHORT
             ).show()
+            customProgressDialog!!.dismiss()
+
         }
     }
 
@@ -256,6 +263,7 @@ class RegisterActivity : AppCompatActivity() {
         prefs.saveString("name", response.member.name)
         prefs.saveString("rollNo", response.member.rollno)
         prefs.saveString("roll", response.member.role)
+        prefs.saveString("imageUrl", response.member.imageurl.url)
 
     }
 
@@ -273,19 +281,29 @@ class RegisterActivity : AppCompatActivity() {
             if (student_user == 1 && faculty_user == 0 && admin_user == 0) {
                 val intent = Intent(context, StudentDashboardActivity::class.java)
                 ContextCompat.startActivity(context, intent, null)
+                customProgressDialog!!.dismiss()
+
             } else if (faculty_user == 1 && student_user == 0 && admin_user == 0) {
                 val intent = Intent(context, FacultyDashboardActivity::class.java)
                 ContextCompat.startActivity(context, intent, null)
+                customProgressDialog!!.dismiss()
+
             } else if (admin_user == 1 && faculty_user == 0 && student_user == 0) {
                 val intent = Intent(context, AdminDashboardActivity::class.java)
                 ContextCompat.startActivity(context, intent, null)
+                customProgressDialog!!.dismiss()
+
             } else {
                 Toast.makeText(
                     context, msg, Toast.LENGTH_SHORT
                 ).show()
+                customProgressDialog!!.dismiss()
+
             }
         } else {
             Toast.makeText(context, "please select your correct roll", Toast.LENGTH_SHORT).show()
+            customProgressDialog!!.dismiss()
+
         }
     }
 
@@ -296,11 +314,7 @@ class RegisterActivity : AppCompatActivity() {
                 parent: AdapterView<*>?, view: View?, position: Int, id: Long
             ) {
                 AddOrRemoveMembersFragment.selectedBranch = branchArray[position]
-                Toast.makeText(
-                    this@RegisterActivity,
-                    AddOrRemoveMembersFragment.selectedBranch,
-                    Toast.LENGTH_SHORT
-                ).show()
+
             }
 
             override fun onNothingSelected(parent: AdapterView<*>?) {
@@ -320,17 +334,5 @@ class RegisterActivity : AppCompatActivity() {
             }
         }
     }
-
-
-    private fun getPathFromURI(contentUri: Uri?): String? {
-        val projection = arrayOf(MediaStore.Images.Media.DATA)
-        val cursor = contentResolver.query(contentUri!!, projection, null, null, null)
-        val columnIndex = cursor!!.getColumnIndexOrThrow(MediaStore.Images.Media.DATA)
-        cursor.moveToFirst()
-        val filePath = cursor.getString(columnIndex)
-        cursor.close()
-        return filePath
-    }
-
 
 }

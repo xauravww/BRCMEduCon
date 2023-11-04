@@ -20,6 +20,7 @@ import kotlinx.coroutines.launch
 
 class login_main_utils {
     private lateinit var prefs: SharedPrefs
+    private var customProgressDialog: CustomProgressDialog? = null
 
     private
 
@@ -110,6 +111,9 @@ class login_main_utils {
 
     fun handleLogin(context: Context, email: String, pass: String) {
         prefs = SharedPrefs(context)
+        customProgressDialog = CustomProgressDialog(context)
+        customProgressDialog!!.setMessage("wait logging ...")
+        customProgressDialog!!.show();
         login(email.trim(), pass.trim(), context)
 
     }
@@ -129,9 +133,12 @@ class login_main_utils {
                     navigateDashboard(context, "$roll successfully login", true)
                 } else {
                     navigateDashboard(context, "$roll is  is not yours ", false)
-                 }
+                }
                 Log.d("hi", result.toString())
             } else {
+                customProgressDialog?.dismiss()
+                Toast.makeText(context, "invalid input", Toast.LENGTH_SHORT).show()
+
             }
 
         }
@@ -161,18 +168,28 @@ class login_main_utils {
             if (student_user == 1 && faculty_user == 0 && admin_user == 0) {
                 val intent = Intent(context, StudentDashboardActivity::class.java)
                 startActivity(context, intent, null)
+                customProgressDialog?.dismiss()
+
             } else if (faculty_user == 1 && student_user == 0 && admin_user == 0) {
                 val intent = Intent(context, FacultyDashboardActivity::class.java)
                 startActivity(context, intent, null)
+                customProgressDialog?.dismiss()
+
             } else if (admin_user == 1 && faculty_user == 0 && student_user == 0) {
                 val intent = Intent(context, AdminDashboardActivity::class.java)
                 startActivity(context, intent, null)
+                customProgressDialog?.dismiss()
+
             } else {
                 Toast.makeText(
                     context, msg, Toast.LENGTH_SHORT
                 ).show()
+                customProgressDialog?.dismiss()
+
             }
         } else {
+            customProgressDialog?.dismiss()
+
             Toast.makeText(context, "please select your correct roll", Toast.LENGTH_SHORT).show()
         }
     }

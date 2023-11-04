@@ -53,14 +53,10 @@ class LoginMainActivity : AppCompatActivity() {
                 password.text.toString()
             )
 
-            Toast.makeText(this, userId.text.toString(), Toast.LENGTH_SHORT).show()
         }
         //register
         txtRegister.setOnClickListener {
             ContextCompat.startActivity(this, Intent(this, RegisterActivity::class.java), null)
-
-
-            Toast.makeText(this, userId.text.toString(), Toast.LENGTH_SHORT).show()
         }
 
         // adjust the colors of the each user
