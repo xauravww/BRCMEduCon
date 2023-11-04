@@ -64,25 +64,20 @@ dependencies {
     //gallery slider library
     //country code picker
     implementation("com.hbb20:ccp:2.5.2")
-
-
     //room library
     implementation("androidx.room:room-runtime:2.5.2")
-
     kapt("androidx.room:room-compiler:2.5.2")
     implementation("androidx.room:room-ktx:2.5.2")
-
     // picasso library
     implementation("com.squareup.picasso:picasso:2.8")
-
-
     // image picker library
     implementation("com.github.dhaval2404:imagepicker:2.1")
-
     //zoom in and zoom out effect library
     implementation("com.github.MikeOrtiz:TouchImageView:1.4.1")
     //api fetch
     implementation ("com.squareup.retrofit2:retrofit:2.9.0")
     implementation ("com.squareup.retrofit2:converter-gson:2.5.0")
     implementation ("com.google.code.gson:gson:2.8.9")
+    implementation("com.squareup.okhttp3:logging-interceptor:4.11.0")
+
 }

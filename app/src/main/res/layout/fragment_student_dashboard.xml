@@ -8,7 +8,7 @@
 
     <include
         android:id="@+id/reuseName"
-         layout="@layout/reusable_dashboard_name" />
+        layout="@layout/reusable_dashboard_name" />
 
     <androidx.core.widget.NestedScrollView
         android:layout_marginBottom="10dp"

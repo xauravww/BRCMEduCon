@@ -5,6 +5,7 @@ import android.app.DatePickerDialog
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -33,6 +34,8 @@ import com.hbb20.CountryCodePicker
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
+import okhttp3.RequestBody.Companion.toRequestBody
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Locale
@@ -54,13 +57,12 @@ class AddOrRemoveMembersFragment : Fragment() {
     private lateinit var txtFather: EditText
     private lateinit var txtDOB: EditText
     private lateinit var btnUpdateDetails: Button
-
     private var editTextDOB: EditText? = null
     private var dobCalendar: Calendar? = null
     private var branchArray = arrayOf("Branch", "Cse", "Civil", "Mechanical", "Electrical")
-    private var semesterArray =
-        arrayOf("Semester", "Sem1", "Sem2", "Sem3", "Sem4", "Sem5", "Sem6", "Sem7", "Sem8")
+    private var semesterArray = arrayOf("Semester", "Sem1", "Sem2", "Sem3", "Sem4", "Sem5", "Sem6", "Sem7", "Sem8")
     lateinit var prefs: SharedPrefs
+    private lateinit var selectedImageUri: Uri
 
     companion object {
         var student_user = 1
@@ -77,51 +79,11 @@ class AddOrRemoveMembersFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_add_or_remove_members, container, false)
-
-        imgUploadBtn = view.findViewById(R.id.imgUploadBtn)
-        imgStudent = view.findViewById(R.id.imgStudent)
-        txtName = view.findViewById(R.id.txtName)
-        txtBranch = view.findViewById(R.id.txtBranch)
-        txtSemester = view.findViewById(R.id.txtSemester)
-        txtbatch = view.findViewById(R.id.txtbatch)
-        txtRegistrationNo = view.findViewById(R.id.txtRegistrationNo)
-        txtUserMail = view.findViewById(R.id.txtUserMail)
-        txtPhoneNo = view.findViewById(R.id.txtPhoneNo)
-        countryCode = view.findViewById(R.id.countryCode)
-        txtAddress = view.findViewById(R.id.txtAddress)
-        txtFather = view.findViewById(R.id.txtFather)
-        txtDOB = view.findViewById(R.id.txtDOB)
-        txtPassword = view.findViewById(R.id.txtUserPass)
-        txtRollNo = view.findViewById(R.id.txtRollNo)
-        btnUpdateDetails = view.findViewById(R.id.btnUpdateDetails)
         val branchAdapter = ArrayAdapter(activity as Context, R.layout.spinner_item, branchArray)
         val semAdapter = ArrayAdapter(activity as Context, R.layout.spinner_item, semesterArray)
 
-        txtBranch.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-            override fun onItemSelected(
-                parent: AdapterView<*>?, view: View?, position: Int, id: Long
-            ) {
-                selectedBranch = branchArray[position]
-                Toast.makeText(requireContext(), selectedBranch, Toast.LENGTH_SHORT).show()
-            }
-
-            override fun onNothingSelected(parent: AdapterView<*>?) {
-                TODO("Not yet implemented")
-            }
-        }
-
-        txtSemester.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-            override fun onItemSelected(
-                parent: AdapterView<*>?, view: View?, position: Int, id: Long
-            ) {
-                selectedSemester = semesterArray[position]
-            }
-
-            override fun onNothingSelected(parent: AdapterView<*>?) {
-                // Kuch nahi karna
-            }
-        }
-
+        findViewById(view)
+        getItemFromSpinner(branchArray,semesterArray)
         txtBranch.adapter = branchAdapter
         txtSemester.adapter = semAdapter
 
@@ -155,16 +117,41 @@ class AddOrRemoveMembersFragment : Fragment() {
 
 
         }
+
         return view
     }
-
-
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
         imgStudent.setImageURI(data?.data)
 
     }
+
+    private fun getItemFromSpinner(branchArray: Array<String>, semesterArray: Array<String>) {
+        txtBranch.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(
+                parent: AdapterView<*>?, view: View?, position: Int, id: Long
+            ) {
+                selectedBranch = branchArray[position]
+                Toast.makeText(requireContext(), selectedBranch, Toast.LENGTH_SHORT).show()
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+                TODO("Not yet implemented")
+            }
+        }
+
+        txtSemester.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(
+                parent: AdapterView<*>?, view: View?, position: Int, id: Long
+            ) {
+                selectedSemester = semesterArray[position]
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+                // Kuch nahi karna
+            }
+        }    }
 
     private fun checkPermissions(): Boolean {
         val cameraPermissionRequest = Manifest.permission.CAMERA
@@ -189,8 +176,7 @@ class AddOrRemoveMembersFragment : Fragment() {
         val name = txtName.text?.toString()?.trim() ?: ""
         val semester = selectedSemester.trim()
         val branch = selectedBranch.trim()
-        val imageUrl = "img link"
-        prefs = SharedPrefs(context)
+       val photo=""
 
         val address = txtAddress.text?.toString() ?: ""
         val batchYear = txtbatch.text?.toString()?.toIntOrNull() ?: 0
@@ -200,20 +186,35 @@ class AddOrRemoveMembersFragment : Fragment() {
         val age = 20
         val isValid = isUserValid(
             email, phone, countryCode, pass, role,
-            rollno, name, "$branch|$semester", imageUrl,
+            rollno, name, "$branch|$semester", photo,
             address, batchYear, fathername,
             registrationNo, dateOfBirth, age
         )
         if (isValid) {
-
+            val emailRequestBody = email.toRequestBody("text/plain".toMediaTypeOrNull())
+            val phoneRequestBody = phone.toRequestBody("text/plain".toMediaTypeOrNull())
+            val countryCodeRequestBody = countryCode.toString().toRequestBody("text/plain".toMediaTypeOrNull())
+            val passRequestBody = pass.toRequestBody("text/plain".toMediaTypeOrNull())
+            val roleRequestBody = role.toRequestBody("text/plain".toMediaTypeOrNull())
+            val rollnoRequestBody = rollno.toRequestBody("text/plain".toMediaTypeOrNull())
+            val nameRequestBody = name.toRequestBody("text/plain".toMediaTypeOrNull())
+            val semesterRequestBody = semester.toRequestBody("text/plain".toMediaTypeOrNull())
+            val branchRequestBody = branch+semester.toRequestBody("text/plain".toMediaTypeOrNull())
+            val addressRequestBody = address.toRequestBody("text/plain".toMediaTypeOrNull())
+            val batchYearRequestBody = batchYear.toString().toRequestBody("text/plain".toMediaTypeOrNull())
+            val fathernameRequestBody = fathername.toRequestBody("text/plain".toMediaTypeOrNull())
+            val registrationNoRequestBody = registrationNo.toRequestBody("text/plain".toMediaTypeOrNull())
+            val dateOfBirthRequestBody = dateOfBirth.toRequestBody("text/plain".toMediaTypeOrNull())
+            val ageRequestBody = age.toString().toRequestBody("text/plain".toMediaTypeOrNull())
             CoroutineScope(Dispatchers.Main).launch {
                 val endpoint = "register"
                 val method = "REGISTER"
                 val userRequest = RegisterRequest(
-                    email, phone.toLong(), countryCode,
-                    pass, role, rollno, name, "$branch|$semester",
-                    imageUrl, address, batchYear, fathername,
-                    registrationNo, dateOfBirth, age
+                    emailRequestBody, phoneRequestBody, countryCodeRequestBody,
+                    passRequestBody, roleRequestBody, rollnoRequestBody, nameRequestBody,
+                    semesterRequestBody, "photo",
+                    addressRequestBody, batchYearRequestBody, fathernameRequestBody,
+                    registrationNoRequestBody, dateOfBirthRequestBody, ageRequestBody
                 )
                 Log.d("hloo", userRequest.toString())
 
@@ -221,7 +222,11 @@ class AddOrRemoveMembersFragment : Fragment() {
                 Log.d("hlooo", result.toString())
 
                 if (result is LoginResponse) {
-                    Toast.makeText(requireContext(), "your register request has been sent successfully please wait until verify", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(
+                        requireContext(),
+                        "your register request has been sent successfully please wait until verify",
+                        Toast.LENGTH_SHORT
+                    ).show()
 //                    savePrefs(result)
 //                    if (checkRoll(result)) {
 //                        navigateDashboard(
@@ -253,7 +258,7 @@ class AddOrRemoveMembersFragment : Fragment() {
     private fun isUserValid(
         email: String, phone: String, countryCode: Int,
         pass: String, role: String, rollno: String, name: String,
-        semester: String, imageUrl: String, address: String,
+        semester: String, photo: String, address: String,
         batchYear: Int, fathername: String, registrationNo: String,
         dateOfBirth: String, age: Int
     ): Boolean {
@@ -305,7 +310,11 @@ class AddOrRemoveMembersFragment : Fragment() {
         }
         val dobPattern = Regex("""^\d{4}-\d{2}-\d{2}$""")
         if (dateOfBirth.isBlank() || !dateOfBirth.matches(dobPattern)) {
-            Toast.makeText(requireContext(), "Please enter a valid date of birth (yyyy-MM-dd)", Toast.LENGTH_SHORT).show()
+            Toast.makeText(
+                requireContext(),
+                "Please enter a valid date of birth (yyyy-MM-dd)",
+                Toast.LENGTH_SHORT
+            ).show()
             isValid = false
         }
         if (age < 0) {
@@ -324,6 +333,27 @@ class AddOrRemoveMembersFragment : Fragment() {
         prefs.saveString("name", response.member.name)
         prefs.saveString("rollNo", response.member.rollno)
         prefs.saveString("roll", response.member.role)
+
+    }
+
+    private fun findViewById(view: View) {
+
+        imgUploadBtn = view.findViewById(R.id.imgUploadBtn)
+        imgStudent = view.findViewById(R.id.imgStudent)
+        txtName = view.findViewById(R.id.txtName)
+        txtBranch = view.findViewById(R.id.txtBranch)
+        txtSemester = view.findViewById(R.id.txtSemester)
+        txtbatch = view.findViewById(R.id.txtbatch)
+        txtRegistrationNo = view.findViewById(R.id.txtRegistrationNo)
+        txtUserMail = view.findViewById(R.id.txtUserMail)
+        txtPhoneNo = view.findViewById(R.id.txtPhoneNo)
+        countryCode = view.findViewById(R.id.countryCode)
+        txtAddress = view.findViewById(R.id.txtAddress)
+        txtFather = view.findViewById(R.id.txtFather)
+        txtDOB = view.findViewById(R.id.txtDOB)
+        txtPassword = view.findViewById(R.id.txtUserPass)
+        txtRollNo = view.findViewById(R.id.txtRollNo)
+        btnUpdateDetails = view.findViewById(R.id.btnUpdateDetails)
 
     }
 
