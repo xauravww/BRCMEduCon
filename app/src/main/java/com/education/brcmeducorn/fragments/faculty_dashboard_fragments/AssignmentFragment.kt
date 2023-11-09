@@ -22,6 +22,8 @@ import com.education.brcmeducorn.utils.SharedPrefs
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
+import okhttp3.RequestBody.Companion.toRequestBody
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Locale
@@ -46,7 +48,7 @@ class AssignmentFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         val view: View =
             inflater.inflate(R.layout.fragment_assignment_faculty_create, container, false)
 
@@ -86,28 +88,32 @@ class AssignmentFragment : Fragment() {
             val branch = userData["branch"] ?: "branch"
             CoroutineScope(Dispatchers.Main).launch {
                 val endpoint = "faculty/assignment"
-                val method = "ASSIGNMENT_CREATE"
+                val method = "ASSIGNMENT"
                 val createAssignmentReqBody = CreateAssignmentReq(
-                    attachment = "no attachment",
-                    description = description,
-                    dueDate = dueDate,
-                    branch = branch,
-                    givenDate = givenDate,
-                    grades = 90,
-                    lateSubmission = false,
-                    priority = "High",
-                    semester = selectedSemester,
-                    status = "pending",
-                    studentName = "No name",
-                    studentRollNo = "no roll No",
-                    subject = subject,
-                    submissionDate = "2023-11-09",
-                    tags = listOf("tag1", "tag2", "tag3"),
-                    teacherName = name,
-                    title = title,
-                    token = token
+                    attachment = description.toRequestBody("text/plain".toMediaTypeOrNull()),
+                    description = description.toRequestBody("text/plain".toMediaTypeOrNull()),
+                    dueDate = dueDate.toRequestBody("text/plain".toMediaTypeOrNull()),
+                    branch = branch.toRequestBody("text/plain".toMediaTypeOrNull()),
+                    givenDate = givenDate.toRequestBody("text/plain".toMediaTypeOrNull()),
+                    grades = "90".toRequestBody("text/plain".toMediaTypeOrNull()),
+                    lateSubmission = "false".toRequestBody("text/plain".toMediaTypeOrNull()),
+                    priority = "High".toRequestBody("text/plain".toMediaTypeOrNull()),
+                    semester = selectedSemester.toRequestBody("text/plain".toMediaTypeOrNull()),
+                    status = "Submitted".toRequestBody("text/plain".toMediaTypeOrNull()),
+                    studentName = "John Doe".toRequestBody("text/plain".toMediaTypeOrNull()),
+                    studentRollNo = "CS101".toRequestBody("text/plain".toMediaTypeOrNull()),
+                    subject = subject.toRequestBody("text/plain".toMediaTypeOrNull()),
+                    submissionDate = "2023-11-29".toRequestBody("text/plain".toMediaTypeOrNull()),
+                    tags = listOf(
+                        "Tag1".toRequestBody("text/plain".toMediaTypeOrNull()),
+                        "Tag2".toRequestBody("text/plain".toMediaTypeOrNull())
+                    ),
+                    teacherName = name.toRequestBody("text/plain".toMediaTypeOrNull()),
+                    title = title.toRequestBody("text/plain".toMediaTypeOrNull()),
+                    token = token.toRequestBody("text/plain".toMediaTypeOrNull())
                 )
-                val result = ApiUtils.fetchData(endpoint, method, createAssignmentReqBody)
+
+                val result = ApiUtils.assignment(endpoint, method, createAssignmentReqBody,"v")
 
                 if (result is Success) {
                     Log.d("Assignment Create Res", result.toString())
@@ -134,7 +140,6 @@ class AssignmentFragment : Fragment() {
             }
 
         }
-
         return view
     }
 

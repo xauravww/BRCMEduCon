@@ -2,6 +2,7 @@ package com.education.brcmeducorn.utils
 
 import android.util.Log
 import com.education.brcmeducorn.api.ApiService
+import com.education.brcmeducorn.api.apiModels.CreateAssignmentReq
 import com.education.brcmeducorn.api.apiModels.RegisterRequest
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
@@ -33,7 +34,7 @@ object ApiUtils {
                 val response = when (method) {
                     "GET" -> apiService.get(endpoint)
                     "LOGIN" -> apiService.loginPost(endpoint, requestBody)
-                    "ASSIGNMENT_CREATE"-> apiService.createAssignment(endpoint,requestBody)
+                    "ASSIGNMENT_CREATE" -> apiService.createAssignment(endpoint, requestBody)
 
                     else -> throw IllegalArgumentException("Invalid method: $method")
                 }
@@ -103,6 +104,61 @@ object ApiUtils {
         }
     }
 
+    suspend fun assignment(
+        endpoint: String,
+        method: String,
+        requestBody: Any,
+        filepath: String
+    ): Any {
+//        Log.d("anmol assignment", filepath)
+//        val file = File(filepath)
+//        val requestFile = file.asRequestBody("multipart/form-data".toMediaTypeOrNull())
+//        val body = MultipartBody.Part.createFormData("file", file.name, requestFile)
+
+        return withContext(Dispatchers.IO) {
+            try {
+                val response = when (method) {
+                    "ASSIGNMENT" -> {
+                        Log.d("done", "done")
+                        if (requestBody is CreateAssignmentReq) {
+                            apiService.assignmentPost(
+                                endpoint,
+//                                body,
+                                requestBody.attachment,
+                                requestBody.description,
+                                requestBody.dueDate,
+                                requestBody.givenDate,
+                                requestBody.grades,
+                                requestBody.lateSubmission,
+                                requestBody.priority,
+                                requestBody.status,
+                                requestBody.studentName,
+                                requestBody.studentRollNo,
+                                requestBody.subject,
+                                requestBody.submissionDate,
+                                requestBody.semester,
+//                                requestBody.tags,
+                                requestBody.teacherName,
+                                requestBody.title
+                            )
+                        } else {
+                            return@withContext "ase hi"
+                        }
+                    }
+
+                    else -> throw IllegalArgumentException("Invalid method: $method")
+                }
+                if (response.isSuccessful) {
+                    response.body() ?: "no data"
+                } else {
+                    response.body() ?: "error something"
+                }
+            } catch (e: Exception) {
+                e.printStackTrace()
+                "Error$e"
+            }
+        }
+    }
 
 
 }

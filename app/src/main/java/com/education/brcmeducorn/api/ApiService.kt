@@ -46,6 +46,28 @@ interface ApiService {
         @Url url: String,
         @Body requestBody: Any,
     ): Response<Success>
+    @Multipart
+    @POST
+    suspend fun assignmentPost(
+        @Url url: String,
+//        @Part file: MultipartBody.Part,
+        @Part("attachment") attachment: RequestBody,
+        @Part("description") description: RequestBody,
+        @Part("dueDate") dueDate: RequestBody,
+        @Part("givenDate") givenDate: RequestBody,
+        @Part("grades") grades: RequestBody,
+        @Part("lateSubmission") lateSubmission: RequestBody,
+        @Part("priority") priority: RequestBody,
+        @Part("status") status: RequestBody,
+        @Part("studentName") studentName: RequestBody,
+        @Part("studentRollNo") studentRollNo: RequestBody,
+        @Part("subject") subject: RequestBody,
+        @Part("submissionDate") submissionDate: RequestBody,
+        @Part("semester") semester: RequestBody,
+//        @Part("tags") tags: List<RequestBody>,
+        @Part("teacherName") teacherName: RequestBody,
+        @Part("title") title: RequestBody
+    ): Response<Success>
 
 //    @POST("posts")
 //    suspend fun createPost(@Body post: Post): Response<Post>

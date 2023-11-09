@@ -1,22 +1,24 @@
 package com.education.brcmeducorn.api.apiModels
 
+import okhttp3.RequestBody
+
 data class CreateAssignmentReq(
-    val attachment: String,
-    val description: String,
-    val dueDate: String,
-    val branch: String,
-    val givenDate: String,
-    val grades: Any,
-    val lateSubmission: Boolean,
-    val priority: String,
-    val semester: String,
-    val status: String,
-    val studentName: String,
-    val studentRollNo: String,
-    val subject: String,
-    val submissionDate: Any,
-    val tags: List<String>,
-    val teacherName: String,
-    val title: String,
-    val token: String
+    val attachment: RequestBody,
+    val description: RequestBody,
+    val dueDate: RequestBody,
+    val branch: RequestBody,
+    val givenDate: RequestBody,
+    val grades: RequestBody,
+    val lateSubmission: RequestBody,
+    val priority: RequestBody,
+    val semester: RequestBody,
+    val status: RequestBody,
+    val studentName: RequestBody,
+    val studentRollNo: RequestBody,
+    val subject: RequestBody,
+    val submissionDate: RequestBody,
+    val tags: List<RequestBody>,
+    val teacherName: RequestBody,
+    val title: RequestBody,
+    val token: RequestBody
 )
