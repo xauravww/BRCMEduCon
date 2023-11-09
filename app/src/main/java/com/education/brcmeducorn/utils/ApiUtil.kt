@@ -16,7 +16,8 @@ import java.io.File
 object ApiUtils {
 
     private val retrofit = Retrofit.Builder()
-        .baseUrl("https://backend-brcm-edu-con.vercel.app/api/v1/")
+//        .baseUrl("https://backend-brcm-edu-con.vercel.app/api/v1/")
+        .baseUrl("http://192.168.43.247:4000/api/v1/")
         .addConverterFactory(GsonConverterFactory.create())
         .build()
 
@@ -31,9 +32,8 @@ object ApiUtils {
             try {
                 val response = when (method) {
                     "GET" -> apiService.get(endpoint)
-                    "LOGIN" -> {
-                        apiService.loginPost(endpoint, requestBody)
-                    }
+                    "LOGIN" -> apiService.loginPost(endpoint, requestBody)
+                    "ASSIGNMENT_CREATE"-> apiService.createAssignment(endpoint,requestBody)
 
                     else -> throw IllegalArgumentException("Invalid method: $method")
                 }
@@ -75,6 +75,7 @@ object ApiUtils {
                                 requestBody.role,
                                 requestBody.rollno,
                                 requestBody.name,
+                                requestBody.branch,
                                 requestBody.semester,
                                 requestBody.address,
                                 requestBody.batchYear,
@@ -87,6 +88,7 @@ object ApiUtils {
                             return@withContext "ase hi"
                         }
                     }
+
                     else -> throw IllegalArgumentException("Invalid method: $method")
                 }
                 if (response.isSuccessful) {
@@ -101,14 +103,6 @@ object ApiUtils {
         }
     }
 
-//    to fetch api
-//    start a corutine and we provide to this end point of url and method and body (json)
-//    CoroutineScope(Dispatchers.Main).launch {
-//        val endpoint = "categories"
-//        val method = "GET"
-//        val requestBody = null
-//        val result = ApiUtils.fetchData(endpoint, method, requestBody)
-//        textView.text = result
-//    }
+
 
 }

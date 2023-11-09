@@ -10,6 +10,7 @@ data class RegisterRequest(
     val role: RequestBody,
     val rollno: RequestBody,
     val name: RequestBody,
+    val branch: RequestBody,
     val semester: RequestBody,
     val photo: String,
     val address: RequestBody,

@@ -1,6 +1,7 @@
 package com.education.brcmeducorn.api
 
 import com.education.brcmeducorn.api.apiModels.LoginResponse
+import com.education.brcmeducorn.api.apiModels.Success
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import retrofit2.Response
@@ -31,6 +32,7 @@ interface ApiService {
         @Part("role") role: RequestBody,
         @Part("rollno") rollno: RequestBody,
         @Part("name") name: RequestBody,
+        @Part("branch") branch: RequestBody,
         @Part("semester") semester: RequestBody,
         @Part("address") address: RequestBody,
         @Part("batchYear") batchYear: RequestBody,
@@ -39,6 +41,11 @@ interface ApiService {
         @Part("dateOfBirth") dateOfBirth: RequestBody,
         @Part("age") age: RequestBody
     ): Response<LoginResponse>
+    @POST
+    suspend fun createAssignment(
+        @Url url: String,
+        @Body requestBody: Any,
+    ): Response<Success>
 
 //    @POST("posts")
 //    suspend fun createPost(@Body post: Post): Response<Post>

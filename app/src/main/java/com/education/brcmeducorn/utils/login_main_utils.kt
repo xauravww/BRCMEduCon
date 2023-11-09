@@ -22,9 +22,7 @@ class login_main_utils {
     private lateinit var prefs: SharedPrefs
     private var customProgressDialog: CustomProgressDialog? = null
 
-    private
-
-    companion object {
+    private  companion object {
         var student_user = 1
         var faculty_user = 0
         var admin_user = 0
@@ -35,7 +33,6 @@ class login_main_utils {
         context: Context, role: TextView, studentBtn: Button, facultyBtn: Button, adminBtn: Button
     ) {
         //        managing the click on the login users
-
 //        1 -> student
         studentBtn.setOnClickListener {
 
@@ -137,7 +134,11 @@ class login_main_utils {
                 Log.d("hi", result.toString())
             } else {
                 customProgressDialog?.dismiss()
-                Toast.makeText(context, "send a valid input and check your internet connection", Toast.LENGTH_SHORT).show()
+                Toast.makeText(
+                    context,
+                    "send a valid input and check your internet connection",
+                    Toast.LENGTH_SHORT
+                ).show()
 
             }
 

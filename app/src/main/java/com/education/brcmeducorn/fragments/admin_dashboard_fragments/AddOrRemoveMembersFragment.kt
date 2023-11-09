@@ -199,7 +199,7 @@ class AddOrRemoveMembersFragment : Fragment() {
             val rollnoRequestBody = rollno.toRequestBody("text/plain".toMediaTypeOrNull())
             val nameRequestBody = name.toRequestBody("text/plain".toMediaTypeOrNull())
             val semesterRequestBody = semester.toRequestBody("text/plain".toMediaTypeOrNull())
-            val branchRequestBody = branch+semester.toRequestBody("text/plain".toMediaTypeOrNull())
+            val branchRequestBody = branch.toRequestBody("text/plain".toMediaTypeOrNull())
             val addressRequestBody = address.toRequestBody("text/plain".toMediaTypeOrNull())
             val batchYearRequestBody = batchYear.toString().toRequestBody("text/plain".toMediaTypeOrNull())
             val fathernameRequestBody = fathername.toRequestBody("text/plain".toMediaTypeOrNull())
@@ -212,7 +212,7 @@ class AddOrRemoveMembersFragment : Fragment() {
                 val userRequest = RegisterRequest(
                     emailRequestBody, phoneRequestBody, countryCodeRequestBody,
                     passRequestBody, roleRequestBody, rollnoRequestBody, nameRequestBody,
-                    semesterRequestBody, "photo",
+                    branchRequestBody,semesterRequestBody, "photo",
                     addressRequestBody, batchYearRequestBody, fathernameRequestBody,
                     registrationNoRequestBody, dateOfBirthRequestBody, ageRequestBody
                 )

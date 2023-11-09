@@ -73,7 +73,7 @@ class RegisterActivity : AppCompatActivity() {
         var faculty_user = 0
         var admin_user = 0
         var roll: String = "student"
-        var selectedBranch: String = "branch"
+        var selectedBranch: String = "Branch"
         var selectedSemester: String = "sem"
         private const val PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE = 1
 
@@ -178,7 +178,7 @@ class RegisterActivity : AppCompatActivity() {
 
         val isValid = ValidRegistration.isUserValid(
             email, phone, countryCode, pass, role,
-            rollno, name, "$branch|$semester",
+            rollno, name, semester,
             "photo", address, batchYear, fathername, registrationNo,
             dateOfBirth, age, this
         )
@@ -192,8 +192,7 @@ class RegisterActivity : AppCompatActivity() {
             val rollnoRequestBody = rollno.toRequestBody("text/plain".toMediaTypeOrNull())
             val nameRequestBody = name.toRequestBody("text/plain".toMediaTypeOrNull())
             val semesterRequestBody = semester.toRequestBody("text/plain".toMediaTypeOrNull())
-            val branchRequestBody =
-                branch + semester.toRequestBody("text/plain".toMediaTypeOrNull())
+            val branchRequestBody = branch.toRequestBody("text/plain".toMediaTypeOrNull())
             val addressRequestBody = address.toRequestBody("text/plain".toMediaTypeOrNull())
             val batchYearRequestBody =
                 batchYear.toString().toRequestBody("text/plain".toMediaTypeOrNull())
@@ -209,10 +208,11 @@ class RegisterActivity : AppCompatActivity() {
             CoroutineScope(Dispatchers.Main).launch {
                 val endpoint = "register"
                 val method = "REGISTER"
+                Log.d("branch",branchRequestBody.toString())
                 val userRequest = RegisterRequest(
                     emailRequestBody, phoneRequestBody, countryCodeRequestBody,
                     passRequestBody, roleRequestBody, rollnoRequestBody, nameRequestBody,
-                    semesterRequestBody, "photo",
+                    branchRequestBody, semesterRequestBody, "photo",
                     addressRequestBody, batchYearRequestBody, fathernameRequestBody,
                     registrationNoRequestBody, dateOfBirthRequestBody, ageRequestBody
                 )
@@ -261,6 +261,7 @@ class RegisterActivity : AppCompatActivity() {
 
         prefs.saveString("token", response.token)
         prefs.saveString("name", response.member.name)
+        prefs.saveString("name", response.member.branch)
         prefs.saveString("rollNo", response.member.rollno)
         prefs.saveString("roll", response.member.role)
         prefs.saveString("imageUrl", response.member.imageurl.url)
@@ -313,7 +314,7 @@ class RegisterActivity : AppCompatActivity() {
             override fun onItemSelected(
                 parent: AdapterView<*>?, view: View?, position: Int, id: Long
             ) {
-                AddOrRemoveMembersFragment.selectedBranch = branchArray[position]
+                selectedBranch = branchArray[position]
 
             }
 
@@ -326,7 +327,7 @@ class RegisterActivity : AppCompatActivity() {
             override fun onItemSelected(
                 parent: AdapterView<*>?, view: View?, position: Int, id: Long
             ) {
-                AddOrRemoveMembersFragment.selectedSemester = semesterArray[position]
+                selectedSemester = semesterArray[position]
             }
 
             override fun onNothingSelected(parent: AdapterView<*>?) {

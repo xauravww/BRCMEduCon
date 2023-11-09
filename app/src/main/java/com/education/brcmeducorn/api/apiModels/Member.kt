@@ -18,5 +18,6 @@ data class Member(
     val registrationNo: String,
     val role: String,
     val rollno: String,
-    val semester: String
+    val semester: String,
+    val branch: String
 )

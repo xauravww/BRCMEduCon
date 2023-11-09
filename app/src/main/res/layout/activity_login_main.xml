@@ -7,250 +7,262 @@
 
     tools:context=".activites.LoginMainActivity">
 
-    <ImageView
-        android:id="@+id/imgLogoBig"
-        android:layout_width="300dp"
-        android:layout_height="245dp"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp"
-        android:src="@drawable/brcm_logo_big" />
-
-    <LinearLayout
-        android:id="@+id/llBtnRoles"
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/imgLogoBig"
-        android:weightSum="5"
+        android:isScrollContainer="true"
+        android:layout_marginBottom="10dp"
+        android:scrollbars="none">
 
-        >
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:fontFamily="@font/montserrat_extrabold"
-
-            android:gravity="center_vertical|center_horizontal"
-            android:text="I'm"
-            android:textColor="@color/fontPrimary"
-            android:textSize="18sp"
-
-            />
-
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="3"
-            android:background="@color/appPrimary"
-            android:weightSum="3"
-            android:padding="5dp"
-            >
-
-            <Button
-                android:id="@+id/studentBtn"
-                android:layout_width="0dp"
-                android:layout_height="34dp"
-                android:layout_weight="1"
-                android:background="@color/white"
-                android:elevation="0dp"
-                android:fontFamily="@font/no_to_sans_bold"
-                android:text="Student"
-
-                android:textAllCaps="false"
-                android:textColor="@color/black"
-                />
-
-            <Button
-                android:id="@+id/facultyBtn"
-                android:layout_width="0dp"
-                android:layout_height="34dp"
-                android:layout_marginHorizontal="3dp"
-                android:layout_weight="1"
-                android:background="@color/appPrimary"
-                android:elevation="0dp"
-                android:fontFamily="@font/no_to_sans_bold"
-                android:text="Faculty"
-                android:textAllCaps="false"
-                android:textColor="#ffffff" />
-
-            <Button
-                android:id="@+id/adminBtn"
-                android:layout_width="0dp"
-                android:layout_height="34dp"
-                android:layout_weight="1"
-                android:background="@color/appPrimary"
-                android:elevation="0dp"
-                android:fontFamily="@font/no_to_sans_bold"
-                android:text="Admin"
-                android:textAllCaps="false"
-                android:textColor="#ffffff" />
-        </LinearLayout>
-    </LinearLayout>
-
-    <TextView
-        android:id="@+id/txtTitleLoginRole"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/llBtnRoles"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="25dp"
-        android:fontFamily="@font/montserrat_extrabold"
-        android:text="Student Login"
-        android:textColor="@color/fontPrimary"
-        android:textSize="35sp" />
-
-    <TextView
-        android:id="@+id/txtRegister"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/txtTitleLoginRole"
-        android:layout_centerHorizontal="true"
-        android:fontFamily="@font/no_to_sans_bold"
-        android:text="@string/register"
-        android:textColor="@color/keep_playstoreicon_background"
-        android:textSize="15sp"
-        android:contextClickable="true"
-        android:shadowColor="@color/header_bg"
-        android:shadowRadius="0.2"
-
-        />
-
-
-    <RelativeLayout
-        android:layout_marginTop="25dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/txtRegister"
-        >
-
-        <LinearLayout
-            android:id="@+id/llInputUseridOrEmail"
+        <RelativeLayout
+            android:id="@+id/main"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:weightSum="5"
-            android:layout_marginVertical="20dp">
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
             <ImageView
-                android:layout_width="0dp"
-                android:layout_height="35dp"
-                android:layout_gravity="center"
-                android:layout_weight="1"
-                android:src="@drawable/baseline_mail_24"
-                app:tint="@color/appPrimary"
-                />
+                android:id="@+id/imgLogoBig"
+                android:layout_width="300dp"
+                android:layout_height="245dp"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="20dp"
+                android:src="@drawable/brcm_logo_big" />
 
-            <EditText
-                android:id="@+id/edtUseridOrEmail"
-                android:layout_width="0dp"
+            <LinearLayout
+                android:id="@+id/llBtnRoles"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="top"
-                android:layout_marginRight="20dp"
-                android:layout_weight="4"
-                android:fontFamily="@font/no_to_sans_bold"
-                android:gravity="start"
-                android:hint="Email or Userid"
-                android:maxLength="35"
-                android:maxLines="1"
-                android:paddingHorizontal="16dp"
-                android:textColorHint="@color/appPrimary"
-                android:textSize="16sp"
-
-                />
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/llPassword"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/llInputUseridOrEmail"
-            android:weightSum="5">
-
-            <ImageView
-                android:layout_width="0dp"
-                android:layout_height="35dp"
-                android:layout_gravity="center"
-                android:layout_weight="1"
-                android:src="@drawable/baseline_lock_24"
-                app:tint="@color/appPrimary"
-
-                />
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="4"
-                android:layout_marginRight="20dp"
-                app:passwordToggleEnabled="true"
-                app:passwordToggleTint="@color/appPrimary"
-                android:textColorHint="@color/appPrimary"
+                android:layout_below="@id/imgLogoBig"
+                android:background="@drawable/smooth_corner_shape"
+                android:elevation="1dp"
+                android:paddingBottom="5dp"
+                android:paddingTop="5dp"
+                android:weightSum="5"
 
                 >
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/edtPassword"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="Password"
-                    android:inputType="textPassword"
-                    android:paddingHorizontal="16dp"
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/montserrat_extrabold"
+
+                    android:gravity="center_vertical|center_horizontal"
+                    android:text="I'm"
+                    android:textColor="@color/fontPrimary"
+                    android:textSize="18sp"
 
                     />
-            </com.google.android.material.textfield.TextInputLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3"
+                    android:background="@drawable/primary_bg"
+                    android:elevation="4dp"
+                    android:paddingStart="11dp"
+                    android:paddingEnd="11dp"
+                    android:paddingTop="5dp"
+                    android:paddingBottom="5dp"
+                    android:weightSum="3">
+
+                    <Button
+                        android:id="@+id/studentBtn"
+                        android:layout_width="0dp"
+                        android:layout_height="34dp"
+                        android:layout_weight="1"
+                        android:background="@color/white"
+                        android:elevation="0dp"
+                        android:fontFamily="@font/no_to_sans_bold"
+                        android:text="Student"
+                        android:textAllCaps="false"
+                        android:textColor="@color/black" />
+
+                    <Button
+                        android:id="@+id/facultyBtn"
+                        android:layout_width="0dp"
+                        android:layout_height="34dp"
+                        android:layout_marginHorizontal="3dp"
+                        android:layout_weight="1"
+                        android:background="@color/appPrimary"
+                        android:elevation="0dp"
+                        android:fontFamily="@font/no_to_sans_bold"
+                        android:text="Faculty"
+                        android:textAllCaps="false"
+                        android:textColor="#ffffff" />
+
+                    <Button
+                        android:id="@+id/adminBtn"
+                        android:layout_width="0dp"
+                        android:layout_height="34dp"
+                        android:layout_weight="1"
+                        android:background="@color/appPrimary"
+                        android:elevation="0dp"
+                        android:fontFamily="@font/no_to_sans_bold"
+                        android:text="Admin"
+                        android:textAllCaps="false"
+                        android:textColor="#ffffff" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/txtTitleLoginRole"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/llBtnRoles"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="25dp"
+                android:fontFamily="@font/montserrat_extrabold"
+                android:text="Student Login"
+                android:textColor="@color/fontPrimary"
+                android:textSize="35sp" />
+
+            <TextView
+                android:id="@+id/txtRegister"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/txtTitleLoginRole"
+                android:layout_centerHorizontal="true"
+                android:contextClickable="true"
+                android:fontFamily="@font/no_to_sans_bold"
+                android:shadowColor="@color/header_bg"
+                android:shadowRadius="0.2"
+                android:text="@string/register"
+                android:textColor="@color/keep_playstoreicon_background"
+                android:textSize="15sp"
+
+                />
 
 
-        </LinearLayout>
+            <RelativeLayout
+                android:id="@+id/rlLogin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/txtRegister"
+                android:layout_marginStart="2dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="2dp"
+                android:layout_marginBottom="2dp"
+                android:background="@drawable/smooth_corner_shape"
+                android:elevation="2dp"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp">
 
-    </RelativeLayout>
+                <LinearLayout
+                    android:id="@+id/llInputUseridOrEmail"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginVertical="20dp"
+                    android:layout_marginTop="20dp"
+                    android:weightSum="5">
 
-    <CheckBox
-        android:id="@+id/chkRemember"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@id/btnLogin"
-        android:layout_marginBottom="20dp"
-        android:layout_marginLeft="10dp"
-        android:outlineAmbientShadowColor="@color/appPrimary"
-        />
+                    <ImageView
+                        android:layout_width="0dp"
+                        android:layout_height="35dp"
+                        android:layout_gravity="center"
+                        android:layout_weight="1"
+                        android:src="@drawable/baseline_mail_24"
+                        app:tint="@color/appPrimary" />
 
-    <TextView
-        android:id="@+id/txtRemember"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@id/btnLogin"
-        android:layout_marginLeft="37dp"
-        android:layout_marginBottom="25dp"
-        android:fontFamily="@font/no_to_sans_bold"
-        android:text="Remember me"
-        android:textColor="@color/appPrimary"
+                    <EditText
+                        android:id="@+id/edtUseridOrEmail"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="top"
+                        android:layout_marginEnd="20dp"
+                        android:layout_weight="4"
+                        android:fontFamily="@font/no_to_sans_bold"
+                        android:gravity="start"
+                        android:hint="@string/enter_your_email_here"
+                        android:maxLength="35"
+                        android:maxLines="1"
+                        android:paddingHorizontal="16dp"
+                        android:inputType="textEmailAddress"
+                        android:textColorHint="@color/appPrimary"
+                        android:textSize="16sp"
+
+                        />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/llPassword"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/llInputUseridOrEmail"
+                    android:weightSum="5">
+
+                    <ImageView
+                        android:layout_width="0dp"
+                        android:layout_height="35dp"
+                        android:layout_gravity="center"
+                        android:layout_weight="1"
+                        android:src="@drawable/baseline_lock_24"
+                        app:tint="@color/appPrimary"
+
+                        />
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="20dp"
+                        android:layout_weight="4"
+                        android:textColorHint="@color/appPrimary"
+                        app:passwordToggleEnabled="true"
+                        app:passwordToggleTint="@color/appPrimary"
+
+                        >
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/edtPassword"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="@string/password"
+                            android:inputType="textPassword"
+                            android:paddingHorizontal="16dp"
+
+                            />
+                    </com.google.android.material.textfield.TextInputLayout>
 
 
-        />
-    <TextView
-        android:id="@+id/txtForgot"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Forgot Password?"
-        android:layout_above="@id/btnLogin"
-        android:layout_alignParentRight="true"
-        android:layout_marginBottom="25dp"
-        android:layout_marginRight="30dp"
-        android:fontFamily="@font/no_to_sans_bold"
-        android:textColor="@color/appPrimary"
-        />
+                </LinearLayout>
 
-    <Button
-        android:id="@+id/btnLogin"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_marginHorizontal="10dp"
-        android:layout_marginBottom="10dp"
-        android:background="@drawable/smooth_corner_shape"
-        android:backgroundTint="@color/appPrimary"
-        android:fontFamily="@font/no_to_sans_bold"
-        android:text="Login"
-        android:textAllCaps="false"
-        android:textColor="#ffffff"
-        android:textSize="18sp" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/rlLogin"
+                android:layout_alignParentBottom="true">
+
+                    <TextView
+                        android:id="@+id/txtForgot"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginEnd="30dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="25dp"
+                        android:fontFamily="@font/no_to_sans_bold"
+                        android:text="@string/forgot_password"
+                        android:textColor="@color/appPrimary" />
+
+                    <Button
+                        android:id="@+id/btnLogin"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/txtForgot"
+                        android:layout_alignParentBottom="true"
+                        android:layout_marginHorizontal="10dp"
+                        android:background="@drawable/smooth_corner_shape"
+                        android:backgroundTint="@color/appPrimary"
+                        android:elevation="4dp"
+                        android:fontFamily="@font/no_to_sans_bold"
+                        android:text="@string/login"
+                        android:textAllCaps="false"
+                        android:textColor="#ffffff"
+                        android:textSize="18sp" />
+
+            </RelativeLayout>
+        </RelativeLayout>
+    </ScrollView>
 </RelativeLayout>
