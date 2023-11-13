@@ -88,7 +88,6 @@ class AssignmentFragment : Fragment() {
                 val endpoint = "faculty/assignment"
                 val method = "ASSIGNMENT_CREATE"
                 val createAssignmentReqBody = CreateAssignmentReq(
-                    attachment = "no attachment",
                     description = description,
                     dueDate = dueDate,
                     branch = branch,

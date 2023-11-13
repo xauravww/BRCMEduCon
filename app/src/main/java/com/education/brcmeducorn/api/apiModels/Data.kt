@@ -1,21 +1,21 @@
 package com.education.brcmeducorn.api.apiModels
 
-data class CreateAssignmentReq(
+data class Data(
+    val __v: Int,
+    val _id: String,
+    val branch: String,
     val description: String,
     val dueDate: String,
-    val branch: String,
     val givenDate: String,
     val grades: Any,
     val lateSubmission: Boolean,
     val priority: String,
     val semester: String,
-    val status: String,
-    val studentName: String,
-    val studentRollNo: String,
+    var status: String,
     val subject: String,
     val submissionDate: Any,
+    val submissions: List<Submission>,
     val tags: List<String>,
     val teacherName: String,
-    val title: String,
-    val token: String
+    val title: String
 )

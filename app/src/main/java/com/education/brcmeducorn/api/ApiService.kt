@@ -1,5 +1,6 @@
 package com.education.brcmeducorn.api
 
+import com.education.brcmeducorn.api.apiModels.GetAssignmentRes
 import com.education.brcmeducorn.api.apiModels.LoginResponse
 import com.education.brcmeducorn.api.apiModels.Success
 import okhttp3.MultipartBody
@@ -7,12 +8,18 @@ import okhttp3.RequestBody
 import retrofit2.Response
 import retrofit2.http.*
 
+
 interface ApiService {
     @GET
     suspend fun get(
         @Url url: String,
-//        @Body requestBody: Any? = null
+        @Body requestBody: Any
     ): Response<Any>
+    @POST
+    suspend fun getAssignments(
+        @Url url: String,
+        @Body requestBody: Any
+    ): Response<GetAssignmentRes>
 
     @POST
     suspend fun loginPost(
@@ -45,6 +52,16 @@ interface ApiService {
     suspend fun createAssignment(
         @Url url: String,
         @Body requestBody: Any,
+    ): Response<Success>
+
+    @Multipart
+    @PUT("submit/assignment/{id}")
+    suspend fun submitAssignment(
+        @Path ("id") id: String,
+        @Part file: MultipartBody.Part,
+        @Part("studentName") studentName: RequestBody,
+        @Part("studentRollNo") studentRollNo: RequestBody,
+        @Part("token") token: RequestBody,
     ): Response<Success>
 
 //    @POST("posts")

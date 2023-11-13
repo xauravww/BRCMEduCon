@@ -256,18 +256,16 @@ class RegisterActivity : AppCompatActivity() {
         }
     }
 
-
     private fun savePrefs(response: LoginResponse) {
-
         prefs.saveString("token", response.token)
         prefs.saveString("name", response.member.name)
-        prefs.saveString("name", response.member.branch)
         prefs.saveString("rollNo", response.member.rollno)
         prefs.saveString("roll", response.member.role)
+        prefs.saveString("semester", response.member.semester)
+        prefs.saveString("branch", response.member.branch)
         prefs.saveString("imageUrl", response.member.imageurl.url)
 
     }
-
     private fun checkRoll(response: LoginResponse): Boolean {
         return if (response.member.role == "admin" && response.member.role == "admin") {
             Log.d("hii", true.toString())

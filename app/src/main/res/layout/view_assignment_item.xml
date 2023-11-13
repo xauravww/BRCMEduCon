@@ -106,6 +106,7 @@
 
             <TextView
                 android:id="@+id/textViewFeedbackLabel"
+                android:visibility="gone"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="sans-serif"
@@ -119,7 +120,7 @@
                 android:layout_height="match_parent"
                 android:fontFamily="sans-serif"
                 android:text="Good job!"
-
+                android:visibility="gone"
                 android:textColor="@color/dark_gray"
                 android:textSize="18sp" />
 
@@ -131,7 +132,6 @@
                 android:fontFamily="sans-serif"
                 android:text="Grade:"
                 android:textColor="@color/black"
-
                 android:textSize="18sp" />
 
             <TextView
@@ -140,7 +140,6 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="sans-serif"
                 android:text="A+"
-
                 android:textColor="@color/com_red"
                 android:textSize="18sp" />
         </LinearLayout>
