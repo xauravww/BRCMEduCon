@@ -55,7 +55,7 @@ object ApiUtils {
 
                     "CREATE_ATTENDANCE" -> {
                         Log.d("hi anmol", "")
-                        apiService.createAndUpdateAttendance(endpoint, requestBody)
+                        apiService.createAttendance(endpoint, requestBody)
                     }
 
                     else -> throw IllegalArgumentException("Invalid method: $method")

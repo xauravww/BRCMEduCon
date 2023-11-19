@@ -80,7 +80,7 @@ interface ApiService {
     ): Response<AllStudentsForAttendanceRes>
 
     @POST
-    suspend fun createAndUpdateAttendance(
+    suspend fun createAttendance(
         @Url url: String,
         @Body requestBody: Any
     ): Response<Success>
