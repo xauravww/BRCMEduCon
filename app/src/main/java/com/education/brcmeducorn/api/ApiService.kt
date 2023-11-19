@@ -1,7 +1,10 @@
 package com.education.brcmeducorn.api
 
+import com.education.brcmeducorn.api.apiModels.AllStudentsForAttendanceRes
 import com.education.brcmeducorn.api.apiModels.GetAssignmentRes
+import com.education.brcmeducorn.api.apiModels.GetOldAttendanceRes
 import com.education.brcmeducorn.api.apiModels.LoginResponse
+import com.education.brcmeducorn.api.apiModels.StudentIdCardRes
 import com.education.brcmeducorn.api.apiModels.Success
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
@@ -15,6 +18,7 @@ interface ApiService {
         @Url url: String,
         @Body requestBody: Any
     ): Response<Any>
+
     @POST
     suspend fun getAssignments(
         @Url url: String,
@@ -48,22 +52,53 @@ interface ApiService {
         @Part("dateOfBirth") dateOfBirth: RequestBody,
         @Part("age") age: RequestBody
     ): Response<LoginResponse>
+
     @POST
     suspend fun createAssignment(
         @Url url: String,
         @Body requestBody: Any,
     ): Response<Success>
 
+    @POST("student/id-card/{rollNo}")
+    suspend fun idCardByStudentRollNo(
+        @Path("rollNo") rollNo: String,
+        @Body requestBody: Any
+    ): Response<StudentIdCardRes>
+
+    @POST
+    suspend fun getOldAttendance(
+        @Url url: String,
+        @Body requestBody: Any
+    ): Response<GetOldAttendanceRes>
+
+
+
+    @POST
+    suspend fun getAllStudentsForAttendance(
+        @Url url: String,
+        @Body requestBody: Any
+    ): Response<AllStudentsForAttendanceRes>
+
+    @POST
+    suspend fun createAndUpdateAttendance(
+        @Url url: String,
+        @Body requestBody: Any
+    ): Response<Success>
+
     @Multipart
     @PUT("submit/assignment/{id}")
     suspend fun submitAssignment(
-        @Path ("id") id: String,
+        @Path("id") id: String,
         @Part file: MultipartBody.Part,
         @Part("studentName") studentName: RequestBody,
         @Part("studentRollNo") studentRollNo: RequestBody,
         @Part("token") token: RequestBody,
     ): Response<Success>
-
+    @PUT
+    suspend fun updateAttendance(
+        @Url url: String,
+        @Body requestBody: Any
+    ): Response<Success>
 //    @POST("posts")
 //    suspend fun createPost(@Body post: Post): Response<Post>
 //

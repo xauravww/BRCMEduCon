@@ -23,4 +23,6 @@
     <string name="login">Login</string>
     <string name="enter_your_email_here">email </string>
     <string name="select_an_attachment">Select An Attachment</string>
+    <string name="brcm_college_of_engineering_amp_technology"><![CDATA[BRCM College of Engineering & Technology]]></string>
+    <string name="loading">loading ..</string>
 </resources>

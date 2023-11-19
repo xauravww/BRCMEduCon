@@ -17,7 +17,7 @@
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/imgAlumniProfile"
             android:layout_width="0dp"
-            android:layout_height="50dp"
+            android:layout_height="match_parent"
             android:src="@drawable/human_image"
             android:layout_weight="1"
             android:layout_gravity="center_vertical"
@@ -35,45 +35,50 @@
             <TextView
                 android:id="@+id/Name"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp"
-
-                android:layout_toRightOf="@id/imgAlumniProfile"
+                android:layout_height="0dp"
+                android:layout_marginStart="5dp"
                 android:layout_weight="4"
                 android:fontFamily="@font/no_to_sans_bold"
                 android:text="Name"
                 android:textColor="#000000"
                 android:textSize="12sp"
                 android:textStyle="bold" />
+
             <TextView
                 android:id="@+id/rollNo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Roll No."
-                android:layout_marginLeft="5dp"
+                android:layout_marginStart="10dp"
                 android:fontFamily="@font/no_to_sans_bold"
                 />
 
         </LinearLayout>
+
         <RadioGroup
             android:id="@+id/radioGroup"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_weight="2.5"
             android:orientation="horizontal"
             android:layout_gravity="center"
+            android:gravity="center"
             >
             <RadioButton
                 android:id="@+id/present"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Present"
+                android:layout_height="match_parent"
+                android:text="P"
+                android:layout_marginStart="5dp"
+                android:layout_marginEnd="5dp"
                 />
             <RadioButton
                 android:id="@+id/absent"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Absent"
+                android:layout_height="match_parent"
+                android:text="A"
+                android:layout_marginStart="15dp"
+                android:layout_marginEnd="5dp"
                 />
         </RadioGroup>
     </LinearLayout>

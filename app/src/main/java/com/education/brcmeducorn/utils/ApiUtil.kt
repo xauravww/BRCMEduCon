@@ -18,7 +18,7 @@ object ApiUtils {
 
     private val retrofit = Retrofit.Builder()
 //        .baseUrl("https://backend-brcm-edu-con.vercel.app/api/v1/")
-        .baseUrl("http://192.168.43.248:4000/api/v1/")
+        .baseUrl("http://192.168.43.247:4000/api/v1/")
         .addConverterFactory(GsonConverterFactory.create())
         .build()
 
@@ -36,6 +36,28 @@ object ApiUtils {
                     "LOGIN" -> apiService.loginPost(endpoint, requestBody)
                     "ASSIGNMENT_CREATE" -> apiService.createAssignment(endpoint, requestBody)
                     "GET_ASSIGNMENTS" -> apiService.getAssignments(endpoint, requestBody)
+                    "GET_STUDENT_ID_CARD" -> {
+                        // this endpoint is rollNo that is param of our req
+                        apiService.idCardByStudentRollNo(endpoint, requestBody)
+                    }
+
+                    "GET_OLD_ATTENDANCE" -> {
+                        apiService.getOldAttendance(endpoint, requestBody)
+                    }
+
+                    "UPDATE_ATTENDANCE" -> {
+                        apiService.updateAttendance(endpoint, requestBody)
+                    }
+
+                    "GET_ALL_STUDENTS_FOR_ATTENDANCE" -> {
+                        apiService.getAllStudentsForAttendance(endpoint, requestBody)
+                    }
+
+                    "CREATE_ATTENDANCE" -> {
+                        Log.d("hi anmol", "")
+                        apiService.createAndUpdateAttendance(endpoint, requestBody)
+                    }
+
                     else -> throw IllegalArgumentException("Invalid method: $method")
                 }
                 if (response.isSuccessful) {
@@ -91,7 +113,13 @@ object ApiUtils {
 
                     "SUBMIT_ASSIGNMENT" -> {
                         if (requestBody is SubmitAssignmentReq) {
-                            apiService.submitAssignment(requestBody.id,body,requestBody.studentName,requestBody.studentRollNo,requestBody.token)
+                            apiService.submitAssignment(
+                                requestBody.id,
+                                body,
+                                requestBody.studentName,
+                                requestBody.studentRollNo,
+                                requestBody.token
+                            )
                         } else {
                             return@withContext "ase hi"
 
