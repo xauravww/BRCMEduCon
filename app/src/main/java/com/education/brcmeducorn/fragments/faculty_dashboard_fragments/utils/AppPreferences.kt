@@ -4,7 +4,7 @@ import android.content.Context
 import com.education.brcmeducorn.utils.SharedPrefs
 
 class AppPreferences(context: Context) {
-    private var prefs: SharedPrefs=SharedPrefs(context)
+    private var prefs: SharedPrefs = SharedPrefs(context)
 
     fun getToken(): String {
         return prefs.getString("token", "") ?: ""
@@ -33,6 +33,35 @@ class AppPreferences(context: Context) {
     fun getBranch(): String {
         return prefs.getString("branch", "") ?: ""
     }
+
+    fun getAddress(): String {
+        return prefs.getString("address", "") ?: ""
+    }
+
+    fun getFatherName(): String {
+        return prefs.getString("fatherName", "") ?: ""
+    }
+
+    fun getDOB(): String {
+        return prefs.getString("DOB", "") ?: ""
+    }
+
+    fun getEmail(): String {
+        return prefs.getString("email", "") ?: ""
+    }
+
+    fun getMobileNumber(): String {
+        return prefs.getString("mobile", "") ?: ""
+    }
+
+    fun getRegistrationNo(): String {
+        return prefs.getString("regNo", "") ?: ""
+    }
+
+    fun getBatch(): String {
+        return prefs.getString("batch", "") ?: ""
+    }
+
 
     // You can add more methods for other preferences if needed
 

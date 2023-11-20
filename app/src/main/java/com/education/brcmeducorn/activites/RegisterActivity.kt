@@ -264,6 +264,13 @@ class RegisterActivity : AppCompatActivity() {
         prefs.saveString("semester", response.member.semester)
         prefs.saveString("branch", response.member.branch)
         prefs.saveString("imageUrl", response.member.imageurl.url)
+        prefs.saveString("address", response.member.address)
+        prefs.saveString("fatherName", response.member.fathername)
+        prefs.saveString("DOB", response.member.dateOfBirth)
+        prefs.saveString("email", response.member.email)
+        prefs.saveString("mobile", response.member.phone.toString())
+        prefs.saveString("regNo", response.member.registrationNo)
+        prefs.saveString("batch", response.member.batchYear.toString())
 
     }
     private fun checkRoll(response: LoginResponse): Boolean {

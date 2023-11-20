@@ -15,6 +15,7 @@ import com.education.brcmeducorn.api.apiModels.GetAssignmentRes
 import com.education.brcmeducorn.api.apiModels.StudentIdCardRes
 import com.education.brcmeducorn.api.apiModels.Success
 import com.education.brcmeducorn.api.apiModels.Token
+import com.education.brcmeducorn.fragments.faculty_dashboard_fragments.utils.AppPreferences
 import com.education.brcmeducorn.utils.ApiUtils
 import com.education.brcmeducorn.utils.SharedPrefs
 import com.google.android.material.imageview.ShapeableImageView
@@ -41,6 +42,20 @@ class IDCardFragment : Fragment() {
     private lateinit var txtBatchYear: TextView
     private lateinit var txtPhone: TextView
     private lateinit var txtAddress: TextView
+
+    //Shared pReference variables
+    private lateinit var stringAddress: String
+    private lateinit var stringName: String
+    private lateinit var stringRollNumber: String
+    private lateinit var stringEmail: String
+    private lateinit var stringRegNo: String
+
+    private lateinit var stringDOB: String
+    private lateinit var stringBatchYear: String
+    private lateinit var stringMobileNumber: String
+    private lateinit var stringFatherName: String
+
+
     private val inputFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSXXX")
     private val outputFormat = SimpleDateFormat("dd/MM/yyyy")
     override fun onCreateView(
@@ -64,38 +79,61 @@ class IDCardFragment : Fragment() {
         val userData = getPrefs()
         Picasso.get().load(userData["imageUrl"]).into(imgHeaderImage)
 
-        CoroutineScope(Dispatchers.Main).launch {
-            val endpoint = "4358"//            val endpoint = userData["rollNo"]?:""
-            val method = "GET_STUDENT_ID_CARD"
-            //update in future token auth to get id card
-            val token=Token(userData["token"]?:"")
-            val result = ApiUtils.fetchData(endpoint, method, token)
-            if (result is StudentIdCardRes) {
-                txtFullName.text = result.data.name
-                txtFatherName.text = "result.data.name"
-                txtEmail.text = result.data.email
-                txtBatchYear.text = result.data.batchYear.toString()
-                txtDOB.text = outputFormat.format(inputFormat.parse(result.data.dob)!!)
-                txtRollNumber.text=result.data.rollno
-                txtPhone.text=result.data.mobileNo
-                txtAddress.text=result.data.address
-                txtRegNo.text=result.data.registrationNo
-                if (!result.success) {
-                    Toast.makeText(
-                        requireContext(),
-                        "something error",
-                        Toast.LENGTH_SHORT
-                    ).show()
-                }
-            } else {
-                Toast.makeText(
-                    requireContext(),
-                    "something went wrong",
-                    Toast.LENGTH_SHORT
-                ).show()
-            }
+        stringAddress = AppPreferences(requireContext()).getBranch()
+        stringName = AppPreferences(requireContext()).getName()
+        stringRollNumber = AppPreferences(requireContext()).getRollNo()
+        stringEmail = AppPreferences(requireContext()).getEmail()
+        stringRegNo = AppPreferences(requireContext()).getRegistrationNo()
 
-        }
+        stringDOB = AppPreferences(requireContext()).getDOB()
+        stringBatchYear = AppPreferences(requireContext()).getBatch()
+        stringMobileNumber = AppPreferences(requireContext()).getMobileNumber()
+        stringFatherName = AppPreferences(requireContext()).getFatherName()
+
+
+        txtFullName.text = stringName
+        txtFatherName.text = stringFatherName
+        txtEmail.text = stringEmail
+        txtBatchYear.text = stringBatchYear
+        Log.d("saurav",stringDOB)
+        txtDOB.text = outputFormat.format(inputFormat.parse(stringDOB)!!)
+        txtRollNumber.text = stringRollNumber
+        txtPhone.text = stringMobileNumber
+        txtAddress.text = stringAddress
+        txtRegNo.text = stringRegNo
+
+//        CoroutineScope(Dispatchers.Main).launch {
+//            val endpoint = "4358"//            val endpoint = userData["rollNo"]?:""
+//            val method = "GET_STUDENT_ID_CARD"
+//            //update in future token auth to get id card
+//            val token=Token(userData["token"]?:"")
+//            val result = ApiUtils.fetchData(endpoint, method, token)
+//            if (result is StudentIdCardRes) {
+//                txtFullName.text = result.data.name
+//                txtFatherName.text = "result.data.name"
+//                txtEmail.text = result.data.email
+//                txtBatchYear.text = result.data.batchYear.toString()
+//                txtDOB.text = outputFormat.format(inputFormat.parse(result.data.dob)!!)
+//                txtRollNumber.text=result.data.rollno
+//                txtPhone.text=result.data.mobileNo
+//                txtAddress.text=result.data.address
+//                txtRegNo.text=result.data.registrationNo
+//                if (!result.success) {
+//                    Toast.makeText(
+//                        requireContext(),
+//                        "something error",
+//                        Toast.LENGTH_SHORT
+//                    ).show()
+//                }
+//            } else {
+//                Toast.makeText(
+//                    requireContext(),
+//                    "something went wrong",
+//                    Toast.LENGTH_SHORT
+//                ).show()
+//            }
+//
+//        }
         return view
     }
 
