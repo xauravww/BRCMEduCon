@@ -19,4 +19,10 @@
     <string name="brcm">BRCM</string>
     <string name="roll_no_hint">Enter Roll no. (20-CSE-3447)</string>
     <string name="register">Not a member yet ? Register</string>
+    <string name="forgot_password">Forgot Password ?</string>
+    <string name="login">Login</string>
+    <string name="enter_your_email_here">email </string>
+    <string name="select_an_attachment">Select An Attachment</string>
+    <string name="brcm_college_of_engineering_amp_technology"><![CDATA[BRCM College of Engineering & Technology]]></string>
+    <string name="loading">loading ..</string>
 </resources>

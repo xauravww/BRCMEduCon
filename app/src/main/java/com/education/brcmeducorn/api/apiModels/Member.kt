@@ -11,12 +11,13 @@ data class Member(
     val dateOfBirth: String,
     val email: String,
     val fathername: String,
-    val imageurl: String,
+    val imageurl: imageData,
     val name: String,
     val pass: String,
     val phone: Long,
     val registrationNo: String,
     val role: String,
     val rollno: String,
-    val semester: String
+    val semester: String,
+    val branch: String
 )

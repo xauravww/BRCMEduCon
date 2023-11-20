@@ -579,7 +579,7 @@
         <color name="lineamber800">#fa9e1e</color>
         <color name="lineamber800_pressed">#a16613</color>
         <color name="lineamber900">#f77911</color>
-        <color name="lineamber900_pressed">#9e4d0b</color>
+        <color name="lineamber900_pressed">#333333</color>
         <color name="lineblack">#000000</color>
         <color name="lineblack70">#b3000000</color>
         <color name="lineblack_alpha02">#05000000</color>

@@ -1,10 +1,12 @@
 package com.education.brcmeducorn.activites
 
 import android.Manifest
-import android.app.DatePickerDialog
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.graphics.BitmapFactory
+import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -15,25 +17,27 @@ import android.widget.EditText
 import android.widget.ImageView
 import android.widget.Spinner
 import android.widget.Toast
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
-import androidx.appcompat.app.AppCompatActivity
 import com.education.brcmeducorn.R
-import com.education.brcmeducorn.activites.AdminDashboardActivity
-import com.education.brcmeducorn.activites.FacultyDashboardActivity
-import com.education.brcmeducorn.activites.StudentDashboardActivity
 import com.education.brcmeducorn.api.apiModels.LoginResponse
 import com.education.brcmeducorn.api.apiModels.RegisterRequest
+import com.education.brcmeducorn.fragments.admin_dashboard_fragments.AddOrRemoveMembersFragment
 import com.education.brcmeducorn.utils.ApiUtils
+import com.education.brcmeducorn.utils.CustomProgressDialog
+import com.education.brcmeducorn.utils.RealPathUtil
 import com.education.brcmeducorn.utils.SharedPrefs
-import com.github.dhaval2404.imagepicker.ImagePicker
+import com.education.brcmeducorn.utils.ValidRegistration
 import com.hbb20.CountryCodePicker
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import java.text.SimpleDateFormat
-import java.util.Calendar
-import java.util.Locale
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
+import okhttp3.RequestBody.Companion.toRequestBody
+
 
 class RegisterActivity : AppCompatActivity() {
     private lateinit var txtBranch: Spinner
@@ -54,20 +58,25 @@ class RegisterActivity : AppCompatActivity() {
     private lateinit var btnUpdateDetails: Button
 
     private var editTextDOB: EditText? = null
-    private var dobCalendar: Calendar? = null
     private var branchArray = arrayOf("Branch", "Cse", "Civil", "Mechanical", "Electrical")
     private var semesterArray = arrayOf(
         "Semester", "Sem1", "Sem2", "Sem3", "Sem4", "Sem5", "Sem6", "Sem7", "Sem8"
     )
     lateinit var prefs: SharedPrefs
+    private lateinit var selectedImageUri: Uri
+    private lateinit var imagePicker: ActivityResultLauncher<Intent>
+    private var customProgressDialog: CustomProgressDialog? = null
+    private lateinit var imagePath: String
 
     companion object {
         var student_user = 1
         var faculty_user = 0
         var admin_user = 0
         var roll: String = "student"
-        var selectedBranch: String = "branch"
+        var selectedBranch: String = "Branch"
         var selectedSemester: String = "sem"
+        private const val PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE = 1
+
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -90,21 +99,221 @@ class RegisterActivity : AppCompatActivity() {
         txtPassword = findViewById(R.id.txtUserPass)
         txtRollNo = findViewById(R.id.txtRollNo)
         btnUpdateDetails = findViewById(R.id.btnUpdateDetails)
-        val branchAdapter =
-            ArrayAdapter(this, R.layout.spinner_item, branchArray)
-        val semAdapter =
-            ArrayAdapter(this, R.layout.spinner_item, semesterArray)
+        val branchAdapter = ArrayAdapter(this, R.layout.spinner_item, branchArray)
+        val semAdapter = ArrayAdapter(this, R.layout.spinner_item, semesterArray)
+        getItemFromSpinner(branchArray, semesterArray)
+        txtBranch.adapter = branchAdapter
+        txtSemester.adapter = semAdapter
 
+        imagePicker =
+            registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+                if (result.resultCode == Activity.RESULT_OK) {
+                    val data: Intent? = result.data
+                    val imageUri = data?.data
+                    if (imageUri != null) {
+                        selectedImageUri = imageUri
+                        imagePath = RealPathUtil.getRealPath(this, selectedImageUri).toString()
+                        val bitmap = BitmapFactory.decodeFile(imagePath)
+                        imgStudent.setImageBitmap(bitmap)
+
+                    }
+
+
+                }
+            }
+        txtDOB.setOnClickListener {
+            ValidRegistration.showDatePickerDialog(this, txtDOB)
+        }
+        btnUpdateDetails.setOnClickListener {
+            customProgressDialog = CustomProgressDialog(this)
+            customProgressDialog!!.setMessage("wait registering ...")
+            customProgressDialog!!.show();
+            if (::selectedImageUri.isInitialized) {
+                registerRequest(this)
+            } else {
+                Toast.makeText(this, "please select an image", Toast.LENGTH_SHORT).show()
+                customProgressDialog!!.dismiss()
+            }
+        }
+        imgUploadBtn.setOnClickListener {
+            if (ContextCompat.checkSelfPermission(
+                    applicationContext,
+                    Manifest.permission.WRITE_EXTERNAL_STORAGE
+                ) == PackageManager.PERMISSION_GRANTED
+            ) {
+                val intent = Intent(Intent.ACTION_PICK)
+                intent.type = "image/*"
+                imagePicker.launch(intent)
+            } else {
+                ActivityCompat.requestPermissions(
+                    this,
+                    arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE),
+                    PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE
+
+                )
+            }
+
+        }
+    }
+
+
+    private fun registerRequest(context: Context) {
+        prefs = SharedPrefs(context)
+
+        val email = txtUserMail.text?.toString()?.trim() ?: ""
+        val phone = txtPhoneNo.text?.toString() ?: ""
+        val countryCode = countryCode.selectedCountryCodeAsInt
+        val pass = txtPassword.text?.toString()?.trim() ?: ""
+        val role = "student"
+        val rollno = txtRollNo.text?.toString()?.trim()?.uppercase() ?: ""
+        val name = txtName.text?.toString()?.trim() ?: ""
+        val semester = selectedSemester.trim()
+        val branch = selectedBranch.trim()
+        val address = txtAddress.text?.toString() ?: ""
+        val batchYear = txtbatch.text?.toString()?.toIntOrNull() ?: 0
+        val fathername = txtFather.text?.toString() ?: ""
+        val registrationNo = txtRegistrationNo.text?.toString() ?: ""
+        val dateOfBirth = txtDOB.text?.toString() ?: ""
+        val age = 20
+
+        val isValid = ValidRegistration.isUserValid(
+            email, phone, countryCode, pass, role,
+            rollno, name, semester,
+            "photo", address, batchYear, fathername, registrationNo,
+            dateOfBirth, age, this
+        )
+        if (isValid) {
+            val emailRequestBody = email.toRequestBody("text/plain".toMediaTypeOrNull())
+            val phoneRequestBody = phone.toRequestBody("text/plain".toMediaTypeOrNull())
+            val countryCodeRequestBody =
+                countryCode.toString().toRequestBody("text/plain".toMediaTypeOrNull())
+            val passRequestBody = pass.toRequestBody("text/plain".toMediaTypeOrNull())
+            val roleRequestBody = role.toRequestBody("text/plain".toMediaTypeOrNull())
+            val rollnoRequestBody = rollno.toRequestBody("text/plain".toMediaTypeOrNull())
+            val nameRequestBody = name.toRequestBody("text/plain".toMediaTypeOrNull())
+            val semesterRequestBody = semester.toRequestBody("text/plain".toMediaTypeOrNull())
+            val branchRequestBody = branch.toRequestBody("text/plain".toMediaTypeOrNull())
+            val addressRequestBody = address.toRequestBody("text/plain".toMediaTypeOrNull())
+            val batchYearRequestBody =
+                batchYear.toString().toRequestBody("text/plain".toMediaTypeOrNull())
+            val fathernameRequestBody = fathername.toRequestBody("text/plain".toMediaTypeOrNull())
+            val registrationNoRequestBody =
+                registrationNo.toRequestBody("text/plain".toMediaTypeOrNull())
+            val dateOfBirthRequestBody = dateOfBirth.toRequestBody("text/plain".toMediaTypeOrNull())
+            val ageRequestBody = age.toString().toRequestBody("text/plain".toMediaTypeOrNull())
+
+
+
+
+            CoroutineScope(Dispatchers.Main).launch {
+                val endpoint = "register"
+                val method = "REGISTER"
+                Log.d("branch",branchRequestBody.toString())
+                val userRequest = RegisterRequest(
+                    emailRequestBody, phoneRequestBody, countryCodeRequestBody,
+                    passRequestBody, roleRequestBody, rollnoRequestBody, nameRequestBody,
+                    branchRequestBody, semesterRequestBody, "photo",
+                    addressRequestBody, batchYearRequestBody, fathernameRequestBody,
+                    registrationNoRequestBody, dateOfBirthRequestBody, ageRequestBody
+                )
+                val result = ApiUtils.register(endpoint, method, userRequest, imagePath)
+
+                if (result is LoginResponse) {
+                    if (checkRoll(result)) {
+                        savePrefs(result)
+
+                        navigateDashboard(context, "$roll successfully login", true)
+
+                    } else {
+                        navigateDashboard(context, "$roll is  is not yours ", false)
+                    }
+                    Toast.makeText(
+                        this@RegisterActivity,
+                        "your register request has been sent successfully please wait until verify",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                    customProgressDialog!!.dismiss()
+                    Log.d("result", result.toString())
+                } else {
+                    Toast.makeText(
+                        this@RegisterActivity,
+                        "something went wrong",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                    customProgressDialog!!.dismiss()
+                }
+
+            }
+
+        } else {
+            Toast.makeText(
+                this@RegisterActivity,
+                "Invalid input. Please check your details.",
+                Toast.LENGTH_SHORT
+            ).show()
+            customProgressDialog!!.dismiss()
+
+        }
+    }
+
+    private fun savePrefs(response: LoginResponse) {
+        prefs.saveString("token", response.token)
+        prefs.saveString("name", response.member.name)
+        prefs.saveString("rollNo", response.member.rollno)
+        prefs.saveString("roll", response.member.role)
+        prefs.saveString("semester", response.member.semester)
+        prefs.saveString("branch", response.member.branch)
+        prefs.saveString("imageUrl", response.member.imageurl.url)
+
+    }
+    private fun checkRoll(response: LoginResponse): Boolean {
+        return if (response.member.role == "admin" && response.member.role == "admin") {
+            Log.d("hii", true.toString())
+            true
+        } else if (response.member.role == "student" && response.member.role == "student") {
+            true
+        } else response.member.role == "faculty" && response.member.role == "faculty"
+    }
+
+    private fun navigateDashboard(context: Context, msg: String, isTrue: Boolean) {
+        if (isTrue) {
+            if (student_user == 1 && faculty_user == 0 && admin_user == 0) {
+                val intent = Intent(context, StudentDashboardActivity::class.java)
+                ContextCompat.startActivity(context, intent, null)
+                customProgressDialog!!.dismiss()
+
+            } else if (faculty_user == 1 && student_user == 0 && admin_user == 0) {
+                val intent = Intent(context, FacultyDashboardActivity::class.java)
+                ContextCompat.startActivity(context, intent, null)
+                customProgressDialog!!.dismiss()
+
+            } else if (admin_user == 1 && faculty_user == 0 && student_user == 0) {
+                val intent = Intent(context, AdminDashboardActivity::class.java)
+                ContextCompat.startActivity(context, intent, null)
+                customProgressDialog!!.dismiss()
+
+            } else {
+                Toast.makeText(
+                    context, msg, Toast.LENGTH_SHORT
+                ).show()
+                customProgressDialog!!.dismiss()
+
+            }
+        } else {
+            Toast.makeText(context, "please select your correct roll", Toast.LENGTH_SHORT).show()
+            customProgressDialog!!.dismiss()
+
+        }
+    }
+
+
+    private fun getItemFromSpinner(branchArray: Array<String>, semesterArray: Array<String>) {
         txtBranch.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(
                 parent: AdapterView<*>?, view: View?, position: Int, id: Long
             ) {
                 selectedBranch = branchArray[position]
-                Toast.makeText(
-                    this@RegisterActivity,
-                    selectedBranch,
-                    Toast.LENGTH_SHORT
-                ).show()
+
             }
 
             override fun onNothingSelected(parent: AdapterView<*>?) {
@@ -123,261 +332,6 @@ class RegisterActivity : AppCompatActivity() {
                 // Kuch nahi karna
             }
         }
-
-        txtBranch.adapter = branchAdapter
-        txtSemester.adapter = semAdapter
-
-        txtDOB.setOnClickListener {
-            showDatePickerDialog()
-        }
-        btnUpdateDetails.setOnClickListener {
-            registerRequest(this)
-
-        }
-        imgUploadBtn.setOnClickListener {
-
-            if (checkPermissions()) {
-                ImagePicker.with(this)
-                    .cameraOnly()
-                    .crop() //Crop image(Optional), Check Customization for more option
-                    .compress(1024) //Final image size will be less than 1 MB(Optional)
-                    .maxResultSize(
-                        1080,
-                        1080
-                    ) //Final image resolution will be less than 1080 x 1080(Optional)
-                    .start()
-
-            } else {
-                Toast.makeText(
-                    this,
-                    " Please allow camera permission",
-                    Toast.LENGTH_SHORT
-                ).show()
-            }
-
-
-        }
     }
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-
-        imgStudent.setImageURI(data?.data)
-
-    }
-
-    private fun checkPermissions(): Boolean {
-        val cameraPermissionRequest = Manifest.permission.CAMERA
-        val cameraPermissionGranted = ContextCompat.checkSelfPermission(
-            this,
-            cameraPermissionRequest
-        ) == PackageManager.PERMISSION_GRANTED
-        if (cameraPermissionGranted) {
-            return true
-        }
-        ActivityCompat.requestPermissions(
-            this,
-            arrayOf(cameraPermissionRequest),
-            100
-        )
-        return false
-    }
-
-    private fun registerRequest(context: Context) {
-        val email = txtUserMail.text?.toString()?.trim() ?: ""
-        val phone = txtPhoneNo.text?.toString() ?: ""
-        val countryCode = countryCode.selectedCountryCodeAsInt
-        val pass = txtPassword.text?.toString()?.trim() ?: ""
-        val role = "student"
-        val rollno = txtRollNo.text?.toString()?.trim()?.uppercase() ?: ""
-        val name = txtName.text?.toString()?.trim() ?: ""
-        val semester = selectedSemester.trim()
-        val branch = selectedBranch.trim()
-        val imageUrl = "img link"
-        prefs = SharedPrefs(context)
-
-        val address = txtAddress.text?.toString() ?: ""
-        val batchYear = txtbatch.text?.toString()?.toIntOrNull() ?: 0
-        val fathername = txtFather.text?.toString() ?: ""
-        val registrationNo = txtRegistrationNo.text?.toString() ?: ""
-        val dateOfBirth = txtDOB.text?.toString() ?: ""
-        val age = 20
-        val isValid = isUserValid(
-            email, phone, countryCode, pass, role,
-            rollno, name, "$branch|$semester", imageUrl,
-            address, batchYear, fathername,
-            registrationNo, dateOfBirth, age
-        )
-        if (isValid) {
-
-            CoroutineScope(Dispatchers.Main).launch {
-                val endpoint = "register"
-                val method = "REGISTER"
-                val userRequest = RegisterRequest(
-                    email, phone.toLong(), countryCode,
-                    pass, role, rollno, name, "$branch|$semester",
-                    imageUrl, address, batchYear, fathername,
-                    registrationNo, dateOfBirth, age
-                )
-                Log.d("hloo", userRequest.toString())
-
-                val result = ApiUtils.fetchData(endpoint, method, userRequest)
-                Log.d("hlooo", result.toString())
-
-                if (result is LoginResponse) {
-                    Toast.makeText(
-                        this@RegisterActivity,
-                        "your register request has been sent successfully please wait until verify",
-                        Toast.LENGTH_SHORT
-                    ).show()
-                    Log.d("hlooo", result.toString())
-                }
-
-            }
-
-        } else {
-            Toast.makeText(
-                this@RegisterActivity,
-                "Invalid input. Please check your details.",
-                Toast.LENGTH_SHORT
-            ).show()
-        }
-    }
-
-    private fun isUserValid(
-        email: String, phone: String, countryCode: Int,
-        pass: String, role: String, rollno: String, name: String,
-        semester: String, imageUrl: String, address: String,
-        batchYear: Int, fathername: String, registrationNo: String,
-        dateOfBirth: String, age: Int
-    ): Boolean {
-        var isValid = true
-
-        if (email.isBlank() || !android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-            Toast.makeText(
-                this@RegisterActivity,
-                "Please enter a valid email address",
-                Toast.LENGTH_SHORT
-            ).show()
-            isValid = false
-        }
-
-        if (phone.isBlank() || phone.length != 10) {
-            Toast.makeText(
-                this@RegisterActivity,
-                "Please enter a valid phone number",
-                Toast.LENGTH_SHORT
-            ).show()
-            isValid = false
-        }
-
-        if (pass.isBlank() || pass.length < 6) {
-            Toast.makeText(
-                this@RegisterActivity,
-                "Please enter a password of at least 6 characters",
-                Toast.LENGTH_SHORT
-            ).show()
-            isValid = false
-        }
-
-        if (name.isBlank() || name.length > 16) {
-            Toast.makeText(
-                this@RegisterActivity,
-                "Please enter a valid name (up to 16 characters)",
-                Toast.LENGTH_SHORT
-            ).show()
-            isValid = false
-        }
-
-        if (batchYear.toString().isBlank() || batchYear.toString().length != 4) {
-            Toast.makeText(
-                this@RegisterActivity,
-                "Please enter a valid batch year (4 digits)",
-                Toast.LENGTH_SHORT
-            ).show()
-            isValid = false
-        }
-        val dobPattern = Regex("""^\d{4}-\d{2}-\d{2}$""")
-        if (dateOfBirth.isBlank() || !dateOfBirth.matches(dobPattern)) {
-            Toast.makeText(
-                this@RegisterActivity,
-                "Please enter a valid date of birth (yyyy-MM-dd)",
-                Toast.LENGTH_SHORT
-            ).show()
-            isValid = false
-        }
-        if (age < 0) {
-            Toast.makeText(
-                this@RegisterActivity,
-                "Please enter a valid age",
-                Toast.LENGTH_SHORT
-            ).show()
-            isValid = false
-        }
-
-        // Add similar checks for other fields
-
-        return isValid
-    }
-
-    private fun savePrefs(response: LoginResponse) {
-
-        prefs.saveString("token", response.token)
-        prefs.saveString("name", response.member.name)
-        prefs.saveString("rollNo", response.member.rollno)
-        prefs.saveString("roll", response.member.role)
-
-    }
-
-    private fun checkRoll(response: LoginResponse): Boolean {
-        return if (response.member.role == "admin" && response.member.role == "admin") {
-            Log.d("hii", true.toString())
-            true
-        } else if (response.member.role == "student" && response.member.role == "student") {
-            true
-        } else response.member.role == "faculty" && response.member.role == "faculty"
-    }
-
-    private fun navigateDashboard(context: Context, msg: String, isTrue: Boolean) {
-        if (isTrue) {
-            if (student_user == 1 && faculty_user == 0 && admin_user == 0) {
-                val intent = Intent(context, StudentDashboardActivity::class.java)
-                ContextCompat.startActivity(context, intent, null)
-            } else if (faculty_user == 1 && student_user == 0 && admin_user == 0) {
-                val intent = Intent(context, FacultyDashboardActivity::class.java)
-                ContextCompat.startActivity(context, intent, null)
-            } else if (admin_user == 1 && faculty_user == 0 && student_user == 0) {
-                val intent = Intent(context, AdminDashboardActivity::class.java)
-                ContextCompat.startActivity(context, intent, null)
-            } else {
-                Toast.makeText(
-                    context, msg, Toast.LENGTH_SHORT
-                ).show()
-            }
-        } else {
-            Toast.makeText(context, "please select your correct roll", Toast.LENGTH_SHORT).show()
-        }
-    }
-
-    private fun showDatePickerDialog() {
-        val calendar = Calendar.getInstance()
-        val year = calendar[Calendar.YEAR]
-        val month = calendar[Calendar.MONTH]
-        val day = calendar[Calendar.DAY_OF_MONTH]
-
-        val datePickerDialog = DatePickerDialog(
-            this,
-            { _, year, month, dayOfMonth ->
-                val selectedCalendar = Calendar.getInstance()
-                selectedCalendar.set(year, month, dayOfMonth)
-
-                val sdf = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
-
-                dobCalendar = selectedCalendar
-                txtDOB.setText(sdf.format(selectedCalendar.time))
-            }, year, month, day
-        )
-
-        datePickerDialog.show()
-    }
 }

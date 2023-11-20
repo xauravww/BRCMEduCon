@@ -1,6 +1,7 @@
 package com.education.brcmeducorn.adapter
 
 import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,9 +9,13 @@ import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.education.brcmeducorn.R
-import com.education.brcmeducorn.model.AssignmentModel
+import com.education.brcmeducorn.api.apiModels.Data
+import java.text.SimpleDateFormat
+import java.util.Date
 
-class ViewAssignmentAdapter(private val assignments: List<AssignmentModel>, val context: Context) : RecyclerView.Adapter<ViewAssignmentAdapter.ViewHolder>() {
+class ViewAssignmentAdapter(private val assignments: List<Data>, val context: Context) : RecyclerView.Adapter<ViewAssignmentAdapter.ViewHolder>() {
+    private val inputFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSXXX")
+    private val outputFormat = SimpleDateFormat("dd/MM/yyyy")
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val titleTextView: TextView = itemView.findViewById(R.id.textViewAssignmentTitle)
         val descriptionTextView: TextView = itemView.findViewById(R.id.textViewAssignmentDescription)
@@ -28,17 +33,22 @@ class ViewAssignmentAdapter(private val assignments: List<AssignmentModel>, val 
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val assignment = assignments[position]
+        // output date formats
+        val date: Date = inputFormat.parse(assignment.dueDate)!!
+        val formattedDate: String = outputFormat.format(date)
 
         holder.titleTextView.text = assignment.title
         holder.descriptionTextView.text = assignment.description
-        holder.dueDateTextView.text = assignment.dueDate
-        holder.feedbackTextView.text = assignment.feedback ?: "No feedback available"
-        holder.gradeTextView.text = assignment.grades ?: "0"
+        holder.dueDateTextView.text = formattedDate?:""
+//        holder.feedbackTextView.text = " feedback "
+        holder.gradeTextView.text = "0"
         holder.statusAssignment.text = assignment.status
         if (assignment.status.equals("submitted", ignoreCase = true)) {
             holder.statusAssignment.setTextColor(ContextCompat.getColor(context, R.color.line_pay_green))
             holder.dueDateTextView.setTextColor(ContextCompat.getColor(context, R.color.line_pay_green))
             holder.gradeTextView.setTextColor(ContextCompat.getColor(context, R.color.line_pay_green))
+//            holder.gradeTextView.text = assignment.grades.toString()
+
         } else if (assignment.status.equals("pending", ignoreCase = true)) {
             holder.statusAssignment.setTextColor(ContextCompat.getColor(context, R.color.com_red))
             holder.dueDateTextView.setTextColor(ContextCompat.getColor(context, R.color.com_red))

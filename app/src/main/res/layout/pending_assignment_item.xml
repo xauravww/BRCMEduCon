@@ -86,32 +86,33 @@
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
+            android:layout_gravity="start"
             android:layout_marginTop="16dp"
             android:fontFamily="sans-serif"
-            android:orientation="horizontal">
+            android:orientation="vertical">
 
 
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
+                android:layout_gravity="start"
                 android:orientation="horizontal">
 
                 <TextView
                     android:id="@+id/attachmentFile"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:layout_gravity="center"
+                    android:layout_gravity="start"
                     android:fontFamily="sans-serif"
-                    android:gravity="center"
+                    android:gravity="start"
                     android:paddingStart="10dp"
                     android:paddingEnd="10dp"
-                    android:text="Attachment"
+                    android:text="@string/select_an_attachment"
                     android:textColor="@color/dark_gray"
                     android:textSize="18sp"
+                    android:maxLines="2"
                     app:drawableStartCompat="@drawable/attachment" />
 
             </LinearLayout>
@@ -122,6 +123,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="end"
                 android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
                 android:background="@drawable/primary_bg"
                 android:fontFamily="sans-serif"
                 android:paddingStart="10dp"

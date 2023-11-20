@@ -20,10 +20,9 @@ import kotlinx.coroutines.launch
 
 class login_main_utils {
     private lateinit var prefs: SharedPrefs
+    private var customProgressDialog: CustomProgressDialog? = null
 
-    private
-
-    companion object {
+    private  companion object {
         var student_user = 1
         var faculty_user = 0
         var admin_user = 0
@@ -34,7 +33,6 @@ class login_main_utils {
         context: Context, role: TextView, studentBtn: Button, facultyBtn: Button, adminBtn: Button
     ) {
         //        managing the click on the login users
-
 //        1 -> student
         studentBtn.setOnClickListener {
 
@@ -110,6 +108,9 @@ class login_main_utils {
 
     fun handleLogin(context: Context, email: String, pass: String) {
         prefs = SharedPrefs(context)
+        customProgressDialog = CustomProgressDialog(context)
+        customProgressDialog!!.setMessage("wait logging ...")
+        customProgressDialog!!.show();
         login(email.trim(), pass.trim(), context)
 
     }
@@ -129,9 +130,16 @@ class login_main_utils {
                     navigateDashboard(context, "$roll successfully login", true)
                 } else {
                     navigateDashboard(context, "$roll is  is not yours ", false)
-                 }
+                }
                 Log.d("hi", result.toString())
             } else {
+                customProgressDialog?.dismiss()
+                Toast.makeText(
+                    context,
+                    "send a valid input and check your internet connection",
+                    Toast.LENGTH_SHORT
+                ).show()
+
             }
 
         }
@@ -143,6 +151,9 @@ class login_main_utils {
         prefs.saveString("name", response.member.name)
         prefs.saveString("rollNo", response.member.rollno)
         prefs.saveString("roll", response.member.role)
+        prefs.saveString("semester", response.member.semester)
+        prefs.saveString("branch", response.member.branch)
+        prefs.saveString("imageUrl", response.member.imageurl.url)
 
     }
 
@@ -160,18 +171,28 @@ class login_main_utils {
             if (student_user == 1 && faculty_user == 0 && admin_user == 0) {
                 val intent = Intent(context, StudentDashboardActivity::class.java)
                 startActivity(context, intent, null)
+                customProgressDialog?.dismiss()
+
             } else if (faculty_user == 1 && student_user == 0 && admin_user == 0) {
                 val intent = Intent(context, FacultyDashboardActivity::class.java)
                 startActivity(context, intent, null)
+                customProgressDialog?.dismiss()
+
             } else if (admin_user == 1 && faculty_user == 0 && student_user == 0) {
                 val intent = Intent(context, AdminDashboardActivity::class.java)
                 startActivity(context, intent, null)
+                customProgressDialog?.dismiss()
+
             } else {
                 Toast.makeText(
                     context, msg, Toast.LENGTH_SHORT
                 ).show()
+                customProgressDialog?.dismiss()
+
             }
         } else {
+            customProgressDialog?.dismiss()
+
             Toast.makeText(context, "please select your correct roll", Toast.LENGTH_SHORT).show()
         }
     }
