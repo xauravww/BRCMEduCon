@@ -39,8 +39,8 @@
 
                     <com.google.android.material.imageview.ShapeableImageView
                         android:id="@+id/imgEvents"
-                        android:layout_width="120dp"
-                        android:layout_height="120dp"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
                         android:layout_gravity="center"
                         android:background="@drawable/smooth_corner_shape"
                         android:backgroundTint="@color/appPrimary"
@@ -71,7 +71,7 @@
                     <com.google.android.material.imageview.ShapeableImageView
                         android:id="@+id/imgGallery"
                         android:layout_width="120dp"
-                        android:layout_height="140dp"
+                        android:layout_height="120dp"
                         android:background="@drawable/smooth_corner_shape"
                         android:backgroundTint="@color/appPrimary"
                         android:layout_gravity="center"
@@ -99,8 +99,8 @@
 
                     <com.google.android.material.imageview.ShapeableImageView
                         android:id="@+id/imgResults"
-                        android:layout_width="120dp"
-                        android:layout_height="120dp"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
                         android:background="@drawable/smooth_corner_shape"
                         android:backgroundTint="@color/appPrimary"
                         android:layout_marginTop="20dp"
@@ -138,8 +138,8 @@
 
                     <com.google.android.material.imageview.ShapeableImageView
                         android:id="@+id/imgDateSheet"
-                        android:layout_width="120dp"
-                        android:layout_height="120dp"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
                         android:background="@drawable/smooth_corner_shape"
                         android:backgroundTint="@color/appPrimary"
                         android:layout_gravity="center"
@@ -170,7 +170,7 @@
                     <com.google.android.material.imageview.ShapeableImageView
                         android:id="@+id/imgExams"
                         android:layout_width="120dp"
-                        android:layout_height="140dp"
+                        android:layout_height="120dp"
                         android:background="@drawable/smooth_corner_shape"
                         android:backgroundTint="@color/appPrimary"
                         android:layout_gravity="center"
@@ -198,8 +198,8 @@
 
                     <com.google.android.material.imageview.ShapeableImageView
                         android:id="@+id/imgIdCard"
-                        android:layout_width="120dp"
-                        android:layout_height="120dp"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
                         android:layout_marginTop="20dp"
                         android:background="@drawable/smooth_corner_shape"
                         android:backgroundTint="@color/appPrimary"
@@ -237,8 +237,8 @@
 
                     <com.google.android.material.imageview.ShapeableImageView
                         android:id="@+id/imgTimeTable"
-                        android:layout_width="120dp"
-                        android:layout_height="120dp"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
                         android:layout_marginTop="20dp"
                         android:background="@drawable/smooth_corner_shape"
                         android:backgroundTint="@color/appPrimary"
@@ -270,7 +270,7 @@
                     <com.google.android.material.imageview.ShapeableImageView
                         android:id="@+id/imgAssignment"
                         android:layout_width="120dp"
-                        android:layout_height="140dp"
+                        android:layout_height="120dp"
                         android:background="@drawable/smooth_corner_shape"
                         android:backgroundTint="@color/appPrimary"
                         android:layout_toRightOf="@id/imgEvents"
@@ -299,8 +299,8 @@
 
                     <com.google.android.material.imageview.ShapeableImageView
 
-                        android:layout_width="120dp"
-                        android:layout_height="120dp"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
                         android:layout_marginTop="20dp"
                         android:background="@drawable/smooth_corner_shape"
                         android:backgroundTint="@color/appPrimary"
@@ -340,8 +340,8 @@
 
                     <com.google.android.material.imageview.ShapeableImageView
                         android:id="@+id/imgPYQ"
-                        android:layout_width="120dp"
-                        android:layout_height="120dp"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
                         android:layout_gravity="center"
                         android:background="@drawable/smooth_corner_shape"
                         android:backgroundTint="@color/appPrimary"
@@ -374,7 +374,7 @@
 
                         android:id="@+id/studentProfile"
                         android:layout_width="120dp"
-                        android:layout_height="140dp"
+                        android:layout_height="120dp"
                         android:layout_gravity="center"
                         android:background="@drawable/smooth_corner_shape"
                         android:backgroundTint="@color/appPrimary"
@@ -402,8 +402,8 @@
 
                     <com.google.android.material.imageview.ShapeableImageView
 
-                        android:layout_width="120dp"
-                        android:layout_height="120dp"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
                         android:layout_marginTop="20dp"
                         android:background="@drawable/smooth_corner_shape"
                         android:layout_gravity="center"

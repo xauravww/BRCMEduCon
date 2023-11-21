@@ -34,6 +34,8 @@
                 android:fontFamily="@font/montserrat_extrabold"
                 android:text="Dr. Sandeep Sharma"
                 android:textColor="@color/fontPrimary"
+                android:scrollbars="horizontal"
+                android:maxLines="1"
                 android:textSize="30sp" />
 
             <TextView
@@ -65,7 +67,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/reuseName"
-        android:layout_margin="5dp"
+        android:layout_marginVertical="5dp"
         android:weightSum="6">
 
         <LinearLayout
@@ -81,9 +83,9 @@
 
                 <com.google.android.material.imageview.ShapeableImageView
                     android:id="@+id/imgClasses"
-                    android:layout_width="120dp"
-                    android:layout_height="120dp"
-                    android:layout_centerHorizontal="true"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_centerInParent="true"
                     android:layout_marginTop="20dp"
                     android:scaleType="centerCrop"
                     android:src="@drawable/image_frame"
@@ -109,13 +111,14 @@
             android:id="@+id/llMarkAttendance"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginHorizontal="5dp"
             android:layout_weight="2"
             android:orientation="vertical">
 
             <com.google.android.material.imageview.ShapeableImageView
                 android:id="@+id/imgMarkAttendence"
                 android:layout_width="120dp"
-                android:layout_height="140dp"
+                android:layout_height="120dp"
                 android:layout_gravity="center"
                 android:layout_toRightOf="@id/imgClasses"
                 android:scaleType="centerCrop"
@@ -147,9 +150,9 @@
 
                 <com.google.android.material.imageview.ShapeableImageView
                     android:id="@+id/imgSendEvents"
-                    android:layout_width="120dp"
-                    android:layout_height="120dp"
-                    android:layout_centerHorizontal="true"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_centerInParent="true"
                     android:layout_marginTop="20dp"
                     android:scaleType="centerCrop"
                     android:src="@drawable/image_frame"
@@ -178,7 +181,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/llFeaturesTabOne"
-        android:layout_margin="5dp"
+        android:layout_marginVertical="5dp"
         android:weightSum="6">
 
         <LinearLayout
@@ -194,12 +197,14 @@
 
                 <com.google.android.material.imageview.ShapeableImageView
                     android:id="@+id/img2Profile"
-                    android:layout_width="120dp"
-                    android:layout_height="120dp"
-                    android:layout_centerHorizontal="true"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_centerInParent="true"
                     android:layout_marginTop="20dp"
+                    android:background="@drawable/smooth_corner_shape"
+                    android:backgroundTint="@color/appPrimary"
                     android:scaleType="centerCrop"
-                    android:src="@drawable/image_frame"
+                    android:src="@drawable/personprofileicon"
                     app:shapeAppearanceOverlay="@style/RoundedSquare" />
 
                 <TextView
@@ -222,6 +227,7 @@
             android:id="@+id/llIdCard"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginHorizontal="5dp"
             android:layout_weight="2"
             android:orientation="vertical"
             >
@@ -229,10 +235,12 @@
             <com.google.android.material.imageview.ShapeableImageView
                 android:id="@+id/imgIdCard"
                 android:layout_width="120dp"
-                android:layout_height="140dp"
+                android:layout_height="120dp"
                 android:layout_gravity="center"
                 android:scaleType="centerCrop"
-                android:src="@drawable/image_frame"
+                android:src="@drawable/idcard"
+                android:background="@drawable/smooth_corner_shape"
+                android:backgroundTint="@color/appPrimary"
                 app:shapeAppearanceOverlay="@style/RoundedSquare" />
 
             <TextView
@@ -260,9 +268,9 @@
 
                 <com.google.android.material.imageview.ShapeableImageView
                     android:id="@+id/imgSendAssignments"
-                    android:layout_width="120dp"
-                    android:layout_height="120dp"
-                    android:layout_centerHorizontal="true"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_centerInParent="true"
                     android:layout_marginTop="20dp"
                     android:scaleType="centerCrop"
                     android:src="@drawable/image_frame"

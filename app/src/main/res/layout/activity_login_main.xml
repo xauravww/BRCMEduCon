@@ -8,6 +8,7 @@
     tools:context=".activites.LoginMainActivity">
 
     <ScrollView
+        android:id="@+id/scroll"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:isScrollContainer="true"
@@ -38,6 +39,7 @@
                 android:paddingBottom="5dp"
                 android:paddingTop="5dp"
                 android:weightSum="5"
+                android:layout_marginHorizontal="5dp"
 
                 >
 
@@ -145,8 +147,9 @@
                 android:layout_marginBottom="2dp"
                 android:background="@drawable/smooth_corner_shape"
                 android:elevation="2dp"
-                android:paddingTop="10dp"
-                android:paddingBottom="10dp">
+                android:paddingBottom="20dp"
+                android:layout_marginHorizontal="5dp"
+                >
 
                 <LinearLayout
                     android:id="@+id/llInputUseridOrEmail"
@@ -230,41 +233,45 @@
 
             </RelativeLayout>
 
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/rlLogin"
-                android:layout_alignParentBottom="true">
 
-                    <TextView
-                        android:id="@+id/txtForgot"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentEnd="true"
-                        android:layout_marginEnd="30dp"
-                        android:layout_marginTop="10dp"
-                        android:layout_marginBottom="25dp"
-                        android:fontFamily="@font/no_to_sans_bold"
-                        android:text="@string/forgot_password"
-                        android:textColor="@color/appPrimary" />
-
-                    <Button
-                        android:id="@+id/btnLogin"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@+id/txtForgot"
-                        android:layout_alignParentBottom="true"
-                        android:layout_marginHorizontal="10dp"
-                        android:background="@drawable/smooth_corner_shape"
-                        android:backgroundTint="@color/appPrimary"
-                        android:elevation="4dp"
-                        android:fontFamily="@font/no_to_sans_bold"
-                        android:text="@string/login"
-                        android:textAllCaps="false"
-                        android:textColor="#ffffff"
-                        android:textSize="18sp" />
-
-            </RelativeLayout>
         </RelativeLayout>
+
     </ScrollView>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/scroll"
+        android:layout_alignParentBottom="true"
+        android:gravity="bottom">
+
+        <TextView
+            android:id="@+id/txtForgot"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="30dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="25dp"
+            android:fontFamily="@font/no_to_sans_bold"
+            android:text="@string/forgot_password"
+            android:textColor="@color/appPrimary" />
+
+        <Button
+            android:id="@+id/btnLogin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginHorizontal="5dp"
+            android:background="@drawable/smooth_corner_shape"
+            android:backgroundTint="@color/appPrimary"
+            android:elevation="4dp"
+            android:layout_marginBottom="5dp"
+            android:fontFamily="@font/no_to_sans_bold"
+            android:text="@string/login"
+            android:textAllCaps="false"
+            android:textColor="#ffffff"
+            android:textSize="18sp" />
+
+    </RelativeLayout>
 </RelativeLayout>

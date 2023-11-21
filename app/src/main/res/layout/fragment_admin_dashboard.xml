@@ -34,6 +34,8 @@
                 android:layout_below="@id/txtHello"
                 android:fontFamily="@font/montserrat_extrabold"
                 android:text="Randhir"
+                android:scrollbars="horizontal"
+                android:maxLines="1"
                 android:textColor="@color/fontPrimary"
                 android:textSize="30sp" />
 
@@ -78,6 +80,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/reuseName"
+                android:layout_marginVertical="5dp"
                 android:weightSum="6">
 
                 <LinearLayout
@@ -93,8 +96,8 @@
 
                         <com.google.android.material.imageview.ShapeableImageView
                             android:id="@+id/imgAddOrRemoveMembers"
-                            android:layout_width="120dp"
-                            android:layout_height="120dp"
+                            android:layout_width="100dp"
+                            android:layout_height="100dp"
                             android:layout_centerHorizontal="true"
                             android:layout_marginTop="20dp"
                             android:scaleType="centerCrop"
@@ -107,11 +110,11 @@
                             android:layout_height="wrap_content"
                             android:layout_below="@id/imgAddOrRemoveMembers"
                             android:layout_gravity="center"
-                            android:layout_marginStart="10dp"
                             android:layout_marginTop="0dp"
                             android:fontFamily="@font/no_to_sans_bold"
                             android:text="Add or Remove Members"
                             android:textAlignment="center"
+                            android:lineHeight="18dp"
                             android:textColor="@color/fontPrimary" />
                     </RelativeLayout>
 
@@ -127,7 +130,7 @@
                     <com.google.android.material.imageview.ShapeableImageView
                         android:id="@+id/imgSendEvents"
                         android:layout_width="120dp"
-                        android:layout_height="140dp"
+                        android:layout_height="120dp"
                         android:layout_gravity="center"
                         android:layout_toRightOf="@id/llAddOrRemoveMembers"
                         android:scaleType="centerCrop"
@@ -142,6 +145,7 @@
                         android:layout_marginTop="2dp"
                         android:fontFamily="@font/no_to_sans_bold"
                         android:text="Send Events and Reminders"
+                        android:lineHeight="18dp"
                         android:textAlignment="center"
                         android:textColor="@color/fontPrimary" />
                 </LinearLayout>
@@ -159,8 +163,8 @@
 
                         <com.google.android.material.imageview.ShapeableImageView
                             android:id="@+id/imgAssignClasses"
-                            android:layout_width="120dp"
-                            android:layout_height="120dp"
+                            android:layout_width="100dp"
+                            android:layout_height="100dp"
                             android:layout_centerHorizontal="true"
                             android:layout_marginTop="20dp"
                             android:scaleType="centerCrop"
@@ -173,8 +177,6 @@
                             android:layout_height="wrap_content"
                             android:layout_below="@id/imgAssignClasses"
                             android:layout_gravity="center"
-                            android:layout_marginStart="10dp"
-                            android:layout_marginTop="2dp"
                             android:fontFamily="@font/no_to_sans_bold"
                             android:text="Send Events"
                             android:textAlignment="center"
@@ -188,6 +190,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/reuseName"
+                android:layout_marginVertical="5dp"
                 android:weightSum="6">
 
                 <LinearLayout
@@ -203,8 +206,8 @@
 
                         <com.google.android.material.imageview.ShapeableImageView
                             android:id="@+id/imgAssignFreeClasses"
-                            android:layout_width="120dp"
-                            android:layout_height="120dp"
+                            android:layout_width="100dp"
+                            android:layout_height="100dp"
                             android:layout_centerHorizontal="true"
                             android:layout_marginTop="20dp"
                             android:scaleType="centerCrop"
@@ -217,11 +220,10 @@
                             android:layout_height="wrap_content"
                             android:layout_below="@id/imgAssignFreeClasses"
                             android:layout_gravity="center"
-                            android:layout_marginStart="10dp"
-                            android:layout_marginTop="0dp"
                             android:fontFamily="@font/no_to_sans_bold"
                             android:text="Manage Faculty Classes"
                             android:textAlignment="center"
+                            android:lineHeight="18dp"
                             android:textColor="@color/fontPrimary" />
                     </RelativeLayout>
 
@@ -237,7 +239,7 @@
                     <com.google.android.material.imageview.ShapeableImageView
                         android:id="@+id/imgAnotherFeature"
                         android:layout_width="120dp"
-                        android:layout_height="140dp"
+                        android:layout_height="120dp"
                         android:layout_gravity="center"
                         android:layout_toRightOf="@id/llEditMember"
                         android:scaleType="centerCrop"
@@ -249,7 +251,6 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:layout_marginTop="2dp"
                         android:fontFamily="@font/no_to_sans_bold"
                         android:text="Edit Members"
                         android:textAlignment="center"
@@ -269,8 +270,8 @@
 
                         <com.google.android.material.imageview.ShapeableImageView
                             android:id="@+id/imgAnotherFeature2"
-                            android:layout_width="120dp"
-                            android:layout_height="120dp"
+                            android:layout_width="100dp"
+                            android:layout_height="100dp"
                             android:layout_centerHorizontal="true"
                             android:layout_marginTop="20dp"
                             android:scaleType="centerCrop"
@@ -283,8 +284,6 @@
                             android:layout_height="wrap_content"
                             android:layout_below="@id/imgAnotherFeature2"
                             android:layout_gravity="center"
-                            android:layout_marginStart="10dp"
-                            android:layout_marginTop="2dp"
                             android:fontFamily="@font/no_to_sans_bold"
                             android:text="Another Feature 2"
                             android:textAlignment="center"
