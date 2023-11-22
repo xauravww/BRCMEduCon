@@ -34,7 +34,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/imgLogoBig"
-                android:background="@drawable/smooth_corner_shape"
+                android:background="@color/white"
                 android:elevation="1dp"
                 android:paddingBottom="5dp"
                 android:paddingTop="5dp"
@@ -145,7 +145,7 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="2dp"
                 android:layout_marginBottom="2dp"
-                android:background="@drawable/smooth_corner_shape"
+                android:background="@color/white"
                 android:elevation="2dp"
                 android:paddingBottom="20dp"
                 android:layout_marginHorizontal="5dp"
@@ -242,8 +242,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/scroll"
-        android:layout_alignParentBottom="true"
-        android:gravity="bottom">
+        android:layout_alignParentBottom="true">
 
         <TextView
             android:id="@+id/txtForgot"
@@ -252,7 +251,7 @@
             android:layout_alignParentEnd="true"
             android:layout_marginEnd="30dp"
             android:layout_marginTop="10dp"
-            android:layout_marginBottom="25dp"
+            android:layout_marginBottom="5dp"
             android:fontFamily="@font/no_to_sans_bold"
             android:text="@string/forgot_password"
             android:textColor="@color/appPrimary" />
@@ -261,9 +260,8 @@
             android:id="@+id/btnLogin"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_marginHorizontal="5dp"
-            android:background="@drawable/smooth_corner_shape"
+            android:layout_below="@id/txtForgot"
+            android:paddingVertical="15dp"
             android:backgroundTint="@color/appPrimary"
             android:elevation="4dp"
             android:layout_marginBottom="5dp"
@@ -273,5 +271,14 @@
             android:textColor="#ffffff"
             android:textSize="18sp" />
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:text="Version 1.0 All Rights Reserved"
+            android:textColor="@color/fontPrimary"
+            android:textSize="15sp"
+            android:layout_marginVertical="15dp"/>
     </RelativeLayout>
 </RelativeLayout>
