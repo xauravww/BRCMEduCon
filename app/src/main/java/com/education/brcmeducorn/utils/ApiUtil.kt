@@ -2,6 +2,7 @@ package com.education.brcmeducorn.utils
 
 import android.util.Log
 import com.education.brcmeducorn.api.ApiService
+import com.education.brcmeducorn.api.apiModels.AddGalleryReq
 import com.education.brcmeducorn.api.apiModels.RegisterRequest
 import com.education.brcmeducorn.api.apiModels.SubmitAssignmentReq
 import kotlinx.coroutines.Dispatchers
@@ -17,8 +18,8 @@ import java.io.File
 object ApiUtils {
 
     private val retrofit = Retrofit.Builder()
-        .baseUrl("https://backend-brcm-edu-con.vercel.app/api/v1/")
-//        .baseUrl("http://192.168.43.247:4000/api/v1/")
+//        .baseUrl("https://backend-brcm-edu-con.vercel.app/api/v1/")
+        .baseUrl("http://192.168.43.247:4000/api/v1/")
         .addConverterFactory(GsonConverterFactory.create())
         .build()
 
@@ -32,7 +33,7 @@ object ApiUtils {
         return withContext(Dispatchers.IO) {
             try {
                 val response = when (method) {
-                    "GET" -> apiService.get(endpoint, requestBody)
+                    "GET_ALL_GALLERY" -> apiService.getAllGallery(endpoint)
                     "LOGIN" -> apiService.loginPost(endpoint, requestBody)
                     "ASSIGNMENT_CREATE" -> apiService.createAssignment(endpoint, requestBody)
                     "GET_ASSIGNMENTS" -> apiService.getAssignments(endpoint, requestBody)
@@ -72,7 +73,7 @@ object ApiUtils {
         }
     }
 
-    suspend fun register(
+    suspend fun reqMultipart(
         endpoint: String,
         method: String,
         requestBody: Any,
@@ -105,6 +106,19 @@ object ApiUtils {
                                 requestBody.registrationNo,
                                 requestBody.dateOfBirth,
                                 requestBody.age
+                            )
+                        } else {
+                            return@withContext "ase hi"
+                        }
+                    }
+                    "ADD_GALLERY" -> {
+                        if (requestBody is AddGalleryReq) {
+                            apiService.addGallery(
+                                endpoint,
+                                body,
+                                requestBody.description,
+                                requestBody.token,
+                                requestBody.tags,
                             )
                         } else {
                             return@withContext "ase hi"

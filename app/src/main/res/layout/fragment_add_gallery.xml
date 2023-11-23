@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fragments.admin_dashboard_fragments.AddGalleryFragment">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="8dp">
+
+        <TextView
+            android:id="@+id/uploadImgText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:layout_marginTop="25dp"
+            android:layout_marginBottom="24dp"
+            android:background="@drawable/primary_bg"
+            android:gravity="end"
+            android:padding="15dp"
+            android:text="UPLOAD"
+            android:textSize="20dp"
+            android:textStyle="bold" />
+
+        <com.makeramen.roundedimageview.RoundedImageView
+            android:id="@+id/chooseImg"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:layout_gravity="center"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="10dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/hod_cse"
+            app:riv_corner_radius="9dp" />
+
+        <TextView
+            android:id="@+id/chooseImgText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="@drawable/smooth_corner_shape_transparent"
+            android:elevation="5dp"
+            android:paddingStart="14dp"
+            android:paddingEnd="4dp"
+            android:text="Choose Photo"
+            android:textColor="@color/colorPrimary"
+            android:textSize="18sp" />
+
+        <EditText
+            android:id="@+id/imgDescription"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="15dp"
+            android:autofillHints="BRCM"
+            android:background="@drawable/black_transparent_bg"
+            android:hint="title"
+            android:padding="10dp"
+            android:textSize="15sp" />
+
+        <EditText
+            android:id="@+id/imgTag"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="15dp"
+            android:autofillHints="#brcm #collegefunction"
+            android:background="@drawable/black_transparent_bg"
+            android:hint="#tag"
+            android:padding="10dp"
+            android:textSize="15sp" />
+    </LinearLayout>
+</RelativeLayout>
+

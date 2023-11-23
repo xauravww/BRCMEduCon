@@ -17,6 +17,7 @@ class AdminDashboardFragment : Fragment() {
     private lateinit var llAssignClasses: LinearLayout
     private lateinit var llFacultyManage: LinearLayout
     private lateinit var llEditMember: LinearLayout
+    private lateinit var llAddGallery: LinearLayout
     private lateinit var prefs: SharedPrefs
     private lateinit var textIdAndRole: TextView
     private lateinit var textName: TextView
@@ -38,6 +39,7 @@ class AdminDashboardFragment : Fragment() {
         llAssignClasses = view.findViewById(R.id.llAssignClasses)
         llFacultyManage = view.findViewById(R.id.llFacultyManage)
         llEditMember = view.findViewById(R.id.llEditMember)
+        llAddGallery = view.findViewById(R.id.llAddGallery)
         textName = view.findViewById(R.id.txtName)
         textIdAndRole = view.findViewById(R.id.txtIdAndRole)
         prefs = SharedPrefs(requireContext())
@@ -52,34 +54,39 @@ class AdminDashboardFragment : Fragment() {
     private fun handleClickListeners() {
         llAddOrRemoveMembers.setOnClickListener {
             activity?.supportFragmentManager?.beginTransaction()
-                ?.replace(com.education.brcmeducorn.R.id.frameLayout, AddOrRemoveMembersFragment())
+                ?.replace(R.id.frameLayout, AddOrRemoveMembersFragment())
                 ?.commit()
 
 
         }
         llSendEvents.setOnClickListener {
             activity?.supportFragmentManager?.beginTransaction()
-                ?.replace(com.education.brcmeducorn.R.id.frameLayout, SendEventsFragment())
+                ?.replace(R.id.frameLayout, SendEventsFragment())
                 ?.commit()
 
 
         }
         llAssignClasses.setOnClickListener {
             activity?.supportFragmentManager?.beginTransaction()
-                ?.replace(com.education.brcmeducorn.R.id.frameLayout, AssignClassesFragment())
+                ?.replace(R.id.frameLayout, AssignClassesFragment())
                 ?.commit()
         }
         llFacultyManage.setOnClickListener {
             activity?.supportFragmentManager?.beginTransaction()
                 ?.replace(
-                    com.education.brcmeducorn.R.id.frameLayout,
+                    R.id.frameLayout,
                     FacultyClassManagementFragment()
                 )
                 ?.commit()
         }
         llEditMember.setOnClickListener {
             activity?.supportFragmentManager?.beginTransaction()
-                ?.replace(com.education.brcmeducorn.R.id.frameLayout, EditMemberFragment())
+                ?.replace(R.id.frameLayout, EditMemberFragment())
+                ?.commit()
+        }
+        llAddGallery.setOnClickListener {
+            activity?.supportFragmentManager?.beginTransaction()
+                ?.replace(R.id.frameLayout, AddGalleryFragment())
                 ?.commit()
         }
     }

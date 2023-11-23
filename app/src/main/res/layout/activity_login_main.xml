@@ -4,15 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-
     tools:context=".activites.LoginMainActivity">
 
     <ScrollView
         android:id="@+id/scroll"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:isScrollContainer="true"
+        android:layout_height="match_parent"
         android:layout_marginBottom="10dp"
+        android:isScrollContainer="true"
         android:scrollbars="none">
 
         <RelativeLayout
@@ -34,12 +33,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/imgLogoBig"
+                android:layout_marginHorizontal="5dp"
                 android:background="@color/white"
                 android:elevation="1dp"
-                android:paddingBottom="5dp"
                 android:paddingTop="5dp"
+                android:paddingBottom="5dp"
                 android:weightSum="5"
-                android:layout_marginHorizontal="5dp"
 
                 >
 
@@ -63,8 +62,8 @@
                     android:background="@drawable/primary_bg"
                     android:elevation="4dp"
                     android:paddingStart="11dp"
-                    android:paddingEnd="11dp"
                     android:paddingTop="5dp"
+                    android:paddingEnd="11dp"
                     android:paddingBottom="5dp"
                     android:weightSum="3">
 
@@ -113,7 +112,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/llBtnRoles"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="25dp"
+                android:layout_marginTop="20dp"
                 android:fontFamily="@font/montserrat_extrabold"
                 android:text="Student Login"
                 android:textColor="@color/fontPrimary"
@@ -135,21 +134,19 @@
 
                 />
 
-
             <RelativeLayout
                 android:id="@+id/rlLogin"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/txtRegister"
+                android:layout_marginHorizontal="5dp"
                 android:layout_marginStart="2dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="2dp"
                 android:layout_marginBottom="2dp"
                 android:background="@color/white"
                 android:elevation="2dp"
-                android:paddingBottom="20dp"
-                android:layout_marginHorizontal="5dp"
-                >
+                android:paddingBottom="20dp">
 
                 <LinearLayout
                     android:id="@+id/llInputUseridOrEmail"
@@ -177,13 +174,13 @@
                         android:fontFamily="@font/no_to_sans_bold"
                         android:gravity="start"
                         android:hint="@string/enter_your_email_here"
+                        android:inputType="textEmailAddress"
                         android:maxLength="35"
                         android:maxLines="1"
                         android:paddingHorizontal="16dp"
-                        android:inputType="textEmailAddress"
+                        android:text="faculty@gmail.com"
                         android:textColorHint="@color/appPrimary"
                         android:textSize="16sp"
-                        android:text="faculty@gmail.com"
 
                         />
                 </LinearLayout>
@@ -222,8 +219,8 @@
                             android:layout_height="wrap_content"
                             android:hint="@string/password"
                             android:inputType="textPassword"
-                            android:text="faculty@123"
                             android:paddingHorizontal="16dp"
+                            android:text="faculty@123"
 
                             />
                     </com.google.android.material.textfield.TextInputLayout>
@@ -233,52 +230,54 @@
 
             </RelativeLayout>
 
+            <RelativeLayout
+                android:id="@+id/llLoginBtnAndForgotPass"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/rlLogin"
+                android:layout_alignParentBottom="true">
+
+                <TextView
+                    android:id="@+id/txtForgot"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="30dp"
+                    android:layout_marginBottom="5dp"
+                    android:fontFamily="@font/no_to_sans_bold"
+                    android:text="@string/forgot_password"
+                    android:textColor="@color/appPrimary" />
+
+                <Button
+                    android:id="@+id/btnLogin"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/txtForgot"
+                    android:layout_marginBottom="5dp"
+                    android:backgroundTint="@color/appPrimary"
+                    android:elevation="4dp"
+                    android:fontFamily="@font/no_to_sans_bold"
+                    android:paddingVertical="10dp"
+                    android:text="@string/login"
+                    android:textAllCaps="false"
+                    android:textColor="#ffffff"
+                    android:textSize="18sp" />
+
+            </RelativeLayout>
 
         </RelativeLayout>
 
     </ScrollView>
 
-    <RelativeLayout
+    <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/scroll"
-        android:layout_alignParentBottom="true">
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="10dp"
+        android:gravity="center"
+        android:text="Version 1.0 All Rights Reserved"
+        android:textColor="@color/fontPrimary"
+        android:textSize="13sp" />
 
-        <TextView
-            android:id="@+id/txtForgot"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_marginEnd="30dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="5dp"
-            android:fontFamily="@font/no_to_sans_bold"
-            android:text="@string/forgot_password"
-            android:textColor="@color/appPrimary" />
-
-        <Button
-            android:id="@+id/btnLogin"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/txtForgot"
-            android:paddingVertical="15dp"
-            android:backgroundTint="@color/appPrimary"
-            android:elevation="4dp"
-            android:layout_marginBottom="5dp"
-            android:fontFamily="@font/no_to_sans_bold"
-            android:text="@string/login"
-            android:textAllCaps="false"
-            android:textColor="#ffffff"
-            android:textSize="18sp" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true"
-            android:text="Version 1.0 All Rights Reserved"
-            android:textColor="@color/fontPrimary"
-            android:textSize="15sp"
-            android:layout_marginVertical="15dp"/>
-    </RelativeLayout>
 </RelativeLayout>

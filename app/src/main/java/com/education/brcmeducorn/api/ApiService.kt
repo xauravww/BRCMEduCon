@@ -1,6 +1,7 @@
 package com.education.brcmeducorn.api
 
 import com.education.brcmeducorn.api.apiModels.AllStudentsForAttendanceRes
+import com.education.brcmeducorn.api.apiModels.GetAllGalleryRes
 import com.education.brcmeducorn.api.apiModels.GetAssignmentRes
 import com.education.brcmeducorn.api.apiModels.GetOldAttendanceRes
 import com.education.brcmeducorn.api.apiModels.LoginResponse
@@ -14,10 +15,9 @@ import retrofit2.http.*
 
 interface ApiService {
     @GET
-    suspend fun get(
+    suspend fun getAllGallery(
         @Url url: String,
-        @Body requestBody: Any
-    ): Response<Any>
+    ): Response<GetAllGalleryRes>
 
     @POST
     suspend fun getAssignments(
@@ -53,6 +53,16 @@ interface ApiService {
         @Part("age") age: RequestBody
     ): Response<LoginResponse>
 
+    @Multipart
+    @POST
+    suspend fun addGallery(
+        @Url url: String,
+        @Part file: MultipartBody.Part,
+        @Part("description") description: RequestBody,
+        @Part("token") token: RequestBody,
+        @Part("tags") tags:RequestBody
+    ): Response<Success>
+
     @POST
     suspend fun createAssignment(
         @Url url: String,
@@ -70,7 +80,6 @@ interface ApiService {
         @Url url: String,
         @Body requestBody: Any
     ): Response<GetOldAttendanceRes>
-
 
 
     @POST
@@ -94,6 +103,7 @@ interface ApiService {
         @Part("studentRollNo") studentRollNo: RequestBody,
         @Part("token") token: RequestBody,
     ): Response<Success>
+
     @PUT
     suspend fun updateAttendance(
         @Url url: String,

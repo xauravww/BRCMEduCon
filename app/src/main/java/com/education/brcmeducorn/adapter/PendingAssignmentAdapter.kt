@@ -74,7 +74,7 @@ class PendingAssignmentAdapter(
                 val tokenRequestBody  = studentToken.toRequestBody("text/plain".toMediaTypeOrNull())
                 val id=assignment._id
                 val assignmentData = SubmitAssignmentReq(nameRequestBody,rollNoRequestBody,tokenRequestBody,id)
-                val result = ApiUtils.register(endpoint, method, assignmentData, pdfPath)
+                val result = ApiUtils.reqMultipart(endpoint, method, assignmentData, pdfPath)
 
                 if (result is Success) {
                     Log.d("result", result.toString())

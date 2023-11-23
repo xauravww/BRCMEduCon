@@ -216,7 +216,7 @@ class RegisterActivity : AppCompatActivity() {
                     addressRequestBody, batchYearRequestBody, fathernameRequestBody,
                     registrationNoRequestBody, dateOfBirthRequestBody, ageRequestBody
                 )
-                val result = ApiUtils.register(endpoint, method, userRequest, imagePath)
+                val result = ApiUtils.reqMultipart(endpoint, method, userRequest, imagePath)
 
                 if (result is LoginResponse) {
                     if (checkRoll(result)) {

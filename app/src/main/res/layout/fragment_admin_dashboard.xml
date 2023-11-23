@@ -1,23 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".fragments.admin_dashboard_fragments.AdminDashboardFragment">
 
     <RelativeLayout
         android:id="@+id/reuseName"
         android:layout_width="wrap_content"
-        android:layout_height="200dp"
-        >
+        android:layout_height="200dp">
 
         <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:layout_marginLeft="20dp"
-            >
+            android:layout_marginLeft="20dp">
+
             <TextView
                 android:id="@+id/txtHello"
                 android:layout_width="wrap_content"
@@ -33,9 +32,9 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/txtHello"
                 android:fontFamily="@font/montserrat_extrabold"
-                android:text="Randhir"
-                android:scrollbars="horizontal"
                 android:maxLines="1"
+                android:scrollbars="horizontal"
+                android:text="Randhir"
                 android:textColor="@color/fontPrimary"
                 android:textSize="30sp" />
 
@@ -44,11 +43,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/txtName"
+                android:layout_marginTop="5dp"
                 android:fontFamily="@font/no_to_sans_bold"
                 android:text="ID:123456|Admin"
-                android:textSize="15sp"
-                android:layout_marginTop="5dp"
-                />
+                android:textSize="15sp" />
         </RelativeLayout>
 
         <com.google.android.material.imageview.ShapeableImageView
@@ -63,12 +61,13 @@
             app:shapeAppearanceOverlay="@style/RoundedSquare" />
 
     </RelativeLayout>
+
     <androidx.core.widget.NestedScrollView
-        android:layout_marginBottom="10dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:scrollbars="none"
-        android:layout_below="@id/reuseName">
+        android:layout_below="@id/reuseName"
+        android:layout_marginBottom="10dp"
+        android:scrollbars="none">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -112,9 +111,9 @@
                             android:layout_gravity="center"
                             android:layout_marginTop="0dp"
                             android:fontFamily="@font/no_to_sans_bold"
+                            android:lineHeight="18dp"
                             android:text="Add or Remove Members"
                             android:textAlignment="center"
-                            android:lineHeight="18dp"
                             android:textColor="@color/fontPrimary" />
                     </RelativeLayout>
 
@@ -144,8 +143,8 @@
                         android:layout_gravity="center"
                         android:layout_marginTop="2dp"
                         android:fontFamily="@font/no_to_sans_bold"
-                        android:text="Send Events and Reminders"
                         android:lineHeight="18dp"
+                        android:text="Send Events and Reminders"
                         android:textAlignment="center"
                         android:textColor="@color/fontPrimary" />
                 </LinearLayout>
@@ -221,9 +220,9 @@
                             android:layout_below="@id/imgAssignFreeClasses"
                             android:layout_gravity="center"
                             android:fontFamily="@font/no_to_sans_bold"
+                            android:lineHeight="18dp"
                             android:text="Manage Faculty Classes"
                             android:textAlignment="center"
-                            android:lineHeight="18dp"
                             android:textColor="@color/fontPrimary" />
                     </RelativeLayout>
 
@@ -258,7 +257,7 @@
                 </LinearLayout>
 
                 <LinearLayout
-                    android:id="@+id/llAnotherFeature2"
+                    android:id="@+id/llAddGallery"
                     android:layout_width="0dp"
                     android:layout_height="165dp"
                     android:layout_weight="2"
@@ -269,7 +268,7 @@
                         android:layout_height="wrap_content">
 
                         <com.google.android.material.imageview.ShapeableImageView
-                            android:id="@+id/imgAnotherFeature2"
+                            android:id="@+id/imgAddGallery"
                             android:layout_width="100dp"
                             android:layout_height="100dp"
                             android:layout_centerHorizontal="true"
@@ -279,13 +278,13 @@
                             app:shapeAppearanceOverlay="@style/RoundedSquare" />
 
                         <TextView
-                            android:id="@+id/txtAnotherFeature2"
+                            android:id="@+id/txtAddGallery"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_below="@id/imgAnotherFeature2"
+                            android:layout_below="@id/imgAddGallery"
                             android:layout_gravity="center"
                             android:fontFamily="@font/no_to_sans_bold"
-                            android:text="Another Feature 2"
+                            android:text="Add College Gallery"
                             android:textAlignment="center"
                             android:textColor="@color/fontPrimary" />
                     </RelativeLayout>
@@ -295,7 +294,6 @@
 
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
-
 
 
 </RelativeLayout>
