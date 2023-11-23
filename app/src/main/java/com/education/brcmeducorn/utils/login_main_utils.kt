@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import android.util.Log
 import android.widget.Button
+import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import androidx.core.content.ContextCompat
@@ -14,6 +15,7 @@ import com.education.brcmeducorn.activites.FacultyDashboardActivity
 import com.education.brcmeducorn.activites.StudentDashboardActivity
 import com.education.brcmeducorn.api.apiModels.Login
 import com.education.brcmeducorn.api.apiModels.LoginResponse
+import com.google.android.material.textfield.TextInputEditText
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -22,7 +24,7 @@ class login_main_utils {
     private lateinit var prefs: SharedPrefs
     private var customProgressDialog: CustomProgressDialog? = null
 
-    private  companion object {
+    private companion object {
         var student_user = 1
         var faculty_user = 0
         var admin_user = 0
@@ -30,11 +32,22 @@ class login_main_utils {
     }
 
     fun adjustColor(
-        context: Context, role: TextView, studentBtn: Button, facultyBtn: Button, adminBtn: Button
+        context: Context,
+        role: TextView,
+        studentBtn: Button,
+        facultyBtn: Button,
+        adminBtn: Button,
+
+        userId: EditText,
+        password: TextInputEditText
+
     ) {
         //        managing the click on the login users
 //        1 -> student
         studentBtn.setOnClickListener {
+
+            userId.setText("anmol@gmail.com")
+            password.setText("anmol@123")
 
             //set the student user to handle the login
             student_user = 1
@@ -53,9 +66,11 @@ class login_main_utils {
 
 //        2 -> faculty
         facultyBtn.setOnClickListener {
+
+            userId.setText("faculty@gmail.com")
+            password.setText("faculty@123")
             //set the faculty user to handle the login
             faculty_user = 1
-
             // set the admin and student user to zero
             student_user = 0;
             admin_user = 0;
@@ -72,6 +87,10 @@ class login_main_utils {
 
 //        3 -> admin
         adminBtn.setOnClickListener {
+
+
+            userId.setText("admin@gmail.com")
+            password.setText("admin@123")
 
             //set the admin user to handle the login
             admin_user = 1

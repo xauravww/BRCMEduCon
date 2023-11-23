@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import com.education.brcmeducorn.R
@@ -61,7 +60,7 @@ class LoginMainActivity : AppCompatActivity() {
 
         // adjust the colors of the each user
         // login_main_utils class is created for convenience in utils
-        login_main_utils().adjustColor(this, role, studentBtn, facultyBtn, adminBtn)
+        login_main_utils().adjustColor(this, role, studentBtn, facultyBtn, adminBtn,userId,password)
 
     }
 

@@ -9,7 +9,7 @@
     <ScrollView
         android:id="@+id/scroll"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layout_marginBottom="10dp"
         android:isScrollContainer="true"
         android:scrollbars="none">
@@ -178,11 +178,9 @@
                         android:maxLength="35"
                         android:maxLines="1"
                         android:paddingHorizontal="16dp"
-                        android:text="faculty@gmail.com"
                         android:textColorHint="@color/appPrimary"
                         android:textSize="16sp"
-
-                        />
+                        android:autofillHints="" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -220,8 +218,6 @@
                             android:hint="@string/password"
                             android:inputType="textPassword"
                             android:paddingHorizontal="16dp"
-                            android:text="faculty@123"
-
                             />
                     </com.google.android.material.textfield.TextInputLayout>
 
@@ -273,6 +269,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@id/scroll"
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="10dp"
         android:gravity="center"

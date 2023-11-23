@@ -50,18 +50,25 @@ class GalleryFragment : Fragment() {
     private fun loadImages() {
         // Simulate loading data (replace this with your actual logic)
         if (imageUrlList.isNotEmpty()) {
-            if (paginationUrlList.size != imageUrlList.size - 1) {
-                println(imageUrlList.size)
-                println("hi")
-                println(paginationUrlList.size)
-                newImageUrls =
-                    imageUrlList.subList(paginationUrlList.size, paginationUrlList.size + 1)
-                val startPosition = paginationUrlList.size
-                val itemCount = newImageUrls.size
-                // Add the loaded data to the list
-                paginationUrlList.addAll(newImageUrls)
-                galleryAdapter.notifyItemRangeInserted(startPosition, itemCount)
 
+            if (paginationUrlList.size != imageUrlList.size) {
+                if (paginationUrlList.isEmpty() && imageUrlList.size >= 2) {
+                    newImageUrls = imageUrlList.subList(0, 2)
+                    val startPosition = paginationUrlList.size
+                    val itemCount = 3
+                    // Add the loaded data to the list
+                    paginationUrlList.addAll(newImageUrls)
+                    galleryAdapter.notifyItemRangeInserted(startPosition, itemCount)
+                }
+                else{
+                    newImageUrls =
+                        imageUrlList.subList(paginationUrlList.size, paginationUrlList.size + 1)
+                    val startPosition = paginationUrlList.size
+                    val itemCount = 1
+                    // Add the loaded data to the list
+                    paginationUrlList.addAll(newImageUrls)
+                    galleryAdapter.notifyItemRangeInserted(startPosition, itemCount)
+                }
             }
         }
     }
@@ -91,9 +98,10 @@ class GalleryFragment : Fragment() {
                             super.onScrolled(recyclerView, dx, dy)
                             val visibleItemCount = layoutManager.childCount
                             val totalItemCount = layoutManager.itemCount
-                            val firstVisibleItemPositions = layoutManager.findFirstVisibleItemPositions(null)
+                            val firstVisibleItemPositions =
+                                layoutManager.findFirstVisibleItemPositions(null)
                             // Load more items when the user is about to reach the end
-                            if (visibleItemCount + firstVisibleItemPositions[0] >= totalItemCount - 1) {
+                            if (visibleItemCount + firstVisibleItemPositions[0] >= totalItemCount - 3) {
                                 loadImages()// Load more data
 
                             }
