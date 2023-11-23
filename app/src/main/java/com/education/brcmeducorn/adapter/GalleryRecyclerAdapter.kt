@@ -11,6 +11,7 @@ import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.education.brcmeducorn.R
 import com.education.brcmeducorn.api.apiModels.DataXXX
+import com.makeramen.roundedimageview.RoundedImageView
 import com.squareup.picasso.Picasso
 
 class GalleryRecyclerAdapter(
@@ -21,7 +22,7 @@ class GalleryRecyclerAdapter(
     class GalleryAdapterViewHolder(val view: View):RecyclerView.ViewHolder(view)
     {
 
-        var imgGallery:ImageView = view.findViewById(R.id.imgGallery)
+        var imgGallery:RoundedImageView = view.findViewById(R.id.imgGallery)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): GalleryAdapterViewHolder {
