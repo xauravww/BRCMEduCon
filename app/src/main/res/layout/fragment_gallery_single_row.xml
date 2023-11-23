@@ -12,6 +12,7 @@
         android:layout_height="wrap_content"
         app:cardCornerRadius="5dp"
         >
+
         <ImageView
             android:id="@+id/imgGallery"
             android:layout_width="match_parent"
