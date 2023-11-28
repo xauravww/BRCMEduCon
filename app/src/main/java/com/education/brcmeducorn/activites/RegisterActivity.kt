@@ -7,6 +7,7 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.BitmapFactory
 import android.net.Uri
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -113,6 +114,7 @@ class RegisterActivity : AppCompatActivity() {
                     if (imageUri != null) {
                         selectedImageUri = imageUri
                         imagePath = RealPathUtil.getRealPath(this, selectedImageUri).toString()
+                        Log.d("impath",imagePath)
                         val bitmap = BitmapFactory.decodeFile(imagePath)
                         imgStudent.setImageBitmap(bitmap)
 
@@ -136,24 +138,51 @@ class RegisterActivity : AppCompatActivity() {
             }
         }
         imgUploadBtn.setOnClickListener {
-            if (ContextCompat.checkSelfPermission(
-                    applicationContext,
-                    Manifest.permission.WRITE_EXTERNAL_STORAGE
-                ) == PackageManager.PERMISSION_GRANTED
-            ) {
-                val intent = Intent(Intent.ACTION_PICK)
-                intent.type = "image/*"
-                imagePicker.launch(intent)
-            } else {
-                ActivityCompat.requestPermissions(
-                    this,
-                    arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE),
+
+            if (Build.VERSION.SDK_INT >= 33) {
+                if (ContextCompat.checkSelfPermission(applicationContext, Manifest.permission.READ_MEDIA_IMAGES) == PackageManager.PERMISSION_GRANTED) {
+                    val intent = Intent(Intent.ACTION_PICK)
+                    intent.type = "image/*"
+                    imagePicker.launch(intent)
+                } else {
+                    ActivityCompat.requestPermissions(
+                        this,
+                        arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE),
                     PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE
 
                 )
+                    val intent = Intent(Intent.ACTION_PICK)
+                    intent.type = "image/*"
+                    imagePicker.launch(intent)
+
             }
 
-        }
+
+            }
+            else {
+
+                if (ContextCompat.checkSelfPermission(
+                        applicationContext,
+                        Manifest.permission.WRITE_EXTERNAL_STORAGE
+                    ) == PackageManager.PERMISSION_GRANTED
+                ) {
+                    val intent = Intent(Intent.ACTION_PICK)
+                    intent.type = "image/*"
+                    imagePicker.launch(intent)
+                } else {
+                    ActivityCompat.requestPermissions(
+                        this,
+                        arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE),
+                        PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE
+
+                    )
+
+                }
+
+
+            }
+            }
+
     }
 
 
