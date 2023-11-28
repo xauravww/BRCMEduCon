@@ -1,8 +1,11 @@
 package com.education.brcmeducorn.adapter
 
+import android.Manifest
+import android.app.Activity
 import android.content.ActivityNotFoundException
 import android.content.Context
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -11,12 +14,16 @@ import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.education.brcmeducorn.R
+import com.education.brcmeducorn.activites.RegisterActivity
 import com.education.brcmeducorn.api.apiModels.Data
 import com.education.brcmeducorn.api.apiModels.SubmitAssignmentReq
 import com.education.brcmeducorn.api.apiModels.Success
 import com.education.brcmeducorn.utils.ApiUtils
+import com.education.brcmeducorn.utils.CustomProgressDialog
 import com.education.brcmeducorn.utils.SharedPrefs
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -35,7 +42,10 @@ class PendingAssignmentAdapter(
     private val inputFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSXXX")
     private val outputFormat = SimpleDateFormat("dd/MM/yyyy")
     private lateinit var prefs: SharedPrefs
-    private lateinit var attachmentView :TextView
+    private lateinit var attachmentView: TextView
+    private var customProgressDialog: CustomProgressDialog? = null
+    private  val PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE = 2
+
 
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -62,23 +72,28 @@ class PendingAssignmentAdapter(
         holder.description.text = assignment.description
         holder.dueDate.text = formattedDate
         holder.uploadButton.setOnClickListener {
+            customProgressDialog = CustomProgressDialog(context)
+            customProgressDialog!!.setMessage("wait uploading ...")
+            customProgressDialog!!.show();
             val pdfPath = prefs.getString("pdfPath", "")
-            val studentName = getPrefs()["name"]?:""
-            val studentRollNo = getPrefs()["rollNo"]?:""
-            val studentToken = getPrefs()["token"]?:""
+            val studentName = getPrefs()["name"] ?: ""
+            val studentRollNo = getPrefs()["rollNo"] ?: ""
+            val studentToken = getPrefs()["token"] ?: ""
             CoroutineScope(Dispatchers.Main).launch {
                 val endpoint = "submit/assignment/{id}"
                 val method = "SUBMIT_ASSIGNMENT"
                 val nameRequestBody = studentName.toRequestBody("text/plain".toMediaTypeOrNull())
-                val rollNoRequestBody = studentRollNo.toRequestBody("text/plain".toMediaTypeOrNull())
-                val tokenRequestBody  = studentToken.toRequestBody("text/plain".toMediaTypeOrNull())
-                val id=assignment._id
-                val assignmentData = SubmitAssignmentReq(nameRequestBody,rollNoRequestBody,tokenRequestBody,id)
+                val rollNoRequestBody =
+                    studentRollNo.toRequestBody("text/plain".toMediaTypeOrNull())
+                val tokenRequestBody = studentToken.toRequestBody("text/plain".toMediaTypeOrNull())
+                val id = assignment._id
+                val assignmentData =
+                    SubmitAssignmentReq(nameRequestBody, rollNoRequestBody, tokenRequestBody, id)
                 val result = ApiUtils.reqMultipart(endpoint, method, assignmentData, pdfPath)
 
                 if (result is Success) {
                     Log.d("result", result.toString())
-
+                    customProgressDialog!!.dismiss()
                     Toast.makeText(
                         context,
                         "your assignment request has been uploaded successfully",
@@ -90,6 +105,8 @@ class PendingAssignmentAdapter(
                         "something went wrong please try again",
                         Toast.LENGTH_SHORT
                     ).show()
+                    customProgressDialog!!.dismiss()
+
                 }
 
             }
@@ -97,24 +114,42 @@ class PendingAssignmentAdapter(
 
         }
         holder.fileAttachment.setOnClickListener {
-            prefs.saveString("pdfPath","")
-            if (::attachmentView.isInitialized) {
-                attachmentView.text = "Select An Attachment"
+
+            if (ContextCompat.checkSelfPermission(
+                    context.applicationContext,
+                    Manifest.permission.WRITE_EXTERNAL_STORAGE
+                ) == PackageManager.PERMISSION_GRANTED
+            ) {
+                prefs.saveString("pdfPath", "")
+                if (::attachmentView.isInitialized) {
+                    attachmentView.text = "Select An Attachment"
+                }
+                try {
+                    attachmentView = holder.fileAttachment
+                    val intent = Intent(Intent.ACTION_OPEN_DOCUMENT)
+                    intent.addCategory(Intent.CATEGORY_OPENABLE)
+                    intent.type = "application/pdf"
+                    pickPdfLauncher.launch(intent)
+                } catch (e: ActivityNotFoundException) {
+                    Toast.makeText(
+                        context,
+                        "File picker not found",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
             }
-            try {
-                attachmentView=holder.fileAttachment
-                val intent = Intent(Intent.ACTION_OPEN_DOCUMENT)
-                intent.addCategory(Intent.CATEGORY_OPENABLE)
-                intent.type = "application/pdf"
-                pickPdfLauncher.launch(intent)
-            } catch (e: ActivityNotFoundException) {
-                Toast.makeText(
-                    context,
-                    "File picker not found",
-                    Toast.LENGTH_SHORT
-                ).show()
+            else {
+                ActivityCompat.requestPermissions(
+                    context as Activity,
+                    arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE),
+                    PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE
+
+                )
+
             }
         }
+
+
     }
 
     override fun getItemCount(): Int {
@@ -133,7 +168,8 @@ class PendingAssignmentAdapter(
             "rollNo" to rollNo
         )
     }
+
     fun updateTextView(textView: TextView = attachmentView) {
-        textView.text =File(prefs.getString("pdfPath", "")).name
+        textView.text = File(prefs.getString("pdfPath", "")).name
     }
 }

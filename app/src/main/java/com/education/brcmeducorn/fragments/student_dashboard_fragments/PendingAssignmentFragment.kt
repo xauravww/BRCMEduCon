@@ -19,7 +19,9 @@ import com.education.brcmeducorn.adapter.PendingAssignmentAdapter
 import com.education.brcmeducorn.api.apiModels.Data
 import com.education.brcmeducorn.api.apiModels.GetAssignmentReq
 import com.education.brcmeducorn.api.apiModels.GetAssignmentRes
+import com.education.brcmeducorn.fragments.faculty_dashboard_fragments.utils.AppPreferences
 import com.education.brcmeducorn.utils.ApiUtils
+import com.education.brcmeducorn.utils.CustomProgressDialog
 import com.education.brcmeducorn.utils.RealPathUtil
 import com.education.brcmeducorn.utils.SharedPrefs
 import kotlinx.coroutines.CoroutineScope
@@ -32,7 +34,7 @@ class PendingAssignmentFragment : Fragment() {
     private var selectedPdf: Uri? = null
     private lateinit var pdfPath: String
     private lateinit var assignmentAdapter: PendingAssignmentAdapter
-    private lateinit var prefs: SharedPrefs
+    private var customProgressDialog: CustomProgressDialog? = null
 
     private val pickPdfLauncher: ActivityResultLauncher<Intent> =
         this.registerForActivityResult(
@@ -42,7 +44,8 @@ class PendingAssignmentFragment : Fragment() {
                 val data: Intent? = result.data
                 if (data != null) {
                     selectedPdf = data.data!!
-                    pdfPath = RealPathUtil.getRealPath(this.requireContext(), selectedPdf!!).toString()
+                    pdfPath =
+                        RealPathUtil.getRealPath(this.requireContext(), selectedPdf!!).toString()
                     Log.d("path", pdfPath)
                     SharedPrefs(requireContext()).saveString("pdfPath", pdfPath)
                     assignmentAdapter.updateTextView()
@@ -51,6 +54,7 @@ class PendingAssignmentFragment : Fragment() {
                 }
             }
         }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -59,23 +63,28 @@ class PendingAssignmentFragment : Fragment() {
         val view: View = inflater.inflate(R.layout.fragment_pending_assignment, container, false)
 
         // Assuming assignments is a list of AssignmentModel objects
-        prefs = SharedPrefs(requireContext())
         recyclerView = view.findViewById(R.id.recyclerViewPendingAssignments)
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
-        val userData = getPrefs()
+        val prefs = AppPreferences(requireContext())
 
 
         CoroutineScope(Dispatchers.Main).launch {
+            customProgressDialog = CustomProgressDialog(context)
+            customProgressDialog!!.setMessage("wait loading data ...")
+            customProgressDialog!!.show()
             val endpoint = "assignment"
             val method = "GET_ASSIGNMENTS"
-            val studentAssignments = GetAssignmentReq(userData["semester"]?:"",userData["branch"]?:"",userData["rollNo"]?:"")
+            val studentAssignments =
+                GetAssignmentReq(prefs.getSemester(), prefs.getBranch(), prefs.getRollNo())
             val result = ApiUtils.fetchData(endpoint, method, studentAssignments)
 
             if (result is GetAssignmentRes) {
-                val assignmentData=result.data
-                val assignments = getPendingAssignments(assignmentData) // Replace with your data source
+                val assignmentData = result.data
+                val assignments =
+                    getPendingAssignments(assignmentData) // Replace with your data source
 
-                assignmentAdapter = PendingAssignmentAdapter(assignments,pickPdfLauncher,requireContext())
+                assignmentAdapter =
+                    PendingAssignmentAdapter(assignments, pickPdfLauncher, requireContext())
                 recyclerView.adapter = assignmentAdapter
                 if (!result.success) {
                     Toast.makeText(
@@ -83,13 +92,18 @@ class PendingAssignmentFragment : Fragment() {
                         "something error",
                         Toast.LENGTH_SHORT
                     ).show()
+                    customProgressDialog!!.dismiss()
                 }
+                customProgressDialog!!.dismiss()
+
             } else {
                 Toast.makeText(
                     requireContext(),
                     "something went wrong",
                     Toast.LENGTH_SHORT
                 ).show()
+                customProgressDialog!!.dismiss()
+
             }
 
         }
@@ -115,18 +129,5 @@ class PendingAssignmentFragment : Fragment() {
             // Return true only if the assignment has 'pending' status
             assignment.status == "pending"
         }
-    }
-    private fun getPrefs(): Map<String, String> {
-        val name = prefs.getString("name", "")
-        val rollNo = prefs.getString("rollNo", "")
-        val semester = prefs.getString("semester", "")
-
-
-        return mapOf(
-            "name" to name,
-            "rollNo" to rollNo,
-            "semester" to semester,
-
-        )
     }
 }

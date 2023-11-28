@@ -1,5 +1,6 @@
 package com.education.brcmeducorn.activites
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
@@ -13,14 +14,8 @@ import androidx.drawerlayout.widget.DrawerLayout
 import com.education.brcmeducorn.R
 import com.education.brcmeducorn.fragments.admin_dashboard_fragments.AdminDashboardFragment
 import com.education.brcmeducorn.fragments.EventsFragment
-//import com.education.brcmeducorn.fragments.TimeTableFragment
-//import com.education.brcmeducorn.fragments.faculty_dashboard_fragments.AssignmentFragment
+import com.education.brcmeducorn.utils.SharedPrefs
 import com.google.android.material.appbar.AppBarLayout
-//import com.education.brcmeducorn.fragments.admin_dashboard_fragments.EditFacultyFragment
-//import com.education.brcmeducorn.fragments.admin_dashboard_fragments.EditStudentFragment
-//import com.education.brcmeducorn.fragments.admin_dashboard_fragments.FacultyClassManagementFragment
-//import com.education.brcmeducorn.fragments.student_dashboard_fragments.AssignmentFragment
-// import com.google.android.material.appbar.AppBarLayout
  import com.google.android.material.navigation.NavigationView
 
 class AdminDashboardActivity : AppCompatActivity() {
@@ -69,11 +64,8 @@ class AdminDashboardActivity : AppCompatActivity() {
                 R.id.events -> supportFragmentManager.beginTransaction()
                     .replace(R.id.frameLayout, EventsFragment()).commit()
 
-                R.id.logOut -> Toast.makeText(
-                    this@AdminDashboardActivity,
-                    "Log Out Feature",
-                    Toast.LENGTH_SHORT
-                ).show()
+                R.id.logOut -> SharedPrefs(this).logOut(this)
+
             }
             drawerLayout.closeDrawers()
             return@setNavigationItemSelectedListener true
@@ -109,4 +101,5 @@ class AdminDashboardActivity : AppCompatActivity() {
         }
         return super.onOptionsItemSelected(item)
     }
+
 }

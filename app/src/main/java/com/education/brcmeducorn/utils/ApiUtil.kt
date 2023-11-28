@@ -18,8 +18,8 @@ import java.io.File
 object ApiUtils {
 
     private val retrofit = Retrofit.Builder()
-        .baseUrl("https://backend-brcm-edu-con.vercel.app/api/v1/")
-//        .baseUrl("http://192.168.43.247:4000/api/v1/")
+//        .baseUrl("https://backend-brcm-edu-con.vercel.app/api/v1/")
+        .baseUrl("http://192.168.43.247:4000/api/v1/")
         .addConverterFactory(GsonConverterFactory.create())
         .build()
 

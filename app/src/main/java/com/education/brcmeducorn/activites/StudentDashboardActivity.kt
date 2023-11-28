@@ -1,17 +1,15 @@
 package com.education.brcmeducorn.activites
 
- import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
 import android.widget.FrameLayout
-import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.ActionBarDrawerToggle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import com.education.brcmeducorn.R
-import com.education.brcmeducorn.api.apiModels.LoginResponse
 import com.education.brcmeducorn.fragments.EventsFragment
 import com.education.brcmeducorn.fragments.student_dashboard_fragments.StudentDashboardFragment
 import com.education.brcmeducorn.utils.SharedPrefs
@@ -39,17 +37,17 @@ class StudentDashboardActivity : AppCompatActivity() {
         openHome()
 
 
-
     }
 
     private fun onBackPressedHandler() {
-        onBackPressedDispatcher.addCallback(this,object :OnBackPressedCallback(true){
+        onBackPressedDispatcher.addCallback(this, object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
-                when(supportFragmentManager.findFragmentById(R.id.frameLayout)){
+                when (supportFragmentManager.findFragmentById(R.id.frameLayout)) {
                     !is StudentDashboardFragment -> {
-                          openHome()
+                        openHome()
                     }
-                    else-> finish()
+
+                    else -> finish()
                 }
             }
         })
@@ -62,11 +60,8 @@ class StudentDashboardActivity : AppCompatActivity() {
                 R.id.events -> supportFragmentManager.beginTransaction()
                     .replace(R.id.frameLayout, EventsFragment()).commit()
 
-                R.id.logOut -> Toast.makeText(
-                    this@StudentDashboardActivity,
-                    "Log Out Feature",
-                    Toast.LENGTH_SHORT
-                ).show()
+                R.id.logOut -> SharedPrefs(this).logOut(this)
+
             }
             drawerLayout.closeDrawers()
             return@setNavigationItemSelectedListener true
@@ -86,7 +81,7 @@ class StudentDashboardActivity : AppCompatActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         appBar.outlineProvider = null
 
-        var actionBarDrawerToggle = ActionBarDrawerToggle(
+        val actionBarDrawerToggle = ActionBarDrawerToggle(
             this@StudentDashboardActivity,
             drawerLayout,
             R.string.open_drawer,
@@ -103,7 +98,6 @@ class StudentDashboardActivity : AppCompatActivity() {
         }
         return super.onOptionsItemSelected(item)
     }
-
 
 
 }
