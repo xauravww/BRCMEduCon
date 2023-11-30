@@ -1,77 +1,33 @@
 package com.education.brcmeducorn.fragments.admin_dashboard_fragments
 
-import android.Manifest
-import android.app.DatePickerDialog
-import android.content.Context
-import android.content.Intent
-import android.content.pm.PackageManager
-import android.net.Uri
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.AdapterView
-import android.widget.ArrayAdapter
-import android.widget.Button
-import android.widget.EditText
-import android.widget.ImageView
-import android.widget.Spinner
 import android.widget.Toast
-import androidx.core.app.ActivityCompat
-import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.education.brcmeducorn.R
-import com.education.brcmeducorn.activites.AdminDashboardActivity
-import com.education.brcmeducorn.activites.FacultyDashboardActivity
-import com.education.brcmeducorn.activites.StudentDashboardActivity
-import com.education.brcmeducorn.api.apiModels.LoginResponse
-import com.education.brcmeducorn.api.apiModels.RegisterRequest
+import com.education.brcmeducorn.adapter.MembersVerifyAdapter
+import com.education.brcmeducorn.api.apiModels.DataXXXX
+import com.education.brcmeducorn.api.apiModels.GetUnVerifyMemberAdminRes
+import com.education.brcmeducorn.api.apiModels.Token
+import com.education.brcmeducorn.fragments.faculty_dashboard_fragments.utils.AppPreferences
 import com.education.brcmeducorn.utils.ApiUtils
-import com.education.brcmeducorn.utils.SharedPrefs
-import com.github.dhaval2404.imagepicker.ImagePicker
-import com.hbb20.CountryCodePicker
+import com.education.brcmeducorn.utils.CustomProgressDialog
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import okhttp3.MediaType.Companion.toMediaTypeOrNull
-import okhttp3.RequestBody.Companion.toRequestBody
-import java.text.SimpleDateFormat
-import java.util.Calendar
-import java.util.Locale
 
 class VerifyMembersFragment : Fragment() {
-    private lateinit var txtBranch: Spinner
-    private lateinit var txtSemester: Spinner
-    private lateinit var imgUploadBtn: Button
-    private lateinit var imgStudent: ImageView
-    private lateinit var txtName: EditText
-    private lateinit var txtbatch: EditText
-    private lateinit var txtRegistrationNo: EditText
-    private lateinit var txtUserMail: EditText
-    private lateinit var txtPhoneNo: EditText
-    private lateinit var countryCode: CountryCodePicker
-    private lateinit var txtAddress: EditText
-    private lateinit var txtPassword: EditText
-    private lateinit var txtRollNo: EditText
-    private lateinit var txtFather: EditText
-    private lateinit var txtDOB: EditText
-    private lateinit var btnUpdateDetails: Button
-    private var editTextDOB: EditText? = null
-    private var dobCalendar: Calendar? = null
-    private var branchArray = arrayOf("Branch", "Cse", "Civil", "Mechanical", "Electrical")
-    private var semesterArray = arrayOf("Semester", "Sem1", "Sem2", "Sem3", "Sem4", "Sem5", "Sem6", "Sem7", "Sem8")
-    lateinit var prefs: SharedPrefs
-    private lateinit var selectedImageUri: Uri
+    private lateinit var recycleView: RecyclerView
+    private lateinit var verifyAdapter: MembersVerifyAdapter
+    private var customProgressDialog: CustomProgressDialog? = null
+    private lateinit var unVerifiedMemberList: List<DataXXXX>
+    private var paginationUnVerifiedMemberList: MutableList<DataXXXX> = mutableListOf()
+    private var newDataToAddInPaggi: List<DataXXXX> = listOf()
 
-    companion object {
-        var student_user = 1
-        var faculty_user = 0
-        var admin_user = 0
-        var roll: String = "student"
-        var selectedBranch: String = "branch"
-        var selectedSemester: String = "sem"
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -79,39 +35,101 @@ class VerifyMembersFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_add_or_remove_members, container, false)
-        val branchAdapter = ArrayAdapter(activity as Context, R.layout.spinner_item, branchArray)
-        val semAdapter = ArrayAdapter(activity as Context, R.layout.spinner_item, semesterArray)
+        recycleView = view.findViewById(R.id.recycleView)
+        val prefs = AppPreferences(requireContext())
+
+        CoroutineScope(Dispatchers.Main).launch {
+            customProgressDialog = CustomProgressDialog(context)
+            customProgressDialog!!.setMessage("wait loading unverified members ...")
+            customProgressDialog!!.show();
+            val endpoint = "admin/members/unverified"
+            val method = "GET_UNVERIFIED_MEMBERS"
+            val token =
+                Token(prefs.getToken())
+
+            val result = ApiUtils.fetchData(endpoint, method, token)
+
+            if (result is GetUnVerifyMemberAdminRes) {
+                unVerifiedMemberList = result.data
+
+                val layoutManager = LinearLayoutManager(requireContext())
+                recycleView.layoutManager = layoutManager
+
+                verifyAdapter = MembersVerifyAdapter(paginationUnVerifiedMemberList, requireContext())
+                recycleView.adapter = verifyAdapter
+                loadMoreMember() // Load more data
+
+                recycleView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+                    override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                        super.onScrolled(recyclerView, dx, dy)
+                        val visibleItemCount = layoutManager.childCount
+                        val totalItemCount = layoutManager.itemCount
+                        val firstVisibleItemPosition = layoutManager.findFirstVisibleItemPosition()
+
+                        // Load more items when the user is about to reach the end
+                        if (visibleItemCount + firstVisibleItemPosition >= totalItemCount - 3) {
+                            loadMoreMember() // Load more data
+                        }
+                    }
+                })
 
 
-        txtBranch.adapter = branchAdapter
-        txtSemester.adapter = semAdapter
 
+
+                if (!result.success) {
+                    Toast.makeText(
+                        requireContext(),
+                        "something error",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                    customProgressDialog!!.dismiss()
+
+                }
+                customProgressDialog!!.dismiss()
+
+            } else {
+                Toast.makeText(
+                    requireContext(),
+                    "something went wrong",
+                    Toast.LENGTH_SHORT
+                ).show()
+                customProgressDialog!!.dismiss()
+
+            }
+
+        }
 
 
         return view
     }
 
-    private fun findViewById(view: View) {
+    private fun loadMoreMember() {
+        // Simulate loading data (replace this with your actual logic)
+        if (unVerifiedMemberList.isNotEmpty()) {
 
-        imgUploadBtn = view.findViewById(R.id.imgUploadBtn)
-        imgStudent = view.findViewById(R.id.imgStudent)
-        txtName = view.findViewById(R.id.txtName)
-        txtBranch = view.findViewById(R.id.txtBranch)
-        txtSemester = view.findViewById(R.id.txtSemester)
-        txtbatch = view.findViewById(R.id.txtbatch)
-        txtRegistrationNo = view.findViewById(R.id.txtRegistrationNo)
-        txtUserMail = view.findViewById(R.id.txtUserMail)
-        txtPhoneNo = view.findViewById(R.id.txtPhoneNo)
-        countryCode = view.findViewById(R.id.countryCode)
-        txtAddress = view.findViewById(R.id.txtAddress)
-        txtFather = view.findViewById(R.id.txtFather)
-        txtDOB = view.findViewById(R.id.txtDOB)
-        txtPassword = view.findViewById(R.id.txtUserPass)
-        txtRollNo = view.findViewById(R.id.txtRollNo)
-        btnUpdateDetails = view.findViewById(R.id.btnUpdateDetails)
-
+            if (paginationUnVerifiedMemberList.size != unVerifiedMemberList.size) {
+                if (paginationUnVerifiedMemberList.isEmpty() && unVerifiedMemberList.size >= 2) {
+                    newDataToAddInPaggi = unVerifiedMemberList.subList(0, 2)
+                    val startPosition = paginationUnVerifiedMemberList.size
+                    val itemCount = 3
+                    // Add the loaded data to the list
+                    paginationUnVerifiedMemberList.addAll(newDataToAddInPaggi)
+                    verifyAdapter.notifyItemRangeInserted(startPosition, itemCount)
+                } else {
+                    newDataToAddInPaggi =
+                        unVerifiedMemberList.subList(
+                            paginationUnVerifiedMemberList.size,
+                            paginationUnVerifiedMemberList.size + 1
+                        )
+                    val startPosition = paginationUnVerifiedMemberList.size
+                    val itemCount = 1
+                    // Add the loaded data to the list
+                    paginationUnVerifiedMemberList.addAll(newDataToAddInPaggi)
+                    verifyAdapter.notifyItemRangeInserted(startPosition, itemCount)
+                }
+            }
+        }
     }
 
 
-
- }
+}

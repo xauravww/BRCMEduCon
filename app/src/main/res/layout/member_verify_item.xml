@@ -1,0 +1,384 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/smooth_corner_shape"
+    android:padding="5dp"
+    android:layout_margin="5dp"
+    android:elevation="5dp"
+    tools:context=".fragments.admin_dashboard_fragments.VerifyMembersFragment">
+
+    <RelativeLayout
+        android:id="@+id/main"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <LinearLayout
+            android:id="@+id/upperSection"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="20dp"
+            android:weightSum="6"
+            android:baselineAligned="false">
+
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="2.5">
+
+                <com.makeramen.roundedimageview.RoundedImageView
+                    android:id="@+id/imgStudent"
+                    android:layout_width="150dp"
+                    android:layout_height="150dp"
+                    app:riv_corner_radius="10dp"
+                    android:layout_centerHorizontal="true"
+                    android:src="@drawable/human_image"
+                    android:layout_marginTop="10dp"
+                    />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="3.5"
+                android:background="@color/white"
+                android:elevation="1dp"
+                android:padding="5dp"
+                android:layout_marginRight="5dp">
+
+                <TextView
+                    android:id="@+id/txtName"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:hint="@string/loading"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:gravity="center_vertical"
+                    android:padding="10dp" />
+
+                <TextView
+                    android:id="@+id/txtBranch"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_below="@id/txtName"
+                    android:background="@drawable/border_bottom"
+                    android:padding="5dp"
+                    android:text="@string/loading"
+                    android:layout_marginHorizontal="5dp" />
+
+                <TextView
+                    android:id="@+id/txtSemester"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_below="@id/txtBranch"
+                    android:text="@string/loading"
+                    android:background="@drawable/border_bottom"
+                    android:padding="5dp"
+                    android:layout_marginHorizontal="5dp" />
+            </RelativeLayout>
+
+        </LinearLayout>
+
+        <RelativeLayout
+            android:id="@+id/middleSection"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/upperSection"
+            android:background="@color/white"
+            android:elevation="1dp"
+            android:visibility="gone"
+            android:layout_marginHorizontal="5dp">
+
+            <RelativeLayout
+                android:id="@+id/Batch"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp">
+
+                <TextView
+                    android:id="@+id/imgcalender"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:padding="10dp"
+                    android:scrollbars="horizontal"
+                    android:scrollHorizontally="true"
+                    android:singleLine="true"
+                    android:maxLines="1"
+                    android:text="BtachYear: "
+                    />
+
+                <TextView
+                    android:id="@+id/txtbatch"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@id/imgcalender"
+                    android:hint="@string/loading"
+                    android:gravity="center_vertical"
+                    android:padding="10dp"
+                    android:scrollbars="horizontal"
+                    android:scrollHorizontally="true"
+                    android:singleLine="true"
+                    android:maxLines="1" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/DOB"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/Batch"
+                android:layout_marginHorizontal="20dp">
+
+                <TextView
+                    android:id="@+id/imgDOB"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:padding="10dp"
+                    android:scrollbars="horizontal"
+                    android:scrollHorizontally="true"
+                    android:singleLine="true"
+                    android:maxLines="1"
+                    android:text="Date Of Birth: " />
+
+                <TextView
+                    android:id="@+id/txtDOB"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@id/imgDOB"
+                    android:hint="@string/loading"
+                    android:gravity="center_vertical"
+                    android:padding="10dp"
+                    android:scrollbars="horizontal"
+                    android:scrollHorizontally="true"
+                    android:singleLine="true" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/Father"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/DOB"
+                android:layout_marginHorizontal="20dp">
+
+                <TextView
+                    android:id="@+id/imgFather"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:padding="10dp"
+                    android:scrollbars="horizontal"
+                    android:scrollHorizontally="true"
+                    android:singleLine="true"
+                    android:maxLines="1"
+                    android:text="Father Name: " />
+
+                <TextView
+                    android:id="@+id/txtFather"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_toEndOf="@id/imgFather"
+                    android:hint="@string/loading"
+                    android:gravity="center_vertical"
+                    android:padding="10dp"
+                    android:scrollbars="horizontal"
+                    android:scrollHorizontally="true"
+                    android:singleLine="true" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/Registration"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/Father"
+                android:layout_marginHorizontal="20dp">
+
+                <TextView
+                    android:id="@+id/imgPerson"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:padding="10dp"
+                    android:scrollbars="horizontal"
+                    android:scrollHorizontally="true"
+                    android:singleLine="true"
+                    android:maxLines="1"
+                    android:text="Reg. No: " />
+
+                <TextView
+                    android:id="@+id/txtRegistrationNo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@id/imgPerson"
+                    android:hint="@string/loading"
+                    android:inputType="number"
+                    android:scrollbars="horizontal"
+                    android:scrollHorizontally="true"
+                    android:singleLine="true"
+                    android:padding="10dp" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/RollNo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/Registration"
+                android:layout_marginHorizontal="20dp">
+
+                <TextView
+                    android:id="@+id/imgRoll"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:maxLines="1"
+                    android:padding="10dp"
+                    android:scrollbars="horizontal"
+                    android:scrollHorizontally="true"
+                    android:singleLine="true"
+                    android:text="Roll No: " />
+
+                <TextView
+                    android:id="@+id/txtRollNo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_toEndOf="@id/imgRoll"
+                    android:hint="@string/loading"
+                    android:padding="10dp"
+                    android:scrollbars="horizontal"
+                    android:scrollHorizontally="true"
+                    android:singleLine="true" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/Mail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/RollNo"
+                android:layout_marginHorizontal="20dp">
+
+                <TextView
+                    android:id="@+id/imgmail"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:padding="10dp"
+                    android:scrollbars="horizontal"
+                    android:scrollHorizontally="true"
+                    android:singleLine="true"
+                    android:maxLines="1"
+                    android:text="Email: " />
+
+                <TextView
+                    android:id="@+id/txtUserMail"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@id/imgmail"
+                    android:hint="@string/loading"
+                    android:padding="10dp"
+                    android:scrollbars="horizontal"
+                    android:scrollHorizontally="true"
+                    android:singleLine="true" />
+
+            </RelativeLayout>
+
+
+            <RelativeLayout
+                android:id="@+id/Mobile"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/Mail"
+                android:layout_marginHorizontal="20dp">
+
+                <TextView
+                    android:id="@+id/imgphone"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:padding="10dp"
+                    android:scrollbars="horizontal"
+                    android:scrollHorizontally="true"
+                    android:singleLine="true"
+                    android:maxLines="1"
+                    android:text="Phone: " />
+
+
+                <TextView
+                    android:id="@+id/txtPhoneNo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_toEndOf="@id/imgphone"
+                    android:hint="@string/loading"
+                    android:inputType="number"
+                    android:maxLength="10"
+                    android:padding="10dp"
+                    android:scrollbars="horizontal"
+                    android:scrollHorizontally="true"
+                    android:singleLine="true" />
+            </RelativeLayout>
+            <RelativeLayout
+                android:id="@+id/bottomSection"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/Mobile"
+                android:layout_marginHorizontal="20dp">
+
+                <TextView
+                    android:id="@+id/imghome"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:maxLines="1"
+                    android:padding="10dp"
+                    android:scrollbars="horizontal"
+                    android:scrollHorizontally="true"
+                    android:singleLine="true"
+                    android:text="Address: " />
+
+                <TextView
+                    android:id="@+id/txtAddress"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@id/imghome"
+                    android:background="@drawable/box_outline"
+                    android:gravity="start"
+                    android:hint="@string/loading"
+                    android:inputType="textMultiLine"
+                    android:padding="10dp"
+                    android:scrollbarAlwaysDrawVerticalTrack="true" />
+            </RelativeLayout>
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/checkMore"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/middleSection"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="5dp"
+            android:padding="5dp"
+            android:background="@drawable/smooth_corner_shape"
+            android:gravity="end"
+            android:text="check more ..."
+            android:textAllCaps="false"
+
+            android:textSize="18sp" />
+        <Button
+            android:id="@+id/verifyBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/checkMore"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/smooth_corner_shape"
+            android:backgroundTint="@color/appPrimary"
+            android:fontFamily="@font/montserrat_extrabold"
+            android:text="Verify It"
+            android:textAllCaps="false"
+            android:textColor="#ffffff"
+            android:textSize="18sp" />
+    </RelativeLayout>
+
+</FrameLayout>

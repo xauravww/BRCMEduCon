@@ -35,6 +35,9 @@ object ApiUtils {
                 val response = when (method) {
                     "GET_ALL_GALLERY" -> apiService.getAllGallery(endpoint)
                     "LOGIN" -> apiService.loginPost(endpoint, requestBody)
+                    "GET_UNVERIFIED_MEMBERS" -> apiService.getUnVerifiedMembers(endpoint, requestBody)
+                    "ADMIN_VERIFY_MEMBER" -> apiService.verifyMember(endpoint, requestBody)
+
                     "ASSIGNMENT_CREATE" -> apiService.createAssignment(endpoint, requestBody)
                     "GET_ASSIGNMENTS" -> apiService.getAssignments(endpoint, requestBody)
                     "GET_ASSIGNMENTS_TO_CHECK" -> apiService.getAssignmentsToCheck(
