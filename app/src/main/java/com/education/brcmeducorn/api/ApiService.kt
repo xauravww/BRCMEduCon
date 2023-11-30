@@ -7,6 +7,7 @@ import com.education.brcmeducorn.api.apiModels.GetOldAttendanceRes
 import com.education.brcmeducorn.api.apiModels.LoginResponse
 import com.education.brcmeducorn.api.apiModels.StudentIdCardRes
 import com.education.brcmeducorn.api.apiModels.Success
+import com.education.brcmeducorn.api.apiModels.GetUnVerifyMemberAdminRes
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import retrofit2.Response
@@ -35,6 +36,11 @@ interface ApiService {
         @Url url: String,
         @Body requestBody: Any,
     ): Response<LoginResponse>
+    @POST
+    suspend fun getUnVerifiedMembers(
+        @Url url: String,
+        @Body requestBody: Any,
+    ): Response<GetUnVerifyMemberAdminRes>
     @POST
     suspend fun updateSubmissionAssignmentByFaculty(
         @Url url: String,
@@ -116,6 +122,11 @@ interface ApiService {
 
     @PUT
     suspend fun updateAttendance(
+        @Url url: String,
+        @Body requestBody: Any
+    ): Response<Success>
+    @PUT
+    suspend fun verifyMember(
         @Url url: String,
         @Body requestBody: Any
     ): Response<Success>
