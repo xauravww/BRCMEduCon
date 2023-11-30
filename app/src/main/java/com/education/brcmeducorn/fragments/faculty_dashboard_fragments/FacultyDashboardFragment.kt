@@ -58,21 +58,21 @@ class FacultyDashboardFragment : Fragment() {
     private fun handleClickListeners() {
         llClasses.setOnClickListener {
             activity?.supportFragmentManager?.beginTransaction()
-                ?.replace(com.education.brcmeducorn.R.id.frameLayout, ClassesFragment())
+                ?.replace(R.id.frameLayout, ClassesFragment())
                 ?.commit()
 
 
         }
         llMarkAttendance.setOnClickListener {
             activity?.supportFragmentManager?.beginTransaction()
-                ?.replace(com.education.brcmeducorn.R.id.frameLayout, MarkAttendanceFragment())
+                ?.replace(R.id.frameLayout, MarkAttendanceFragment())
                 ?.commit()
 
 
         }
         llSendEvents.setOnClickListener {
             activity?.supportFragmentManager?.beginTransaction()
-                ?.replace(com.education.brcmeducorn.R.id.frameLayout, AssignClassesFragment())
+                ?.replace(R.id.frameLayout, AssignClassesFragment())
                 ?.commit()
 
 
@@ -80,7 +80,7 @@ class FacultyDashboardFragment : Fragment() {
 
         llProfile.setOnClickListener {
             activity?.supportFragmentManager?.beginTransaction()
-                ?.replace(com.education.brcmeducorn.R.id.frameLayout, FacultyProfileFragment())
+                ?.replace(R.id.frameLayout, FacultyProfileFragment())
                 ?.commit()
 
 
@@ -88,7 +88,7 @@ class FacultyDashboardFragment : Fragment() {
 
         llIdCard.setOnClickListener {
             activity?.supportFragmentManager?.beginTransaction()
-                ?.replace(com.education.brcmeducorn.R.id.frameLayout, FacultyIdCardFragment())
+                ?.replace(R.id.frameLayout, FacultyIdCardFragment())
                 ?.commit()
 
 
@@ -96,7 +96,7 @@ class FacultyDashboardFragment : Fragment() {
 
         llSendAssignments.setOnClickListener {
             activity?.supportFragmentManager?.beginTransaction()
-                ?.replace(com.education.brcmeducorn.R.id.frameLayout, AssignmentFragment())
+                ?.replace(R.id.frameLayout, AssignmentFragment())
                 ?.commit()
 
 

@@ -3,14 +3,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".fragments.admin_dashboard_fragments.AddOrRemoveMembersFragment"
+    android:layout_height="wrap_content"
+    tools:context=".fragments.admin_dashboard_fragments.VerifyMembersFragment">
 
-    >
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
 
         <RelativeLayout
             android:id="@+id/main"
@@ -31,28 +27,16 @@
                     android:layout_height="match_parent"
                     android:layout_weight="2.5">
 
-                    <ImageView
+                    <com.makeramen.roundedimageview.RoundedImageView
                         android:id="@+id/imgStudent"
                         android:layout_width="150dp"
                         android:layout_height="150dp"
+                        app:riv_corner_radius="10dp"
                         android:layout_centerHorizontal="true"
                         android:src="@drawable/human_image"
                         android:layout_marginTop="10dp"
                         />
 
-                    <Button
-                        android:id="@+id/imgUploadBtn"
-                        android:layout_width="130dp"
-                        android:layout_height="35dp"
-                        android:layout_below="@id/imgStudent"
-                        android:layout_centerHorizontal="true"
-                        android:layout_marginTop="5dp"
-                        android:background="@drawable/smooth_corner_shape"
-                        android:backgroundTint="@color/appPrimary"
-                        android:fontFamily="@font/montserrat_extrabold"
-                        android:text="Upload Photo"
-                        android:textAllCaps="false"
-                        android:textColor="@color/white" />
                 </RelativeLayout>
 
                 <RelativeLayout
@@ -64,35 +48,35 @@
                     android:padding="5dp"
                     android:layout_marginRight="5dp">
 
-                    <EditText
+                    <TextView
                         android:id="@+id/txtName"
                         android:layout_width="match_parent"
-                        android:layout_height="60dp"
-                        android:hint="Enter Name"
-                        android:inputType="text"
-                        android:scrollbars="vertical"
-                        android:maxLines="1"
+                        android:layout_height="50dp"
+                        android:hint="@string/loading"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        android:gravity="center_vertical"
                         android:padding="10dp" />
 
-                    <Spinner
+                    <TextView
                         android:id="@+id/txtBranch"
                         android:layout_width="match_parent"
-                        android:layout_height="60dp"
+                        android:layout_height="40dp"
                         android:layout_below="@id/txtName"
                         android:background="@drawable/border_bottom"
                         android:padding="5dp"
-                        android:layout_marginHorizontal="5dp"
-                        />
+                        android:text="@string/loading"
+                        android:layout_marginHorizontal="5dp" />
 
-                    <Spinner
+                    <TextView
                         android:id="@+id/txtSemester"
                         android:layout_width="match_parent"
-                        android:layout_height="60dp"
+                        android:layout_height="40dp"
                         android:layout_below="@id/txtBranch"
+                        android:text="@string/loading"
                         android:background="@drawable/border_bottom"
                         android:padding="5dp"
-                        android:layout_marginHorizontal="5dp"
-                        />
+                        android:layout_marginHorizontal="5dp" />
                 </RelativeLayout>
 
             </LinearLayout>
@@ -104,116 +88,131 @@
                 android:layout_below="@id/upperSection"
                 android:background="@color/white"
                 android:elevation="1dp"
+                android:visibility="gone"
                 android:layout_marginHorizontal="5dp">
 
                 <RelativeLayout
                     android:id="@+id/Batch"
                     android:layout_width="match_parent"
-                    android:layout_height="60dp"
-                    android:layout_marginHorizontal="20dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="20dp">
 
-                    >
-
-                    <ImageView
+                    <TextView
                         android:id="@+id/imgcalender"
-                        android:layout_width="35dp"
-                        android:layout_height="match_parent"
-                        android:src="@drawable/baseline_calendar_month_24"
-                        app:tint="@color/appPrimary" />
-
-                    <EditText
-                        android:id="@+id/txtbatch"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_toRightOf="@id/imgcalender"
-
-                        android:hint="Enter Batch or Year"
-                        android:inputType="number"
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
                         android:padding="10dp"
                         android:scrollbars="horizontal"
                         android:scrollHorizontally="true"
                         android:singleLine="true"
-                        android:maxLines="1"/>
-                </RelativeLayout>
+                        android:maxLines="1"
+                        android:text="BtachYear: "
+                          />
 
+                    <TextView
+                        android:id="@+id/txtbatch"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_toRightOf="@id/imgcalender"
+                        android:hint="@string/loading"
+                        android:gravity="center_vertical"
+                        android:padding="10dp"
+                        android:scrollbars="horizontal"
+                        android:scrollHorizontally="true"
+                        android:singleLine="true"
+                        android:maxLines="1" />
+                </RelativeLayout>
 
                 <RelativeLayout
                     android:id="@+id/DOB"
                     android:layout_width="match_parent"
-                    android:layout_height="60dp"
+                    android:layout_height="wrap_content"
                     android:layout_below="@id/Batch"
                     android:layout_marginHorizontal="20dp">
 
-                    <ImageView
+                    <TextView
                         android:id="@+id/imgDOB"
-                        android:layout_width="35dp"
-                        android:layout_height="match_parent"
-                        android:src="@drawable/baseline_perm_contact_calendar_24"
-                        app:tint="@color/appPrimary" />
-
-                    <EditText
-                        android:id="@+id/txtDOB"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_toRightOf="@id/imgDOB"
-                        android:hint="Enter Your DOB (Y-M-D)"
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
                         android:padding="10dp"
                         android:scrollbars="horizontal"
                         android:scrollHorizontally="true"
-                        android:singleLine="true"/>
-                </RelativeLayout>
+                        android:singleLine="true"
+                        android:maxLines="1"
+                        android:text="Date Of Birth: " />
 
+                    <TextView
+                        android:id="@+id/txtDOB"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_toRightOf="@id/imgDOB"
+                        android:hint="@string/loading"
+                        android:gravity="center_vertical"
+                        android:padding="10dp"
+                        android:scrollbars="horizontal"
+                        android:scrollHorizontally="true"
+                        android:singleLine="true" />
+                </RelativeLayout>
 
                 <RelativeLayout
                     android:id="@+id/Father"
                     android:layout_width="match_parent"
-                    android:layout_height="60dp"
+                    android:layout_height="wrap_content"
                     android:layout_below="@id/DOB"
-                    android:layout_marginHorizontal="20dp"
+                    android:layout_marginHorizontal="20dp">
 
-                    >
-
-                    <ImageView
+                    <TextView
                         android:id="@+id/imgFather"
-                        android:layout_width="35dp"
-                        android:layout_height="match_parent"
-                        android:src="@drawable/baseline_person_pin_24"
-                        app:tint="@color/appPrimary" />
-
-                    <EditText
-                        android:id="@+id/txtFather"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_toEndOf="@id/imgFather"
-                        android:hint="Enter Your Father Name"
-                         android:padding="10dp"
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:padding="10dp"
                         android:scrollbars="horizontal"
                         android:scrollHorizontally="true"
-                        android:singleLine="true"/>
-                </RelativeLayout>
+                        android:singleLine="true"
+                        android:maxLines="1"
+                        android:text="Father Name: " />
 
+                    <TextView
+                        android:id="@+id/txtFather"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_toEndOf="@id/imgFather"
+                        android:hint="@string/loading"
+                        android:gravity="center_vertical"
+                        android:padding="10dp"
+                        android:scrollbars="horizontal"
+                        android:scrollHorizontally="true"
+                        android:singleLine="true" />
+                </RelativeLayout>
 
                 <RelativeLayout
                     android:id="@+id/Registration"
                     android:layout_width="match_parent"
-                    android:layout_height="60dp"
+                    android:layout_height="wrap_content"
                     android:layout_below="@id/Father"
-                    android:layout_marginHorizontal="20dp"
-                    >
+                    android:layout_marginHorizontal="20dp">
 
-                    <ImageView
+                    <TextView
                         android:id="@+id/imgPerson"
-                        android:layout_width="35dp"
-                        android:layout_height="match_parent"
-                        android:src="@drawable/baseline_local_library_24"
-                        app:tint="@color/appPrimary" />
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:padding="10dp"
+                        android:scrollbars="horizontal"
+                        android:scrollHorizontally="true"
+                        android:singleLine="true"
+                        android:maxLines="1"
+                        android:text="Reg. No: " />
 
-                    <EditText
+                    <TextView
                         android:id="@+id/txtRegistrationNo"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
+                        android:layout_height="wrap_content"
                         android:layout_toRightOf="@id/imgPerson"
-                        android:hint="Enter Registration no."
+                        android:hint="@string/loading"
                         android:inputType="number"
                         android:scrollbars="horizontal"
                         android:scrollHorizontally="true"
@@ -221,90 +220,66 @@
                         android:padding="10dp" />
                 </RelativeLayout>
 
-
                 <RelativeLayout
                     android:id="@+id/RollNo"
                     android:layout_width="match_parent"
-                    android:layout_height="60dp"
+                    android:layout_height="wrap_content"
                     android:layout_below="@id/Registration"
-                    android:layout_marginHorizontal="20dp"
-                    >
+                    android:layout_marginHorizontal="20dp">
 
-                    <ImageView
+                    <TextView
                         android:id="@+id/imgRoll"
-                        android:layout_width="35dp"
-                        android:layout_height="match_parent"
-                        android:src="@drawable/baseline_person_24"
-                        app:tint="@color/appPrimary" />
-
-                    <EditText
-                        android:id="@+id/txtRollNo"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_toEndOf="@id/imgRoll"
-                        android:hint="@string/roll_no_hint"
-                         android:padding="10dp"
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:maxLines="1"
+                        android:padding="10dp"
                         android:scrollbars="horizontal"
                         android:scrollHorizontally="true"
-                        android:singleLine="true"/>
-                </RelativeLayout>
+                        android:singleLine="true"
+                        android:text="Roll No: " />
 
+                    <TextView
+                        android:id="@+id/txtRollNo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_toEndOf="@id/imgRoll"
+                        android:hint="@string/loading"
+                        android:padding="10dp"
+                        android:scrollbars="horizontal"
+                        android:scrollHorizontally="true"
+                        android:singleLine="true" />
+                </RelativeLayout>
 
                 <RelativeLayout
                     android:id="@+id/Mail"
                     android:layout_width="match_parent"
-                    android:layout_height="60dp"
+                    android:layout_height="wrap_content"
                     android:layout_below="@id/RollNo"
-                    android:layout_marginHorizontal="20dp"
-                    >
+                    android:layout_marginHorizontal="20dp">
 
-                    <ImageView
+                    <TextView
                         android:id="@+id/imgmail"
-                        android:layout_width="35dp"
-                        android:layout_height="match_parent"
-                        android:src="@drawable/baseline_mail_24"
-                        app:tint="@color/appPrimary" />
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:padding="10dp"
+                        android:scrollbars="horizontal"
+                        android:scrollHorizontally="true"
+                        android:singleLine="true"
+                        android:maxLines="1"
+                        android:text="Email: " />
 
-                    <EditText
+                    <TextView
                         android:id="@+id/txtUserMail"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
+                        android:layout_height="wrap_content"
                         android:layout_toRightOf="@id/imgmail"
-                        android:hint="user@gmail.com"
+                        android:hint="@string/loading"
                         android:padding="10dp"
                         android:scrollbars="horizontal"
                         android:scrollHorizontally="true"
-                        android:singleLine="true"/>
-
-                </RelativeLayout>
-
-
-                <RelativeLayout
-                    android:id="@+id/Pass"
-                    android:layout_width="match_parent"
-                    android:layout_height="60dp"
-                    android:layout_below="@id/Mail"
-                    android:layout_marginHorizontal="20dp"
-                    >
-
-                    <ImageView
-                        android:id="@+id/passMail"
-                        android:layout_width="35dp"
-                        android:layout_height="match_parent"
-                        android:src="@drawable/baseline_lock_24"
-                        app:tint="@color/appPrimary" />
-
-                    <EditText
-                        android:id="@+id/txtUserPass"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_toRightOf="@id/passMail"
-                        android:hint="Your Strong Password"
-                        android:padding="10dp"
-                        android:inputType="textPassword"
-                        android:scrollbars="horizontal"
-                        android:scrollHorizontally="true"
-                        android:singleLine="true"/>
+                        android:singleLine="true" />
 
                 </RelativeLayout>
 
@@ -312,88 +287,96 @@
                 <RelativeLayout
                     android:id="@+id/Mobile"
                     android:layout_width="match_parent"
-                    android:layout_height="60dp"
-                    android:layout_below="@id/Pass"
-                    android:layout_marginHorizontal="20dp"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/Mail"
+                    android:layout_marginHorizontal="20dp">
 
-                    >
-
-                    <ImageView
+                    <TextView
                         android:id="@+id/imgphone"
-                        android:layout_width="35dp"
-                        android:layout_height="match_parent"
-                        android:src="@drawable/baseline_smartphone_24"
-                        app:tint="@color/appPrimary" />
-
-                    <com.hbb20.CountryCodePicker
-                        android:id="@+id/countryCode"
-                        android:layout_width="120dp"
+                        android:layout_width="100dp"
                         android:layout_height="wrap_content"
-                        android:layout_alignParentBottom="true"
-                        android:layout_marginRight="5dp"
-                        android:layout_toRightOf="@id/imgphone"
-                        android:layout_marginBottom="7.5dp"
-                        android:background="@drawable/border_bottom" />
+                        android:gravity="center_vertical"
+                        android:padding="10dp"
+                        android:scrollbars="horizontal"
+                        android:scrollHorizontally="true"
+                        android:singleLine="true"
+                        android:maxLines="1"
+                        android:text="Phone: " />
 
-                    <EditText
+
+                    <TextView
                         android:id="@+id/txtPhoneNo"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_toRightOf="@id/countryCode"
-                        android:hint="Enter Phone Number"
+                        android:layout_height="wrap_content"
+                        android:layout_toEndOf="@id/imgphone"
+                        android:hint="@string/loading"
                         android:inputType="number"
                         android:maxLength="10"
                         android:padding="10dp"
                         android:scrollbars="horizontal"
                         android:scrollHorizontally="true"
-                        android:singleLine="true"/>
+                        android:singleLine="true" />
                 </RelativeLayout>
                 <RelativeLayout
                     android:id="@+id/bottomSection"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/Mobile"
-                    android:layout_marginHorizontal="30dp">
+                    android:layout_marginHorizontal="20dp">
 
-                    <ImageView
+                    <TextView
                         android:id="@+id/imghome"
-                        android:layout_width="35dp"
-                        android:layout_height="60dp"
-                        android:layout_centerVertical="true"
-                        android:src="@drawable/baseline_home_24"
-                        app:tint="@color/appPrimary" />
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:maxLines="1"
+                        android:padding="10dp"
+                        android:scrollbars="horizontal"
+                        android:scrollHorizontally="true"
+                        android:singleLine="true"
+                        android:text="Address: " />
 
-                    <EditText
+                    <TextView
                         android:id="@+id/txtAddress"
                         android:layout_width="match_parent"
-                        android:layout_height="150dp"
+                        android:layout_height="wrap_content"
                         android:layout_toRightOf="@id/imghome"
                         android:background="@drawable/box_outline"
                         android:gravity="start"
-                        android:hint="Enter Address"
+                        android:hint="@string/loading"
                         android:inputType="textMultiLine"
                         android:padding="10dp"
                         android:scrollbarAlwaysDrawVerticalTrack="true" />
                 </RelativeLayout>
             </RelativeLayout>
 
-
-
-            <Button
-                android:id="@+id/btnUpdateDetails"
-                android:layout_width="match_parent"
+            <TextView
+                android:id="@+id/checkMore"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/middleSection"
-                android:layout_marginHorizontal="5dp"
-                android:layout_marginTop="30dp"
-                android:layout_marginBottom="60dp"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="5dp"
+                android:padding="5dp"
+                android:background="@drawable/smooth_corner_shape"
+                 android:gravity="end"
+                android:text="check more ..."
+                android:textAllCaps="false"
+
+                android:textSize="18sp" />
+            <Button
+                android:id="@+id/verifyBtn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/checkMore"
+                android:layout_marginTop="10dp"
                 android:background="@drawable/smooth_corner_shape"
                 android:backgroundTint="@color/appPrimary"
                 android:fontFamily="@font/montserrat_extrabold"
-                android:text="Submit"
+                android:text="Verify It"
                 android:textAllCaps="false"
                 android:textColor="#ffffff"
                 android:textSize="18sp" />
         </RelativeLayout>
-    </ScrollView>
+
 </FrameLayout>

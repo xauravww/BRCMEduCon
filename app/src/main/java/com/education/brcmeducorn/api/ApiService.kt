@@ -24,12 +24,22 @@ interface ApiService {
         @Url url: String,
         @Body requestBody: Any
     ): Response<GetAssignmentRes>
+    @POST
+    suspend fun getAssignmentsToCheck(
+        @Url url: String,
+        @Body requestBody: Any
+    ): Response<GetAssignmentRes>
 
     @POST
     suspend fun loginPost(
         @Url url: String,
         @Body requestBody: Any,
     ): Response<LoginResponse>
+    @POST
+    suspend fun updateSubmissionAssignmentByFaculty(
+        @Url url: String,
+        @Body requestBody: Any,
+    ): Response<Success>
 
     @Multipart
     @POST

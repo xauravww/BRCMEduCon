@@ -34,7 +34,7 @@ class AdminDashboardFragment : Fragment() {
         val view = inflater.inflate(R.layout.fragment_admin_dashboard, container, false)
 
         //        Linked all the other fragment views in our fragment
-        llAddOrRemoveMembers = view.findViewById(R.id.llAddOrRemoveMembers)
+        llAddOrRemoveMembers = view.findViewById(R.id.llVerifyMembers)
         llSendEvents = view.findViewById(R.id.llSendEvents)
         llAssignClasses = view.findViewById(R.id.llAssignClasses)
         llFacultyManage = view.findViewById(R.id.llFacultyManage)
@@ -54,7 +54,7 @@ class AdminDashboardFragment : Fragment() {
     private fun handleClickListeners() {
         llAddOrRemoveMembers.setOnClickListener {
             activity?.supportFragmentManager?.beginTransaction()
-                ?.replace(R.id.frameLayout, AddOrRemoveMembersFragment())
+                ?.replace(R.id.frameLayout, VerifyMembersFragment())
                 ?.commit()
 
 

@@ -108,10 +108,7 @@ class PendingAssignmentAdapter(
                     customProgressDialog!!.dismiss()
 
                 }
-
             }
-
-
         }
         holder.fileAttachment.setOnClickListener {
 

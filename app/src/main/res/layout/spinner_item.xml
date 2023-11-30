@@ -6,4 +6,5 @@
     android:textColor="@color/fontPrimary"
     android:fontFamily="@font/no_to_sans_bold"
     android:padding="5dp"
+    android:layout_margin="4dp"
     />

@@ -16,6 +16,7 @@ data class CreateAssignmentReq(
     val submissionDate: Any,
     val tags: List<String>,
     val teacherName: String,
+    val teacherId: String,
     val title: String,
     val token: String
 )

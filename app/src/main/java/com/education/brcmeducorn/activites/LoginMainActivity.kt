@@ -27,7 +27,6 @@ class LoginMainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_login_main)
         btnLogin = findViewById(R.id.btnLogin)
 
-
 //        fetching the login users
         studentBtn = findViewById(R.id.studentBtn)
         facultyBtn = findViewById(R.id.facultyBtn)

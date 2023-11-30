@@ -18,8 +18,8 @@ import java.io.File
 object ApiUtils {
 
     private val retrofit = Retrofit.Builder()
-//        .baseUrl("https://backend-brcm-edu-con.vercel.app/api/v1/")
-        .baseUrl("http://192.168.43.247:4000/api/v1/")
+        .baseUrl("https://backend-brcm-edu-con.vercel.app/api/v1/")
+//        .baseUrl("http://192.168.43.247:4000/api/v1/")
         .addConverterFactory(GsonConverterFactory.create())
         .build()
 
@@ -37,6 +37,11 @@ object ApiUtils {
                     "LOGIN" -> apiService.loginPost(endpoint, requestBody)
                     "ASSIGNMENT_CREATE" -> apiService.createAssignment(endpoint, requestBody)
                     "GET_ASSIGNMENTS" -> apiService.getAssignments(endpoint, requestBody)
+                    "GET_ASSIGNMENTS_TO_CHECK" -> apiService.getAssignmentsToCheck(
+                        endpoint,
+                        requestBody
+                    )
+
                     "GET_STUDENT_ID_CARD" -> {
                         // this endpoint is rollNo that is param of our req
                         apiService.idCardByStudentRollNo(endpoint, requestBody)
@@ -55,8 +60,11 @@ object ApiUtils {
                     }
 
                     "CREATE_ATTENDANCE" -> {
-                        Log.d("hi anmol", "")
                         apiService.createAttendance(endpoint, requestBody)
+                    }
+
+                    "UPDATE_SUBMISSION_BY_FACULTY" -> {
+                        apiService.updateSubmissionAssignmentByFaculty(endpoint, requestBody)
                     }
 
                     else -> throw IllegalArgumentException("Invalid method: $method")
@@ -111,6 +119,7 @@ object ApiUtils {
                             return@withContext "ase hi"
                         }
                     }
+
                     "ADD_GALLERY" -> {
                         if (requestBody is AddGalleryReq) {
                             apiService.addGallery(

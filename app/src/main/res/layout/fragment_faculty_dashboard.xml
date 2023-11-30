@@ -285,7 +285,7 @@
                     android:layout_marginStart="10dp"
                     android:layout_marginTop="2dp"
                     android:fontFamily="@font/no_to_sans_bold"
-                    android:text="Send Assignments"
+                    android:text="Assignments"
                     android:textAlignment="center"
                     android:textColor="@color/fontPrimary" />
             </RelativeLayout>

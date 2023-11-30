@@ -26,7 +26,6 @@ import androidx.core.content.ContextCompat
 import com.education.brcmeducorn.R
 import com.education.brcmeducorn.api.apiModels.LoginResponse
 import com.education.brcmeducorn.api.apiModels.RegisterRequest
-import com.education.brcmeducorn.fragments.admin_dashboard_fragments.AddOrRemoveMembersFragment
 import com.education.brcmeducorn.utils.ApiUtils
 import com.education.brcmeducorn.utils.CustomProgressDialog
 import com.education.brcmeducorn.utils.RealPathUtil
@@ -129,7 +128,7 @@ class RegisterActivity : AppCompatActivity() {
         btnUpdateDetails.setOnClickListener {
             customProgressDialog = CustomProgressDialog(this)
             customProgressDialog!!.setMessage("wait registering ...")
-            customProgressDialog!!.show();
+            customProgressDialog!!.show()
             if (::selectedImageUri.isInitialized) {
                 registerRequest(this)
             } else {

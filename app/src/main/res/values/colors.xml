@@ -55,7 +55,7 @@
         <color name="signup_text_background">#FFFFFF</color>
         <color name="light_white">#90ECF8F6</color>
         <color name="silver">#C0C0C0</color>
-        <color name="dark_gray">#7C7B7B</color>
+        <color name="dark_gray">#444444</color>
         <color name="dark_blue">#00008B</color>
         <color name="dark_gray2">#696969</color>
         <color name="light_gray">#D3D3D3</color>
